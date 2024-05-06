@@ -40,7 +40,6 @@ namespace HMS_Software_V1._01.Admin
             }
         }
 
-       
         private void A_D_register_btn_Click(object sender, EventArgs e)
         {
             if(A_D_fullName_tbx.Text == ""
@@ -61,8 +60,7 @@ namespace HMS_Software_V1._01.Admin
                 || A_D_graduatedYear_tbx.Text == ""
                 || A_D_degree_tbx.Text == ""
                 || A_D_certificate_tbx.Text == ""
-                || A_D_address_tbx.Text == ""
-                || A_D_pictureBox.Image == null)
+                || A_D_address_tbx.Text == "" )
             {
                 MessageBox.Show("Please fill all  fields"
                     , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -79,19 +77,20 @@ namespace HMS_Software_V1._01.Admin
                             "(D_FullName, D_NameWithInitials, D_Age, D_Gender, D_BloodGroup," +
                             "D_NIC, D_Nationality, D_LicenceNumber, D_Specialty, D_Email, D_NextOfKin," +
                             "D_ContactNo, D_Position, D_Experience, D_MedicalSchool_Name, D_Graduated_Year," +
-                            "D_Degree, D_Certificate, D_Address, D_Image_FilePath, D_RegisteredDate) " +
+                            "D_Degree, D_Certificate, D_Address, D_RegisteredDate, D_IsAdmissionOfficer) " +
 
                             "VALUES (@fullName, @nameWithInitials, @age, @gender, @bloodGroup," +
                             "@nic, @nationality, @licenceNumber, @specialty, @email, @nextOfKin," +
                             "@contactNo, @position, @experience, @medicalSchoolName, @graduatedYear," +
-                            "@degree, @certificate, @address, @imageFilePath, @registeredDate)";
+                            "@degree, @certificate, @address, @registeredDate, @D_IsAdmissionOfficer)";
 
-                        string imageFilePath = Path.Combine(@"E:\Programming\Github\HMS_Software_V1.01\HMS_Software_V1.01\Assests\Doctor_Images\"
+                        /*string imageFilePath = Path.Combine(@"E:\Programming\Github\HMS_Software_V1.01\HMS_Software_V1.01\Assests\Doctor_Images\"
                                     + A_D_NameWithInitials_tbx.Text.Trim() + ".jpg");
 
-                        File.Copy(A_D_pictureBox.ImageLocation, imageFilePath, true);
+                        File.Copy(A_D_pictureBox.ImageLocation, imageFilePath, true);*/
 
-                        using (SqlCommand cmd = new SqlCommand(quarryDoctor, connect))
+                        int generatedDoctorID;
+                        using (SqlCommand cmd = new SqlCommand(quarryDoctor + "; SELECT SCOPE_IDENTITY();", connect))
                         {
                             cmd.Parameters.AddWithValue("@fullName", A_D_fullName_tbx.Text);
                             cmd.Parameters.AddWithValue("@nameWithInitials", A_D_NameWithInitials_tbx.Text);
@@ -112,13 +111,22 @@ namespace HMS_Software_V1._01.Admin
                             cmd.Parameters.AddWithValue("@degree", A_D_degree_tbx.Text);
                             cmd.Parameters.AddWithValue("@certificate", A_D_certificate_tbx.Text);
                             cmd.Parameters.AddWithValue("@address", A_D_address_tbx.Text);
-                            cmd.Parameters.AddWithValue("@imageFilePath", imageFilePath);
+                            /*cmd.Parameters.AddWithValue("@imageFilePath", imageFilePath);*/
                             cmd.Parameters.AddWithValue("@registeredDate", today);
+                            cmd.Parameters.AddWithValue("@D_IsAdmissionOfficer", isAdmissionOfficer_checkBox.Checked);
 
-                            cmd.ExecuteNonQuery();
+
+                            generatedDoctorID = Convert.ToInt32(cmd.ExecuteScalar());
+
+                            // get Doctor ID 
+                            MessageBox.Show("Doctor added successfully with ID: " + generatedDoctorID, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            
 
                             MessageBox.Show("Added successfully!"
                                        , "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            MyAddUserLoginDetails(generatedDoctorID);
 
                         }
 
@@ -126,7 +134,7 @@ namespace HMS_Software_V1._01.Admin
                     }
                     catch(Exception ex)
                     {
-                        MessageBox.Show("Error: " + ex.Message
+                        MessageBox.Show("Error1: " + ex.Message
                    ,                "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         Console.WriteLine(ex);
@@ -143,24 +151,75 @@ namespace HMS_Software_V1._01.Admin
 
         }
 
-        private void A_D_uploadImage_btn_Click(object sender, EventArgs e)
+        private void MyAddUserLoginDetails(int generatedDoctorID)
         {
+            //Create User name And Password =================================================================================
+
+            string doctor_Name = A_D_NameWithInitials_tbx.Text;
+            string doctro_Age = A_D_age_tbx.Text.Trim();
+
+            // Get the first three letters of each string
+            string abbreviatedName = doctor_Name.Substring(0, Math.Min(doctor_Name.Length, 3));
+            abbreviatedName = abbreviatedName.Trim();
+
+            string userName = "D" + abbreviatedName + doctro_Age;
+            string password = userName.Substring(0, Math.Min(userName.Length, 3));
+
+            string userPosition;
+            //Ckeck if an Admission Officer
+            if (isAdmissionOfficer_checkBox.Checked)
+            {
+                userPosition = "Admission Officer";
+            }
+            else
+            {
+                userPosition = "Doctor";
+            }
+
+
             try
             {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "Image Files (*.jpg; *.png)|*.jpg;*.png";
-                string imagePath = "";
-                if (dialog.ShowDialog() == DialogResult.OK)
+                using(SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString))
                 {
-                    imagePath = dialog.FileName;
-                    A_D_pictureBox.ImageLocation = imagePath;
+                    connect.Open();
+
+                    string insertQuery = "INSERT INTO UserLogin (UserPosition, UserName, UserPassword, UserID) VALUES (@UserPosition, @UserName, @UserPassword, @UserID)";
+
+                    // Create a new instance of SqlCommand
+                    using (SqlCommand command = new SqlCommand(insertQuery, connect))
+                    {
+                        // Add parameters to the command if necessary
+                        command.Parameters.AddWithValue("@UserPosition", userPosition);
+                        command.Parameters.AddWithValue("@UserName", userName);
+                        command.Parameters.AddWithValue("@UserPassword", password);
+                        command.Parameters.AddWithValue("@UserID", generatedDoctorID);
+
+                        // Execute the command
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // Check if any rows were affected by the INSERT operation
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("INSERT INTO UserLogin Data inserted successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("INSERT INTO UserLogin No data inserted.");
+                        }
+                    }
+
+
                 }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex, "Error Message"
-                    , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error2: " + ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                Console.WriteLine(ex);
+
             }
         }
+
     }
 }

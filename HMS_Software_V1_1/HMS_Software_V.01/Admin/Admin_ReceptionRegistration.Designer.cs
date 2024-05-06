@@ -33,6 +33,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1_top = new System.Windows.Forms.Panel();
             this.top_tableLayoutPanle = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox_LOGO = new System.Windows.Forms.PictureBox();
             this.TopTable_Panel2 = new System.Windows.Forms.Panel();
             this.A_DR_adminName_lbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -74,17 +75,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.A_R_NameWithInitials_tbx = new System.Windows.Forms.TextBox();
             this.A_R_fullName_tbx = new System.Windows.Forms.TextBox();
-            this.pictureBox_LOGO = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1_top.SuspendLayout();
             this.top_tableLayoutPanle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_LOGO)).BeginInit();
             this.TopTable_Panel2.SuspendLayout();
             this.TopTable_Panel3.SuspendLayout();
             this.TopTable_Panel.SuspendLayout();
             this.panel1_mid_mid.SuspendLayout();
             this.panel1_mid_right.SuspendLayout();
             this.panel1_mid_left.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_LOGO)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -158,6 +158,17 @@
             this.top_tableLayoutPanle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.top_tableLayoutPanle.Size = new System.Drawing.Size(1002, 92);
             this.top_tableLayoutPanle.TabIndex = 8;
+            // 
+            // pictureBox_LOGO
+            // 
+            this.pictureBox_LOGO.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox_LOGO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
+            this.pictureBox_LOGO.Image = global::HMS_Software_V1._01.Properties.Resources.HMS_Logo4_100_;
+            this.pictureBox_LOGO.Location = new System.Drawing.Point(876, 3);
+            this.pictureBox_LOGO.Name = "pictureBox_LOGO";
+            this.pictureBox_LOGO.Size = new System.Drawing.Size(100, 86);
+            this.pictureBox_LOGO.TabIndex = 11;
+            this.pictureBox_LOGO.TabStop = false;
             // 
             // TopTable_Panel2
             // 
@@ -429,6 +440,7 @@
             this.A_R_save_btn.TabIndex = 46;
             this.A_R_save_btn.Text = "Save";
             this.A_R_save_btn.UseVisualStyleBackColor = false;
+            this.A_R_save_btn.Click += new System.EventHandler(this.A_R_save_btn_Click);
             // 
             // panel1_mid_left
             // 
@@ -645,17 +657,6 @@
             this.A_R_fullName_tbx.Size = new System.Drawing.Size(310, 22);
             this.A_R_fullName_tbx.TabIndex = 8;
             // 
-            // pictureBox_LOGO
-            // 
-            this.pictureBox_LOGO.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox_LOGO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
-            this.pictureBox_LOGO.Image = global::HMS_Software_V1._01.Properties.Resources.HMS_Logo4_100_;
-            this.pictureBox_LOGO.Location = new System.Drawing.Point(876, 3);
-            this.pictureBox_LOGO.Name = "pictureBox_LOGO";
-            this.pictureBox_LOGO.Size = new System.Drawing.Size(100, 86);
-            this.pictureBox_LOGO.TabIndex = 11;
-            this.pictureBox_LOGO.TabStop = false;
-            // 
             // Admin_ReceptionRegistration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -669,6 +670,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1_top.ResumeLayout(false);
             this.top_tableLayoutPanle.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_LOGO)).EndInit();
             this.TopTable_Panel2.ResumeLayout(false);
             this.TopTable_Panel2.PerformLayout();
             this.TopTable_Panel3.ResumeLayout(false);
@@ -680,7 +682,6 @@
             this.panel1_mid_right.ResumeLayout(false);
             this.panel1_mid_left.ResumeLayout(false);
             this.panel1_mid_left.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_LOGO)).EndInit();
             this.ResumeLayout(false);
 
         }

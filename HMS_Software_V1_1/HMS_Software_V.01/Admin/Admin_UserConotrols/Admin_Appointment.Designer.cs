@@ -28,32 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.RegisterAppointment_btn = new System.Windows.Forms.Button();
+            this.AP_Save_btn = new System.Windows.Forms.Button();
             this.bottom_tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.midpanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.location_tbx = new System.Windows.Forms.TextBox();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.AP_HallNumber = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.slots_tbx = new System.Windows.Forms.TextBox();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.AP_TotalSlots = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.date_tbx = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
-            this.duration_tbx = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.AP_duration = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.time_tbx = new System.Windows.Forms.TextBox();
-            this.tableLayP_panel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.ward_tbx = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.AP_WardNo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.doctorName_tvx = new System.Windows.Forms.TextBox();
+            this.AP_DoctorID = new System.Windows.Forms.TextBox();
             this.TopTable_Panel2 = new System.Windows.Forms.Panel();
             this.Ad_appointmetn_Date = new System.Windows.Forms.Label();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
@@ -65,44 +56,46 @@
             this.TopTable_Panel = new System.Windows.Forms.Panel();
             this.Ad_Doc_lbl = new System.Windows.Forms.Label();
             this.top_tableLayoutPanle = new System.Windows.Forms.TableLayoutPanel();
-            this.Ad_home_top_panel = new System.Windows.Forms.Panel();
             this.pictureBox_LOGO = new System.Windows.Forms.PictureBox();
+            this.Ad_home_top_panel = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.AP_Time_dtPicker = new System.Windows.Forms.DateTimePicker();
+            this.AP_dat_dtPicker = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.AP_Clinci_ID = new System.Windows.Forms.TextBox();
             this.bottom_tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.midpanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.tableLayP_panel.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.TopTable_Panel2.SuspendLayout();
             this.Ad_home_bottom_panel.SuspendLayout();
             this.TopTable_Panel3.SuspendLayout();
             this.TopTable_Panel.SuspendLayout();
             this.top_tableLayoutPanle.SuspendLayout();
-            this.Ad_home_top_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_LOGO)).BeginInit();
+            this.Ad_home_top_panel.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // RegisterAppointment_btn
+            // AP_Save_btn
             // 
-            this.RegisterAppointment_btn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.RegisterAppointment_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(46)))), ((int)(((byte)(219)))));
-            this.RegisterAppointment_btn.FlatAppearance.BorderSize = 0;
-            this.RegisterAppointment_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(35)))), ((int)(((byte)(122)))));
-            this.RegisterAppointment_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(35)))), ((int)(((byte)(122)))));
-            this.RegisterAppointment_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RegisterAppointment_btn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterAppointment_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
-            this.RegisterAppointment_btn.Location = new System.Drawing.Point(619, 2);
-            this.RegisterAppointment_btn.Name = "RegisterAppointment_btn";
-            this.RegisterAppointment_btn.Size = new System.Drawing.Size(240, 81);
-            this.RegisterAppointment_btn.TabIndex = 9;
-            this.RegisterAppointment_btn.Text = "Save";
-            this.RegisterAppointment_btn.UseVisualStyleBackColor = false;
+            this.AP_Save_btn.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.AP_Save_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(46)))), ((int)(((byte)(219)))));
+            this.AP_Save_btn.FlatAppearance.BorderSize = 0;
+            this.AP_Save_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(35)))), ((int)(((byte)(122)))));
+            this.AP_Save_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(35)))), ((int)(((byte)(122)))));
+            this.AP_Save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AP_Save_btn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AP_Save_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
+            this.AP_Save_btn.Location = new System.Drawing.Point(680, 14);
+            this.AP_Save_btn.Name = "AP_Save_btn";
+            this.AP_Save_btn.Size = new System.Drawing.Size(233, 64);
+            this.AP_Save_btn.TabIndex = 9;
+            this.AP_Save_btn.Text = "Save";
+            this.AP_Save_btn.UseVisualStyleBackColor = false;
+            this.AP_Save_btn.Click += new System.EventHandler(this.AP_Save_btn_Click);
             // 
             // bottom_tableLayoutPanel1
             // 
@@ -122,7 +115,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.RegisterAppointment_btn);
+            this.panel1.Controls.Add(this.AP_Save_btn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 313);
             this.panel1.Name = "panel1";
@@ -143,248 +136,136 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.panel7, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel6, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.panel4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayP_panel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.02439F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.97561F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(932, 304);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label9);
-            this.panel7.Controls.Add(this.location_tbx);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(469, 60);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(460, 57);
-            this.panel7.TabIndex = 6;
-            // 
             // label9
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(17, 2);
+            this.label9.Location = new System.Drawing.Point(23, 157);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 17);
+            this.label9.Size = new System.Drawing.Size(92, 17);
             this.label9.TabIndex = 5;
-            this.label9.Text = "Location:";
+            this.label9.Text = "Hall Number:";
             // 
-            // location_tbx
+            // AP_HallNumber
             // 
-            this.location_tbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.location_tbx.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.location_tbx.Location = new System.Drawing.Point(20, 22);
-            this.location_tbx.MaximumSize = new System.Drawing.Size(500, 4);
-            this.location_tbx.MinimumSize = new System.Drawing.Size(241, 25);
-            this.location_tbx.Name = "location_tbx";
-            this.location_tbx.Size = new System.Drawing.Size(241, 25);
-            this.location_tbx.TabIndex = 0;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.label8);
-            this.panel6.Controls.Add(this.slots_tbx);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(469, 3);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(460, 51);
-            this.panel6.TabIndex = 6;
+            this.AP_HallNumber.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AP_HallNumber.Location = new System.Drawing.Point(23, 177);
+            this.AP_HallNumber.MaximumSize = new System.Drawing.Size(500, 4);
+            this.AP_HallNumber.MinimumSize = new System.Drawing.Size(241, 25);
+            this.AP_HallNumber.Name = "AP_HallNumber";
+            this.AP_HallNumber.Size = new System.Drawing.Size(301, 25);
+            this.AP_HallNumber.TabIndex = 0;
             // 
             // label8
             // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(17, 2);
+            this.label8.Location = new System.Drawing.Point(23, 90);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 17);
+            this.label8.Size = new System.Drawing.Size(79, 17);
             this.label8.TabIndex = 5;
-            this.label8.Text = "Slots:";
+            this.label8.Text = "Total Slots:";
             // 
-            // slots_tbx
+            // AP_TotalSlots
             // 
-            this.slots_tbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.slots_tbx.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.slots_tbx.Location = new System.Drawing.Point(20, 22);
-            this.slots_tbx.MaximumSize = new System.Drawing.Size(500, 4);
-            this.slots_tbx.MinimumSize = new System.Drawing.Size(241, 25);
-            this.slots_tbx.Name = "slots_tbx";
-            this.slots_tbx.Size = new System.Drawing.Size(241, 25);
-            this.slots_tbx.TabIndex = 0;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.label7);
-            this.panel5.Controls.Add(this.date_tbx);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 243);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(460, 58);
-            this.panel5.TabIndex = 6;
+            this.AP_TotalSlots.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.AP_TotalSlots.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AP_TotalSlots.Location = new System.Drawing.Point(23, 110);
+            this.AP_TotalSlots.MaximumSize = new System.Drawing.Size(500, 4);
+            this.AP_TotalSlots.MinimumSize = new System.Drawing.Size(241, 25);
+            this.AP_TotalSlots.Name = "AP_TotalSlots";
+            this.AP_TotalSlots.Size = new System.Drawing.Size(301, 25);
+            this.AP_TotalSlots.TabIndex = 0;
             // 
             // label7
             // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(17, 2);
+            this.label7.Location = new System.Drawing.Point(19, 90);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(43, 17);
             this.label7.TabIndex = 5;
             this.label7.Text = "Date:";
             // 
-            // date_tbx
-            // 
-            this.date_tbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.date_tbx.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date_tbx.Location = new System.Drawing.Point(20, 22);
-            this.date_tbx.MaximumSize = new System.Drawing.Size(500, 4);
-            this.date_tbx.MinimumSize = new System.Drawing.Size(241, 25);
-            this.date_tbx.Name = "date_tbx";
-            this.date_tbx.Size = new System.Drawing.Size(241, 25);
-            this.date_tbx.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.duration_tbx);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 183);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(460, 54);
-            this.panel4.TabIndex = 6;
-            // 
             // label6
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(17, 2);
+            this.label6.Location = new System.Drawing.Point(23, 219);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 17);
+            this.label6.Size = new System.Drawing.Size(89, 17);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Duration:";
+            this.label6.Text = "Duration (h):";
             // 
-            // duration_tbx
+            // AP_duration
             // 
-            this.duration_tbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.duration_tbx.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.duration_tbx.Location = new System.Drawing.Point(20, 22);
-            this.duration_tbx.MaximumSize = new System.Drawing.Size(500, 4);
-            this.duration_tbx.MinimumSize = new System.Drawing.Size(241, 25);
-            this.duration_tbx.Name = "duration_tbx";
-            this.duration_tbx.Size = new System.Drawing.Size(241, 25);
-            this.duration_tbx.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.time_tbx);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 123);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(460, 54);
-            this.panel3.TabIndex = 6;
+            this.AP_duration.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AP_duration.Location = new System.Drawing.Point(23, 239);
+            this.AP_duration.MaximumSize = new System.Drawing.Size(500, 4);
+            this.AP_duration.MinimumSize = new System.Drawing.Size(241, 25);
+            this.AP_duration.Name = "AP_duration";
+            this.AP_duration.Size = new System.Drawing.Size(301, 25);
+            this.AP_duration.TabIndex = 0;
             // 
             // label4
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(17, 2);
+            this.label4.Location = new System.Drawing.Point(19, 157);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 17);
             this.label4.TabIndex = 5;
             this.label4.Text = "Time:";
             // 
-            // time_tbx
-            // 
-            this.time_tbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.time_tbx.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.time_tbx.Location = new System.Drawing.Point(20, 22);
-            this.time_tbx.MaximumSize = new System.Drawing.Size(500, 4);
-            this.time_tbx.MinimumSize = new System.Drawing.Size(241, 25);
-            this.time_tbx.Name = "time_tbx";
-            this.time_tbx.Size = new System.Drawing.Size(241, 25);
-            this.time_tbx.TabIndex = 0;
-            // 
-            // tableLayP_panel
-            // 
-            this.tableLayP_panel.Controls.Add(this.label1);
-            this.tableLayP_panel.Controls.Add(this.ward_tbx);
-            this.tableLayP_panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayP_panel.Location = new System.Drawing.Point(3, 3);
-            this.tableLayP_panel.Name = "tableLayP_panel";
-            this.tableLayP_panel.Size = new System.Drawing.Size(460, 51);
-            this.tableLayP_panel.TabIndex = 1;
-            // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 2);
+            this.label1.Location = new System.Drawing.Point(23, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 17);
+            this.label1.Size = new System.Drawing.Size(69, 17);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Ward:";
+            this.label1.Text = "Ward No:";
             // 
-            // ward_tbx
+            // AP_WardNo
             // 
-            this.ward_tbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ward_tbx.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ward_tbx.Location = new System.Drawing.Point(20, 22);
-            this.ward_tbx.MaximumSize = new System.Drawing.Size(500, 4);
-            this.ward_tbx.MinimumSize = new System.Drawing.Size(241, 25);
-            this.ward_tbx.Name = "ward_tbx";
-            this.ward_tbx.Size = new System.Drawing.Size(241, 25);
-            this.ward_tbx.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.doctorName_tvx);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 60);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(460, 57);
-            this.panel2.TabIndex = 2;
+            this.AP_WardNo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AP_WardNo.Location = new System.Drawing.Point(23, 45);
+            this.AP_WardNo.MaximumSize = new System.Drawing.Size(500, 4);
+            this.AP_WardNo.MinimumSize = new System.Drawing.Size(241, 25);
+            this.AP_WardNo.Name = "AP_WardNo";
+            this.AP_WardNo.Size = new System.Drawing.Size(301, 25);
+            this.AP_WardNo.TabIndex = 0;
             // 
             // label3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(17, 2);
+            this.label3.Location = new System.Drawing.Point(19, 219);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 17);
+            this.label3.Size = new System.Drawing.Size(74, 17);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Doctor:";
+            this.label3.Text = "Doctor ID:";
             // 
-            // doctorName_tvx
+            // AP_DoctorID
             // 
-            this.doctorName_tvx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.doctorName_tvx.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.doctorName_tvx.Location = new System.Drawing.Point(20, 22);
-            this.doctorName_tvx.MaximumSize = new System.Drawing.Size(500, 4);
-            this.doctorName_tvx.MinimumSize = new System.Drawing.Size(241, 25);
-            this.doctorName_tvx.Name = "doctorName_tvx";
-            this.doctorName_tvx.Size = new System.Drawing.Size(241, 25);
-            this.doctorName_tvx.TabIndex = 0;
+            this.AP_DoctorID.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AP_DoctorID.Location = new System.Drawing.Point(19, 239);
+            this.AP_DoctorID.MaximumSize = new System.Drawing.Size(500, 4);
+            this.AP_DoctorID.MinimumSize = new System.Drawing.Size(241, 25);
+            this.AP_DoctorID.Name = "AP_DoctorID";
+            this.AP_DoctorID.Size = new System.Drawing.Size(303, 25);
+            this.AP_DoctorID.TabIndex = 0;
             // 
             // TopTable_Panel2
             // 
@@ -514,6 +395,17 @@
             this.top_tableLayoutPanle.Size = new System.Drawing.Size(936, 133);
             this.top_tableLayoutPanle.TabIndex = 7;
             // 
+            // pictureBox_LOGO
+            // 
+            this.pictureBox_LOGO.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox_LOGO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
+            this.pictureBox_LOGO.Image = global::HMS_Software_V1._01.Properties.Resources.HMS_Logo4_100_;
+            this.pictureBox_LOGO.Location = new System.Drawing.Point(815, 16);
+            this.pictureBox_LOGO.Name = "pictureBox_LOGO";
+            this.pictureBox_LOGO.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox_LOGO.TabIndex = 10;
+            this.pictureBox_LOGO.TabStop = false;
+            // 
             // Ad_home_top_panel
             // 
             this.Ad_home_top_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
@@ -525,16 +417,81 @@
             this.Ad_home_top_panel.Size = new System.Drawing.Size(938, 135);
             this.Ad_home_top_panel.TabIndex = 8;
             // 
-            // pictureBox_LOGO
+            // panel2
             // 
-            this.pictureBox_LOGO.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox_LOGO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
-            this.pictureBox_LOGO.Image = global::HMS_Software_V1._01.Properties.Resources.HMS_Logo4_100_;
-            this.pictureBox_LOGO.Location = new System.Drawing.Point(815, 16);
-            this.pictureBox_LOGO.Name = "pictureBox_LOGO";
-            this.pictureBox_LOGO.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox_LOGO.TabIndex = 10;
-            this.pictureBox_LOGO.TabStop = false;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.AP_Clinci_ID);
+            this.panel2.Controls.Add(this.AP_dat_dtPicker);
+            this.panel2.Controls.Add(this.AP_Time_dtPicker);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.AP_DoctorID);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(466, 304);
+            this.panel2.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.AP_HallNumber);
+            this.panel3.Controls.Add(this.label8);
+            this.panel3.Controls.Add(this.AP_WardNo);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.AP_duration);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.AP_TotalSlots);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(466, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(466, 304);
+            this.panel3.TabIndex = 1;
+            // 
+            // AP_Time_dtPicker
+            // 
+            this.AP_Time_dtPicker.Checked = false;
+            this.AP_Time_dtPicker.Font = new System.Drawing.Font("Arial", 11.25F);
+            this.AP_Time_dtPicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.AP_Time_dtPicker.Location = new System.Drawing.Point(19, 177);
+            this.AP_Time_dtPicker.Name = "AP_Time_dtPicker";
+            this.AP_Time_dtPicker.Size = new System.Drawing.Size(300, 25);
+            this.AP_Time_dtPicker.TabIndex = 6;
+            // 
+            // AP_dat_dtPicker
+            // 
+            this.AP_dat_dtPicker.Checked = false;
+            this.AP_dat_dtPicker.Font = new System.Drawing.Font("Arial", 11.25F);
+            this.AP_dat_dtPicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.AP_dat_dtPicker.Location = new System.Drawing.Point(19, 111);
+            this.AP_dat_dtPicker.Name = "AP_dat_dtPicker";
+            this.AP_dat_dtPicker.Size = new System.Drawing.Size(300, 25);
+            this.AP_dat_dtPicker.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(19, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 17);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Clinic ID:";
+            // 
+            // AP_Clinci_ID
+            // 
+            this.AP_Clinci_ID.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AP_Clinci_ID.Location = new System.Drawing.Point(19, 45);
+            this.AP_Clinci_ID.MaximumSize = new System.Drawing.Size(500, 4);
+            this.AP_Clinci_ID.MinimumSize = new System.Drawing.Size(241, 25);
+            this.AP_Clinci_ID.Name = "AP_Clinci_ID";
+            this.AP_Clinci_ID.Size = new System.Drawing.Size(300, 25);
+            this.AP_Clinci_ID.TabIndex = 6;
             // 
             // Admin_Appointment
             // 
@@ -548,20 +505,6 @@
             this.panel1.ResumeLayout(false);
             this.midpanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.tableLayP_panel.ResumeLayout(false);
-            this.tableLayP_panel.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.TopTable_Panel2.ResumeLayout(false);
             this.TopTable_Panel2.PerformLayout();
             this.Ad_home_bottom_panel.ResumeLayout(false);
@@ -570,14 +513,18 @@
             this.TopTable_Panel.ResumeLayout(false);
             this.TopTable_Panel.PerformLayout();
             this.top_tableLayoutPanle.ResumeLayout(false);
-            this.Ad_home_top_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_LOGO)).EndInit();
+            this.Ad_home_top_panel.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button RegisterAppointment_btn;
+        private System.Windows.Forms.Button AP_Save_btn;
         private System.Windows.Forms.TableLayoutPanel bottom_tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel TopTable_Panel2;
@@ -593,28 +540,25 @@
         private System.Windows.Forms.TableLayoutPanel top_tableLayoutPanle;
         private System.Windows.Forms.Panel Ad_home_top_panel;
         private System.Windows.Forms.Panel midpanel;
-        private System.Windows.Forms.Panel tableLayP_panel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox ward_tbx;
+        private System.Windows.Forms.TextBox AP_WardNo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox slots_tbx;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.TextBox AP_TotalSlots;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox location_tbx;
-        private System.Windows.Forms.TextBox date_tbx;
-        private System.Windows.Forms.TextBox duration_tbx;
-        private System.Windows.Forms.TextBox time_tbx;
-        private System.Windows.Forms.TextBox doctorName_tvx;
+        private System.Windows.Forms.TextBox AP_HallNumber;
+        private System.Windows.Forms.TextBox AP_duration;
+        private System.Windows.Forms.TextBox AP_DoctorID;
         private System.Windows.Forms.PictureBox pictureBox_LOGO;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DateTimePicker AP_Time_dtPicker;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DateTimePicker AP_dat_dtPicker;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox AP_Clinci_ID;
     }
 }

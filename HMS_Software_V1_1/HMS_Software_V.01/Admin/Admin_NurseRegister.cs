@@ -79,7 +79,8 @@ namespace HMS_Software_V1._01.Admin
                             "@position, @experienceYears, @nursingSchoolName, @graduatedYear," +
                             "@degree, @certificates, @address, @dateOfBirth, @registeredDate)";
 
-                        using (SqlCommand cmd = new SqlCommand(quarryNurse, connect))
+                        int generatedNurseID;
+                        using (SqlCommand cmd = new SqlCommand(quarryNurse + "; SELECT SCOPE_IDENTITY();", connect))
                         {
                             cmd.Parameters.AddWithValue("@fullName", A_N_fullName_tbx.Text);
                             cmd.Parameters.AddWithValue("@nameWithInitials", A_N_NameWithInitials_tbx.Text);
@@ -102,10 +103,13 @@ namespace HMS_Software_V1._01.Admin
                             cmd.Parameters.AddWithValue("@dateOfBirth", D_Register_DTimePicker.Value);
                             cmd.Parameters.AddWithValue("@registeredDate", today);
 
-                            cmd.ExecuteNonQuery();
+                            generatedNurseID = Convert.ToInt32(cmd.ExecuteScalar());
 
-                            MessageBox.Show("Added successfully!"
-                                       , "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // get Doctor ID 
+                            MessageBox.Show("Nurse added successfully with ID: " + generatedNurseID, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            MyAddUserLoginDetails(generatedNurseID);
+
                         }
 
                     }
@@ -122,6 +126,64 @@ namespace HMS_Software_V1._01.Admin
                         connect.Close();
                     }
                 }
+            }
+        }
+
+        private void MyAddUserLoginDetails(int generatedNurseID)
+        {
+            //Create User name And Password =================================================================================
+
+            string nurse_Name = A_N_NameWithInitials_tbx.Text;
+            string nurse_Age = A_N_age_tbx.Text.Trim();
+
+            // Get the first three letters of each string
+            string abbreviatedName = nurse_Name.Substring(0, Math.Min(nurse_Name.Length, 3));
+            abbreviatedName = abbreviatedName.Trim();
+
+            string userName = "D" + abbreviatedName + nurse_Age;
+            string password = userName.Substring(0, Math.Min(userName.Length, 3));
+
+
+            try
+            {
+                using (SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString))
+                {
+                    connect.Open();
+
+                    string insertQuery = "INSERT INTO UserLogin (UserPosition, UserName, UserPassword, UserID) VALUES (@UserPosition, @UserName, @UserPassword, @UserID)";
+
+                    // Create a new instance of SqlCommand
+                    using (SqlCommand command = new SqlCommand(insertQuery, connect))
+                    {
+                        // Add parameters to the command if necessary
+                        command.Parameters.AddWithValue("@UserPosition", "Nurse");
+                        command.Parameters.AddWithValue("@UserName", userName);
+                        command.Parameters.AddWithValue("@UserPassword", password);
+                        command.Parameters.AddWithValue("@UserID", generatedNurseID);
+
+                        // Execute the command
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // Check if any rows were affected by the INSERT operation
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("INSERT INTO UserLogin Data inserted successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("INSERT INTO UserLogin No data inserted.");
+                        }
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error2: " + ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                Console.WriteLine(ex);
+
             }
         }
     }

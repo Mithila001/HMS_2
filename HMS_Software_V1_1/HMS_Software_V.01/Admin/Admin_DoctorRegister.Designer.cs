@@ -32,6 +32,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1_top = new System.Windows.Forms.Panel();
             this.top_tableLayoutPanle = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox_LOGO = new System.Windows.Forms.PictureBox();
             this.TopTable_Panel2 = new System.Windows.Forms.Panel();
             this.A_DR_adminName_lbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,8 +63,6 @@
             this.panel1_mid_right = new System.Windows.Forms.Panel();
             this.materialDivider3 = new MaterialSkin.Controls.MaterialDivider();
             this.A_D_register_btn = new System.Windows.Forms.Button();
-            this.A_D_uploadImage_btn = new System.Windows.Forms.Button();
-            this.A_D_pictureBox = new System.Windows.Forms.PictureBox();
             this.label21 = new System.Windows.Forms.Label();
             this.A_D_address_tbx = new System.Windows.Forms.TextBox();
             this.panel1_mid_left = new System.Windows.Forms.Panel();
@@ -88,19 +87,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.A_D_fullName_tbx = new System.Windows.Forms.TextBox();
             this.errorProvider1_A_D_registration = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pictureBox_LOGO = new System.Windows.Forms.PictureBox();
+            this.isAdmissionOfficer_checkBox = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1_top.SuspendLayout();
             this.top_tableLayoutPanle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_LOGO)).BeginInit();
             this.TopTable_Panel2.SuspendLayout();
             this.TopTable_Panel3.SuspendLayout();
             this.TopTable_Panel.SuspendLayout();
             this.panel1_mid_mid.SuspendLayout();
             this.panel1_mid_right.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.A_D_pictureBox)).BeginInit();
             this.panel1_mid_left.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1_A_D_registration)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_LOGO)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -152,6 +150,17 @@
             this.top_tableLayoutPanle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.top_tableLayoutPanle.Size = new System.Drawing.Size(1002, 92);
             this.top_tableLayoutPanle.TabIndex = 8;
+            // 
+            // pictureBox_LOGO
+            // 
+            this.pictureBox_LOGO.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox_LOGO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
+            this.pictureBox_LOGO.Image = global::HMS_Software_V1._01.Properties.Resources.HMS_Logo4_100_;
+            this.pictureBox_LOGO.Location = new System.Drawing.Point(876, 3);
+            this.pictureBox_LOGO.Name = "pictureBox_LOGO";
+            this.pictureBox_LOGO.Size = new System.Drawing.Size(100, 86);
+            this.pictureBox_LOGO.TabIndex = 11;
+            this.pictureBox_LOGO.TabStop = false;
             // 
             // TopTable_Panel2
             // 
@@ -471,10 +480,9 @@
             // 
             // panel1_mid_right
             // 
+            this.panel1_mid_right.Controls.Add(this.isAdmissionOfficer_checkBox);
             this.panel1_mid_right.Controls.Add(this.materialDivider3);
             this.panel1_mid_right.Controls.Add(this.A_D_register_btn);
-            this.panel1_mid_right.Controls.Add(this.A_D_uploadImage_btn);
-            this.panel1_mid_right.Controls.Add(this.A_D_pictureBox);
             this.panel1_mid_right.Controls.Add(this.label21);
             this.panel1_mid_right.Controls.Add(this.A_D_address_tbx);
             this.panel1_mid_right.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -513,34 +521,6 @@
             this.A_D_register_btn.Text = "Save";
             this.A_D_register_btn.UseVisualStyleBackColor = false;
             this.A_D_register_btn.Click += new System.EventHandler(this.A_D_register_btn_Click);
-            // 
-            // A_D_uploadImage_btn
-            // 
-            this.A_D_uploadImage_btn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.A_D_uploadImage_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(46)))), ((int)(((byte)(219)))));
-            this.A_D_uploadImage_btn.FlatAppearance.BorderSize = 0;
-            this.A_D_uploadImage_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(35)))), ((int)(((byte)(122)))));
-            this.A_D_uploadImage_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(35)))), ((int)(((byte)(122)))));
-            this.A_D_uploadImage_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.A_D_uploadImage_btn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.A_D_uploadImage_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
-            this.A_D_uploadImage_btn.Location = new System.Drawing.Point(105, 254);
-            this.A_D_uploadImage_btn.Name = "A_D_uploadImage_btn";
-            this.A_D_uploadImage_btn.Size = new System.Drawing.Size(116, 37);
-            this.A_D_uploadImage_btn.TabIndex = 45;
-            this.A_D_uploadImage_btn.Text = "Upload";
-            this.A_D_uploadImage_btn.UseVisualStyleBackColor = false;
-            this.A_D_uploadImage_btn.Click += new System.EventHandler(this.A_D_uploadImage_btn_Click);
-            // 
-            // A_D_pictureBox
-            // 
-            this.A_D_pictureBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.A_D_pictureBox.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.A_D_pictureBox.Location = new System.Drawing.Point(105, 131);
-            this.A_D_pictureBox.Name = "A_D_pictureBox";
-            this.A_D_pictureBox.Size = new System.Drawing.Size(116, 118);
-            this.A_D_pictureBox.TabIndex = 44;
-            this.A_D_pictureBox.TabStop = false;
             // 
             // label21
             // 
@@ -819,16 +799,18 @@
             // 
             this.errorProvider1_A_D_registration.ContainerControl = this;
             // 
-            // pictureBox_LOGO
+            // isAdmissionOfficer_checkBox
             // 
-            this.pictureBox_LOGO.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox_LOGO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
-            this.pictureBox_LOGO.Image = global::HMS_Software_V1._01.Properties.Resources.HMS_Logo4_100_;
-            this.pictureBox_LOGO.Location = new System.Drawing.Point(876, 3);
-            this.pictureBox_LOGO.Name = "pictureBox_LOGO";
-            this.pictureBox_LOGO.Size = new System.Drawing.Size(100, 86);
-            this.pictureBox_LOGO.TabIndex = 11;
-            this.pictureBox_LOGO.TabStop = false;
+            this.isAdmissionOfficer_checkBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.isAdmissionOfficer_checkBox.AutoSize = true;
+            this.isAdmissionOfficer_checkBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isAdmissionOfficer_checkBox.Location = new System.Drawing.Point(11, 85);
+            this.isAdmissionOfficer_checkBox.Name = "isAdmissionOfficer_checkBox";
+            this.isAdmissionOfficer_checkBox.Size = new System.Drawing.Size(137, 20);
+            this.isAdmissionOfficer_checkBox.TabIndex = 48;
+            this.isAdmissionOfficer_checkBox.Text = "Admission Officer";
+            this.isAdmissionOfficer_checkBox.UseVisualStyleBackColor = true;
             // 
             // Admin_DoctorRegister
             // 
@@ -844,6 +826,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1_top.ResumeLayout(false);
             this.top_tableLayoutPanle.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_LOGO)).EndInit();
             this.TopTable_Panel2.ResumeLayout(false);
             this.TopTable_Panel2.PerformLayout();
             this.TopTable_Panel3.ResumeLayout(false);
@@ -854,11 +837,9 @@
             this.panel1_mid_mid.PerformLayout();
             this.panel1_mid_right.ResumeLayout(false);
             this.panel1_mid_right.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.A_D_pictureBox)).EndInit();
             this.panel1_mid_left.ResumeLayout(false);
             this.panel1_mid_left.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1_A_D_registration)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_LOGO)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -917,13 +898,12 @@
         private System.Windows.Forms.TextBox A_D_address_tbx;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox A_D_certificate_tbx;
-        private System.Windows.Forms.PictureBox A_D_pictureBox;
-        private System.Windows.Forms.Button A_D_uploadImage_btn;
         private MaterialSkin.Controls.MaterialDivider materialDivider3;
         private System.Windows.Forms.Button A_D_register_btn;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox A_D_Email_tbx;
         private System.Windows.Forms.ErrorProvider errorProvider1_A_D_registration;
         private System.Windows.Forms.PictureBox pictureBox_LOGO;
+        private System.Windows.Forms.CheckBox isAdmissionOfficer_checkBox;
     }
 }
