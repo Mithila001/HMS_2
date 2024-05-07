@@ -24,7 +24,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
         private int WardNumber;
 
 
-        public DoctorWard_Dashboard(int userID = 12, int WardNumber = 8)
+        public DoctorWard_Dashboard(/*int userID, int WardNumber*/ int userID = 12, int WardNumber = 8)
         {
             InitializeComponent();
 
@@ -53,7 +53,8 @@ namespace HMS_Software_V1._01.Doctor_Ward
                 {
                     connect.Open();
 
-                    string query1 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE Is_VisitedByDoctor = @Is_VisitedByDoctor AND CONVERT(date, Visite_Date) = @TodayDate";
+                    string query1 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent"+
+                        " WHERE Is_VisitedByDoctor = @Is_VisitedByDoctor AND CONVERT(date, Visite_Date) = @TodayDate";
                     using (SqlCommand command = new SqlCommand(query1, connect))
                     {
                         command.Parameters.AddWithValue("@Is_VisitedByDoctor", 1);
@@ -61,14 +62,17 @@ namespace HMS_Software_V1._01.Doctor_Ward
                         IsCompletedCount = (int)command.ExecuteScalar();
                     }
 
-                    string query2 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE Is_VisitedByDoctor = @Is_VisitedByDoctor";
+                    string query2 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE"+
+                        " Is_VisitedByDoctor = @Is_VisitedByDoctor AND CONVERT(date, Visite_Date) = @TodayDate";
                     using (SqlCommand command = new SqlCommand(query2, connect))
                     {
                         command.Parameters.AddWithValue("@Is_VisitedByDoctor", 0);
+                        command.Parameters.AddWithValue("@TodayDate", DateTime.Today);
                         IsNotCompledCount = (int)command.ExecuteScalar();
                     }
 
-                    string query3 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE Is_VisitedByDoctor = @Is_VisitedByDoctor AND Visited_Doctor_ID = @Visited_Doctor_ID AND CONVERT(date, Visite_Date) = @TodayDate";
+                    string query3 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE"+
+                        " Is_VisitedByDoctor = @Is_VisitedByDoctor AND Visited_Doctor_ID = @Visited_Doctor_ID AND CONVERT(date, Visite_Date) = @TodayDate";
                     using (SqlCommand command = new SqlCommand(query3, connect))
                     {
                         command.Parameters.AddWithValue("@Is_VisitedByDoctor", 1);
@@ -159,8 +163,37 @@ namespace HMS_Software_V1._01.Doctor_Ward
 
 
                     //Load Ward Details  ------------------------------------------------------------------------
-                    DWD_WarName.Text = "Temporary Ward"; //Need to change
+                   /* DWD_WarName.Text = "Temporary Ward"; //Need to change*/
+                    string query3 = "SELECT WardName" +
+                    " FROM WardTypes WHERE WardNumber = @WardNumber";
+                    using (SqlCommand command3 = new SqlCommand(query3, connect))
+                    {
+                        command3.Parameters.AddWithValue("@WardNumber", WardNumber);
+                        /*Console.WriteLine("DoctorID from dashboard: " + DoctorID);*/
+                        try
+                        {
+                            SqlDataReader reader = command3.ExecuteReader();
 
+                            // Check if any rows were returned
+                            if (reader.Read())
+                            {
+                                DWD_WarName.Text = reader["WardName"].ToString();
+                            }
+                            else
+                            {
+                                DWD_WarName.Text = "Ward No Not Found";
+                            }
+                            reader.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error:3 " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Console.WriteLine("Error3:" + ex);
+                        }
+                    }
+
+
+                    // Get Dcotor Details
                     string query2 = "SELECT D_NameWithInitials, D_Position, D_Specialty, D_RegistrationID" +
                     " FROM Doctor WHERE Doctor_ID = @doctorID";
                     using (SqlCommand command2 = new SqlCommand(query2, connect))

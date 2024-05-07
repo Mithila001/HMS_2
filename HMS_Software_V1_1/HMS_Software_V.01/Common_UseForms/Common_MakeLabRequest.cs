@@ -477,6 +477,9 @@ namespace HMS_Software_V1._01.Common_UseForms
                     string updateQuery = "UPDATE PatientMedical_Event SET LabRequest_ID = @labRequestID WHERE PatientMedicalEvent_ID = @pmeID";
                     using (SqlCommand updateCommand = new SqlCommand(updateQuery, connect))
                     {
+                        Console.WriteLine("---------> LAB Patietn Medical Event ID:"+ doctorDataSendToLabRequest.PatientMedicalEventID);
+                       
+
                         updateCommand.Parameters.AddWithValue("@labRequestID", labRequestIDlistStrig);
                         updateCommand.Parameters.AddWithValue("@pmeID", doctorDataSendToLabRequest.PatientMedicalEventID);
 

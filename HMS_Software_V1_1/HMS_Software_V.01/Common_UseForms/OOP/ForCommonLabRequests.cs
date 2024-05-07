@@ -17,7 +17,7 @@ namespace HMS_Software_V1._01.Common_UseForms.OOP
         string PatientName { get; set; }
         string PatientAge { get; set; }
         string PatientGender { get; set; }
-        string PatientMedicalEventID { get; set; }
+        int PatientMedicalEventID { get; set; }
         string EventUnitType { get; set; }
         int WardNumber { get; set; }
     }

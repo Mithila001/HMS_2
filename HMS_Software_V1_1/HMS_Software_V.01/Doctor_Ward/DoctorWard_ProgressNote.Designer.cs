@@ -460,8 +460,8 @@
             this.DWPN_P_Confirm_btn.TabIndex = 62;
             this.DWPN_P_Confirm_btn.Text = "Confirm";
             this.DWPN_P_Confirm_btn.UseVisualStyleBackColor = false;
-            this.DWPN_P_Confirm_btn.Click += new System.EventHandler(this.DWPN_P_Confirm_btn_Click);
             this.DWPN_P_Confirm_btn.Click += new System.EventHandler(this.Button_Click);
+            this.DWPN_P_Confirm_btn.Click += new System.EventHandler(this.DWPN_P_Confirm_btn_Click);
             // 
             // DWPN_P_LabRequest_btn
             // 
@@ -483,8 +483,8 @@
             this.DWPN_P_LabRequest_btn.Text = "Lab Request";
             this.DWPN_P_LabRequest_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DWPN_P_LabRequest_btn.UseVisualStyleBackColor = false;
-            this.DWPN_P_LabRequest_btn.Click += new System.EventHandler(this.DWPN_P_LabRequest_btn_Click);
             this.DWPN_P_LabRequest_btn.Click += new System.EventHandler(this.Button_Click);
+            this.DWPN_P_LabRequest_btn.Click += new System.EventHandler(this.DWPN_P_LabRequest_btn_Click);
             // 
             // DWPN_P_Prescription_btn
             // 
@@ -506,8 +506,8 @@
             this.DWPN_P_Prescription_btn.Text = "Prescription";
             this.DWPN_P_Prescription_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DWPN_P_Prescription_btn.UseVisualStyleBackColor = false;
-            this.DWPN_P_Prescription_btn.Click += new System.EventHandler(this.DWPN_P_Prescription_btn_Click);
             this.DWPN_P_Prescription_btn.Click += new System.EventHandler(this.Button_Click);
+            this.DWPN_P_Prescription_btn.Click += new System.EventHandler(this.DWPN_P_Prescription_btn_Click);
             // 
             // DWPN_Monitor_btn
             // 
@@ -529,8 +529,8 @@
             this.DWPN_Monitor_btn.Text = "Monitor";
             this.DWPN_Monitor_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DWPN_Monitor_btn.UseVisualStyleBackColor = false;
-            this.DWPN_Monitor_btn.Click += new System.EventHandler(this.DWPN_Monitor_btn_Click);
             this.DWPN_Monitor_btn.Click += new System.EventHandler(this.Button_Click);
+            this.DWPN_Monitor_btn.Click += new System.EventHandler(this.DWPN_Monitor_btn_Click);
             // 
             // panel5
             // 
