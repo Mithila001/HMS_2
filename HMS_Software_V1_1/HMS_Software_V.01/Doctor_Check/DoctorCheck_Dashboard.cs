@@ -16,75 +16,52 @@ namespace HMS_Software_V1._01.Doctor_OPD
 {
     public partial class DoctorCheck_Dashboard : Form
     {
-        public Form DoctorDashboardFromReferece { get; set; }
 
+        #region Connection string
         SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString);
+        #endregion
+
+        #region Constructor with variables
 
         private int DoctorID;
         private string unitTypeName;
         private int WardNumber;
-        public DoctorCheck_Dashboard(int userID /*=8 */, string unit /*= "OPD"*/, int WardNumber/* = 8*/)
-        {
+
+        public DoctorCheck_Dashboard(int userID = 10, string unit = "OPD", int WardNumber = 2)
+        {//need to remove the default values like 10,opd,2
             InitializeComponent();
 
             this.DoctorID = userID;
             this.unitTypeName = unit;
             this.WardNumber = WardNumber;
 
-            MyLoadbasicUIDeatils();
-            getTableDate(); // Get Dashboard Data
-
-
-
-            
+            UiCountDetails();
+            GetDoctorDetails(); // Get Dashboard Data
         }
+        #endregion
 
-
-        //Load Basic Details for the dashboard
+        #region Counting Details of dashboard
 
         int TotalPatient_Count;
         int Today_Clinic_Doctors;
         int Lab_Request_Count;
         int Prescription_request_Count;
         int Inpatient_Request_Count;
-        private void MyLoadbasicUIDeatils()
+        private void UiCountDetails()
         {
-            /* if(unitTypeName == "OPD")
-             {
-                 DisplayUnittype_doctors.Text = "Available OPD Doctors";
-                 DisplayUnittype_patient.Text = "Total OPD Patients";
-                 DisplayUnittype_title.Text = "Outpatient Department";
-
-             }
-             else if(unitTypeName == "Ward")
-             {
-                 DisplayUnittype_doctors.Text = "Available Ward Doctors";
-                 DisplayUnittype_patient.Text = "Total Ward Patients";
-                 DisplayUnittype_title.Text = "Inpatient Department";
-
-             }
-             else if(unitTypeName == "Clinic")
-             {
-                 DisplayUnittype_doctors.Text = "Available Clinci Doctors";
-                 DisplayUnittype_patient.Text = "Total Clinci Patients";
-                 DisplayUnittype_title.Text = "Clinic Department";
-
-             }
-             else
-             {
-                 MessageBox.Show("Unit Type is not valid:"+ unitTypeName, "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-             }*/
-
+            
+            #region Date/Time
             DateTime currentDate = DateTime.Today;
-            string formattedDate = currentDate.ToString("d MMMM yyyy"); // Format the date like "24th August 2024"
+            string formattedDate = currentDate.ToString("dd-MM-yyyy");
 
             DateTime currentTime = DateTime.Now;
-            string formattedTime = currentTime.ToString("h.mm tt"); // Format the time like "1.00 pm"
+            string formattedTime = currentTime.ToString("h.mm tt");
 
             DOPD_date.Text = formattedDate;
             DOPD_time.Text = formattedTime;
+            #endregion
 
-
+            #region Countings in Dashboard
             try
             {
                 using (SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString))
@@ -102,21 +79,21 @@ namespace HMS_Software_V1._01.Doctor_OPD
                     using (SqlCommand command = new SqlCommand(query2, connect))
                     {
                         command.Parameters.AddWithValue("@TodayDate", DateTime.Today);
-                        Today_Clinic_Doctors = (int)command.ExecuteScalar();
+                        Today_Clinic_Doctors = (int)command.ExecuteScalar();// this doesnt give clinic doctor count instead available clinic events
                     }
 
-                    string query3 = "SELECT COUNT(*) FROM Lab_Request1";
+                    string query3 = "SELECT COUNT(*) FROM Lab_Request WHERE Doctor_ID = @Visited_Doctor_ID";
                     using (SqlCommand command = new SqlCommand(query3, connect))
                     {
-                        command.Parameters.AddWithValue("@Is_VisitedByDoctor", 1);
                         command.Parameters.AddWithValue("@Visited_Doctor_ID", DoctorID);
                         Lab_Request_Count = (int)command.ExecuteScalar();
                     }
 
-                    string query4 = "SELECT COUNT(*) FROM PatientMedical_Event WHERE ISNULL(PrescriptionRequest_ID, '') = ''";
+                    string query4 = "SELECT COUNT(*) FROM PatientMedical_Event WHERE ISNULL(PrescriptionRequest_ID, '') = '' AND Doctor_ID = @Visited_Doctor_ID";
                     using (SqlCommand command = new SqlCommand(query4, connect))
                     {
-                        Prescription_request_Count = (int)command.ExecuteScalar();
+                        command.Parameters.AddWithValue("@Visited_Doctor_ID", DoctorID);
+                        Prescription_request_Count = (int)command.ExecuteScalar();//changed it so only get the count of the prescription request with loged in doctor
                     }
 
                     string query5 = "SELECT COUNT(*) FROM Patient_Admit WHERE Is_Admitted = @Is_Admitted";
@@ -138,11 +115,16 @@ namespace HMS_Software_V1._01.Doctor_OPD
                 MessageBox.Show("Error: " + ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Console.WriteLine(ex);
             }
+            finally
+            {
+                connect.Close();
+            }
+            #endregion
         }
+        #endregion
 
-
-        //Get Doctor Details from the databse
-        private void getTableDate() 
+        #region Get Doctor Details
+        private void GetDoctorDetails()
         {
             try
             {
@@ -153,7 +135,7 @@ namespace HMS_Software_V1._01.Doctor_OPD
                 SqlCommand sqlCommand = new SqlCommand(query, connect);
                 sqlCommand.Parameters.AddWithValue("@UserID", DoctorID);
                 SqlDataReader reader = sqlCommand.ExecuteReader();
-                
+
 
                 if (reader.Read())
                 {
@@ -162,7 +144,7 @@ namespace HMS_Software_V1._01.Doctor_OPD
                 }
                 else
                 {
-                    // Handle case when no matching record is found
+                    //when no matching record is found
                     MessageBox.Show("Doctor not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
@@ -171,8 +153,6 @@ namespace HMS_Software_V1._01.Doctor_OPD
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                Console.WriteLine(ex);
             }
             finally
             {
@@ -181,9 +161,9 @@ namespace HMS_Software_V1._01.Doctor_OPD
 
 
         }
+        #endregion
 
-
-        //Patient Ckeck Button Clickced
+        #region PatientCheck_btn
         private void DCD_confrim_btn_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(DCD_enterPatientID_tbx.Text))
@@ -213,7 +193,6 @@ namespace HMS_Software_V1._01.Doctor_OPD
                                 {
                                     // Go to a form
                                     DoctorCheck_PatientCheck doctorCheck_PatientCheck = new DoctorCheck_PatientCheck(patientID_str, DoctorID, doctorPosition, doctorName, unitTypeName, WardNumber);
-                                    doctorCheck_PatientCheck.DoctorPatientCheckFromReferece = this;
                                     doctorCheck_PatientCheck.Show();
                                     this.Hide();
                                 }
@@ -224,7 +203,7 @@ namespace HMS_Software_V1._01.Doctor_OPD
                             }
                             else
                             {
-                                MessageBox.Show("Invalid Patient Number", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Database connection error", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
@@ -242,20 +221,30 @@ namespace HMS_Software_V1._01.Doctor_OPD
                 {
                     connect.Close();
                 }
-                
+
             }
             else
             {
-                MessageBox.Show("Add a Patietn number", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Add a Patient number", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
+        #endregion
 
+        #region When Dashboard Closed
         private void DoctorCheck_Dashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
             UserLogin userLogin = new UserLogin();
             userLogin.Show();
             this.Hide();
         }
+        #endregion
+
+        #region Reset_btn
+        private void DCD_reset_btn_Click(object sender, EventArgs e)
+        {
+            DCD_enterPatientID_tbx.Text = "";
+        } 
+        #endregion
     }
 }

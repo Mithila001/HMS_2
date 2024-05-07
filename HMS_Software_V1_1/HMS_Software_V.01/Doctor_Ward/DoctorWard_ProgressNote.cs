@@ -68,6 +68,10 @@ namespace HMS_Software_V1._01.Doctor_Ward
             MyLoadBasicDetails();
             MyCreateMedicalEvetn();
         }
+
+        int i = 0;
+        bool startEvent = false;
+
         private void MyLoadBasicDetails()
         {
             string todayDateString = DateTime.Today.ToString("yyyy-MM-dd");
@@ -213,8 +217,50 @@ namespace HMS_Software_V1._01.Doctor_Ward
             }
         }
 
+        //----------------------------------------------------------------------------------------------------------------
 
-        
+        private void Button_Click(object sender, EventArgs e)
+        {
+            startEvent = true;
+
+
+            /*while (i < 1)
+            {
+                if (sender == DWPN_P_LabRequest_btn)
+                {
+                    MyStartPatientMedicalEvent();
+                    i++;
+                    Console.WriteLine(startEvent);
+                }
+                else if (sender == DOPDPC_addPrescription)
+                {
+                    MyStartPatientMedicalEvent();
+                    i++;
+                    Console.WriteLine(startEvent);
+                }
+                else if (sender == DOPDPC_addAppointment)
+                {
+                    MyStartPatientMedicalEvent();
+                    i++;
+                    Console.WriteLine(startEvent);
+                }
+                else if (sender == DOPDPC_confirmRequests)
+                {
+                    MyStartPatientMedicalEvent();
+                    i++;
+                    Console.WriteLine(startEvent);
+                }
+                else if (sender == DOPDPC_admit)
+                {
+                    MyStartPatientMedicalEvent();
+                    i++;
+                    Console.WriteLine(startEvent);
+                }
+            }*/
+        }
+
+        //----------------------------------------------------------------------------------------------------------------
+
 
         private void DWPN_P_Confirm_btn_Click(object sender, EventArgs e)
         {

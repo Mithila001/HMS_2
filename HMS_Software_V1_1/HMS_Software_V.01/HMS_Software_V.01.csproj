@@ -199,6 +199,13 @@
     <Compile Include="Common_UseForms\UserControls\CMP_PrescriptionAdd_userControl.Designer.cs">
       <DependentUpon>CMP_PrescriptionAdd_userControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common_UseForms\UserControls\Helper.cs" />
+    <Compile Include="Common_UseForms\UserControls\RichTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common_UseForms\UserControls\RichTextBox.Designer.cs">
+      <DependentUpon>RichTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common_UseForms\UserLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +240,12 @@
     </Compile>
     <Compile Include="Doctor_Check\DoctorCheck_PatientCheck.Designer.cs">
       <DependentUpon>DoctorCheck_PatientCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor_Check\DoctorCheck_ViewHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Doctor_Check\DoctorCheck_ViewHistory.Designer.cs">
+      <DependentUpon>DoctorCheck_ViewHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Doctor_Check\UserControls\DoctorCheck_clincType.cs">
       <SubType>UserControl</SubType>
@@ -487,6 +500,9 @@
     <EmbeddedResource Include="Common_UseForms\UserControls\CMP_PrescriptionAdd_userControl.resx">
       <DependentUpon>CMP_PrescriptionAdd_userControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common_UseForms\UserControls\RichTextBox.resx">
+      <DependentUpon>RichTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common_UseForms\UserLogin.resx">
       <DependentUpon>UserLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -501,6 +517,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Doctor_Check\DoctorCheck_PatientCheck.resx">
       <DependentUpon>DoctorCheck_PatientCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Doctor_Check\DoctorCheck_ViewHistory.resx">
+      <DependentUpon>DoctorCheck_ViewHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Doctor_Check\UserControls\DoctorCheck_clincType.resx">
       <DependentUpon>DoctorCheck_clincType.cs</DependentUpon>

@@ -26,7 +26,7 @@ namespace HMS_Software_V1._01
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Admin_Dashboard()
+            Application.Run(new DoctorWard_Dashboard()
             {
 
             });
