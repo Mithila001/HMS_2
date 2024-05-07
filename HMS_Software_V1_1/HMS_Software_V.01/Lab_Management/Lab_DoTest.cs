@@ -156,10 +156,13 @@ namespace HMS_Software_V1._01.Lab_Management
                         try
                         {
                             int testNo = int.Parse(txtNo.Text);
+                            Console.WriteLine("Test No: " + testNo);
 
                             // Fetch data from the source table (Tests) based on the provided test number
-                            string selectQuery = $"SELECT [LabRequest_ID], PatientMedicalEvent_ID, Patient_ID, Doctor_ID, LR_InvestigationID, LR_SpecimenID, LR_InvestigationName, LR_SpecimenName, LR_LabelNumber FROM Lab_Request1 WHERE [LabRequest_ID] = {testNo}";
+                            string selectQuery = $"SELECT LabRequest_ID, PatientMedicalEvent_ID, Patient_ID, Doctor_ID, LR_InvestigationID, LR_SpecimenID, LR_InvestigationName, LR_SpecimenName, LR_LabelNumber FROM Lab_Request1 WHERE LabRequest_ID = @TestNo";
                             SqlCommand selectCommand = new SqlCommand(selectQuery, connect);
+                            selectCommand.Parameters.AddWithValue("@TestNo", testNo);
+
                             SqlDataReader reader = selectCommand.ExecuteReader();
 
                             if (reader.Read())
@@ -175,21 +178,44 @@ namespace HMS_Software_V1._01.Lab_Management
                                 string specimenname = reader["LR_SpecimenName"].ToString();
                                 string labelnumber = reader["LR_LabelNumber"].ToString();
 
-                                // Insert the retrieved data into the destination table (Done)
-                                string insertQuery = $"INSERT INTO Finished_Tests ([Lab_RequstID], PatientMedicalEvent_ID, Patient_ID, Doctor_ID, LR_InvestigationID, LR_SpecimanID, LR_InvestigationName, LR_SpecimenName, LR_LabelNumber) " +
+                                reader.Close();
+
+
+                                /*// Insert the retrieved data into the destination table (Done)
+                                string insertQuery = $"INSERT INTO Finished_Tests (LabRequest_ID, PatientMedicalEvent_ID, Patient_ID, Doctor_ID, LR_InvestigationID, LR_SpecimenID, LR_InvestigationName, LR_SpecimenName, LR_LabelNumber) " +
                                                         $"VALUES ({No}, '{medid}', {patientid}, '{doctorid}', '{investigationid}', '{specimenid}', '{investigationname}', '{specimenname}', '{labelnumber}')";
 
                                 
                                 
                                 SqlCommand insertCommand = new SqlCommand(insertQuery, connect);
-                                insertCommand.ExecuteNonQuery();
+                                insertCommand.ExecuteNonQuery();*/
+
+                                string insertQuery = "INSERT INTO Finished_Tests (LabRequest_ID, PatientMedicalEvent_ID, Patient_ID, Doctor_ID, LR_InvestigationID, LR_SpecimenID, LR_InvestigationName, LR_SpecimenName, LR_LabelNumber) " +
+                                     "VALUES (@No, @medid, @patientid, @doctorid, @investigationid, @specimenid, @investigationname, @specimenname, @labelnumber)";
+
+                                using (SqlCommand insertCommand = new SqlCommand(insertQuery, connect))
+                                {
+                                    insertCommand.Parameters.AddWithValue("@No", No);
+                                    insertCommand.Parameters.AddWithValue("@medid", medid);
+                                    insertCommand.Parameters.AddWithValue("@patientid", patientid);
+                                    insertCommand.Parameters.AddWithValue("@doctorid", doctorid);
+                                    insertCommand.Parameters.AddWithValue("@investigationid", investigationid);
+                                    insertCommand.Parameters.AddWithValue("@specimenid", specimenid);
+                                    insertCommand.Parameters.AddWithValue("@investigationname", investigationname);
+                                    insertCommand.Parameters.AddWithValue("@specimenname", specimenname);
+                                    insertCommand.Parameters.AddWithValue("@labelnumber", labelnumber);
+
+                                    insertCommand.ExecuteNonQuery();
+                                }
 
                                 MessageBox.Show("Data added to finished tests successfully");
 
-                                reader.Close();
+                               
 
                                 // Delete the added data from the source table (Tests)
-                                string deleteQuery = $"DELETE FROM Lab_Request WHERE [LabRequest_ID] = {testNo}";
+                                string deleteQuery = $"DELETE FROM Lab_Request1 WHERE LabRequest_ID = {testNo}";
+                                Console.WriteLine("Test No2: " + testNo);
+
                                 SqlCommand deleteCommand = new SqlCommand(deleteQuery, connect);
                                 deleteCommand.ExecuteNonQuery();
 

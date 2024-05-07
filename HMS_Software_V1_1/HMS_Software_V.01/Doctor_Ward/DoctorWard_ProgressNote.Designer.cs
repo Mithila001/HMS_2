@@ -88,20 +88,20 @@
             this.Base_TableLP.Margin = new System.Windows.Forms.Padding(0);
             this.Base_TableLP.Name = "Base_TableLP";
             this.Base_TableLP.RowCount = 4;
-            this.Base_TableLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 123F));
-            this.Base_TableLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.Base_TableLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.Base_TableLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.Base_TableLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.Base_TableLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-            this.Base_TableLP.Size = new System.Drawing.Size(1344, 661);
+            this.Base_TableLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.Base_TableLP.Size = new System.Drawing.Size(1008, 537);
             this.Base_TableLP.TabIndex = 0;
             // 
             // Top_TableLP
             // 
             this.Top_TableLP.ColumnCount = 3;
-            this.Top_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
+            this.Top_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.Top_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.Top_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.Top_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.Top_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.Top_TableLP.Controls.Add(this.panel1, 0, 0);
             this.Top_TableLP.Controls.Add(this.panel2, 1, 0);
             this.Top_TableLP.Controls.Add(this.panel3, 2, 0);
@@ -111,7 +111,7 @@
             this.Top_TableLP.Name = "Top_TableLP";
             this.Top_TableLP.RowCount = 1;
             this.Top_TableLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.Top_TableLP.Size = new System.Drawing.Size(1344, 123);
+            this.Top_TableLP.Size = new System.Drawing.Size(1008, 100);
             this.Top_TableLP.TabIndex = 0;
             // 
             // panel1
@@ -123,7 +123,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(147, 123);
+            this.panel1.Size = new System.Drawing.Size(110, 100);
             this.panel1.TabIndex = 0;
             // 
             // DWD_name
@@ -131,10 +131,9 @@
             this.DWD_name.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DWD_name.AutoSize = true;
             this.DWD_name.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DWD_name.Location = new System.Drawing.Point(5, 30);
-            this.DWD_name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DWD_name.Location = new System.Drawing.Point(4, 24);
             this.DWD_name.Name = "DWD_name";
-            this.DWD_name.Size = new System.Drawing.Size(133, 64);
+            this.DWD_name.Size = new System.Drawing.Size(102, 48);
             this.DWD_name.TabIndex = 5;
             this.DWD_name.Text = "Progress\r\n   Note";
             // 
@@ -155,10 +154,10 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.DWPN_D_Name);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(147, 0);
+            this.panel2.Location = new System.Drawing.Point(110, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(718, 123);
+            this.panel2.Size = new System.Drawing.Size(538, 100);
             this.panel2.TabIndex = 1;
             // 
             // label10
@@ -166,10 +165,9 @@
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(560, 68);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(419, 55);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(48, 19);
+            this.label10.Size = new System.Drawing.Size(39, 16);
             this.label10.TabIndex = 19;
             this.label10.Text = "Time:";
             // 
@@ -178,10 +176,9 @@
             this.DWPN_Time.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DWPN_Time.AutoSize = true;
             this.DWPN_Time.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DWPN_Time.Location = new System.Drawing.Point(586, 91);
-            this.DWPN_Time.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DWPN_Time.Location = new System.Drawing.Point(439, 74);
             this.DWPN_Time.Name = "DWPN_Time";
-            this.DWPN_Time.Size = new System.Drawing.Size(50, 24);
+            this.DWPN_Time.Size = new System.Drawing.Size(41, 19);
             this.DWPN_Time.TabIndex = 18;
             this.DWPN_Time.Text = "time";
             // 
@@ -190,10 +187,9 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(560, 6);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(419, 5);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(48, 19);
+            this.label8.Size = new System.Drawing.Size(38, 16);
             this.label8.TabIndex = 17;
             this.label8.Text = "Date:";
             // 
@@ -202,10 +198,9 @@
             this.DWPN_Date.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DWPN_Date.AutoSize = true;
             this.DWPN_Date.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DWPN_Date.Location = new System.Drawing.Point(586, 30);
-            this.DWPN_Date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DWPN_Date.Location = new System.Drawing.Point(439, 24);
             this.DWPN_Date.Name = "DWPN_Date";
-            this.DWPN_Date.Size = new System.Drawing.Size(51, 24);
+            this.DWPN_Date.Size = new System.Drawing.Size(42, 19);
             this.DWPN_Date.TabIndex = 16;
             this.DWPN_Date.Text = "date";
             // 
@@ -214,10 +209,9 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(277, 68);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(208, 55);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 19);
+            this.label6.Size = new System.Drawing.Size(42, 16);
             this.label6.TabIndex = 15;
             this.label6.Text = "Ward:";
             // 
@@ -226,10 +220,9 @@
             this.DWPN_WardName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DWPN_WardName.AutoSize = true;
             this.DWPN_WardName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DWPN_WardName.Location = new System.Drawing.Point(292, 91);
-            this.DWPN_WardName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DWPN_WardName.Location = new System.Drawing.Point(219, 74);
             this.DWPN_WardName.Name = "DWPN_WardName";
-            this.DWPN_WardName.Size = new System.Drawing.Size(118, 24);
+            this.DWPN_WardName.Size = new System.Drawing.Size(96, 19);
             this.DWPN_WardName.TabIndex = 14;
             this.DWPN_WardName.Text = "Ward Name";
             // 
@@ -238,10 +231,9 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(277, 6);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(208, 5);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 19);
+            this.label4.Size = new System.Drawing.Size(23, 16);
             this.label4.TabIndex = 13;
             this.label4.Text = "ID:";
             // 
@@ -250,10 +242,9 @@
             this.DWPN_D_ID.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DWPN_D_ID.AutoSize = true;
             this.DWPN_D_ID.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DWPN_D_ID.Location = new System.Drawing.Point(292, 30);
-            this.DWPN_D_ID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DWPN_D_ID.Location = new System.Drawing.Point(219, 24);
             this.DWPN_D_ID.Name = "DWPN_D_ID";
-            this.DWPN_D_ID.Size = new System.Drawing.Size(65, 24);
+            this.DWPN_D_ID.Size = new System.Drawing.Size(54, 19);
             this.DWPN_D_ID.TabIndex = 12;
             this.DWPN_D_ID.Text = "56156";
             // 
@@ -262,10 +253,9 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(15, 68);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(11, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 19);
+            this.label1.Size = new System.Drawing.Size(35, 16);
             this.label1.TabIndex = 11;
             this.label1.Text = "Title:";
             // 
@@ -274,10 +264,9 @@
             this.DWPN_D_Title.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.DWPN_D_Title.AutoSize = true;
             this.DWPN_D_Title.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DWPN_D_Title.Location = new System.Drawing.Point(33, 91);
-            this.DWPN_D_Title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DWPN_D_Title.Location = new System.Drawing.Point(25, 74);
             this.DWPN_D_Title.Name = "DWPN_D_Title";
-            this.DWPN_D_Title.Size = new System.Drawing.Size(51, 24);
+            this.DWPN_D_Title.Size = new System.Drawing.Size(41, 19);
             this.DWPN_D_Title.TabIndex = 10;
             this.DWPN_D_Title.Text = "Title";
             // 
@@ -286,10 +275,9 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 6);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(11, 5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 19);
+            this.label3.Size = new System.Drawing.Size(87, 16);
             this.label3.TabIndex = 9;
             this.label3.Text = "Doctor Name:";
             // 
@@ -298,10 +286,9 @@
             this.DWPN_D_Name.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.DWPN_D_Name.AutoSize = true;
             this.DWPN_D_Name.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DWPN_D_Name.Location = new System.Drawing.Point(33, 30);
-            this.DWPN_D_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DWPN_D_Name.Location = new System.Drawing.Point(25, 24);
             this.DWPN_D_Name.Name = "DWPN_D_Name";
-            this.DWPN_D_Name.Size = new System.Drawing.Size(133, 24);
+            this.DWPN_D_Name.Size = new System.Drawing.Size(109, 19);
             this.DWPN_D_Name.TabIndex = 8;
             this.DWPN_D_Name.Text = "Doctor Name";
             // 
@@ -318,10 +305,10 @@
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.DWPN_P_Name);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(865, 0);
+            this.panel3.Location = new System.Drawing.Point(648, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(479, 123);
+            this.panel3.Size = new System.Drawing.Size(360, 100);
             this.panel3.TabIndex = 2;
             // 
             // label18
@@ -329,10 +316,9 @@
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(263, 49);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Location = new System.Drawing.Point(197, 40);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(82, 17);
+            this.label18.Size = new System.Drawing.Size(69, 15);
             this.label18.TabIndex = 23;
             this.label18.Text = "Visit Count:";
             // 
@@ -341,10 +327,9 @@
             this.DWPN_P_VisitCount.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DWPN_P_VisitCount.AutoSize = true;
             this.DWPN_P_VisitCount.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DWPN_P_VisitCount.Location = new System.Drawing.Point(371, 47);
-            this.DWPN_P_VisitCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DWPN_P_VisitCount.Location = new System.Drawing.Point(278, 38);
             this.DWPN_P_VisitCount.Name = "DWPN_P_VisitCount";
-            this.DWPN_P_VisitCount.Size = new System.Drawing.Size(36, 22);
+            this.DWPN_P_VisitCount.Size = new System.Drawing.Size(28, 18);
             this.DWPN_P_VisitCount.TabIndex = 22;
             this.DWPN_P_VisitCount.Text = "XX";
             // 
@@ -353,10 +338,9 @@
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(325, 17);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(244, 14);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(26, 17);
+            this.label16.Size = new System.Drawing.Size(22, 15);
             this.label16.TabIndex = 21;
             this.label16.Text = "ID:";
             // 
@@ -365,10 +349,9 @@
             this.DWPN_P_RID.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DWPN_P_RID.AutoSize = true;
             this.DWPN_P_RID.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DWPN_P_RID.Location = new System.Drawing.Point(363, 15);
-            this.DWPN_P_RID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DWPN_P_RID.Location = new System.Drawing.Point(272, 12);
             this.DWPN_P_RID.Name = "DWPN_P_RID";
-            this.DWPN_P_RID.Size = new System.Drawing.Size(80, 22);
+            this.DWPN_P_RID.Size = new System.Drawing.Size(60, 18);
             this.DWPN_P_RID.TabIndex = 20;
             this.DWPN_P_RID.Text = "P0000X";
             // 
@@ -377,10 +360,9 @@
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(23, 65);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(17, 53);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(122, 17);
+            this.label14.Size = new System.Drawing.Size(104, 15);
             this.label14.TabIndex = 19;
             this.label14.Text = "Patient Condition:";
             // 
@@ -389,10 +371,9 @@
             this.DWPN_P_Condition.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DWPN_P_Condition.AutoSize = true;
             this.DWPN_P_Condition.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DWPN_P_Condition.Location = new System.Drawing.Point(61, 90);
-            this.DWPN_P_Condition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DWPN_P_Condition.Location = new System.Drawing.Point(46, 73);
             this.DWPN_P_Condition.Name = "DWPN_P_Condition";
-            this.DWPN_P_Condition.Size = new System.Drawing.Size(100, 22);
+            this.DWPN_P_Condition.Size = new System.Drawing.Size(77, 18);
             this.DWPN_P_Condition.TabIndex = 18;
             this.DWPN_P_Condition.Text = "Condition";
             // 
@@ -401,10 +382,9 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(23, 11);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(17, 9);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(100, 17);
+            this.label12.Size = new System.Drawing.Size(85, 15);
             this.label12.TabIndex = 17;
             this.label12.Text = "Patient Name:";
             // 
@@ -413,10 +393,9 @@
             this.DWPN_P_Name.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DWPN_P_Name.AutoSize = true;
             this.DWPN_P_Name.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DWPN_P_Name.Location = new System.Drawing.Point(61, 36);
-            this.DWPN_P_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DWPN_P_Name.Location = new System.Drawing.Point(46, 29);
             this.DWPN_P_Name.Name = "DWPN_P_Name";
-            this.DWPN_P_Name.Size = new System.Drawing.Size(114, 22);
+            this.DWPN_P_Name.Size = new System.Drawing.Size(87, 18);
             this.DWPN_P_Name.TabIndex = 16;
             this.DWPN_P_Name.Text = "Ward Name";
             // 
@@ -428,20 +407,20 @@
             this.Bot_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.Bot_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.Bot_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.Bot_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 236F));
+            this.Bot_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 177F));
             this.Bot_TableLP.Controls.Add(this.DWPN_DischargeBtn, 0, 0);
             this.Bot_TableLP.Controls.Add(this.DWPN_P_Confirm_btn, 4, 0);
             this.Bot_TableLP.Controls.Add(this.DWPN_P_LabRequest_btn, 3, 0);
             this.Bot_TableLP.Controls.Add(this.DWPN_P_Prescription_btn, 2, 0);
             this.Bot_TableLP.Controls.Add(this.DWPN_Monitor_btn, 1, 0);
             this.Bot_TableLP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Bot_TableLP.Location = new System.Drawing.Point(0, 599);
+            this.Bot_TableLP.Location = new System.Drawing.Point(0, 487);
             this.Bot_TableLP.Margin = new System.Windows.Forms.Padding(0);
             this.Bot_TableLP.Name = "Bot_TableLP";
             this.Bot_TableLP.RowCount = 1;
             this.Bot_TableLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.Bot_TableLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-            this.Bot_TableLP.Size = new System.Drawing.Size(1344, 62);
+            this.Bot_TableLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.Bot_TableLP.Size = new System.Drawing.Size(1008, 50);
             this.Bot_TableLP.TabIndex = 1;
             // 
             // DWPN_DischargeBtn
@@ -454,14 +433,15 @@
             this.DWPN_DischargeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DWPN_DischargeBtn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DWPN_DischargeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
-            this.DWPN_DischargeBtn.Location = new System.Drawing.Point(4, 7);
-            this.DWPN_DischargeBtn.Margin = new System.Windows.Forms.Padding(4, 4, 13, 4);
+            this.DWPN_DischargeBtn.Location = new System.Drawing.Point(3, 5);
+            this.DWPN_DischargeBtn.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.DWPN_DischargeBtn.Name = "DWPN_DischargeBtn";
-            this.DWPN_DischargeBtn.Size = new System.Drawing.Size(197, 48);
+            this.DWPN_DischargeBtn.Size = new System.Drawing.Size(148, 39);
             this.DWPN_DischargeBtn.TabIndex = 66;
             this.DWPN_DischargeBtn.Text = "Disharge";
             this.DWPN_DischargeBtn.UseVisualStyleBackColor = false;
             this.DWPN_DischargeBtn.Click += new System.EventHandler(this.DWPN_DischargeBtn_Click);
+            
             // 
             // DWPN_P_Confirm_btn
             // 
@@ -473,13 +453,14 @@
             this.DWPN_P_Confirm_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DWPN_P_Confirm_btn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DWPN_P_Confirm_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
-            this.DWPN_P_Confirm_btn.Location = new System.Drawing.Point(1134, 7);
-            this.DWPN_P_Confirm_btn.Margin = new System.Windows.Forms.Padding(4, 4, 13, 4);
+            this.DWPN_P_Confirm_btn.Location = new System.Drawing.Point(850, 5);
+            this.DWPN_P_Confirm_btn.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.DWPN_P_Confirm_btn.Name = "DWPN_P_Confirm_btn";
-            this.DWPN_P_Confirm_btn.Size = new System.Drawing.Size(197, 48);
+            this.DWPN_P_Confirm_btn.Size = new System.Drawing.Size(148, 39);
             this.DWPN_P_Confirm_btn.TabIndex = 62;
             this.DWPN_P_Confirm_btn.Text = "Confirm";
             this.DWPN_P_Confirm_btn.UseVisualStyleBackColor = false;
+            this.DWPN_P_Confirm_btn.Click += new System.EventHandler(this.DWPN_P_Confirm_btn_Click);
             this.DWPN_P_Confirm_btn.Click += new System.EventHandler(this.Button_Click);
             // 
             // DWPN_P_LabRequest_btn
@@ -494,16 +475,16 @@
             this.DWPN_P_LabRequest_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
             this.DWPN_P_LabRequest_btn.Image = global::HMS_Software_V1._01.Properties.Resources.Plus_icon33;
             this.DWPN_P_LabRequest_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.DWPN_P_LabRequest_btn.Location = new System.Drawing.Point(835, 7);
-            this.DWPN_P_LabRequest_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.DWPN_P_LabRequest_btn.Location = new System.Drawing.Point(624, 5);
             this.DWPN_P_LabRequest_btn.Name = "DWPN_P_LabRequest_btn";
-            this.DWPN_P_LabRequest_btn.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.DWPN_P_LabRequest_btn.Size = new System.Drawing.Size(220, 48);
+            this.DWPN_P_LabRequest_btn.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.DWPN_P_LabRequest_btn.Size = new System.Drawing.Size(165, 39);
             this.DWPN_P_LabRequest_btn.TabIndex = 63;
             this.DWPN_P_LabRequest_btn.Text = "Lab Request";
             this.DWPN_P_LabRequest_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DWPN_P_LabRequest_btn.UseVisualStyleBackColor = false;
             this.DWPN_P_LabRequest_btn.Click += new System.EventHandler(this.DWPN_P_LabRequest_btn_Click);
+            this.DWPN_P_LabRequest_btn.Click += new System.EventHandler(this.Button_Click);
             // 
             // DWPN_P_Prescription_btn
             // 
@@ -517,16 +498,16 @@
             this.DWPN_P_Prescription_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
             this.DWPN_P_Prescription_btn.Image = global::HMS_Software_V1._01.Properties.Resources.Plus_icon33;
             this.DWPN_P_Prescription_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.DWPN_P_Prescription_btn.Location = new System.Drawing.Point(558, 7);
-            this.DWPN_P_Prescription_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.DWPN_P_Prescription_btn.Location = new System.Drawing.Point(417, 5);
             this.DWPN_P_Prescription_btn.Name = "DWPN_P_Prescription_btn";
-            this.DWPN_P_Prescription_btn.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.DWPN_P_Prescription_btn.Size = new System.Drawing.Size(220, 48);
+            this.DWPN_P_Prescription_btn.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.DWPN_P_Prescription_btn.Size = new System.Drawing.Size(165, 39);
             this.DWPN_P_Prescription_btn.TabIndex = 64;
             this.DWPN_P_Prescription_btn.Text = "Prescription";
             this.DWPN_P_Prescription_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DWPN_P_Prescription_btn.UseVisualStyleBackColor = false;
             this.DWPN_P_Prescription_btn.Click += new System.EventHandler(this.DWPN_P_Prescription_btn_Click);
+            this.DWPN_P_Prescription_btn.Click += new System.EventHandler(this.Button_Click);
             // 
             // DWPN_Monitor_btn
             // 
@@ -540,16 +521,16 @@
             this.DWPN_Monitor_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
             this.DWPN_Monitor_btn.Image = global::HMS_Software_V1._01.Properties.Resources.Plus_icon33;
             this.DWPN_Monitor_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.DWPN_Monitor_btn.Location = new System.Drawing.Point(281, 7);
-            this.DWPN_Monitor_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.DWPN_Monitor_btn.Location = new System.Drawing.Point(210, 5);
             this.DWPN_Monitor_btn.Name = "DWPN_Monitor_btn";
-            this.DWPN_Monitor_btn.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.DWPN_Monitor_btn.Size = new System.Drawing.Size(220, 48);
+            this.DWPN_Monitor_btn.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.DWPN_Monitor_btn.Size = new System.Drawing.Size(165, 39);
             this.DWPN_Monitor_btn.TabIndex = 65;
             this.DWPN_Monitor_btn.Text = "Monitor";
             this.DWPN_Monitor_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DWPN_Monitor_btn.UseVisualStyleBackColor = false;
             this.DWPN_Monitor_btn.Click += new System.EventHandler(this.DWPN_Monitor_btn_Click);
+            this.DWPN_Monitor_btn.Click += new System.EventHandler(this.Button_Click);
             // 
             // panel5
             // 
@@ -559,10 +540,10 @@
             this.panel5.Controls.Add(this.label20);
             this.panel5.Controls.Add(this.DWPN_P_ViewHistory_btn);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 125);
+            this.panel5.Location = new System.Drawing.Point(0, 102);
             this.panel5.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1344, 58);
+            this.panel5.Size = new System.Drawing.Size(1008, 46);
             this.panel5.TabIndex = 2;
             // 
             // label21
@@ -570,10 +551,9 @@
             this.label21.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(564, 19);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Location = new System.Drawing.Point(423, 15);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(176, 22);
+            this.label21.Size = new System.Drawing.Size(135, 18);
             this.label21.TabIndex = 61;
             this.label21.Text = "Patient Condition:";
             // 
@@ -581,10 +561,9 @@
             // 
             this.DWPN_P_AddCondition_tbx.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DWPN_P_AddCondition_tbx.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DWPN_P_AddCondition_tbx.Location = new System.Drawing.Point(752, 16);
-            this.DWPN_P_AddCondition_tbx.Margin = new System.Windows.Forms.Padding(4);
+            this.DWPN_P_AddCondition_tbx.Location = new System.Drawing.Point(564, 13);
             this.DWPN_P_AddCondition_tbx.Name = "DWPN_P_AddCondition_tbx";
-            this.DWPN_P_AddCondition_tbx.Size = new System.Drawing.Size(569, 29);
+            this.DWPN_P_AddCondition_tbx.Size = new System.Drawing.Size(428, 25);
             this.DWPN_P_AddCondition_tbx.TabIndex = 60;
             // 
             // label20
@@ -592,10 +571,9 @@
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(15, 19);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Location = new System.Drawing.Point(11, 15);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(145, 22);
+            this.label20.Size = new System.Drawing.Size(112, 18);
             this.label20.TabIndex = 59;
             this.label20.Text = "Patient History";
             // 
@@ -609,10 +587,9 @@
             this.DWPN_P_ViewHistory_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DWPN_P_ViewHistory_btn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DWPN_P_ViewHistory_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
-            this.DWPN_P_ViewHistory_btn.Location = new System.Drawing.Point(175, 13);
-            this.DWPN_P_ViewHistory_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.DWPN_P_ViewHistory_btn.Location = new System.Drawing.Point(131, 11);
             this.DWPN_P_ViewHistory_btn.Name = "DWPN_P_ViewHistory_btn";
-            this.DWPN_P_ViewHistory_btn.Size = new System.Drawing.Size(175, 34);
+            this.DWPN_P_ViewHistory_btn.Size = new System.Drawing.Size(131, 28);
             this.DWPN_P_ViewHistory_btn.TabIndex = 58;
             this.DWPN_P_ViewHistory_btn.Text = "View";
             this.DWPN_P_ViewHistory_btn.UseVisualStyleBackColor = false;
@@ -624,22 +601,22 @@
             this.DWPN_P_ProgressNote_RichTbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DWPN_P_ProgressNote_RichTbx.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DWPN_P_ProgressNote_RichTbx.IsTextChanged = true;
-            this.DWPN_P_ProgressNote_RichTbx.Location = new System.Drawing.Point(3, 188);
+            this.DWPN_P_ProgressNote_RichTbx.Location = new System.Drawing.Point(2, 152);
+            this.DWPN_P_ProgressNote_RichTbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DWPN_P_ProgressNote_RichTbx.Name = "DWPN_P_ProgressNote_RichTbx";
             this.DWPN_P_ProgressNote_RichTbx.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang1033{\\fonttbl{\\f0\\fnil\\fcharset0 " +
-    "Arial;}}\r\n{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs18\\par\r\n}\r\n" +
+    "Arial;}}\r\n{\\*\\generator Riched20 10.0.19041}\\viewkind4\\uc1 \r\n\\pard\\fs18\\par\r\n}\r\n" +
     "";
-            this.DWPN_P_ProgressNote_RichTbx.Size = new System.Drawing.Size(1338, 408);
+            this.DWPN_P_ProgressNote_RichTbx.Size = new System.Drawing.Size(1004, 333);
             this.DWPN_P_ProgressNote_RichTbx.TabIndex = 3;
             // 
             // DoctorWard_ProgressNote
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1344, 661);
+            this.ClientSize = new System.Drawing.Size(1008, 537);
             this.Controls.Add(this.Base_TableLP);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1358, 696);
+            this.MinimumSize = new System.Drawing.Size(1022, 573);
             this.Name = "DoctorWard_ProgressNote";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DoctorWard_Progress Note";

@@ -1,5 +1,6 @@
 ﻿using HMS_Software_V1._01.Common_UseForms;
 using HMS_Software_V1._01.Common_UseForms.OOP;
+using HMS_Software_V1._01.Doctor_OPD;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,22 +37,14 @@ namespace HMS_Software_V1._01.Doctor_Ward
         string WardName;
 
         int i = 0;
-        public DoctorWard_ProgressNote(
-                string SWP_PatientName,
-                string SWP_PatientRID,
-                string SWP_PatientCondition,
-                int SWP_PatietnVisitCount,
-                string SWP_D_Name,
-                string SWP_D_Title,
-                string SWP_D_RID,
-                string SWP_WardName,
-                int SWP_D_ID,
-                string SWP_PatientAge,
-                string SWP_PatientGender)
+        public DoctorWard_ProgressNote(string SWP_PatientName, string SWP_PatientRID, string SWP_PatientCondition, int SWP_PatietnVisitCount, string SWP_D_Name, string SWP_D_Title,
+            string SWP_D_RID, string SWP_WardName, int SWP_D_ID, string SWP_PatientAge, string SWP_PatientGender)
+
         {
 
             InitializeComponent();
 
+            #region Assign Data
             this.PatienName = SWP_PatientName;
             this.PatientRID = SWP_PatientRID;
             this.P_Condition = SWP_PatientCondition;
@@ -61,7 +55,8 @@ namespace HMS_Software_V1._01.Doctor_Ward
             this.DoctorTitle = SWP_D_Title;
             this.DoctorID = SWP_D_ID;
             this.PatientAge = SWP_PatientAge;
-            this.PatientGender = SWP_PatientGender;
+            this.PatientGender = SWP_PatientGender; 
+            #endregion
 
 
             DWPN_P_ViewHistory_btn.Visible = false;
@@ -98,7 +93,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
             DWPN_P_Condition.Text = P_Condition;
             DWPN_P_RID.Text = PatientRID;
 
-            PatientVisitCount = PatientVisitCount + 1; // Add 1 to the Count value
+            PatientVisitCount = PatientVisitCount + 1; // Including Current Doctor Visit
             DWPN_P_VisitCount.Text = PatientVisitCount.ToString(); 
 
 
@@ -106,6 +101,8 @@ namespace HMS_Software_V1._01.Doctor_Ward
 
         private int WardID;
         private string PatientMID;
+
+        int PatientMedicalEventID;
 
 
         private void MyCreateMedicalEvetn()
@@ -118,7 +115,6 @@ namespace HMS_Software_V1._01.Doctor_Ward
 
                     // Find the Ward Number -------------------------------------------------------------------------------------------------
                     string query1 = "SELECT WardNumber FROM WardTypes WHERE WardName = @wardName";
-
                     using (SqlCommand command = new SqlCommand(query1, connect))
                     {
                         command.Parameters.AddWithValue("@wardName", WardName);
@@ -148,7 +144,6 @@ namespace HMS_Software_V1._01.Doctor_Ward
 
 
                     // Creating a Patient Medical Event -------------------------------------------------------------------------------------------------
-
                     string query = "INSERT INTO PatientMedical_Event (PatientRegistration_ID, Doctor_ID, PMRE_Location, PMRE_Date, PMRE_Time, PatinetProgrestNote_ID, PatietnMedicalCondition)"
                     + "VALUES (@patietnRegistrationId, @doctorId, @location, @date, @time, @patinetProgrestNote_ID, @patietnMedicalCondition)";
 
@@ -172,6 +167,32 @@ namespace HMS_Software_V1._01.Doctor_Ward
                         {
                             // Query executed successfully
                             Console.WriteLine("Insert into PatientMedical_Event executed successfully.");
+
+
+
+                            // Get the Patietn Medical Event ID ----------------------------------------------------------------------------------------------
+                            string getIdQuery = "SELECT PatientMedicalEvent_ID FROM PatientMedical_Event WHERE" +
+                            " PMRE_Date = @date AND PMRE_Time = @time AND Doctor_ID = @doctorId";
+
+                            using (SqlCommand getIdCommand = new SqlCommand(getIdQuery, connect))
+                            {
+                                getIdCommand.Parameters.AddWithValue("@date", today);
+                                getIdCommand.Parameters.AddWithValue("@time", currentTime);
+                                getIdCommand.Parameters.AddWithValue("@doctorId", DoctorID);
+
+                                // Executing the query
+                                object result = getIdCommand.ExecuteScalar();
+                                if (result != null)
+                                {
+                                    PatientMedicalEventID = Convert.ToInt32(result);
+                                    Console.WriteLine($"Retrived PatientMedical_Event ID:  {PatientMedicalEventID}");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("PatientMedical_Event Record not found for the given criteria.");
+                                }
+                            }
+                            Console.WriteLine($"PatientMedical_Event Record with ID {PatientMedicalEventID} inserted successfully.");
                         }
                         else
                         {
@@ -183,7 +204,8 @@ namespace HMS_Software_V1._01.Doctor_Ward
 
 
 
-                    // Getting Patient Medical Event ID  --------------------------------------------------------------------------------------------
+
+                    /*// Getting Patient Medical Event ID  --------------------------------------------------------------------------------------------
 
                     string query3 = "SELECT PatientMedicalEvent_ID FROM PatientMedical_Event WHERE PatientRegistration_ID = @PatientRegistration_ID";
 
@@ -191,7 +213,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
                     {
                         command.Parameters.AddWithValue("@PatientRegistration_ID", PatientRID);
                         // Warning !! this will find multiple Patietn Medical event IDs.
-                        /*Console.WriteLine("DoctorID from dashboard: " + DoctorID);*/
+                        *//*Console.WriteLine("DoctorID from dashboard: " + DoctorID);*//*
                         try
                         {
                             SqlDataReader reader = command.ExecuteReader();
@@ -200,7 +222,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
                             if (reader.Read())
                             {
                                 PatientMID = reader["PatientMedicalEvent_ID"].ToString();
-                               /* MessageBox.Show("Patient Medical Event ID ---------------> " + PatientMID);*/
+                               *//* MessageBox.Show("Patient Medical Event ID ---------------> " + PatientMID);*//*
 
                             }
                             else
@@ -214,7 +236,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
                             MessageBox.Show("Error:4 " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             Console.WriteLine("Error4:" + ex);
                         }
-                    }
+                    }*/
                 }
 
             }
@@ -231,34 +253,34 @@ namespace HMS_Software_V1._01.Doctor_Ward
         {
             startEvent = true;
 
-
+            // to Execute P_Medical Event only once
             while (i < 1)
             {
                 if (sender == DWPN_Monitor_btn)
                 {
                     MyCreateMedicalEvetn();
                     i++;
-                    Console.WriteLine(startEvent);
+                    Console.WriteLine("Medical Event Created from: Monitor");
                 }
                 else if (sender == DWPN_P_Prescription_btn)
                 {
                     MyCreateMedicalEvetn();
                     i++;
-                    Console.WriteLine(startEvent);
+                    Console.WriteLine("Medical Event Created from: Prescription");
                 }
                 else if (sender == DWPN_P_LabRequest_btn)
                 {
                     MyCreateMedicalEvetn();
                     i++;
-                    Console.WriteLine(startEvent);
+                    Console.WriteLine("Medical Event Created from: Lab Request");
                 }
                 else if (sender == DWPN_P_Confirm_btn)
                 {
                     MyCreateMedicalEvetn();
                     i++;
-                    Console.WriteLine(startEvent);
+                    Console.WriteLine("Medical Event Created from: Confirm Button");
                 }
-                
+
             }
         }
 
@@ -267,11 +289,64 @@ namespace HMS_Software_V1._01.Doctor_Ward
 
         private void DWPN_P_Confirm_btn_Click(object sender, EventArgs e)
         {
+            if(!(DWPN_P_ProgressNote_RichTbx.Text == ""))
+            {
+                try
+                {
+                    using (SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString))
+                    {
+                        connect.Open();
+
+                        // Using PatientMedicalEventID to find the lab record that now created and get the current LabRequest_ID
+                        string query2 = "UPDATE PatientMedical_Event SET PatientExaminatioNote = @examinationNotes WHERE PatientMedicalEvent_ID = @pmeID";
+                        using (SqlCommand updateCommand = new SqlCommand(query2, connect))
+                        {
+                            updateCommand.Parameters.AddWithValue("@examinationNotes", DWPN_P_ProgressNote_RichTbx.Text);
+                            updateCommand.Parameters.AddWithValue("@pmeID", PatientMedicalEventID);
+
+                            int rowsAffected = updateCommand.ExecuteNonQuery();
+                            if (rowsAffected > 0)
+                            {
+                                Console.WriteLine("Patient Examinatio Note updated successfully.");
+                                MessageBox.Show("Patien tExaminati oNote updated successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                
+
+                                // Moving to the Doctor Ward Dashboard
+
+                                /*  MyDataStoringClass dataTranspoter = new MyDataStoringClass();
+                                  dataTranspoter.DoctorID = UserID;
+                                  dataTranspoter.EventUnitType = UnitType;
+                                  dataTranspoter.SendWardNumber = WardNumber;
+
+                                  DoctorCheck_Dashboard doctorCheck_Dashboard = new DoctorCheck_Dashboard(dataTranspoter.DoctorID, dataTranspoter.EventUnitType, dataTranspoter.SendWardNumber);
+                                  doctorCheck_Dashboard.Show();*/
+
+                                /* this.Close();*/
+
+                                DoctorWard_Dashboard doctorWard_Dashboard = new DoctorWard_Dashboard(DoctorID, WardID);
+                                doctorWard_Dashboard.Show();
+                                this.Hide();
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Failed to update PatientExaminatioNote.");
+                                MessageBox.Show("Failed to update PatientExaminatioNote", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
         }
 
         // -------------------------------------------------------------------------- Reference for this form
-        public Form DoctorWard_ProgressNote_Refferece { get; set; }
+       /* public Form DoctorWard_ProgressNote_Refferece { get; set; }*/
 
         // =========================== Data Transporter =============================
         public class MyDataStoringClass
@@ -327,6 +402,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
         {
 
             Common_UseForms.OOP.Doctor_Ward doctorW_To_Prescription = new Common_UseForms.OOP.Doctor_Ward();
+            #region Sending Data
             doctorW_To_Prescription.DoctorID = DoctorID;
             doctorW_To_Prescription.DoctorName = DoctorName;
             doctorW_To_Prescription.DoctorPosition = DoctorTitle;
@@ -336,10 +412,11 @@ namespace HMS_Software_V1._01.Doctor_Ward
             doctorW_To_Prescription.PatientGender = PatientGender;
             doctorW_To_Prescription.PatientMedicalEventID = PatientMID;
             doctorW_To_Prescription.EventUnitType = "Ward " + WardName;
-            doctorW_To_Prescription.WardNumber = WardID;
+            doctorW_To_Prescription.WardNumber = WardID; 
+            #endregion
 
 
-            Console.WriteLine("DoctorID: " + DoctorID);
+            /*Console.WriteLine("DoctorID: " + DoctorID);
             Console.WriteLine("DoctorName: " + DoctorName);
             Console.WriteLine("DoctorPosition: " + DoctorTitle);
             Console.WriteLine("PatientRID: " + PatientRID);
@@ -348,7 +425,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
             Console.WriteLine("PatientGender: " + PatientGender);
             Console.WriteLine("PatientMedicalEventID: " + PatientMID);
             Console.WriteLine("EventUnitType: Ward " + WardName);
-            Console.WriteLine("WardNumber: " + WardID);
+            Console.WriteLine("WardNumber: " + WardID);*/
 
 
             Common_MakePrescription common_MakePrescription = new Common_MakePrescription(doctorW_To_Prescription);
