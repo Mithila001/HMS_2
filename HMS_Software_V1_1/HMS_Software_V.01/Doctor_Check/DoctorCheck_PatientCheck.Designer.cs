@@ -489,7 +489,7 @@
             this.DOPDPC_addAppointment.Text = "Appointment";
             this.DOPDPC_addAppointment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DOPDPC_addAppointment.UseVisualStyleBackColor = false;
-            this.DOPDPC_confirmRequests.Click += new System.EventHandler(this.Button_Click);
+            this.DOPDPC_addAppointment.Click += new System.EventHandler(this.Button_Click);
             this.DOPDPC_addAppointment.Click += new System.EventHandler(this.DOPDPC_addAppointment_Click);
             // 
             // DOPDPC_addPrescription
@@ -513,7 +513,7 @@
             this.DOPDPC_addPrescription.Text = "Prescription";
             this.DOPDPC_addPrescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DOPDPC_addPrescription.UseVisualStyleBackColor = false;
-            this.DOPDPC_confirmRequests.Click += new System.EventHandler(this.Button_Click);
+            this.DOPDPC_addPrescription.Click += new System.EventHandler(this.Button_Click);
             this.DOPDPC_addPrescription.Click += new System.EventHandler(this.DOPDPC_addPrescription_Click);
             // 
             // panel4
@@ -563,7 +563,7 @@
             this.DOPDPC_admit.TabIndex = 61;
             this.DOPDPC_admit.Text = "Admit";
             this.DOPDPC_admit.UseVisualStyleBackColor = false;
-            this.DOPDPC_confirmRequests.Click += new System.EventHandler(this.Button_Click);
+            this.DOPDPC_admit.Click += new System.EventHandler(this.Button_Click);
             this.DOPDPC_admit.Click += new System.EventHandler(this.DOPDPC_admit_Click);
             // 
             // DoctorCheck_PatientCheck
