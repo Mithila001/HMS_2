@@ -225,7 +225,7 @@ namespace HMS_Software_V1._01.Doctor_OPD
         #region Start MedicalEvent
         private void Button_Click(object sender, EventArgs e)
         {
-            /*startEvent = true;
+            startEvent = true;
 
 
             while (i < 1)
@@ -260,7 +260,7 @@ namespace HMS_Software_V1._01.Doctor_OPD
                     i++;
                     Console.WriteLine(startEvent);
                 }
-            }*/
+            }
         }
         #endregion
 

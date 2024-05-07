@@ -33,6 +33,8 @@ namespace HMS_Software_V1._01.Doctor_Ward
         string DoctorTitle;
         int DoctorID;
         string WardName;
+
+        int i = 0;
         public DoctorWard_ProgressNote(
                 string SWP_PatientName,
                 string SWP_PatientRID,
@@ -65,11 +67,15 @@ namespace HMS_Software_V1._01.Doctor_Ward
             DWPN_P_ViewHistory_btn.Visible = false;
             label20.Visible = false;
 
+            if (i < 1)
+            {
+                MyCreateMedicalEvetn();
+            }
             MyLoadBasicDetails();
-            MyCreateMedicalEvetn();
+            /*MyCreateMedicalEvetn();*/
         }
 
-        int i = 0;
+        
         bool startEvent = false;
 
         private void MyLoadBasicDetails()
@@ -100,6 +106,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
 
         private int WardID;
         private string PatientMID;
+
 
         private void MyCreateMedicalEvetn()
         {
@@ -183,6 +190,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
                     using (SqlCommand command = new SqlCommand(query3, connect))
                     {
                         command.Parameters.AddWithValue("@PatientRegistration_ID", PatientRID);
+                        // Warning !! this will find multiple Patietn Medical event IDs.
                         /*Console.WriteLine("DoctorID from dashboard: " + DoctorID);*/
                         try
                         {
@@ -192,7 +200,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
                             if (reader.Read())
                             {
                                 PatientMID = reader["PatientMedicalEvent_ID"].ToString();
-                                MessageBox.Show("Patient Medical Event ID ---------------> " + PatientMID);
+                               /* MessageBox.Show("Patient Medical Event ID ---------------> " + PatientMID);*/
 
                             }
                             else
@@ -224,39 +232,34 @@ namespace HMS_Software_V1._01.Doctor_Ward
             startEvent = true;
 
 
-            /*while (i < 1)
+            while (i < 1)
             {
-                if (sender == DWPN_P_LabRequest_btn)
+                if (sender == DWPN_Monitor_btn)
                 {
-                    MyStartPatientMedicalEvent();
+                    MyCreateMedicalEvetn();
                     i++;
                     Console.WriteLine(startEvent);
                 }
-                else if (sender == DOPDPC_addPrescription)
+                else if (sender == DWPN_P_Prescription_btn)
                 {
-                    MyStartPatientMedicalEvent();
+                    MyCreateMedicalEvetn();
                     i++;
                     Console.WriteLine(startEvent);
                 }
-                else if (sender == DOPDPC_addAppointment)
+                else if (sender == DWPN_P_LabRequest_btn)
                 {
-                    MyStartPatientMedicalEvent();
+                    MyCreateMedicalEvetn();
                     i++;
                     Console.WriteLine(startEvent);
                 }
-                else if (sender == DOPDPC_confirmRequests)
+                else if (sender == DWPN_P_Confirm_btn)
                 {
-                    MyStartPatientMedicalEvent();
+                    MyCreateMedicalEvetn();
                     i++;
                     Console.WriteLine(startEvent);
                 }
-                else if (sender == DOPDPC_admit)
-                {
-                    MyStartPatientMedicalEvent();
-                    i++;
-                    Console.WriteLine(startEvent);
-                }
-            }*/
+                
+            }
         }
 
         //----------------------------------------------------------------------------------------------------------------
@@ -264,147 +267,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
 
         private void DWPN_P_Confirm_btn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(DWPN_P_AddCondition_tbx.Text))
-            {
-                MessageBox.Show("Add Patietn Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (string.IsNullOrEmpty(DWPN_P_ProgressNote_RichTbx.Text))
-            {
-                MessageBox.Show("Add Patietn ProgressNote", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                // If every Condtion is passed
-                bool Admitted_Patients = false;
-                bool Admitted_Patients_VisitEvent = false;
 
-                try
-                {
-                    using (SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString))
-                    {
-                        connect.Open();
-
-
-                        // Updating Admitted_Patients Table --------------------------------------------------------------------------------------------
-                        
-                        string query = "UPDATE Admitted_Patients" +
-                            " SET P_Condition = @p_Condition, "
-                            + "P_Visite_TotalRounds = @p_Visite_TotalRounds "
-                            + "WHERE P_RID = @p_RID;";
-
-                        using (SqlCommand command = new SqlCommand(query, connect))
-                        {
-                            command.Parameters.AddWithValue("@p_Condition", P_Condition);
-                            command.Parameters.AddWithValue("@p_Visite_TotalRounds", PatientVisitCount+1);
-                            command.Parameters.AddWithValue("@p_RID", PatientRID);
-
-
-                            int rowsAffected = command.ExecuteNonQuery();
-                            if (rowsAffected > 0)
-                            {
-                                // Query executed successfully 
-                                Console.WriteLine("UPDATE Admitted_Patients successfully.");
-                                Admitted_Patients = true;
-                            }
-                            else
-                            {
-                                // No rows affected (possible validation)
-                                Console.WriteLine("Failed to UPDATE Admitted_Patients.");
-                            }
-                        }
-
-
-
-                        // Getting Patient Medical Event ID  --------------------------------------------------------------------------------------------
-                        
-                        /*string query3 = "SELECT PatientMedicalEvent_ID FROM PatientMedical_Event WHERE PatientRegistration_ID = @PatientRegistration_ID";
-
-                        using (SqlCommand command = new SqlCommand(query3, connect))
-                        {
-                            command.Parameters.AddWithValue("@PatientRegistration_ID", PatientRID);
-                            *//*Console.WriteLine("DoctorID from dashboard: " + DoctorID);*//*
-                            try
-                            {
-                                SqlDataReader reader = command.ExecuteReader();
-
-                                // Check if any rows were returned
-                                if (reader.Read())
-                                {
-                                    PatientMID = reader["PatientMedicalEvent_ID"].ToString();
-                                    MessageBox.Show("Patient Medical Event ID ---------------> "+ PatientMID);
-
-                                }
-                                else
-                                {
-                                    MessageBox.Show("No matching PatientMedicalEvent_ID record found.");
-                                }
-                                reader.Close();
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Error:4 " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                Console.WriteLine("Error4:" + ex);
-                            }
-                        }*/
-
-
-
-                        // Updating Admitted_Patients_VisitEvent Table  --------------------------------------------------------------------------------------------+
-                        
-                        string query2 = "UPDATE Admitted_Patients_VisitEvent" +
-                            " SET Visited_Doctor_ID = @visited_Doctor_ID, "
-                            + "Visite_Time = @visite_Time, "
-                            + "P_MedicalEventID = @p_MedicalEventID, "
-                            + "Is_VisitedByDoctor = @is_VisitedByDoctor, "
-                            + "P_Condition = @p_Condition, "
-                            + "Visite_Round = @visite_Round "
-                            + "WHERE P_RID = @p_RID;";
-                        DateTime currentTime = DateTime.Now;
-
-                        using (SqlCommand command = new SqlCommand(query2, connect))
-                        {
-                            command.Parameters.AddWithValue("@visited_Doctor_ID", DoctorID);
-                            command.Parameters.AddWithValue("@visite_Time", currentTime);
-                            command.Parameters.AddWithValue("@p_MedicalEventID", PatientMID);
-                            command.Parameters.AddWithValue("@is_VisitedByDoctor", 1);
-                            command.Parameters.AddWithValue("@p_Condition", P_Condition);
-                            command.Parameters.AddWithValue("@visite_Round", PatientVisitCount + 1);
-                            command.Parameters.AddWithValue("@p_RID", PatientRID);
-
-
-                            int rowsAffected = command.ExecuteNonQuery();
-                            if (rowsAffected > 0)
-                            {
-                                // Query executed successfully
-                                Console.WriteLine("UPDATE Admitted_Patients_VisitEvent successfully.");
-                                Admitted_Patients_VisitEvent = true;
-                            }
-                            else
-                            {
-                                // No rows affected (possible validation)
-                                Console.WriteLine("Failed to UPDATE Admitted_Patients_VisitEvent.");
-                            }
-                        }
-
-                    }
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show("Error:3 " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Console.WriteLine("Error3:" + ex);
-                }
-
-                if((Admitted_Patients) && (Admitted_Patients_VisitEvent))
-                {
-                    MessageBox.Show("Success!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    DoctorWard_Dashboard doctorWard_Dashboard = new DoctorWard_Dashboard(DoctorID, WardID);
-                    doctorWard_Dashboard.Show();
-                    this.Hide();
-                }
-            }
-
-            
         }
 
         // -------------------------------------------------------------------------- Reference for this form
