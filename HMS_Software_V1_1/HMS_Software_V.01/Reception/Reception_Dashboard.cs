@@ -20,7 +20,7 @@ namespace HMS_Software_V1._01.Reception
 
         private int userID; 
         
-        public Reception_Dashboard(int userID /*= 5*/)
+        public Reception_Dashboard(int userID = 5)
         {
             this.userID = userID;
 
