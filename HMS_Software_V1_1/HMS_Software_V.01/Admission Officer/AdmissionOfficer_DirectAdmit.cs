@@ -64,58 +64,43 @@ namespace HMS_Software_V1._01.Admission_Officer
 
             try
             {
-                connect.Open();
-
-                string query = "INSERT INTO PatientMedical_Event (PatientRegistration_ID, Doctor_ID, PMRE_Location, PMRE_Date, PMRE_Time, PatientExaminatioNote)"
-                    + "VALUES (@patietnRegistrationId, @doctorId, @location, @date, @time, @patientExaminatioNote)";
-
-                using (SqlCommand command = new SqlCommand(query, connect))
+                using(SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString))
                 {
-                    command.Parameters.AddWithValue("@patietnRegistrationId", PatientRID);
-                    command.Parameters.AddWithValue("@doctorId", AdmissionOfficerID);
-                    command.Parameters.AddWithValue("@location", "Admission Office"); // Warnig: this need to change
-                    command.Parameters.AddWithValue("@date", currentDate);
-                    command.Parameters.AddWithValue("@time", timeString);
-                    command.Parameters.AddWithValue("@patientExaminatioNote", typeExaminationNote_tbx.Text);
-                    // Need to add PatientExaminatioNote
+                    connect.Open();
 
-                    /*//Retriving Patient RID
-                    int rowsAffected = command.ExecuteNonQuery();
-                    if (rowsAffected > 0)
+                    string query = "INSERT INTO PatientMedical_Event (PatientRegistration_ID, Doctor_ID, PMRE_Location, PMRE_Date, PMRE_Time, PatientExaminatioNote)"
+                        + "VALUES (@patietnRegistrationId, @doctorId, @location, @date, @time, @patientExaminatioNote)";
+
+                    using (SqlCommand command = new SqlCommand(query, connect))
                     {
-                        string getIdQuery = "SELECT P_RegistrationID FROM PatientMedical_Event WHERE" +
-                            " PMRE_Date = @date AND PMRE_Time = @time AND Doctor_ID = @doctorId";
+                        command.Parameters.AddWithValue("@patietnRegistrationId", PatientRID);
+                        command.Parameters.AddWithValue("@doctorId", AdmissionOfficerID);
+                        command.Parameters.AddWithValue("@location", "Admission Office");
+                        command.Parameters.AddWithValue("@date", currentDate);
+                        command.Parameters.AddWithValue("@time", timeString);
+                        command.Parameters.AddWithValue("@patientExaminatioNote", typeExaminationNote_tbx.Text);
+                        // Need to add PatientExaminatioNote
 
-                        using (SqlCommand getIdCommand = new SqlCommand(getIdQuery, connect))
+                        //Retriving Patient RID
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
                         {
-                            getIdCommand.Parameters.AddWithValue("@date", currentDate);
-                            getIdCommand.Parameters.AddWithValue("@time", timeString);
-                            getIdCommand.Parameters.AddWithValue("@doctorId", AdmissionOfficerID);
+                            Console.WriteLine("Created a PatientMedical_Event");
 
-                            // Executing the query
-                            object result = getIdCommand.ExecuteScalar();
-                            if (result != null)
-                            {
-                                Patient_RID = result.ToString();
-                                Console.WriteLine($"PatientMedical_Event Record with ID {Patient_RID} found successfully.");
-                            }
-                            else
-                            {
-                                Console.WriteLine("PatientMedical_Event Record not found for the given criteria.");
-                            }
+                            AdmissionOfficer_DirectAdmit_FormClosed(this, null);
+
                         }
+                        else
+                        {
+                            Console.WriteLine("Failed to insert PatientMedical_Event record.");
 
-                        Console.WriteLine($"PatientMedical_Event Record with ID {Patient_RID} inserted successfully.");
-                        Console.WriteLine("PatientMedical_Event record created.");
-
-
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine("Failed to insert PatientMedical_Event record.");
 
-                    }*/
                 }
+
+
+                
             }
             catch (Exception ex)
             {
@@ -126,7 +111,6 @@ namespace HMS_Software_V1._01.Admission_Officer
             finally
             {
                 connect.Close();
-                Console.WriteLine("Patient Medical Event Record created successfully.");
             }
         }
 
@@ -163,13 +147,13 @@ namespace HMS_Software_V1._01.Admission_Officer
 
         }
 
-
-        private bool isAdmitted;
+        string WardNumber;
+        private bool isAdmitted = false;
         private string patientStatus;
         private bool IsPatientRIDfound = false;
         private void AODA_admit_btn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(typeExaminationNote_tbx.Text))
+            if (!string.IsNullOrEmpty(typeExaminationNote_tbx.Text))
             {
 
                 if (AODA_switch_ETU.Checked)
@@ -183,6 +167,22 @@ namespace HMS_Software_V1._01.Admission_Officer
 
                     isAdmitted = true;
                     patientStatus = "Ward (" + AOVR_ward_tbx.Text + ") ETU";
+
+                    string input = AOVR_ward_tbx.Text;
+                    int number;
+                    if (int.TryParse(input, out number))
+                    {
+                        WardNumber = number.ToString();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalide Ward Number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+               
+                    }
+
+
                 }
                 else if (AODA_switch_PCU.Checked)
                 {
@@ -198,84 +198,143 @@ namespace HMS_Software_V1._01.Admission_Officer
 
 
                 Console.WriteLine("Data adding process started");
-                   
+               
+
                 try
                 {
-                    connect.Open();
 
-
-                    //Check Patient RID
-                    string query1 = "SELECT P_RegistrationID FROM Patient WHERE P_RegistrationID = @patientRID";
-                    using (SqlCommand command = new SqlCommand(query1, connect))
+                    using (SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString))
                     {
-                        command.Parameters.AddWithValue("@patientRID", "P"+AOVR_ward_tbx.Text);
+                        connect.Open();
 
-                        try 
-                        {                
-                            // Execute the query and get the result
-                            object result = command.ExecuteScalar();
+                        /*Console.WriteLine($"PatientRID   : {PatientRID}");
+                   //Check Patient RID
+                   string query1 = "SELECT P_RegistrationID FROM Patient WHERE P_RegistrationID = @patientRID";
+                   using (SqlCommand command = new SqlCommand(query1, connect))
+                   {
+                       command.Parameters.AddWithValue("@patientRID", PatientRID);
 
-                            if (result != null)
-                            {
-                                IsPatientRIDfound = true;
-                            }
-                            else
-                            {
-                                MessageBox.Show("No matching record found.");
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error: " + ex.Message);
-                        }//Check if the RID is found
-                    }
+                       try 
+                       {                
+                           // Execute the query and get the result
+                           object result = command.ExecuteScalar();
+
+                           if (result != null)
+                           {
+                               IsPatientRIDfound = true;
+                           }
+                           else
+                           {
+                               MessageBox.Show("No matching record found.");
+                           }
+                       }
+                       catch (Exception ex)
+                       {
+                           Console.WriteLine($"Error: {ex.Message}");
+                           MessageBox.Show("An error occurred while checking PatientRID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                       }//Check if the RID is found
+                   }*/
 
 
-                    DateTime currentDate = DateTime.Today;
-                    DateTime currentTime = DateTime.Now;
+                        DateTime currentDate = DateTime.Today;
+                        DateTime currentTime = DateTime.Now;
 
-                    if(IsPatientRIDfound)
-                    {
+                        #region Not Using
+                        /*if(IsPatientRIDfound)
+                                    {
+                                        // Creating a Patient_Admit Record
+                                        *//*string query = "INSERT INTO Patient_Admit (P_RegistrationID, P_NameWithInitials, P_Age, P_Gender, P_ReferralNote," +
+                                            " Doctor_ID, Requested_Time, Requested_Date, Is_Urgent, Is_Admitted, Unit_Type,Sended_To)"
+                                            + " VALUES (@prID, @pName, @pAge, @pGender, @pReferralNote, @dID, @time, @date, @isUrgent, @isAdmitted, @unitType, @sendedTo)";*//*
+                                        string query = "INSERT INTO Admitted_Patients (P_RID, P_NameWithInitials, P_Age, P_Gender, P_Admit_To," +
+                                           " P_Condition, P_Visite_TotalRounds, P_Admitted_Date, P_Admitted_Time, P_Ward)"
+                                           + " VALUES (@P_RID, @P_NameWithInitials, @P_Age, @P_Gender, @P_Admit_To, @P_Condition, @P_Visite_TotalRounds, @P_Admitted_Date, @P_Admitted_Time, @P_Ward)";
+
+                                        using (SqlCommand cmd = new SqlCommand(query, connect))
+                                        {
+                                            cmd.Parameters.AddWithValue("@P_RID", PatientRID);
+                                            cmd.Parameters.AddWithValue("@P_NameWithInitials", PatientName);
+                                            cmd.Parameters.AddWithValue("@P_Age", PatientAge);
+                                            cmd.Parameters.AddWithValue("@P_Gender", PatientGender);
+                                            cmd.Parameters.AddWithValue("@P_Admit_To", "Ward");
+                                            cmd.Parameters.AddWithValue("@P_Condition", "Just Admitted");
+                                            cmd.Parameters.AddWithValue("@P_Visite_TotalRounds", 0);
+                                            cmd.Parameters.AddWithValue("@P_Admitted_Date", currentDate);
+                                            cmd.Parameters.AddWithValue("@P_Admitted_Time", currentTime);
+                                            cmd.Parameters.AddWithValue("@P_Ward", WardNumber);
+
+
+                                            int rowsAffected = cmd.ExecuteNonQuery();
+                                            if (rowsAffected > 0)
+                                            {
+                                                Console.WriteLine("Admitted_Patients Record created successfully.");
+                                                MyCreateMedicalEvnet();
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Failed to create Admitted_Patients Record.");
+                                                MessageBox.Show("Failed to create Admitted_Patients Record", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Patietn RID is not matched", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }*/
+                        #endregion
+
                         // Creating a Patient_Admit Record
-                        string query = "INSERT INTO Patient_Admit (P_RegistrationID, P_NameWithInitials, P_Age, P_Gender, P_ReferralNote," +
+                        /*string query = "INSERT INTO Patient_Admit (P_RegistrationID, P_NameWithInitials, P_Age, P_Gender, P_ReferralNote," +
                             " Doctor_ID, Requested_Time, Requested_Date, Is_Urgent, Is_Admitted, Unit_Type,Sended_To)"
-                            + " VALUES (@prID, @pName, @pAge, @pGender, @pReferralNote, @dID, @time, @date, @isUrgent, @isAdmitted, @unitType, @sendedTo)";
+                            + " VALUES (@prID, @pName, @pAge, @pGender, @pReferralNote, @dID, @time, @date, @isUrgent, @isAdmitted, @unitType, @sendedTo)";*/
+                        string query = "INSERT INTO Admitted_Patients (P_RID, P_NameWithInitials, P_Age, P_Gender, P_Admit_To," +
+                           " P_Condition, P_Visite_TotalRounds, P_Admitted_Date, P_Admitted_Time, P_Ward)"
+                           + " VALUES (@P_RID, @P_NameWithInitials, @P_Age, @P_Gender, @P_Admit_To, @P_Condition, @P_Visite_TotalRounds, @P_Admitted_Date, @P_Admitted_Time, @P_Ward)";
 
                         using (SqlCommand cmd = new SqlCommand(query, connect))
                         {
-                            cmd.Parameters.AddWithValue("@prID", PatientRID);
-                            cmd.Parameters.AddWithValue("@pName", PatientName);
-                            cmd.Parameters.AddWithValue("@pAge", PatientAge);
-                            cmd.Parameters.AddWithValue("@pGender", PatientGender);
-                            cmd.Parameters.AddWithValue("@pReferralNote", "-");
-                            cmd.Parameters.AddWithValue("@dID", AdmissionOfficerID);
-                            cmd.Parameters.AddWithValue("@time", currentTime);
-                            cmd.Parameters.AddWithValue("@date", currentDate);
-                            cmd.Parameters.AddWithValue("@isUrgent", 0);
-                            cmd.Parameters.AddWithValue("@isAdmitted", true);
-                            cmd.Parameters.AddWithValue("@unitType", "Admission Office");
-                            cmd.Parameters.AddWithValue("@sendedTo", patientStatus);
+
+                            cmd.Parameters.AddWithValue("@P_RID", PatientRID);
+                            cmd.Parameters.AddWithValue("@P_NameWithInitials", PatientName);
+                            cmd.Parameters.AddWithValue("@P_Age", PatientAge);
+                            cmd.Parameters.AddWithValue("@P_Gender", PatientGender);
+                            cmd.Parameters.AddWithValue("@P_Admit_To", "Ward");
+                            cmd.Parameters.AddWithValue("@P_Condition", "Just Admitted");
+                            cmd.Parameters.AddWithValue("@P_Visite_TotalRounds", 0);
+                            cmd.Parameters.AddWithValue("@P_Admitted_Date", currentDate);
+                            cmd.Parameters.AddWithValue("@P_Admitted_Time", currentTime);
+
+                            if(patientStatus == "ETU")
+                            {
+                                cmd.Parameters.AddWithValue("@P_Ward", "ETU");
+                            }
+                            else if(patientStatus == "PCU")
+                            {
+                                cmd.Parameters.AddWithValue("@P_Ward", "PCU");
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@P_Ward", WardNumber);
+                            }
+                            
+
 
                             int rowsAffected = cmd.ExecuteNonQuery();
                             if (rowsAffected > 0)
                             {
-                                Console.WriteLine("Patient Admit Record created successfully.");
+                                Console.WriteLine("Admitted_Patients Record created successfully.");
                                 MyCreateMedicalEvnet();
                             }
                             else
                             {
-                                Console.WriteLine("Failed to create Patient Admit Record.");
-                                MessageBox.Show("Failed to create Patient Admit Record", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                Console.WriteLine("Failed to create Admitted_Patients Record.");
+                                MessageBox.Show("Failed to create Admitted_Patients Record", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
 
                     }
-                    else
-                    {
-                        MessageBox.Show("Patietn RID is not matched", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
 
-                    
                 }
                 catch (Exception ex)
                 {
@@ -285,7 +344,6 @@ namespace HMS_Software_V1._01.Admission_Officer
                 {
                     connect.Close();
                 }
-
             }
             else
             {

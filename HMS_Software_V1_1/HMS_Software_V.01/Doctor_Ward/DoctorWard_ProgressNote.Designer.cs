@@ -407,7 +407,7 @@
             this.Bot_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.Bot_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.Bot_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.Bot_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 177F));
+            this.Bot_TableLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
             this.Bot_TableLP.Controls.Add(this.DWPN_DischargeBtn, 0, 0);
             this.Bot_TableLP.Controls.Add(this.DWPN_P_Confirm_btn, 4, 0);
             this.Bot_TableLP.Controls.Add(this.DWPN_P_LabRequest_btn, 3, 0);
@@ -441,7 +441,6 @@
             this.DWPN_DischargeBtn.Text = "Disharge";
             this.DWPN_DischargeBtn.UseVisualStyleBackColor = false;
             this.DWPN_DischargeBtn.Click += new System.EventHandler(this.DWPN_DischargeBtn_Click);
-            
             // 
             // DWPN_P_Confirm_btn
             // 
@@ -460,7 +459,6 @@
             this.DWPN_P_Confirm_btn.TabIndex = 62;
             this.DWPN_P_Confirm_btn.Text = "Confirm";
             this.DWPN_P_Confirm_btn.UseVisualStyleBackColor = false;
-            this.DWPN_P_Confirm_btn.Click += new System.EventHandler(this.Button_Click);
             this.DWPN_P_Confirm_btn.Click += new System.EventHandler(this.DWPN_P_Confirm_btn_Click);
             // 
             // DWPN_P_LabRequest_btn
@@ -483,7 +481,6 @@
             this.DWPN_P_LabRequest_btn.Text = "Lab Request";
             this.DWPN_P_LabRequest_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DWPN_P_LabRequest_btn.UseVisualStyleBackColor = false;
-            this.DWPN_P_LabRequest_btn.Click += new System.EventHandler(this.Button_Click);
             this.DWPN_P_LabRequest_btn.Click += new System.EventHandler(this.DWPN_P_LabRequest_btn_Click);
             // 
             // DWPN_P_Prescription_btn
@@ -506,7 +503,6 @@
             this.DWPN_P_Prescription_btn.Text = "Prescription";
             this.DWPN_P_Prescription_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DWPN_P_Prescription_btn.UseVisualStyleBackColor = false;
-            this.DWPN_P_Prescription_btn.Click += new System.EventHandler(this.Button_Click);
             this.DWPN_P_Prescription_btn.Click += new System.EventHandler(this.DWPN_P_Prescription_btn_Click);
             // 
             // DWPN_Monitor_btn
@@ -529,7 +525,6 @@
             this.DWPN_Monitor_btn.Text = "Monitor";
             this.DWPN_Monitor_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DWPN_Monitor_btn.UseVisualStyleBackColor = false;
-            this.DWPN_Monitor_btn.Click += new System.EventHandler(this.Button_Click);
             this.DWPN_Monitor_btn.Click += new System.EventHandler(this.DWPN_Monitor_btn_Click);
             // 
             // panel5
@@ -602,7 +597,7 @@
             this.DWPN_P_ProgressNote_RichTbx.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DWPN_P_ProgressNote_RichTbx.IsTextChanged = true;
             this.DWPN_P_ProgressNote_RichTbx.Location = new System.Drawing.Point(2, 152);
-            this.DWPN_P_ProgressNote_RichTbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DWPN_P_ProgressNote_RichTbx.Margin = new System.Windows.Forms.Padding(2);
             this.DWPN_P_ProgressNote_RichTbx.Name = "DWPN_P_ProgressNote_RichTbx";
             this.DWPN_P_ProgressNote_RichTbx.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang1033{\\fonttbl{\\f0\\fnil\\fcharset0 " +
     "Arial;}}\r\n{\\*\\generator Riched20 10.0.19041}\\viewkind4\\uc1 \r\n\\pard\\fs18\\par\r\n}\r\n" +
@@ -620,7 +615,7 @@
             this.Name = "DoctorWard_ProgressNote";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DoctorWard_Progress Note";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DoctorWard_ProgressNote_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DoctorWard_ProgressNote_FormClosing);
             this.Base_TableLP.ResumeLayout(false);
             this.Top_TableLP.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

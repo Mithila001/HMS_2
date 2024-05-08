@@ -23,7 +23,7 @@ namespace HMS_Software_V1._01.Admition_Officer
         SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString);
 
         private int AdmissionOfficerID;
-        public AdmissionOfficer_Dashboard(int userID/* =7*/)
+        public AdmissionOfficer_Dashboard(int userID = 12)
         {
             InitializeComponent();
             this.AdmissionOfficerID = userID;
@@ -309,7 +309,7 @@ namespace HMS_Software_V1._01.Admition_Officer
                             {
                                 try
                                 {
-                                   
+                                    patientRID = AOVR_ward_tbx.Text;
                                     patientName = reader["P_NameWithIinitials"].ToString();
                                     patientAge = reader["P_Age"].ToString();
                                     patientGender = reader["P_Gender"].ToString();

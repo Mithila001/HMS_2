@@ -481,22 +481,6 @@ namespace HMS_Software_V1._01.Doctor_Ward
 
         }
 
-        private void DoctorWard_ProgressNote_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to Exit?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                DoctorWard_Dashboard doctorWard_Dashboard = new DoctorWard_Dashboard(DoctorID, WardID);
-                doctorWard_Dashboard.Show();
-                this.Hide();
-            }
-            else
-            {
-                // User clicked No, so keep the form open
-            }
-        }
-
         private void DWPN_DischargeBtn_Click(object sender, EventArgs e)
         {
             try
@@ -558,6 +542,22 @@ namespace HMS_Software_V1._01.Doctor_Ward
 
             }
 
+        }
+
+        private void DoctorWard_ProgressNote_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to Exit?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true; // Cancel the form closing event
+            }
+            else
+            {
+                DoctorWard_Dashboard doctorWard_Dashboard = new DoctorWard_Dashboard(DoctorID, WardID);
+                doctorWard_Dashboard.Show();
+                this.Hide();
+            }
         }
     }
 }
