@@ -77,6 +77,7 @@
             this.MinimumSize = new System.Drawing.Size(437, 98);
             this.Name = "R_A_SelectClinicType";
             this.Size = new System.Drawing.Size(437, 98);
+            this.Click += new System.EventHandler(this.R_A_SelectClinicType_Click);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

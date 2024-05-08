@@ -187,6 +187,7 @@
     <Compile Include="Common_UseForms\OOP\Doctor_Ward.cs" />
     <Compile Include="Common_UseForms\OOP\Doctor_Check.cs" />
     <Compile Include="Common_UseForms\OOP\ForCommonLabRequests.cs" />
+    <Compile Include="Common_UseForms\OOP\PresciptionDetailsReciver.cs" />
     <Compile Include="Common_UseForms\UserControls\AddLabRequest.cs">
       <SubType>UserControl</SubType>
     </Compile>

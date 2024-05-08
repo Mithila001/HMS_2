@@ -78,7 +78,7 @@ namespace HMS_Software_V1._01.Doctor_OPD
 
         #region MedicalEvent
 
-        private int PatientMedicalEventID;
+        private int PatientMedicalEventID2;
 
         private void MyStartPatientMedicalEvent()
 
@@ -125,9 +125,9 @@ namespace HMS_Software_V1._01.Doctor_OPD
                             object result = getIdCommand.ExecuteScalar();
                             if (result != null)
                             {
-                                PatientMedicalEventID = Convert.ToInt32(result);
+                                PatientMedicalEventID2 = Convert.ToInt32(result);
 
-                                Console.WriteLine($"PatientMedical_Event Record with ID {PatientMedicalEventID} found successfully.");
+                                Console.WriteLine($"PatientMedical_Event Record with ID {PatientMedicalEventID2} found successfully.");
                             }
                             else
                             {
@@ -135,7 +135,7 @@ namespace HMS_Software_V1._01.Doctor_OPD
                             }
                         }
 
-                        Console.WriteLine($"PatientMedical_Event Record with ID {PatientMedicalEventID} inserted successfully.");
+                        Console.WriteLine($"PatientMedical_Event Record with ID {PatientMedicalEventID2} inserted successfully.");
 
 
                     }
@@ -258,6 +258,7 @@ namespace HMS_Software_V1._01.Doctor_OPD
                     Console.WriteLine(startEvent);
                 }
             }
+            Console.WriteLine("Went throug Button_Click. i = "+i);
         }
         #endregion
 
@@ -274,7 +275,7 @@ namespace HMS_Software_V1._01.Doctor_OPD
             DC_labRequestData.PatientName = DOPDPC_patietName_lbl.Text;
             DC_labRequestData.PatientAge = DOPDPC_patietage_lbl.Text;
             DC_labRequestData.PatientGender = DOPDPC_patietGender_lbl.Text;
-            DC_labRequestData.PatientMedicalEventID = PatientMedicalEventID;
+            DC_labRequestData.PatientMedicalEventID = PatientMedicalEventID2;
             DC_labRequestData.EventUnitType = UnitType;
             DC_labRequestData.WardNumber = WardNumber;
 
@@ -298,14 +299,14 @@ namespace HMS_Software_V1._01.Doctor_OPD
             DC_addPrescription.DoctorName = DoctorName;
             DC_addPrescription.DoctorPosition = DoctorPosition;
             DC_addPrescription.PatientRID = PatientRID;
-            DC_addPrescription.PatientMedicalEventID = PatientMedicalEventID;
+            DC_addPrescription.PatientMedicalEventID = PatientMedicalEventID2;
             DC_addPrescription.PatientName = DOPDPC_patietName_lbl.Text;
             DC_addPrescription.PatientAge = DOPDPC_patietage_lbl.Text;
             DC_addPrescription.PatientGender = DOPDPC_patietGender_lbl.Text; ;
             DC_addPrescription.EventUnitType = UnitType;
             DC_addPrescription.WardNumber = WardNumber;
 
-
+            Console.WriteLine("111111111 PatientMedicalEventID: " + PatientMedicalEventID2);
             Common_MakePrescription common_MakePrescription = new Common_MakePrescription(DC_addPrescription);
             common_MakePrescription.DoctorPatientCheckFromReferece = this; //crete a referece for this form
             common_MakePrescription.Show();
@@ -323,7 +324,7 @@ namespace HMS_Software_V1._01.Doctor_OPD
             dataTranspoter.DoctorName = DoctorName;
             dataTranspoter.DoctorPosition = DoctorPosition;
             dataTranspoter.PatientRID = PatientRID;
-            dataTranspoter.PatientMedicalEventID = PatientMedicalEventID;
+            dataTranspoter.PatientMedicalEventID = PatientMedicalEventID2;
             dataTranspoter.PatientName = DOPDPC_patietName_lbl.Text;
             dataTranspoter.PatientAge = DOPDPC_patietage_lbl.Text;
             dataTranspoter.PatientGender = DOPDPC_patietGender_lbl.Text;
@@ -354,7 +355,7 @@ namespace HMS_Software_V1._01.Doctor_OPD
                     using (SqlCommand updateCommand = new SqlCommand(query2, connect))
                     {
                         updateCommand.Parameters.AddWithValue("@examinationNotes", P_MedicalRecors_richTbx.Text);
-                        updateCommand.Parameters.AddWithValue("@pmeID", PatientMedicalEventID);
+                        updateCommand.Parameters.AddWithValue("@pmeID", PatientMedicalEventID2);
 
                         int rowsAffected = updateCommand.ExecuteNonQuery();
                         if (rowsAffected > 0)
@@ -405,24 +406,32 @@ namespace HMS_Software_V1._01.Doctor_OPD
 
         private void DOPDPC_admit_Click(object sender, EventArgs e)
         {
+            if (P_MedicalRecors_richTbx.Text != "")
+            {
+                MyDataStoringClass dataTranspoter = new MyDataStoringClass();
 
-            MyDataStoringClass dataTranspoter = new MyDataStoringClass();
-
-            dataTranspoter.Isurgetn = urgent_checkBox.Checked;
-            dataTranspoter.DoctorID = UserID;
-            dataTranspoter.DoctorName = DoctorName;
-            dataTranspoter.DoctorPosition = DoctorPosition;
-            dataTranspoter.PatientRID = PatientRID;
-            dataTranspoter.PatientMedicalEventID = PatientMedicalEventID;
-            dataTranspoter.PatientName = DOPDPC_patietName_lbl.Text;
-            dataTranspoter.PatientAge = DOPDPC_patietage_lbl.Text;
-            dataTranspoter.PatientGender = DOPDPC_patietGender_lbl.Text; ;
-            dataTranspoter.EventUnitType = UnitType;
+                dataTranspoter.Isurgetn = urgent_checkBox.Checked;
+                dataTranspoter.DoctorID = UserID;
+                dataTranspoter.DoctorName = DoctorName;
+                dataTranspoter.DoctorPosition = DoctorPosition;
+                dataTranspoter.PatientRID = PatientRID;
+                dataTranspoter.PatientMedicalEventID = PatientMedicalEventID2;
+                dataTranspoter.PatientName = DOPDPC_patietName_lbl.Text;
+                dataTranspoter.PatientAge = DOPDPC_patietage_lbl.Text;
+                dataTranspoter.PatientGender = DOPDPC_patietGender_lbl.Text; ;
+                dataTranspoter.EventUnitType = UnitType;
 
 
-            Admit_ReferralNote admit_ReferralNote = new Admit_ReferralNote(dataTranspoter);
-            admit_ReferralNote.ShowDialog();
-            this.Close();
+                Admit_ReferralNote admit_ReferralNote = new Admit_ReferralNote(dataTranspoter);
+                admit_ReferralNote.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("PatientExaminatioNote is Empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            
         }
         #endregion
 

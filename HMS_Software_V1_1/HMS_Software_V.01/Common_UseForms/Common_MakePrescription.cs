@@ -47,8 +47,16 @@ namespace HMS_Software_V1._01.Common_UseForms
             FC_doctorPosition = doctorDataAddPrescription.DoctorPosition;
             FC_doctorName = doctorDataAddPrescription.DoctorName;
             FC_unittype = doctorDataAddPrescription.EventUnitType;
+
+           /* Console.WriteLine("FC_patientID_str: " + FC_patientID_str);
+            Console.WriteLine("FC_userID: " + FC_userID);
+            Console.WriteLine("FC_doctorPosition: " + FC_doctorPosition);
+            Console.WriteLine("FC_doctorName: " + FC_doctorName);*/
+            Console.WriteLine("doctorDataAddPrescription.PatientMedicalEventID: " + doctorDataAddPrescription.PatientMedicalEventID);
+
+
             /*this.FormClosed += (s, e) => new DoctorCheck_PatientCheck(FC_patientID_str, FC_userID, FC_doctorPosition, FC_doctorName, FC_unittype).Show();*/
-           /* this.FormClosed += (s, e) => this.Show();*/
+            /* this.FormClosed += (s, e) => this.Show();*/
         }
         
 

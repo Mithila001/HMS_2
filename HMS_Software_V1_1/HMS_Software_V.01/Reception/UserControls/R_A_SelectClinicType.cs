@@ -18,13 +18,14 @@ namespace HMS_Software_V1._01.Reception.UserControls
             AttachClickEventHandlers(this);
             
         }
+        public int RASCT_ClincID { get; set; }
 
         private void AttachClickEventHandlers(Control parentControl)
         {
             foreach (Control control in parentControl.Controls)
             {
                 // Attach event handler for the current control
-                control.Click += Control_Click;
+                control.Click += R_A_SelectClinicType_Click;
                 control.MouseEnter += materialCard1_MouseEnter;
                 control.MouseLeave += materialCard1_MouseLeave;
 
@@ -38,40 +39,40 @@ namespace HMS_Software_V1._01.Reception.UserControls
 
 
         public event EventHandler<int> ClinicClicked;
-        private void Control_Click(object sender, EventArgs e)
-        {
-            int clinicID = (int)this.Tag;
-
-            /* Console.WriteLine("Clinic ID::::::::::::: " + clinicID);
-
-
-             Console.WriteLine(" ((---2---)) Clicked control's Tag property (clinicID): " + clinicID);*/
-
-
-            ClinicClicked?.Invoke(this, clinicID);
-
-
-            /*Console.WriteLine(" ((---2---)) ClinicClicked event invoked with clinicID: " + clinicID);*/
-
-            // Trigger the UserControl click event
-            OnClick(e);
-        }
 
         private void materialCard1_MouseEnter(object sender, EventArgs e)
         {
             panel1.BackColor = Color.FromArgb(223, 223, 223); // Change background color
            
-            Console.WriteLine("Hover On::::::::::::: ");
         }
 
         private void materialCard1_MouseLeave(object sender, EventArgs e)
         {
             panel1.BackColor = Color.FromArgb(255, 255, 255); // Restore background color
             
-            Console.WriteLine("Hover OFF::::::::::::: ");
         }
 
 
+        
 
+
+
+
+
+        public event EventHandler UserControlClicked;
+        private void R_A_SelectClinicType_Click(object sender, EventArgs e)
+        {
+            // Get the parent form
+            /*Reception_Appointment parentForm = this.Parent as Reception_Appointment;
+
+            // Check if the parent form is not null
+            if (parentForm != null)
+            {
+                // Call the method
+                parentForm.MyRemoveRightFLowLPControls();
+            }*/
+            Console.WriteLine("ClinicID from User Control: " + RASCT_ClincID);
+            UserControlClicked?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

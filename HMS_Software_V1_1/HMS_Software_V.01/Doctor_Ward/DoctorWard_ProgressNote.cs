@@ -427,6 +427,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
             doctorW_To_LabRequest.PatientMedicalEventID = PatientMedicalEventID;
             doctorW_To_LabRequest.EventUnitType = "Ward " + WardName;
             doctorW_To_LabRequest.WardNumber = WardID;
+           
 
 
             Common_MakeLabRequest common_MakeLabRequest = new Common_MakeLabRequest(doctorW_To_LabRequest);
@@ -437,6 +438,20 @@ namespace HMS_Software_V1._01.Doctor_Ward
 
         private void DWPN_P_Prescription_btn_Click(object sender, EventArgs e)
         {
+
+            /* Common_UseForms.OOP.Doctor_Ward doctorW_To_Prescription = new Common_UseForms.OOP.Doctor_Ward();
+             #region Sending Data
+             doctorW_To_Prescription.DoctorID = DoctorID;
+             doctorW_To_Prescription.DoctorName = DoctorName;
+             doctorW_To_Prescription.DoctorPosition = DoctorTitle;
+             doctorW_To_Prescription.PatientRID = PatientRID;
+             doctorW_To_Prescription.PatientName = PatienName;
+             doctorW_To_Prescription.PatientAge = PatientAge;
+             doctorW_To_Prescription.PatientGender = PatientGender;
+             doctorW_To_Prescription.PatientMedicalEventID = PatientMedicalEventID;
+             doctorW_To_Prescription.EventUnitType = "Ward " + WardName;
+             doctorW_To_Prescription.WardNumber = WardID; 
+             #endregion*/
 
             Common_UseForms.OOP.Doctor_Ward doctorW_To_Prescription = new Common_UseForms.OOP.Doctor_Ward();
             #region Sending Data
@@ -449,7 +464,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
             doctorW_To_Prescription.PatientGender = PatientGender;
             doctorW_To_Prescription.PatientMedicalEventID = PatientMedicalEventID;
             doctorW_To_Prescription.EventUnitType = "Ward " + WardName;
-            doctorW_To_Prescription.WardNumber = WardID; 
+            doctorW_To_Prescription.WardNumber = WardID;
             #endregion
 
 
@@ -464,7 +479,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
             Console.WriteLine("EventUnitType: Ward " + WardName);
             Console.WriteLine("WardNumber: " + WardID);*/
 
-
+            
             Common_MakePrescription common_MakePrescription = new Common_MakePrescription(doctorW_To_Prescription);
             common_MakePrescription.DoctorPatientCheckWardFromReferece = this;
             common_MakePrescription.Show();
