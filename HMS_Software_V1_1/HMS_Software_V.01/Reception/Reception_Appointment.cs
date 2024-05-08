@@ -219,6 +219,58 @@ namespace HMS_Software_V1._01.Reception
 
 
 
+                                /*Recep_D_ClinicEvents recep_D_ClinicEvents = new Recep_D_ClinicEvents();
+
+                               *//* int ClinicEventClinicTypeID = Convert.ToInt32(reader1["ClincEventClinicID"]);*//*
+                                Console.WriteLine(" ((---4---)) Retrived the ID From Table:", ClinicEventClinicTypeID);
+
+
+                                Console.WriteLine(" ((---5---)) Executed");
+                                recep_D_ClinicEvents.RPA_doctorName_lbl.Text = DoctorName;
+                                recep_D_ClinicEvents.RPA_clincType_lbl.Text = CliniName;
+                                recep_D_ClinicEvents.RPA_hallNumber_lbl.Text = "Hall " + HallNumber;
+                                recep_D_ClinicEvents.RPA_time_lbl.Text = StartTime.ToString() +" -  "+ Endtime.ToString();
+                                recep_D_ClinicEvents.RPA_date_lbl.Text = Date.ToString();
+                               *//* recep_D_ClinicEvents.RPA_wardNo_lbl.Text = reader1["CT_WardNo"].ToString();*//*
+                                recep_D_ClinicEvents.RPA_totalSlots_lbl.Text = TotalSlots.ToString();
+                                recep_D_ClinicEvents.RPA_availableSlots_lbl.Text = (TotalSlots - TakenSlots).ToString();
+
+                                flowLayoutPflowLayoutPanel_R_A_right.Controls.Add(recep_D_ClinicEvents);
+
+
+                                Button assignButton = recep_D_ClinicEvents.RPA_assign_btn;
+                                assignButton.Tag = ClinicEventClinicTypeID;
+
+                                // Attach an event handler to the button click event
+                                assignButton.Click += (sender, e) =>
+                                {
+                                    // Retrieve the ClinicEventClinicTypeID from the button tag
+                                    int clickedClinicEventClinicID = (int)((Button)sender).Tag;
+
+                                    Reception_AppontmentRegister reception_AppontmentRegister = new Reception_AppontmentRegister();
+                                    reception_AppontmentRegister.ClinicEventClinicID = clickedClinicEventClinicID;
+                                    reception_AppontmentRegister.Show();
+
+                                    // Do something with the clickedClinicEventClinicID
+                                    Console.WriteLine("Clicked Clinic Event Clinic ID: " + clickedClinicEventClinicID);
+                                };
+
+
+
+
+
+
+                                // Adjust the width of the user control when added to the panel
+                                recep_D_ClinicEvents.Width = flowLayoutPflowLayoutPanel_R_A_right.ClientSize.Width - recep_D_ClinicEvents.Margin.Horizontal;
+
+                                flowLayoutPflowLayoutPanel_R_A_right.SizeChanged += (sender, e) =>
+                                {
+                                    // Adjust the width of the user control to match the width of the parent container
+                                    recep_D_ClinicEvents.Width = flowLayoutPflowLayoutPanel_R_A_right.ClientSize.Width - recep_D_ClinicEvents.Margin.Horizontal;
+                                };
+*/
+
+
 
 
 
@@ -251,28 +303,28 @@ namespace HMS_Software_V1._01.Reception
                 // Loop through the records retrieved from the database
                 while (reader1.Read())
                 {
-                    int ClinicTypeID = clinicID;
-                    /*Console.WriteLine(" ((---4---)) Retrived the clinic ID: ",ClinicTypeID);*/
+                    /*int ClinicTypeID = clinicID;
+                    *//*Console.WriteLine(" ((---4---)) Retrived the clinic ID: ",ClinicTypeID);*//*
 
                     Recep_D_ClinicEvents recep_D_ClinicEvents = new Recep_D_ClinicEvents();
 
                     int ClinicEventClinicTypeID = Convert.ToInt32(reader1["ClincEventClinicID"]);
-                    /*Console.WriteLine(" ((---4---)) Retrived the ID From Table:", ClinicEventClinicTypeID);*/
+                    *//*Console.WriteLine(" ((---4---)) Retrived the ID From Table:", ClinicEventClinicTypeID);*//*
 
                     if (ClinicEventClinicTypeID == ClinicTypeID)
                     {
 
 
 
-                        /*Console.WriteLine(" ((---5---)) Executed");*/
+                        *//*Console.WriteLine(" ((---5---)) Executed");*//*
                         recep_D_ClinicEvents.RPA_doctorName_lbl.Text = reader1["D_NameWithInitials"].ToString();
                         recep_D_ClinicEvents.RPA_clincType_lbl.Text = reader1["CT_Name"].ToString();
                         recep_D_ClinicEvents.RPA_hallNumber_lbl.Text = "Hall "+reader1["CE_HallNumber"].ToString();
-                        /*recep_D_ClinicEvents.RPA_time_lbl.Text = reader1["ClinicName"].ToString();*/
+                        *//*recep_D_ClinicEvents.RPA_time_lbl.Text = reader1["ClinicName"].ToString();*//*
                         recep_D_ClinicEvents.RPA_date_lbl.Text = reader1["CE_Date"].ToString();
                         recep_D_ClinicEvents.RPA_wardNo_lbl.Text = reader1["CT_WardNo"].ToString();
                         recep_D_ClinicEvents.RPA_totalSlots_lbl.Text = reader1["CE_TotalSlots"].ToString();
-                        /*recep_D_ClinicEvents.RPA_availableSlots_lbl.Text = reader1["CT_WardNo"].ToString();*/
+                        *//*recep_D_ClinicEvents.RPA_availableSlots_lbl.Text = reader1["CT_WardNo"].ToString();*//*
 
                         flowLayoutPflowLayoutPanel_R_A_right.Controls.Add(recep_D_ClinicEvents);
 
@@ -308,7 +360,7 @@ namespace HMS_Software_V1._01.Reception
                             recep_D_ClinicEvents.Width = flowLayoutPflowLayoutPanel_R_A_right.ClientSize.Width - recep_D_ClinicEvents.Margin.Horizontal;
                         };
 
-                    }
+                    }*/
 
                 }
                 reader1.Close();
