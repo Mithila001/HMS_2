@@ -405,24 +405,32 @@ namespace HMS_Software_V1._01.Doctor_OPD
 
         private void DOPDPC_admit_Click(object sender, EventArgs e)
         {
+            if (P_MedicalRecors_richTbx.Text != "")
+            {
+                MyDataStoringClass dataTranspoter = new MyDataStoringClass();
 
-            MyDataStoringClass dataTranspoter = new MyDataStoringClass();
-
-            dataTranspoter.Isurgetn = urgent_checkBox.Checked;
-            dataTranspoter.DoctorID = UserID;
-            dataTranspoter.DoctorName = DoctorName;
-            dataTranspoter.DoctorPosition = DoctorPosition;
-            dataTranspoter.PatientRID = PatientRID;
-            dataTranspoter.PatientMedicalEventID = PatientMedicalEventID;
-            dataTranspoter.PatientName = DOPDPC_patietName_lbl.Text;
-            dataTranspoter.PatientAge = DOPDPC_patietage_lbl.Text;
-            dataTranspoter.PatientGender = DOPDPC_patietGender_lbl.Text; ;
-            dataTranspoter.EventUnitType = UnitType;
+                dataTranspoter.Isurgetn = urgent_checkBox.Checked;
+                dataTranspoter.DoctorID = UserID;
+                dataTranspoter.DoctorName = DoctorName;
+                dataTranspoter.DoctorPosition = DoctorPosition;
+                dataTranspoter.PatientRID = PatientRID;
+                dataTranspoter.PatientMedicalEventID = PatientMedicalEventID;
+                dataTranspoter.PatientName = DOPDPC_patietName_lbl.Text;
+                dataTranspoter.PatientAge = DOPDPC_patietage_lbl.Text;
+                dataTranspoter.PatientGender = DOPDPC_patietGender_lbl.Text; ;
+                dataTranspoter.EventUnitType = UnitType;
 
 
-            Admit_ReferralNote admit_ReferralNote = new Admit_ReferralNote(dataTranspoter);
-            admit_ReferralNote.ShowDialog();
-            this.Close();
+                Admit_ReferralNote admit_ReferralNote = new Admit_ReferralNote(dataTranspoter);
+                admit_ReferralNote.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("PatientExaminatioNote is Empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            
         }
         #endregion
 

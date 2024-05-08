@@ -393,6 +393,7 @@
             this.DOPDPC_confirmRequests.Text = "Confirm";
             this.DOPDPC_confirmRequests.UseVisualStyleBackColor = false;
             this.DOPDPC_confirmRequests.Click += new System.EventHandler(this.Button_Click);
+            this.DOPDPC_confirmRequests.Click += new System.EventHandler(this.DOPDPC_confirmRequests_Click);
             // 
             // DOPDPC_addLabRequest
             // 
@@ -414,7 +415,9 @@
             this.DOPDPC_addLabRequest.Text = "Lab Request";
             this.DOPDPC_addLabRequest.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DOPDPC_addLabRequest.UseVisualStyleBackColor = false;
+            this.DOPDPC_confirmRequests.Click += new System.EventHandler(this.Button_Click);
             this.DOPDPC_addLabRequest.Click += new System.EventHandler(this.DOPDPC_addLabRequest_Click);
+
             // 
             // DOPDPC_addAppointment
             // 
@@ -436,6 +439,7 @@
             this.DOPDPC_addAppointment.Text = "Appointment";
             this.DOPDPC_addAppointment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DOPDPC_addAppointment.UseVisualStyleBackColor = false;
+            this.DOPDPC_confirmRequests.Click += new System.EventHandler(this.Button_Click);
             this.DOPDPC_addAppointment.Click += new System.EventHandler(this.DOPDPC_addAppointment_Click);
             // 
             // DOPDPC_addPrescription
@@ -458,6 +462,7 @@
             this.DOPDPC_addPrescription.Text = "Prescription";
             this.DOPDPC_addPrescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DOPDPC_addPrescription.UseVisualStyleBackColor = false;
+            this.DOPDPC_confirmRequests.Click += new System.EventHandler(this.Button_Click);
             this.DOPDPC_addPrescription.Click += new System.EventHandler(this.DOPDPC_addPrescription_Click);
             // 
             // panel4
@@ -505,6 +510,7 @@
             this.DOPDPC_admit.TabIndex = 61;
             this.DOPDPC_admit.Text = "Admit";
             this.DOPDPC_admit.UseVisualStyleBackColor = false;
+            this.DOPDPC_confirmRequests.Click += new System.EventHandler(this.Button_Click);
             this.DOPDPC_admit.Click += new System.EventHandler(this.DOPDPC_admit_Click);
             // 
             // DoctorCheck_PatientCheck
