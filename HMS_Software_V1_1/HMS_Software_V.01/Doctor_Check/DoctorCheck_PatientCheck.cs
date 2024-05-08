@@ -76,8 +76,6 @@ namespace HMS_Software_V1._01.Doctor_OPD
         }
         #endregion
 
-
-
         #region MedicalEvent
 
         private int PatientMedicalEventID;
@@ -220,8 +218,6 @@ namespace HMS_Software_V1._01.Doctor_OPD
 
         }
         #endregion
-
-
 
         #region Start MedicalEvent
         private void Button_Click(object sender, EventArgs e)
