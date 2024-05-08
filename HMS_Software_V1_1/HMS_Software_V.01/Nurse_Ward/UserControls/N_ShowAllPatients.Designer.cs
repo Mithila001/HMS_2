@@ -43,8 +43,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.NSAP_age = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.SWP_NurseName = new System.Windows.Forms.Label();
             this.NSAP_Condition = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -231,8 +229,6 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.SWP_NurseName);
             this.panel4.Controls.Add(this.NSAP_Condition);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(608, 0);
@@ -240,28 +236,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(392, 87);
             this.panel4.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(20, 55);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 15);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Nurse: ";
-            // 
-            // SWP_NurseName
-            // 
-            this.SWP_NurseName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.SWP_NurseName.AutoSize = true;
-            this.SWP_NurseName.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SWP_NurseName.Location = new System.Drawing.Point(73, 51);
-            this.SWP_NurseName.Name = "SWP_NurseName";
-            this.SWP_NurseName.Size = new System.Drawing.Size(115, 22);
-            this.SWP_NurseName.TabIndex = 16;
-            this.SWP_NurseName.Text = "Nurse Name";
             // 
             // NSAP_Condition
             // 
@@ -311,7 +285,5 @@
         public System.Windows.Forms.Label NSAP_Condition;
         private MaterialSkin.Controls.MaterialDivider materialDivider1;
         private MaterialSkin.Controls.MaterialDivider materialDivider2;
-        public System.Windows.Forms.Label label3;
-        public System.Windows.Forms.Label SWP_NurseName;
     }
 }

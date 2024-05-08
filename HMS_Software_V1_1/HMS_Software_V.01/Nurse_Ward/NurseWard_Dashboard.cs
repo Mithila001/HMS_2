@@ -58,7 +58,7 @@ namespace HMS_Software_V1._01.Nurse_Ward
 
 
                     // Create a SQL query to count the records matching today's date
-                    string query = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent";
+                    string query = "SELECT COUNT(*) FROM Admitted_Patients";
 
                     // Create a command with the SQL query and the connection
                     using (SqlCommand command = new SqlCommand(query, connect))
@@ -70,12 +70,14 @@ namespace HMS_Software_V1._01.Nurse_Ward
 
 
                     // Create a SQL query to count the records matching today's date
-                    string query2 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE CONVERT(date, Visite_Date) = @TodayDate AND Is_VisitedByNurse = @Is_VisitedByNurse OR Is_VisitedByNurse IS NULL";
+                    string query2 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE CONVERT(date, Visite_Date)"+
+                        " = @TodayDate AND Is_VisitedByNurse = @Is_VisitedByNurse AND Is_VisitedByDoctor = @Is_VisitedByDoctor";
 
                     // Create a command with the SQL query and the connection
                     using (SqlCommand command = new SqlCommand(query2, connect))
                     {
                         command.Parameters.AddWithValue("@Is_VisitedByNurse", 0);
+                        command.Parameters.AddWithValue("@Is_VisitedByDoctor", 1);
                         command.Parameters.AddWithValue("@TodayDate", DateTime.Today);
 
                         Dashboard_TotalPending = (int)command.ExecuteScalar();
@@ -297,13 +299,13 @@ namespace HMS_Software_V1._01.Nurse_Ward
                                         n_ShowAllPatients.panel1.BackColor = Color.FromArgb(86, 114, 255);
 
                                         // Show Nurse ID if Nurese Visited at least one time
-                                        n_ShowAllPatients.SWP_NurseName.Text = VisitedNurseID.ToString();
+                                        /*n_ShowAllPatients.SWP_NurseName.Text = VisitedNurseID.ToString();*/
                                         Console.WriteLine("NurseTreatmentStatus --> Pending " + VisitedNurseID);
                                     }
                                     else
                                     {
                                         // Show Nurse ID if Nurese Visited even after patient treatment is completed.
-                                        n_ShowAllPatients.SWP_NurseName.Text = VisitedNurseID.ToString();
+                                       /* n_ShowAllPatients.SWP_NurseName.Text = VisitedNurseID.ToString();*/
                                         n_ShowAllPatients.panel1.BackColor = Color.FromArgb(83, 217, 72);
                                         Console.WriteLine("NurseTreatmentStatus --> Completed " + VisitedNurseID);
                                     }

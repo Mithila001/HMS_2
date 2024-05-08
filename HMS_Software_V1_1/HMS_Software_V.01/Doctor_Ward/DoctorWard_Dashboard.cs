@@ -24,7 +24,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
         private int WardNumber;
 
 
-        public DoctorWard_Dashboard(/*int userID, int WardNumber*/ int userID = 12, int WardNumber = 8)
+        public DoctorWard_Dashboard(/*int userID, int WardNumber*/ int userID = 12, int WardNumber = 15)
         {
             InitializeComponent();
 

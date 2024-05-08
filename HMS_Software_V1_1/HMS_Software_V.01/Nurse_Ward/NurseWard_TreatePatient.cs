@@ -193,6 +193,7 @@ namespace HMS_Software_V1._01.Nurse_Ward
                         JSON_LabRequesID_List = LabRequestID_Lists
                     };
                     NWPC_userControlDetails.Add(userDetails);
+                    MessageBox.Show("Saved", "Infromation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
 
@@ -313,7 +314,7 @@ namespace HMS_Software_V1._01.Nurse_Ward
 
                                 //--------------------------------------------------------------------------------------------------------------------------------
                                 //Check If there are Prescription request table is available
-                                if (!string.IsNullOrEmpty(PrescriptionRequestIDs))
+                                if (!string.IsNullOrEmpty(PrescriptionRequestIDs) && PrescriptionRequestIDs == "-")
                                 {
                                     /*Console.WriteLine("Prescription Request IDs is available");*/
 
