@@ -30,6 +30,28 @@ namespace HMS_Software_V1._01.Admin
         }
 
 
+        public void MySendDataToUserControls()
+        {
+            // Your existing code to obtain AdminName
+            admin_Doctors1.SetAdminName(AdminName);
+            Console.WriteLine("AdminName sent to admin_Doctors1: " + AdminName);
+
+            admin_Nurses1.SetAdminName(AdminName);
+            Console.WriteLine("AdminName sent to admin_Nurses1: " + AdminName);
+
+            admin_Patients1.SetAdminName(AdminName);
+            Console.WriteLine("AdminName sent to admin_Patients1: " + AdminName);
+
+            admin_Reception1.SetAdminName(AdminName);
+            Console.WriteLine("AdminName sent to admin_Reception1: " + AdminName);
+
+            admin_Appointment1.SetAdminName(AdminName);
+            Console.WriteLine("AdminName sent to admin_Appointment1: " + AdminName);
+        }
+
+
+
+
         private string AdminName;
         private string TodayDate;
         private string TodayTime;
@@ -51,6 +73,9 @@ namespace HMS_Software_V1._01.Admin
 
                         Console.WriteLine("Admin Name:" + AdminName);
 
+                        MySendDataToUserControls();
+
+                        
                         /*MyDataStoringClass transport = new MyDataStoringClass();
                         transport.PatientName = reader2.GetString(0);
                         transport.PatientAge = reader2.GetString(1);

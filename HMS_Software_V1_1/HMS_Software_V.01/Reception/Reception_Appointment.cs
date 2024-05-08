@@ -103,8 +103,8 @@ namespace HMS_Software_V1._01.Reception
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Console.WriteLine("11111111111111111111111111111  " + ex);
+                MessageBox.Show("Error11: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine("11 " + ex);
             }
             finally
             {
@@ -121,11 +121,13 @@ namespace HMS_Software_V1._01.Reception
         DateTime Date;
         int TotalSlots;
         int TakenSlots;
+        int ClinicEventID;
 
         bool IsClinicEventsFound =false;
 
         string DoctorName;
         string CliniName;
+        
 
         private void LoadUserData2(int RASCT_clincID)
         {
@@ -138,15 +140,8 @@ namespace HMS_Software_V1._01.Reception
                     DateTime today1 = DateTime.Today;
 
 
-                    
-
-                    //  Get Clinic type Name 
-                    
-
-
-
                     //Clinic Event Details
-                    string query1 = "SELECT Clinic_ID, Doctor_ID, CE_HallNumber, CE_StartTime, CE_EndTime, CE_Date, CE_TotalSlots, CE_TakenSlots"+
+                    string query1 = "SELECT ClinicEvent_ID, Clinic_ID, Doctor_ID, CE_HallNumber, CE_StartTime, CE_EndTime, CE_Date, CE_TotalSlots, CE_TakenSlots" +
                         " FROM ClinicEvents WHERE CE_Date = @today AND Clinic_ID = @Clinic_ID";
 
                     using (SqlCommand command2 = new SqlCommand(query1, connect))
@@ -167,6 +162,7 @@ namespace HMS_Software_V1._01.Reception
                                 Date = Convert.ToDateTime(reader["CE_Date"]);
                                 TotalSlots = Convert.ToInt32(reader["CE_TotalSlots"]);
                                 TakenSlots = Convert.ToInt32(reader["CE_TakenSlots"]);
+                                ClinicEventID  = Convert.ToInt32(reader["ClinicEvent_ID"]);
 
 
                                 //  Get Doctor Detials --------------------------------------------------------------------
@@ -241,9 +237,15 @@ namespace HMS_Software_V1._01.Reception
                                 recep_D_ClinicEvents.RPA_totalSlots_lbl.Text = TotalSlots.ToString();
                                 recep_D_ClinicEvents.RPA_availableSlots_lbl.Text = (TotalSlots - TakenSlots).ToString();
 
+
+                                recep_D_ClinicEvents.ClinicEvnetID = ClinicEventID;
+                                recep_D_ClinicEvents.ClinicID = RASCT_clincID;
+                                recep_D_ClinicEvents.UserID = UserID;
+
                                 flowLayoutPflowLayoutPanel_R_A_right.Controls.Add(recep_D_ClinicEvents);
 
 
+                               /* #region Send data throug Button
                                 Button assignButton = recep_D_ClinicEvents.RPA_assign_btn;
                                 assignButton.Tag = ClinicEventClinicTypeID;
 
@@ -259,7 +261,8 @@ namespace HMS_Software_V1._01.Reception
 
                                     // Do something with the clickedClinicEventClinicID
                                     Console.WriteLine("Clicked Clinic Event Clinic ID: " + clickedClinicEventClinicID);
-                                };
+                                }; 
+                                #endregion*/
 
 
 

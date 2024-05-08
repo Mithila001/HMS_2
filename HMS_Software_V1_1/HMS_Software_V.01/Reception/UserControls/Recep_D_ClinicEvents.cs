@@ -15,6 +15,19 @@ namespace HMS_Software_V1._01.Reception.UserControls
         public Recep_D_ClinicEvents()
         {
             InitializeComponent();
+
+            Console.WriteLine("ClinicID: " + ClinicID);
+            Console.WriteLine("ClinicEvnetID: " + ClinicEvnetID);
+        }
+
+        public int ClinicID { get; set; }
+        public int ClinicEvnetID { get; set; }
+        public int UserID {  get; set; }
+
+        private void RPA_assign_btn_Click(object sender, EventArgs e)
+        {
+            Reception_AppontmentRegister reception_AppontmentRegister = new Reception_AppontmentRegister(ClinicID, ClinicEvnetID, UserID);
+            reception_AppontmentRegister.Show();
         }
     }
 }

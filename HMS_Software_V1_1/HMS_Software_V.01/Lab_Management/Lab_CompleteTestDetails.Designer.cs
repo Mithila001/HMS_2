@@ -69,9 +69,10 @@
             // button19
             // 
             this.button19.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.Location = new System.Drawing.Point(-18, -14);
+            this.button19.Location = new System.Drawing.Point(-14, -11);
+            this.button19.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(316, 85);
+            this.button19.Size = new System.Drawing.Size(237, 69);
             this.button19.TabIndex = 14;
             this.button19.Text = "Laboratory";
             this.button19.UseVisualStyleBackColor = true;
@@ -80,9 +81,10 @@
             // button18
             // 
             this.button18.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.Location = new System.Drawing.Point(-18, -14);
+            this.button18.Location = new System.Drawing.Point(-14, -11);
+            this.button18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(316, 85);
+            this.button18.Size = new System.Drawing.Size(237, 69);
             this.button18.TabIndex = 14;
             this.button18.Text = "Lab Update";
             this.button18.UseVisualStyleBackColor = true;
@@ -91,9 +93,10 @@
             // button17
             // 
             this.button17.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button17.Location = new System.Drawing.Point(-18, -15);
+            this.button17.Location = new System.Drawing.Point(-14, -12);
+            this.button17.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(316, 85);
+            this.button17.Size = new System.Drawing.Size(237, 69);
             this.button17.TabIndex = 14;
             this.button17.Text = "Employee Status";
             this.button17.UseVisualStyleBackColor = true;
@@ -102,9 +105,10 @@
             // button16
             // 
             this.button16.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button16.Location = new System.Drawing.Point(-18, -16);
+            this.button16.Location = new System.Drawing.Point(-14, -13);
+            this.button16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(316, 85);
+            this.button16.Size = new System.Drawing.Size(237, 69);
             this.button16.TabIndex = 14;
             this.button16.Text = "Blood Tests";
             this.button16.UseVisualStyleBackColor = true;
@@ -113,17 +117,19 @@
             // panel14
             // 
             this.panel14.Controls.Add(this.button14);
-            this.panel14.Location = new System.Drawing.Point(0, 381);
+            this.panel14.Location = new System.Drawing.Point(0, 310);
+            this.panel14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(286, 59);
+            this.panel14.Size = new System.Drawing.Size(214, 48);
             this.panel14.TabIndex = 19;
             // 
             // button14
             // 
             this.button14.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button14.Location = new System.Drawing.Point(-18, -14);
+            this.button14.Location = new System.Drawing.Point(-14, -11);
+            this.button14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(316, 85);
+            this.button14.Size = new System.Drawing.Size(237, 69);
             this.button14.TabIndex = 14;
             this.button14.Text = "Inventory";
             this.button14.UseVisualStyleBackColor = true;
@@ -132,9 +138,10 @@
             // button20
             // 
             this.button20.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button20.Location = new System.Drawing.Point(-18, -14);
+            this.button20.Location = new System.Drawing.Point(-14, -11);
+            this.button20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(316, 85);
+            this.button20.Size = new System.Drawing.Size(237, 69);
             this.button20.TabIndex = 14;
             this.button20.Text = "Dashboard";
             this.button20.UseVisualStyleBackColor = true;
@@ -143,17 +150,19 @@
             // panel13
             // 
             this.panel13.Controls.Add(this.button15);
-            this.panel13.Location = new System.Drawing.Point(0, 320);
+            this.panel13.Location = new System.Drawing.Point(0, 260);
+            this.panel13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(286, 59);
+            this.panel13.Size = new System.Drawing.Size(214, 48);
             this.panel13.TabIndex = 18;
             // 
             // button15
             // 
             this.button15.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.Location = new System.Drawing.Point(-18, -14);
+            this.button15.Location = new System.Drawing.Point(-14, -11);
+            this.button15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(316, 85);
+            this.button15.Size = new System.Drawing.Size(237, 69);
             this.button15.TabIndex = 14;
             this.button15.Text = "Finished Tests";
             this.button15.UseVisualStyleBackColor = true;
@@ -162,9 +171,10 @@
             // panel12
             // 
             this.panel12.Controls.Add(this.button16);
-            this.panel12.Location = new System.Drawing.Point(0, 258);
+            this.panel12.Location = new System.Drawing.Point(0, 210);
+            this.panel12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(286, 59);
+            this.panel12.Size = new System.Drawing.Size(214, 48);
             this.panel12.TabIndex = 17;
             // 
             // panel8
@@ -176,50 +186,56 @@
             this.panel8.Controls.Add(this.panel11);
             this.panel8.Controls.Add(this.panel7);
             this.panel8.Controls.Add(this.panel9);
-            this.panel8.Location = new System.Drawing.Point(3, 162);
-            this.panel8.MaximumSize = new System.Drawing.Size(286, 444);
-            this.panel8.MinimumSize = new System.Drawing.Size(286, 64);
+            this.panel8.Location = new System.Drawing.Point(2, 130);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel8.MaximumSize = new System.Drawing.Size(214, 361);
+            this.panel8.MinimumSize = new System.Drawing.Size(214, 52);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(286, 66);
+            this.panel8.Size = new System.Drawing.Size(214, 54);
             this.panel8.TabIndex = 14;
             // 
             // panel10
             // 
             this.panel10.Controls.Add(this.button17);
-            this.panel10.Location = new System.Drawing.Point(0, 194);
+            this.panel10.Location = new System.Drawing.Point(0, 158);
+            this.panel10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(286, 59);
+            this.panel10.Size = new System.Drawing.Size(214, 48);
             this.panel10.TabIndex = 15;
             // 
             // panel11
             // 
             this.panel11.Controls.Add(this.button18);
-            this.panel11.Location = new System.Drawing.Point(0, 131);
+            this.panel11.Location = new System.Drawing.Point(0, 106);
+            this.panel11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(286, 59);
+            this.panel11.Size = new System.Drawing.Size(214, 48);
             this.panel11.TabIndex = 16;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.button19);
-            this.panel7.Location = new System.Drawing.Point(3, 3);
+            this.panel7.Location = new System.Drawing.Point(2, 2);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(286, 59);
+            this.panel7.Size = new System.Drawing.Size(214, 48);
             this.panel7.TabIndex = 13;
             // 
             // panel9
             // 
             this.panel9.Controls.Add(this.button20);
-            this.panel9.Location = new System.Drawing.Point(3, 67);
+            this.panel9.Location = new System.Drawing.Point(2, 54);
+            this.panel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(286, 59);
+            this.panel9.Size = new System.Drawing.Size(214, 48);
             this.panel9.TabIndex = 15;
             // 
             // panel6
             // 
-            this.panel6.Location = new System.Drawing.Point(3, 3);
+            this.panel6.Location = new System.Drawing.Point(2, 2);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(286, 153);
+            this.panel6.Size = new System.Drawing.Size(214, 124);
             this.panel6.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -228,16 +244,18 @@
             this.flowLayoutPanel1.Controls.Add(this.panel8);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(289, 817);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(217, 664);
             this.flowLayoutPanel1.TabIndex = 51;
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(779, 36);
+            this.label1.Location = new System.Drawing.Point(584, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(323, 44);
+            this.label1.Size = new System.Drawing.Size(242, 36);
             this.label1.TabIndex = 50;
             this.label1.Text = "Completed Tests";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -246,22 +264,25 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(328, 124);
+            this.dataGridView1.Location = new System.Drawing.Point(246, 101);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1162, 499);
+            this.dataGridView1.Size = new System.Drawing.Size(872, 405);
             this.dataGridView1.TabIndex = 49;
             // 
-            // Form9
+            // Lab_CompleteTestDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1518, 817);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
+            this.ClientSize = new System.Drawing.Size(1138, 664);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Form9";
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "Lab_CompleteTestDetails";
             this.Text = "Hospital Management System";
             this.panel14.ResumeLayout(false);
             this.panel13.ResumeLayout(false);

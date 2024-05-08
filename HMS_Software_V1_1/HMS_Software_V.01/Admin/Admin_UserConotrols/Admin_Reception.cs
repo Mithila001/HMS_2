@@ -21,6 +21,13 @@ namespace HMS_Software_V1._01.Admin.Admin_UserConotrols
             MyLoadTablData();
         }
 
+        string AdminName;
+        public void SetAdminName(string adminName) // Recevied from the Admin Dahsboard
+        {
+            AdminName = adminName;
+        }
+
+
         //Reciving Data from the form
         public void MySendDataToUserControl(string adminName, string date, string time)
         {

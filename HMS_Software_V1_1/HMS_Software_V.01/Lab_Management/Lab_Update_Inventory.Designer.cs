@@ -90,17 +90,19 @@
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(1201, 314);
+            this.textBox13.Location = new System.Drawing.Point(901, 255);
+            this.textBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(204, 22);
+            this.textBox13.Size = new System.Drawing.Size(154, 20);
             this.textBox13.TabIndex = 83;
             // 
             // button14
             // 
             this.button14.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button14.Location = new System.Drawing.Point(-18, -14);
+            this.button14.Location = new System.Drawing.Point(-14, -11);
+            this.button14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(316, 85);
+            this.button14.Size = new System.Drawing.Size(237, 69);
             this.button14.TabIndex = 14;
             this.button14.Text = "Inventory";
             this.button14.UseVisualStyleBackColor = true;
@@ -109,17 +111,19 @@
             // panel13
             // 
             this.panel13.Controls.Add(this.button15);
-            this.panel13.Location = new System.Drawing.Point(0, 320);
+            this.panel13.Location = new System.Drawing.Point(0, 260);
+            this.panel13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(286, 59);
+            this.panel13.Size = new System.Drawing.Size(214, 48);
             this.panel13.TabIndex = 18;
             // 
             // button15
             // 
             this.button15.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.Location = new System.Drawing.Point(-18, -14);
+            this.button15.Location = new System.Drawing.Point(-14, -11);
+            this.button15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(316, 85);
+            this.button15.Size = new System.Drawing.Size(237, 69);
             this.button15.TabIndex = 14;
             this.button15.Text = "Finished Tests";
             this.button15.UseVisualStyleBackColor = true;
@@ -128,17 +132,19 @@
             // panel12
             // 
             this.panel12.Controls.Add(this.button16);
-            this.panel12.Location = new System.Drawing.Point(0, 258);
+            this.panel12.Location = new System.Drawing.Point(0, 210);
+            this.panel12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(286, 59);
+            this.panel12.Size = new System.Drawing.Size(214, 48);
             this.panel12.TabIndex = 17;
             // 
             // button16
             // 
             this.button16.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button16.Location = new System.Drawing.Point(-18, -16);
+            this.button16.Location = new System.Drawing.Point(-14, -13);
+            this.button16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(316, 85);
+            this.button16.Size = new System.Drawing.Size(237, 69);
             this.button16.TabIndex = 14;
             this.button16.Text = "Blood Tests";
             this.button16.UseVisualStyleBackColor = true;
@@ -147,17 +153,19 @@
             // panel10
             // 
             this.panel10.Controls.Add(this.button17);
-            this.panel10.Location = new System.Drawing.Point(0, 194);
+            this.panel10.Location = new System.Drawing.Point(0, 158);
+            this.panel10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(286, 59);
+            this.panel10.Size = new System.Drawing.Size(214, 48);
             this.panel10.TabIndex = 15;
             // 
             // button17
             // 
             this.button17.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button17.Location = new System.Drawing.Point(-18, -15);
+            this.button17.Location = new System.Drawing.Point(-14, -12);
+            this.button17.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(316, 85);
+            this.button17.Size = new System.Drawing.Size(237, 69);
             this.button17.TabIndex = 14;
             this.button17.Text = "Employee Status";
             this.button17.UseVisualStyleBackColor = true;
@@ -166,17 +174,19 @@
             // panel11
             // 
             this.panel11.Controls.Add(this.button18);
-            this.panel11.Location = new System.Drawing.Point(0, 131);
+            this.panel11.Location = new System.Drawing.Point(0, 106);
+            this.panel11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(286, 59);
+            this.panel11.Size = new System.Drawing.Size(214, 48);
             this.panel11.TabIndex = 16;
             // 
             // button18
             // 
             this.button18.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.Location = new System.Drawing.Point(-18, -14);
+            this.button18.Location = new System.Drawing.Point(-14, -11);
+            this.button18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(316, 85);
+            this.button18.Size = new System.Drawing.Size(237, 69);
             this.button18.TabIndex = 14;
             this.button18.Text = "Lab Update";
             this.button18.UseVisualStyleBackColor = true;
@@ -185,25 +195,28 @@
             // panel14
             // 
             this.panel14.Controls.Add(this.button14);
-            this.panel14.Location = new System.Drawing.Point(0, 381);
+            this.panel14.Location = new System.Drawing.Point(0, 310);
+            this.panel14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(286, 59);
+            this.panel14.Size = new System.Drawing.Size(214, 48);
             this.panel14.TabIndex = 19;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.button19);
-            this.panel7.Location = new System.Drawing.Point(3, 3);
+            this.panel7.Location = new System.Drawing.Point(2, 2);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(286, 59);
+            this.panel7.Size = new System.Drawing.Size(214, 48);
             this.panel7.TabIndex = 13;
             // 
             // button19
             // 
             this.button19.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.Location = new System.Drawing.Point(-18, -14);
+            this.button19.Location = new System.Drawing.Point(-14, -11);
+            this.button19.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(316, 85);
+            this.button19.Size = new System.Drawing.Size(237, 69);
             this.button19.TabIndex = 14;
             this.button19.Text = "Laboratory";
             this.button19.UseVisualStyleBackColor = true;
@@ -212,17 +225,19 @@
             // panel9
             // 
             this.panel9.Controls.Add(this.button20);
-            this.panel9.Location = new System.Drawing.Point(3, 67);
+            this.panel9.Location = new System.Drawing.Point(2, 54);
+            this.panel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(286, 59);
+            this.panel9.Size = new System.Drawing.Size(214, 48);
             this.panel9.TabIndex = 15;
             // 
             // button20
             // 
             this.button20.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button20.Location = new System.Drawing.Point(-18, -14);
+            this.button20.Location = new System.Drawing.Point(-14, -11);
+            this.button20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(316, 85);
+            this.button20.Size = new System.Drawing.Size(237, 69);
             this.button20.TabIndex = 14;
             this.button20.Text = "Dashboard";
             this.button20.UseVisualStyleBackColor = true;
@@ -235,66 +250,74 @@
             // 
             // textBox12
             // 
-            this.textBox12.Location = new System.Drawing.Point(1201, 263);
+            this.textBox12.Location = new System.Drawing.Point(901, 214);
+            this.textBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(204, 22);
+            this.textBox12.Size = new System.Drawing.Size(154, 20);
             this.textBox12.TabIndex = 81;
             // 
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(997, 261);
+            this.label14.Location = new System.Drawing.Point(748, 212);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(198, 29);
+            this.label14.Size = new System.Drawing.Size(148, 24);
             this.label14.TabIndex = 80;
             this.label14.Text = " Sharps Containers:";
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(1201, 212);
+            this.textBox11.Location = new System.Drawing.Point(901, 172);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(204, 22);
+            this.textBox11.Size = new System.Drawing.Size(154, 20);
             this.textBox11.TabIndex = 79;
             // 
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(997, 210);
+            this.label13.Location = new System.Drawing.Point(748, 171);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(178, 29);
+            this.label13.Size = new System.Drawing.Size(134, 24);
             this.label13.TabIndex = 78;
             this.label13.Text = " Biohazard Bags:";
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(1201, 163);
+            this.textBox10.Location = new System.Drawing.Point(901, 132);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(204, 22);
+            this.textBox10.Size = new System.Drawing.Size(154, 20);
             this.textBox10.TabIndex = 77;
             // 
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(997, 161);
+            this.label12.Location = new System.Drawing.Point(748, 131);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(136, 29);
+            this.label12.Size = new System.Drawing.Size(102, 24);
             this.label12.TabIndex = 76;
             this.label12.Text = " VBCT:";
             // 
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(997, 312);
+            this.label15.Location = new System.Drawing.Point(748, 254);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(198, 29);
+            this.label15.Size = new System.Drawing.Size(148, 24);
             this.label15.TabIndex = 82;
             this.label15.Text = " Hermostatic Agents:";
             // 
             // panel6
             // 
-            this.panel6.Location = new System.Drawing.Point(3, 3);
+            this.panel6.Location = new System.Drawing.Point(2, 2);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(286, 153);
+            this.panel6.Size = new System.Drawing.Size(214, 124);
             this.panel6.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -303,8 +326,9 @@
             this.flowLayoutPanel1.Controls.Add(this.panel8);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(289, 817);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(217, 664);
             this.flowLayoutPanel1.TabIndex = 75;
             // 
             // panel8
@@ -316,19 +340,21 @@
             this.panel8.Controls.Add(this.panel11);
             this.panel8.Controls.Add(this.panel7);
             this.panel8.Controls.Add(this.panel9);
-            this.panel8.Location = new System.Drawing.Point(3, 162);
-            this.panel8.MaximumSize = new System.Drawing.Size(286, 444);
-            this.panel8.MinimumSize = new System.Drawing.Size(286, 64);
+            this.panel8.Location = new System.Drawing.Point(2, 130);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel8.MaximumSize = new System.Drawing.Size(214, 361);
+            this.panel8.MinimumSize = new System.Drawing.Size(214, 52);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(286, 64);
+            this.panel8.Size = new System.Drawing.Size(214, 52);
             this.panel8.TabIndex = 14;
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(807, 656);
+            this.button2.Location = new System.Drawing.Point(605, 533);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(104, 37);
+            this.button2.Size = new System.Drawing.Size(78, 30);
             this.button2.TabIndex = 74;
             this.button2.Text = "Reset";
             this.button2.UseVisualStyleBackColor = true;
@@ -337,9 +363,10 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(678, 656);
+            this.button1.Location = new System.Drawing.Point(508, 533);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 37);
+            this.button1.Size = new System.Drawing.Size(75, 30);
             this.button1.TabIndex = 73;
             this.button1.Text = "Update";
             this.button1.UseVisualStyleBackColor = true;
@@ -347,171 +374,192 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(678, 563);
+            this.textBox9.Location = new System.Drawing.Point(508, 457);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(204, 22);
+            this.textBox9.Size = new System.Drawing.Size(154, 20);
             this.textBox9.TabIndex = 72;
             // 
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(474, 561);
+            this.label11.Location = new System.Drawing.Point(356, 456);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(136, 29);
+            this.label11.Size = new System.Drawing.Size(102, 24);
             this.label11.TabIndex = 71;
             this.label11.Text = " Urine Cups:";
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(678, 512);
+            this.textBox8.Location = new System.Drawing.Point(508, 416);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(204, 22);
+            this.textBox8.Size = new System.Drawing.Size(154, 20);
             this.textBox8.TabIndex = 70;
             // 
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(474, 510);
+            this.label10.Location = new System.Drawing.Point(356, 414);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(136, 29);
+            this.label10.Size = new System.Drawing.Size(102, 24);
             this.label10.TabIndex = 69;
             this.label10.Text = " Tourniquets:";
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(678, 466);
+            this.textBox7.Location = new System.Drawing.Point(508, 379);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(204, 22);
+            this.textBox7.Size = new System.Drawing.Size(154, 20);
             this.textBox7.TabIndex = 68;
             // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(474, 464);
+            this.label9.Location = new System.Drawing.Point(356, 377);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(136, 29);
+            this.label9.Size = new System.Drawing.Size(102, 24);
             this.label9.TabIndex = 67;
             this.label9.Text = " Sterile Gauze:";
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(678, 418);
+            this.textBox6.Location = new System.Drawing.Point(508, 340);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(204, 22);
+            this.textBox6.Size = new System.Drawing.Size(154, 20);
             this.textBox6.TabIndex = 66;
             // 
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(474, 416);
+            this.label8.Location = new System.Drawing.Point(356, 338);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(136, 29);
+            this.label8.Size = new System.Drawing.Size(102, 24);
             this.label8.TabIndex = 65;
             this.label8.Text = " Cotton Balls:";
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(678, 364);
+            this.textBox5.Location = new System.Drawing.Point(508, 296);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(204, 22);
+            this.textBox5.Size = new System.Drawing.Size(154, 20);
             this.textBox5.TabIndex = 64;
             // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(474, 362);
+            this.label7.Location = new System.Drawing.Point(356, 294);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 29);
+            this.label7.Size = new System.Drawing.Size(77, 24);
             this.label7.TabIndex = 63;
             this.label7.Text = " BCT:";
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(678, 314);
+            this.textBox4.Location = new System.Drawing.Point(508, 255);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(204, 22);
+            this.textBox4.Size = new System.Drawing.Size(154, 20);
             this.textBox4.TabIndex = 62;
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(475, 312);
+            this.label6.Location = new System.Drawing.Point(356, 254);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 29);
+            this.label6.Size = new System.Drawing.Size(77, 24);
             this.label6.TabIndex = 61;
             this.label6.Text = " Gloves:";
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(678, 263);
+            this.textBox3.Location = new System.Drawing.Point(508, 214);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(204, 22);
+            this.textBox3.Size = new System.Drawing.Size(154, 20);
             this.textBox3.TabIndex = 60;
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(474, 261);
+            this.label5.Location = new System.Drawing.Point(356, 212);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(151, 29);
+            this.label5.Size = new System.Drawing.Size(113, 24);
             this.label5.TabIndex = 59;
             this.label5.Text = " Plaster rolls:";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(678, 212);
+            this.textBox2.Location = new System.Drawing.Point(508, 172);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(204, 22);
+            this.textBox2.Size = new System.Drawing.Size(154, 20);
             this.textBox2.TabIndex = 58;
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(474, 210);
+            this.label4.Location = new System.Drawing.Point(356, 171);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(173, 29);
+            this.label4.Size = new System.Drawing.Size(130, 24);
             this.label4.TabIndex = 57;
             this.label4.Text = " Anticeptic Wipes:";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(678, 163);
+            this.textBox1.Location = new System.Drawing.Point(508, 132);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(204, 22);
+            this.textBox1.Size = new System.Drawing.Size(154, 20);
             this.textBox1.TabIndex = 56;
             // 
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(474, 161);
+            this.label3.Location = new System.Drawing.Point(356, 131);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 29);
+            this.label3.Size = new System.Drawing.Size(77, 24);
             this.label3.TabIndex = 55;
             this.label3.Text = " Syringes:";
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(479, 85);
+            this.label2.Location = new System.Drawing.Point(359, 69);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(496, 37);
+            this.label2.Size = new System.Drawing.Size(372, 30);
             this.label2.TabIndex = 54;
             this.label2.Text = "Type the amount you want to add to the stock";
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(776, 36);
+            this.label1.Location = new System.Drawing.Point(582, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(310, 49);
+            this.label1.Size = new System.Drawing.Size(232, 40);
             this.label1.TabIndex = 53;
             this.label1.Text = "Update Inventory";
             // 
-            // Form4
+            // Lab_Update_Inventory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1518, 817);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
+            this.ClientSize = new System.Drawing.Size(1138, 664);
             this.Controls.Add(this.textBox13);
             this.Controls.Add(this.textBox12);
             this.Controls.Add(this.label14);
@@ -543,7 +591,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form4";
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "Lab_Update_Inventory";
             this.Text = "Hospital Management System";
             this.panel13.ResumeLayout(false);
             this.panel12.ResumeLayout(false);

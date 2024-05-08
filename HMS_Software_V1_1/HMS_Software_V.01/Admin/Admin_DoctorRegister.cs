@@ -18,14 +18,20 @@ namespace HMS_Software_V1._01.Admin
     {
         SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString);//Call connection string from a class
 
-
-        public Admin_DoctorRegister()
+        string AdminName;
+        public Admin_DoctorRegister(string AdminName)
         {
             InitializeComponent();
+            this.AdminName = AdminName;
             this.FormClosed += (s, e) => new Admin_Dashboard().Show();
+
+
+            A_DR_adminName_lbl.Text = AdminName;
         }
 
-        
+
+
+
         public string MyValidateTextBox(string value) // Method to validate textbox value and return the validated value
         {
             

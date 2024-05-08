@@ -15,11 +15,18 @@ namespace HMS_Software_V1._01.Reception
     {
         SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString);
 
-        public int ClinicEventClinicID { get; set; }
-        public Reception_AppontmentRegister()
+        /*public int ClinicEventClinicID { get; set; }*/
+
+        int ClinicID;
+        int ClinicEventID;
+        int UserID;
+        public Reception_AppontmentRegister(int ClinicID, int ClinicEvnetID, int UserID)
         {
             InitializeComponent();
             /*this.FormClosed += (s, e) => new Reception_Dashboard().Show();*/
+            this.ClinicID = ClinicID;
+            this.ClinicEventID = ClinicEvnetID;
+            this.UserID = UserID;
         }
 
         private void RPR_assign_btn_Click(object sender, EventArgs e)
@@ -31,9 +38,7 @@ namespace HMS_Software_V1._01.Reception
                 connect.Open();
 
                 string query1 = "SELECT Patient_ID FROM Patient WHERE P_RegistrationID = @RegistrationID";
-                string query2 = "INSERT INTO Patient_Appointment "
-                    + "(Patient_ID, ClinicEvent_ID) "
-                    + "VALUES (@patientID, @clinicEventID)";
+                
 
                 int patientID;
 
@@ -46,19 +51,35 @@ namespace HMS_Software_V1._01.Reception
                     {
                         patientID = Convert.ToInt32(result);
 
+                        string query2 = "INSERT INTO Patient_Appointment "
+                                          + "(Patient_ID, ClinicEvent_ID) "
+                                            + "VALUES (@patientID, @clinicEventID)";
+
                         using (SqlCommand cmd2 = new SqlCommand(query2, connect))
                         {
                             cmd2.Parameters.AddWithValue("@patientID", patientID);
-                            cmd2.Parameters.AddWithValue("@clinicEventID", ClinicEventClinicID);
+                            cmd2.Parameters.AddWithValue("@clinicEventID", ClinicEventID);
 
                             cmd2.ExecuteNonQuery();
 
-                            DialogResult dialogResult = MessageBox.Show("Added successfully!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // Remove a slot from ClinicEvents
+                            string query3 = "UPDATE ClinicEvents SET CE_TakenSlots = CE_TakenSlots + 1 " +
+                                "WHERE ClinicEvent_ID = @ClinicEvent_ID;";
+                            using (SqlCommand cmd3 = new SqlCommand(query3, connect))
+                            {
+                                cmd3.Parameters.AddWithValue("@ClinicEvent_ID", ClinicEventID);
+                                cmd3.ExecuteNonQuery();
+                            }
+
+
+                            MessageBox.Show("Added successfully!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                            /*DialogResult dialogResult = 
 
                             if (dialogResult == DialogResult.Cancel || dialogResult == DialogResult.None)
                             {
-                                this.Close(); // Close the form when "OK" button is clicked
-                            }
+                                 // Close the form when "OK" button is clicked
+                            }*/
                         }
                         // Now you have the Patient_ID in the patientID variable
                     }

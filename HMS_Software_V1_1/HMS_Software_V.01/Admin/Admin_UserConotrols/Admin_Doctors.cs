@@ -29,10 +29,18 @@ namespace HMS_Software_V1._01.Admin.Admin_UserConotrols
          
         }
 
+        string AdminName;
+        public void SetAdminName(string adminName) // Recevied from the Admin Dahsboard
+        {
+            AdminName = adminName;
+        }
+
+
+
 
         private void searchDoctor_btn_Click(object sender, EventArgs e)
         {
-            Admin_DoctorSearch admin_DoctorSearch = new Admin_DoctorSearch();  
+            Admin_DoctorSearch admin_DoctorSearch = new Admin_DoctorSearch(AdminName);  
             admin_DoctorSearch.Show();
 
             Form parentForm = this.FindForm();
@@ -43,7 +51,7 @@ namespace HMS_Software_V1._01.Admin.Admin_UserConotrols
 
         private void registerDoctor_btn_Click(object sender, EventArgs e)
         {
-            Admin_DoctorRegister admin_DoctorRegister   = new Admin_DoctorRegister();
+            Admin_DoctorRegister admin_DoctorRegister   = new Admin_DoctorRegister(AdminName);
             admin_DoctorRegister.Show();
 
             Form parentForm = this.FindForm();  

@@ -18,11 +18,15 @@ namespace HMS_Software_V1._01.Admin
         SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString);//Call connection string from a class
         BindingSource bs = new BindingSource(); //For Search Filter
 
-        public Admin_DoctorSearch()
+        string AdminName;
+        public Admin_DoctorSearch(string adminName)
         {
             InitializeComponent();
             doctorSearch_combobox.SelectedIndex = 0;
             this.FormClosed += (s, e) => new Admin_Dashboard().Show();
+
+            this.AdminName = adminName;
+            A_DS_adminName_lbl.Text = AdminName;
         }
 
         private void Admin_DoctorSearch_Load(object sender, EventArgs e)
