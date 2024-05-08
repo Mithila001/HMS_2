@@ -127,11 +127,114 @@ namespace HMS_Software_V1._01.Reception
             }
         }
 
+
+        int ClinicID;
+        int DoctorID;
+        string HallNumber;
+        DateTime StartTime;
+        DateTime Endtime;
+        DateTime Date;
+        int TotalSlots;
+        int TakenSlots;
+
+        bool IsClinicEventsFound =false;
+
+        string DoctorName;
+        string CliniName;
+
         private void LoadUserData2(object sendersenderObj, int clinicID)
         {
             try
             {
-                connect.Open();
+                using(SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString))
+                {
+                    connect.Open();
+                    DateTime today1 = DateTime.Today;
+
+                    //Clinic Event Details
+                    string query1 = "SELECT Clinic_ID, Doctor_ID, CE_HallNumber, CE_StartTime, CE_EndTime, CE_Date, CE_TotalSlots, CE_TakenSlots"+
+                        " FROM ClinicEvents WHERE CE_Date = @today";
+
+                    using (SqlCommand command2 = new SqlCommand(query1, connect))
+                    {
+                        command2.Parameters.AddWithValue("@today", today1);
+
+                        using (SqlDataReader reader = command2.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                ClinicID = Convert.ToInt32(reader["Clinic_ID"]);
+                                DoctorID = Convert.ToInt32(reader["Doctor_ID"]);
+                                HallNumber = reader["CE_HallNumber"].ToString();
+                                StartTime = Convert.ToDateTime(reader["CE_StartTime"]);
+                                Endtime = Convert.ToDateTime(reader["CE_EndTime"]);
+                                Date = Convert.ToDateTime(reader["CE_Date"]);
+                                TotalSlots = Convert.ToInt32(reader["CE_TotalSlots"]);
+                                TakenSlots = Convert.ToInt32(reader["CE_TakenSlots"]);
+
+
+                                //  Get Doctor Detials
+                                string query2 = "SELECT D_NameWithInitials FROM Doctor WHERE Doctor_ID = @Doctor_ID";
+                                using (SqlCommand command3 = new SqlCommand(query2, connect))
+                                {
+                                    command2.Parameters.AddWithValue("@Doctor_ID", UserID);
+
+                                    using (SqlDataReader reader3 = command2.ExecuteReader())
+                                    {
+                                        if (reader3.Read())
+                                        {
+                                            DoctorName = reader3["D_NameWithInitials"].ToString();
+
+                                        }
+                                        else
+                                        {
+                                            // No Doctor Details found
+                                        }
+
+                                    }
+                                }
+
+                                //  Get Clinic type Name 
+                                string query3 = "SELECT CT_Name FROM ClincType WHERE ClincType_ID = @ClincType_ID";
+                                using (SqlCommand command4 = new SqlCommand(query3, connect))
+                                {
+                                    command4.Parameters.AddWithValue("@ClincType_ID", ClinicID);
+
+                                    using (SqlDataReader reader4 = command2.ExecuteReader())
+                                    {
+                                        if (reader4.Read())
+                                        {
+                                            CliniName = reader4["CT_Name"].ToString();
+
+                                        }
+                                        else
+                                        {
+                                            // No Clinc Name Found Details found
+                                        }
+
+                                    }
+                                }
+
+
+
+
+
+
+
+
+
+
+                            }
+                            else
+                            {
+                                // No Clinic Event found
+                            }
+
+                        }
+                    }
+
+                }
+                /*connect.Open();*/
                 DateTime today = DateTime.Today;
                 //================================= Show Clinic Types UserControls =================================
                 string query = "SELECT ce.[CE_Date], ce.CE_StartTime, ce.CE_EndTime, d.D_NameWithInitials, ct.CT_Name, ce.CE_HallNumber, ct.CT_WardNo, ce.CE_TotalSlots, ce.CE_TakenSlots, ce.ClinicEvent_ID AS ClincEventClinicID"
