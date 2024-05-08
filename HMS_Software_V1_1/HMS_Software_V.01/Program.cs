@@ -26,7 +26,11 @@ namespace HMS_Software_V1._01
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
             Application.Run(new DoctorCheck_Dashboard()
+=======
+            Application.Run(new Reception_Dashboard()
+>>>>>>> c043d1491ba384fe09f5782a488a3e8f1a6eb08b
             {
 
             });
