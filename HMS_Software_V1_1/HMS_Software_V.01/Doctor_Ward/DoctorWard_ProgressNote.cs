@@ -334,7 +334,7 @@ namespace HMS_Software_V1._01.Doctor_Ward
                                 /* this.Close();*/
                                 #endregion
 
-                                string updateQuery = "UPDATE Admitted_Patients_VisitEvent SET Is_VisitedByDoctor = 1, Visite_Time= @Visite_Time, Visited_Doctor_ID= @Visited_Doctor_ID "+
+                                string updateQuery = "UPDATE Admitted_Patients_VisitEvent SET Is_VisitedByDoctor = @Admitted_Patients_VisitEvent, Visite_Time= @Visite_Time, Visited_Doctor_ID = @Visited_Doctor_ID, P_MedicalEventID = @P_MedicalEventID " +
                                     "WHERE P_RID = @patientRID";
                                 using (SqlCommand command = new SqlCommand(updateQuery, connect))
                                 {
@@ -343,6 +343,8 @@ namespace HMS_Software_V1._01.Doctor_Ward
                                     command.Parameters.AddWithValue("@patientRID", PatientRID);
                                     command.Parameters.AddWithValue("@Visited_Doctor_ID", DoctorID);
                                     command.Parameters.AddWithValue("@Visite_Time", formattedTime);
+                                    command.Parameters.AddWithValue("@P_MedicalEventID", PatientMedicalEventID);
+                                    command.Parameters.AddWithValue("@Admitted_Patients_VisitEvent", 1);
                                     int rowsAffected2 = command.ExecuteNonQuery();
 
                                     if (rowsAffected2 > 0)

@@ -58,7 +58,6 @@ namespace HMS_Software_V1._01.Doctor_Ward
 
         }
 
-
         private int MonitorRequest_ID;
         private void MyAssigneData()
         {
@@ -69,12 +68,39 @@ namespace HMS_Software_V1._01.Doctor_Ward
                 {
                     connect.Open();
 
+
+                    //Assing monitor request to the table
+                    string query2 = "INSERT INTO Monitor_Request (MR_DoctorID, MR_Info, MR_P_MEID) " +
+                                             "OUTPUT INSERTED.MonitorRequest_ID " +
+                                             "VALUES (@DoctorID, @Info, @PatientMEID)";
+                    using (SqlCommand command = new SqlCommand(query2, connect))
+                    {
+                        // Add parameters
+                        command.Parameters.AddWithValue("@DoctorID", DoctorID); // Assuming you have the doctorID
+                        command.Parameters.AddWithValue("@Info", DWM_richTextBox1.Text); // Assuming you have the info
+                        command.Parameters.AddWithValue("@PatientMEID", PatientMedicalEventID); // Assuming you have the patientMEID
+
+                        // Execute the command and retrieve the auto-incremented ID
+                        MonitorRequest_ID = (int)command.ExecuteScalar();
+
+                        if (MonitorRequest_ID > 0)
+                        {
+                            Console.WriteLine("Data inserted successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Failed to insert data.");
+                        }
+                    }
+
+
+
                     // Assign data to the table
                     string query = "UPDATE PatientMedical_Event SET PatinetMonitortRequest = @PatinetMonitortRequest WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
 
                     using (SqlCommand command = new SqlCommand(query, connect))
                     {
-                        command.Parameters.AddWithValue("@PatinetMonitortRequest", DWM_richTextBox1.Text);
+                        command.Parameters.AddWithValue("@PatinetMonitortRequest", MonitorRequest_ID);
                         command.Parameters.AddWithValue("@PatientMedicalEvent_ID", PatientMedicalEventID);
 
                         int rowsAffected = command.ExecuteNonQuery();

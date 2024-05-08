@@ -440,7 +440,6 @@
             this.DWPN_DischargeBtn.TabIndex = 66;
             this.DWPN_DischargeBtn.Text = "Disharge";
             this.DWPN_DischargeBtn.UseVisualStyleBackColor = false;
-            this.DWPN_DischargeBtn.Click += new System.EventHandler(this.Button_Click);
             this.DWPN_DischargeBtn.Click += new System.EventHandler(this.DWPN_DischargeBtn_Click);
             // 
             // DWPN_P_Confirm_btn

@@ -55,6 +55,19 @@ namespace HMS_Software_V1._01.Nurse_Ward
             this.PatientWard = NSAPUC_P_Ward;
             this.WardNumber = NSAPUC_P_WardNumber;
 
+            Console.WriteLine("\n\n-------------------- NurseWard_TreatePatient ---------------------");
+            Console.WriteLine("Patient Name: " + PatientName);
+            Console.WriteLine("Patient RID: " + PatientRID);
+            Console.WriteLine("Patient Age: " + PatientAge);
+            Console.WriteLine("Patient Gender: " + PatientGender);
+            Console.WriteLine("Patient Condition: " + PatientCondition);
+            Console.WriteLine("Patient Medical Event ID: " + PatientMEID);
+            Console.WriteLine("Nurse ID: " + NurseID);
+            Console.WriteLine("Patient Ward: " + PatientWard);
+            Console.WriteLine("Ward Number: " + WardNumber);
+            Console.WriteLine("----------------------------------------------------------------------- ");
+
+
 
             LoadBasicData();
 
@@ -70,24 +83,24 @@ namespace HMS_Software_V1._01.Nurse_Ward
         private bool isMatchFoundFromJSON = false;
         private void MyReadJSON()
         {
-            string json = File.ReadAllText(@"D:\Programming\Github\Repositories - Local\HMS\HMS_Software_V1.01\Nurse_Ward\JSON file\NWPC_userControlDetails.json");
+            string json = File.ReadAllText(@"E:\Programming\Github\HMS_Mithila\HMS_Software_V1_1\HMS_Software_V.01\Nurse_Ward\JSON file\NWPC_userControlDetails.json");
 
             List<UserControlDetails> userControlDetailsList = JsonConvert.DeserializeObject<List<UserControlDetails>>(json);
-
+            Console.WriteLine("Step 1");
             if (userControlDetailsList != null && userControlDetailsList.Any())
             {
                 foreach (var userDetails in userControlDetailsList)
                 {
-                    
 
+                    Console.WriteLine("Step 2");
                     // Check if the NurseID matches the desired NurseID
                     if (userDetails.JSON_NurseID == NurseID && userDetails.JSON_PatientID == PatientRID)
                     {
                        
                         isMatchFoundFromJSON = true;
 
-              
 
+                        Console.WriteLine("Step 3");
                         // Assign values to the user controls
                         NWTP_PatientMedicalEvents nWTP_PatientMedicalEvents2 = new NWTP_PatientMedicalEvents();
 
@@ -187,7 +200,7 @@ namespace HMS_Software_V1._01.Nurse_Ward
             string json = JsonConvert.SerializeObject(NWPC_userControlDetails);
 
             // Write the JSON data to a file
-            File.WriteAllText(@"D:\Programming\Github\Repositories - Local\HMS\HMS_Software_V1.01\Nurse_Ward\JSON file\NWPC_userControlDetails.json", json);
+            File.WriteAllText(@"E:\Programming\Github\HMS_Mithila\HMS_Software_V1_1\HMS_Software_V.01\Nurse_Ward\JSON file\NWPC_userControlDetails.json", json);
 
         }
 
@@ -241,32 +254,40 @@ namespace HMS_Software_V1._01.Nurse_Ward
                 {
                     connect.Open();
 
+                    Console.WriteLine("Step 4");
                     //Load Today Admitted Patient Medical Events  ------------------------------------------------------------------------
-                    string query1 = "SELECT LabRequest_ID, PrescriptionRequest_ID, PatinetMonitortRequest_ID FROM" +
+                    string query1 = "SELECT LabRequest_ID, PrescriptionRequest_ID, PatinetMonitortRequest FROM" +
                        " PatientMedical_Event" +
-                       " WHERE PatientMedicalEvent_ID = @patientMEID";
+                       " WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
 
 
                     DateTime today = DateTime.Today;
 
                     using (SqlCommand cmd = new SqlCommand(query1, connect))
                     {
-                        cmd.Parameters.AddWithValue("@patientMEID", PatientMEID);
+                        cmd.Parameters.AddWithValue("@PatientMedicalEvent_ID", PatientMEID);
+                        Console.WriteLine("Giving @PatientMedicalEvent_ID: " + PatientMEID);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
+                            Console.WriteLine("Step 5");
                             while (reader.Read())
                             {
-                               /* Console.WriteLine("Admitted Patient Medical Events Recived. ");*/
+                                Console.WriteLine("Step 6");
+                                /* Console.WriteLine("Admitted Patient Medical Events Recived. ");*/
+
                                 try
                                 {
-                                    LabRequestIDs = reader["LabRequest_ID"].ToString();
-                                    PrescriptionRequestIDs = reader["PrescriptionRequest_ID"].ToString();
+                                    LabRequestIDs = reader["LabRequest_ID"] != DBNull.Value ? reader["LabRequest_ID"].ToString() : "-";
+                                    PrescriptionRequestIDs = reader["PrescriptionRequest_ID"] != DBNull.Value ? reader["PrescriptionRequest_ID"].ToString() : "-";
+
+                                    Console.WriteLine("Got LabRequest_ID: "+ LabRequestIDs);
+                                    Console.WriteLine("Got PrescriptionRequestIDs: " + PrescriptionRequestIDs);
 
                                     // Becouse if ID is empt, there going to be an error
-                                    PatientMonitorRequestID = !reader.IsDBNull(reader.GetOrdinal("PatinetMonitortRequest_ID")) ? Convert.ToInt32(reader["PatinetMonitortRequest_ID"]) : 0;
+                                    PatientMonitorRequestID = !reader.IsDBNull(reader.GetOrdinal("PatinetMonitortRequest")) ? Convert.ToInt32(reader["PatinetMonitortRequest"]) : 0;
+                                    Console.WriteLine("Got PatinetMonitortRequest: " + PatientMonitorRequestID);
 
-                                  
                                 }
                                 catch (FormatException)
                                 {
@@ -769,7 +790,7 @@ namespace HMS_Software_V1._01.Nurse_Ward
                             //Remove JSON Data 
 
                             // Read the JSON data from the file
-                            string filePath = @"D:\Programming\Github\Repositories - Local\HMS\HMS_Software_V1.01\Nurse_Ward\JSON file\NWPC_userControlDetails.json";
+                            string filePath = @"E:\Programming\Github\HMS_Mithila\HMS_Software_V1_1\HMS_Software_V.01\Nurse_Ward\JSON file\NWPC_userControlDetails.json";
                             string json = File.ReadAllText(filePath);
 
                             // Deserialize JSON data into a list of UserControlDetails

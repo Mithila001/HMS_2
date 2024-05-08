@@ -27,8 +27,11 @@ namespace HMS_Software_V1._01.Nurse_Ward
         private int NurseID;
         /*private string UnitName;*/
         private int WardNumber;
-        public NurseWard_Dashboard(int userID/* =5*/, int WardNumber/* = 5*/)
+        public NurseWard_Dashboard(int userID = 5, int WardNumber = 5)
         {
+            automation = new MyTableData_Automation();
+            automation.MyGetAdmittedPatientRecord();
+
             InitializeComponent();
             this.NurseID = userID;
             this.WardNumber = WardNumber;
@@ -37,8 +40,6 @@ namespace HMS_Software_V1._01.Nurse_Ward
 
             LoadData();
 
-            automation = new MyTableData_Automation();
-            automation.MyGetAdmittedPatientRecord();
         }
 
 
@@ -250,6 +251,8 @@ namespace HMS_Software_V1._01.Nurse_Ward
                                     Console.WriteLine("Loaded PatientRID:::::: " + PatientRID);
                                     Console.WriteLine("Loaded P_MedicalEventID: " + P_MedicalEventID);
                                     Console.WriteLine("Loaded Visited_Nurse_ID: " + VisitedNurseID);
+                                    Console.WriteLine("Loaded Is_VisitedByNurse: " + IsNurseVisited);
+                                    Console.WriteLine("\n\n\n ");
                                     /*Console.WriteLine("PatientName: " + PatientName);
                                     Console.WriteLine("PatientAge: " + PatientAge);
                                     Console.WriteLine("PatientGender: " + PatientGender);
@@ -315,6 +318,19 @@ namespace HMS_Software_V1._01.Nurse_Ward
                                     n_ShowAllPatients.NSAPUC_P_Ward = WardName;
                                     n_ShowAllPatients.NSAPUC_P_MedicalEventID = P_MedicalEventID;
                                     n_ShowAllPatients.NSAPUC_P_WardNumber = WardNumber;
+
+                                    Console.WriteLine("--------------------------------------------------");
+                                    Console.WriteLine("Assigning patient data:");
+                                    Console.WriteLine("NSAPUC_P_Name: " + PatientName);
+                                    Console.WriteLine("NSAPUC_P_RID: " + PatientRID);
+                                    Console.WriteLine("NSAPUC_P_Age: " + PatientAge);
+                                    Console.WriteLine("NSAPUC_P_Gender: " + PatientGender);
+                                    Console.WriteLine("NSAPUC_P_Condition: " + P_Condition);
+                                    Console.WriteLine("NSAPUC_NureseID: " + NurseID);
+                                    Console.WriteLine("NSAPUC_P_Ward: " + WardName);
+                                    Console.WriteLine("NSAPUC_P_MedicalEventID: " + P_MedicalEventID);
+                                    Console.WriteLine("NSAPUC_P_WardNumber: " + WardNumber);
+                                    Console.WriteLine("--------------------------------------------------");
 
 
                                     NWD_wardNumber.Text = WardNumber.ToString();
