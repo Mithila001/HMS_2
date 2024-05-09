@@ -1,4 +1,5 @@
-﻿using HMS_Software_V1._01.Reception.UserControls;
+﻿using HMS_Software_V1._01.Common_UseForms;
+using HMS_Software_V1._01.Reception.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -306,6 +307,13 @@ namespace HMS_Software_V1._01.Reception
         {
             Reception_Appointment reception_Appointment = new Reception_Appointment(userID);
             reception_Appointment.Show();
+            this.Hide();
+        }
+
+        private void Reception_Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            UserLogin userLogin = new UserLogin();
+            userLogin.Show();
             this.Hide();
         }
     }

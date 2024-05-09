@@ -27,6 +27,15 @@ namespace HMS_Software_V1._01.Admin
 
 
             A_DR_adminName_lbl.Text = AdminName;
+
+
+            string formattedDate = DateTime.Today.ToString("dd-MM-yyyy");
+            string formattedTime = DateTime.Now.ToString("h.mm tt");
+            A_DR_time.Text = formattedTime;
+            A_DR_date.Text = formattedDate;
+
+
+
         }
 
 
