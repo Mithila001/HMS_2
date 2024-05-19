@@ -1,4 +1,5 @@
 ﻿using HMS_Software_V1._01.Admission_Officer.UserControls;
+using HMS_Software_V1._01.Common_UseForms;
 using HMS_Software_V1._01.Doctor_Ward.UserControls;
 using System;
 using System.Collections.Generic;
@@ -315,6 +316,13 @@ namespace HMS_Software_V1._01.Doctor_Ward
                 Console.WriteLine("Error2:" + ex);
             }
          
+        }
+
+        private void DoctorWard_Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            UserLogin userLogin = new UserLogin();
+            userLogin.Show();
+            this.Hide();
         }
     }
 }

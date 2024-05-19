@@ -16,6 +16,12 @@ namespace HMS_Software_V1._01.Admin
         {
             InitializeComponent();
             this.FormClosed += (s, e) => new Admin_Dashboard().Show();
+
+
+            string formattedDate = DateTime.Today.ToString("dd-MM-yyyy");
+            string formattedTime = DateTime.Now.ToString("h.mm tt");
+            A_DS_time.Text = formattedTime;
+            A_DS_date.Text = formattedDate;
         }
     }
 }

@@ -42,8 +42,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
             this.pictureBox_LOGO = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -58,11 +58,12 @@
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.43723F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.56277F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(916, 462);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1221, 569);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -80,10 +81,10 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 136);
+            this.panel1.Location = new System.Drawing.Point(0, 167);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(916, 326);
+            this.panel1.Size = new System.Drawing.Size(1221, 402);
             this.panel1.TabIndex = 0;
             // 
             // wardNumber_tbx
@@ -91,11 +92,12 @@
             this.wardNumber_tbx.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.wardNumber_tbx.BackColor = System.Drawing.Color.White;
             this.wardNumber_tbx.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.wardNumber_tbx.Location = new System.Drawing.Point(650, 133);
-            this.wardNumber_tbx.MaximumSize = new System.Drawing.Size(500, 4);
-            this.wardNumber_tbx.MinimumSize = new System.Drawing.Size(100, 20);
+            this.wardNumber_tbx.Location = new System.Drawing.Point(867, 165);
+            this.wardNumber_tbx.Margin = new System.Windows.Forms.Padding(4);
+            this.wardNumber_tbx.MaximumSize = new System.Drawing.Size(665, 4);
+            this.wardNumber_tbx.MinimumSize = new System.Drawing.Size(132, 20);
             this.wardNumber_tbx.Name = "wardNumber_tbx";
-            this.wardNumber_tbx.Size = new System.Drawing.Size(219, 22);
+            this.wardNumber_tbx.Size = new System.Drawing.Size(291, 26);
             this.wardNumber_tbx.TabIndex = 62;
             // 
             // warNumber_lbl
@@ -103,9 +105,10 @@
             this.warNumber_lbl.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.warNumber_lbl.AutoSize = true;
             this.warNumber_lbl.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warNumber_lbl.Location = new System.Drawing.Point(496, 132);
+            this.warNumber_lbl.Location = new System.Drawing.Point(661, 163);
+            this.warNumber_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.warNumber_lbl.Name = "warNumber_lbl";
-            this.warNumber_lbl.Size = new System.Drawing.Size(147, 22);
+            this.warNumber_lbl.Size = new System.Drawing.Size(183, 29);
             this.warNumber_lbl.TabIndex = 61;
             this.warNumber_lbl.Text = "Ward Number: ";
             // 
@@ -114,9 +117,10 @@
             this.unit_lbl.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.unit_lbl.AutoSize = true;
             this.unit_lbl.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.unit_lbl.Location = new System.Drawing.Point(502, 58);
+            this.unit_lbl.Location = new System.Drawing.Point(669, 72);
+            this.unit_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.unit_lbl.Name = "unit_lbl";
-            this.unit_lbl.Size = new System.Drawing.Size(46, 22);
+            this.unit_lbl.Size = new System.Drawing.Size(60, 29);
             this.unit_lbl.TabIndex = 60;
             this.unit_lbl.Text = "Unit";
             // 
@@ -129,9 +133,10 @@
             "Clinic",
             "OPD",
             "Ward"});
-            this.comboB_selceUnit.Location = new System.Drawing.Point(650, 57);
+            this.comboB_selceUnit.Location = new System.Drawing.Point(867, 71);
+            this.comboB_selceUnit.Margin = new System.Windows.Forms.Padding(4);
             this.comboB_selceUnit.Name = "comboB_selceUnit";
-            this.comboB_selceUnit.Size = new System.Drawing.Size(219, 21);
+            this.comboB_selceUnit.Size = new System.Drawing.Size(291, 24);
             this.comboB_selceUnit.TabIndex = 59;
             // 
             // userLogin_btn
@@ -144,9 +149,10 @@
             this.userLogin_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.userLogin_btn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userLogin_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
-            this.userLogin_btn.Location = new System.Drawing.Point(391, 265);
+            this.userLogin_btn.Location = new System.Drawing.Point(521, 327);
+            this.userLogin_btn.Margin = new System.Windows.Forms.Padding(4);
             this.userLogin_btn.Name = "userLogin_btn";
-            this.userLogin_btn.Size = new System.Drawing.Size(133, 39);
+            this.userLogin_btn.Size = new System.Drawing.Size(177, 48);
             this.userLogin_btn.TabIndex = 58;
             this.userLogin_btn.Text = "Login";
             this.userLogin_btn.UseVisualStyleBackColor = false;
@@ -157,9 +163,10 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(37, 57);
+            this.label4.Location = new System.Drawing.Point(49, 71);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 24);
+            this.label4.Size = new System.Drawing.Size(133, 32);
             this.label4.TabIndex = 30;
             this.label4.Text = "Position:";
             // 
@@ -175,9 +182,10 @@
             "Reception",
             "Admission Officer",
             "LabEmployee"});
-            this.comboB_selcePosition.Location = new System.Drawing.Point(186, 57);
+            this.comboB_selcePosition.Location = new System.Drawing.Point(248, 71);
+            this.comboB_selcePosition.Margin = new System.Windows.Forms.Padding(4);
             this.comboB_selcePosition.Name = "comboB_selcePosition";
-            this.comboB_selcePosition.Size = new System.Drawing.Size(219, 21);
+            this.comboB_selcePosition.Size = new System.Drawing.Size(291, 24);
             this.comboB_selcePosition.TabIndex = 29;
             this.comboB_selcePosition.SelectedIndexChanged += new System.EventHandler(this.comboB_selcePosition_SelectedIndexChanged);
             // 
@@ -186,11 +194,12 @@
             this.userPassword_tbx.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.userPassword_tbx.BackColor = System.Drawing.Color.White;
             this.userPassword_tbx.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userPassword_tbx.Location = new System.Drawing.Point(186, 212);
-            this.userPassword_tbx.MaximumSize = new System.Drawing.Size(500, 4);
-            this.userPassword_tbx.MinimumSize = new System.Drawing.Size(100, 20);
+            this.userPassword_tbx.Location = new System.Drawing.Point(248, 262);
+            this.userPassword_tbx.Margin = new System.Windows.Forms.Padding(4);
+            this.userPassword_tbx.MaximumSize = new System.Drawing.Size(665, 4);
+            this.userPassword_tbx.MinimumSize = new System.Drawing.Size(132, 20);
             this.userPassword_tbx.Name = "userPassword_tbx";
-            this.userPassword_tbx.Size = new System.Drawing.Size(219, 22);
+            this.userPassword_tbx.Size = new System.Drawing.Size(291, 26);
             this.userPassword_tbx.TabIndex = 28;
             // 
             // useName_tbx
@@ -198,11 +207,12 @@
             this.useName_tbx.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.useName_tbx.BackColor = System.Drawing.Color.White;
             this.useName_tbx.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.useName_tbx.Location = new System.Drawing.Point(186, 132);
-            this.useName_tbx.MaximumSize = new System.Drawing.Size(500, 4);
-            this.useName_tbx.MinimumSize = new System.Drawing.Size(100, 20);
+            this.useName_tbx.Location = new System.Drawing.Point(248, 163);
+            this.useName_tbx.Margin = new System.Windows.Forms.Padding(4);
+            this.useName_tbx.MaximumSize = new System.Drawing.Size(665, 4);
+            this.useName_tbx.MinimumSize = new System.Drawing.Size(132, 20);
             this.useName_tbx.Name = "useName_tbx";
-            this.useName_tbx.Size = new System.Drawing.Size(219, 22);
+            this.useName_tbx.Size = new System.Drawing.Size(291, 26);
             this.useName_tbx.TabIndex = 27;
             // 
             // label2
@@ -210,9 +220,10 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(37, 208);
+            this.label2.Location = new System.Drawing.Point(49, 257);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 24);
+            this.label2.Size = new System.Drawing.Size(153, 32);
             this.label2.TabIndex = 10;
             this.label2.Text = "Password:";
             // 
@@ -221,9 +232,10 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(37, 129);
+            this.label1.Location = new System.Drawing.Point(49, 160);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 24);
+            this.label1.Size = new System.Drawing.Size(169, 32);
             this.label1.TabIndex = 9;
             this.label1.Text = "User Name:";
             // 
@@ -236,39 +248,42 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(916, 136);
+            this.panel2.Size = new System.Drawing.Size(1221, 167);
             this.panel2.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(46, 48);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(167, 34);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "User Login";
             // 
             // pictureBox_LOGO
             // 
             this.pictureBox_LOGO.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox_LOGO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(254)))), ((int)(((byte)(249)))));
             this.pictureBox_LOGO.Image = global::HMS_Software_V1._01.Properties.Resources.HMS_Logo4_100_;
-            this.pictureBox_LOGO.Location = new System.Drawing.Point(790, 22);
+            this.pictureBox_LOGO.Location = new System.Drawing.Point(1053, 27);
+            this.pictureBox_LOGO.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox_LOGO.Name = "pictureBox_LOGO";
-            this.pictureBox_LOGO.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox_LOGO.Size = new System.Drawing.Size(133, 123);
             this.pictureBox_LOGO.TabIndex = 11;
             this.pictureBox_LOGO.TabStop = false;
             // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(61, 59);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(214, 44);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "User Login";
+            // 
             // UserLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(916, 462);
+            this.ClientSize = new System.Drawing.Size(1221, 569);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MaximumSize = new System.Drawing.Size(950, 550);
-            this.MinimumSize = new System.Drawing.Size(932, 501);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximumSize = new System.Drawing.Size(1261, 666);
+            this.MinimumSize = new System.Drawing.Size(1237, 606);
             this.Name = "UserLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UserLogin";

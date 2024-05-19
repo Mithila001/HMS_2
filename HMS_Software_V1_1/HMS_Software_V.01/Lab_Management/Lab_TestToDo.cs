@@ -20,7 +20,7 @@ namespace HMS_Software_V1._01.Lab_Management
             InitializeComponent();
         }
 
-        private void Form6_Load(object sender, EventArgs e)
+        private void Lab_TestToDo_Load(object sender, EventArgs e)
         {
 
         }
@@ -33,19 +33,19 @@ namespace HMS_Software_V1._01.Lab_Management
         private void button2_Click(object sender, EventArgs e)
         {
             bool Isopen = false;
-            foreach (Form Form7 in Application.OpenForms)
+            foreach (Form Lab_DoTest in Application.OpenForms)
             {
-                if (Form7.Name == "Form7")
+                if (Lab_DoTest.Name == "Lab_DoTest")
                 {
                     Isopen = true;
-                    Form7.BringToFront();
+                    Lab_DoTest.BringToFront();
                     break;
                 }
             }
             if (Isopen == false)
             {
-                Lab_DoTest form7 = new Lab_DoTest();
-                form7.Show();
+                Lab_DoTest Lab_DoTest = new Lab_DoTest();
+                Lab_DoTest.Show();
             }
         }
 
@@ -62,19 +62,19 @@ namespace HMS_Software_V1._01.Lab_Management
         private void button16_Click(object sender, EventArgs e)
         {
             bool Isopen = false;
-            foreach (Form Form6 in Application.OpenForms)
+            foreach (Form Lab_TestToDo in Application.OpenForms)
             {
-                if (Form6.Name == "Form6")
+                if (Lab_TestToDo.Name == "Lab_TestToDo")
                 {
                     Isopen = true;
-                    Form6.BringToFront();
+                    Lab_TestToDo.BringToFront();
                     break;
                 }
             }
             if (Isopen == false)
             {
-                Lab_TestToDo form6 = new Lab_TestToDo();
-                form6.Show();
+                Lab_TestToDo Lab_TestToDo = new Lab_TestToDo();
+                Lab_TestToDo.Show();
             }
 
         }
@@ -101,76 +101,76 @@ namespace HMS_Software_V1._01.Lab_Management
         private void button18_Click(object sender, EventArgs e)
         {
             bool Isopen = false;
-            foreach (Form Form8 in Application.OpenForms)
+            foreach (Form Lab_UpdateTestDetails in Application.OpenForms)
             {
-                if (Form8.Name == "Form8")
+                if (Lab_UpdateTestDetails.Name == "Lab_UpdateTestDetails")
                 {
                     Isopen = true;
-                    Form8.BringToFront();
+                    Lab_UpdateTestDetails.BringToFront();
                     break;
                 }
             }
             if (Isopen == false)
             {
-                Lab_UpdateTestDetails form8 = new Lab_UpdateTestDetails();
-                form8.Show();
+                Lab_UpdateTestDetails Lab_UpdateTestDetails = new Lab_UpdateTestDetails();
+                Lab_UpdateTestDetails.Show();
             }
         }
 
         private void button17_Click(object sender, EventArgs e)
         {
             bool Isopen = false;
-            foreach (Form Form5 in Application.OpenForms)
+            foreach (Form Lab_EmployeeStatus in Application.OpenForms)
             {
-                if (Form5.Name == "Form5")
+                if (Lab_EmployeeStatus.Name == "Lab_EmployeeStatus")
                 {
                     Isopen = true;
-                    Form5.BringToFront();
+                    Lab_EmployeeStatus.BringToFront();
                     break;
                 }
             }
             if (Isopen == false)
             {
-                Lab_EmployeeStatus form5 = new Lab_EmployeeStatus();
-                form5.Show();
+                Lab_EmployeeStatus Lab_EmployeeStatus = new Lab_EmployeeStatus();
+                Lab_EmployeeStatus.Show();
             }
         }
 
         private void button14_Click(object sender, EventArgs e)
         {
             bool Isopen = false;
-            foreach (Form Form3 in Application.OpenForms)
+            foreach (Form Lab_Inventory in Application.OpenForms)
             {
-                if (Form3.Name == "Form3")
+                if (Lab_Inventory.Name == "Lab_Inventory")
                 {
                     Isopen = true;
-                    Form3.BringToFront();
+                    Lab_Inventory.BringToFront();
                     break;
                 }
             }
             if (Isopen == false)
             {
-                Lab_Inventory form3 = new Lab_Inventory();
-                form3.Show();
+                Lab_Inventory Lab_Inventory = new Lab_Inventory();
+                Lab_Inventory.Show();
             }
         }
 
         private void button15_Click(object sender, EventArgs e)
         {
             bool Isopen = false;
-            foreach (Form Form9 in Application.OpenForms)
+            foreach (Form Lab_CompleteTestDetails in Application.OpenForms)
             {
-                if (Form9.Name == "Form9")
+                if (Lab_CompleteTestDetails.Name == "Lab_CompleteTestDetails")
                 {
                     Isopen = true;
-                    Form9.BringToFront();
+                    Lab_CompleteTestDetails.BringToFront();
                     break;
                 }
             }
             if (Isopen == false)
             {
-                Lab_CompleteTestDetails form9 = new Lab_CompleteTestDetails();
-                form9.Show();
+                Lab_CompleteTestDetails Lab_CompleteTestDetails = new Lab_CompleteTestDetails();
+                Lab_CompleteTestDetails.Show();
             }
         }
 
@@ -205,19 +205,19 @@ namespace HMS_Software_V1._01.Lab_Management
         private void button2_Click_1(object sender, EventArgs e)
         {
             bool Isopen = false;
-            foreach (Form Form7 in Application.OpenForms)
+            foreach (Form Lab_DoTest in Application.OpenForms)
             {
-                if (Form7.Name == "Form7")
+                if (Lab_DoTest.Name == "Lab_DoTest")
                 {
                     Isopen = true;
-                    Form7.BringToFront();
+                    Lab_DoTest.BringToFront();
                     break;
                 }
             }
             if (Isopen == false)
             {
-                Lab_DoTest form7 = new Lab_DoTest();
-                form7.Show();
+                Lab_DoTest Lab_DoTest = new Lab_DoTest();
+                Lab_DoTest.Show();
             }
         }
 
@@ -270,95 +270,95 @@ namespace HMS_Software_V1._01.Lab_Management
         private void button18_Click_1(object sender, EventArgs e)
         {
             bool Isopen = false;
-            foreach (Form Form8 in Application.OpenForms)
+            foreach (Form Lab_UpdateTestDetails in Application.OpenForms)
             {
-                if (Form8.Name == "Form8")
+                if (Lab_UpdateTestDetails.Name == "Lab_UpdateTestDetails")
                 {
                     Isopen = true;
-                    Form8.BringToFront();
+                    Lab_UpdateTestDetails.BringToFront();
                     break;
                 }
             }
             if (Isopen == false)
             {
-                Lab_UpdateTestDetails form8 = new Lab_UpdateTestDetails();
-                form8.Show();
+                Lab_UpdateTestDetails Lab_UpdateTestDetails = new Lab_UpdateTestDetails();
+                Lab_UpdateTestDetails.Show();
             }
         }
 
         private void button17_Click_1(object sender, EventArgs e)
         {
             bool Isopen = false;
-            foreach (Form Form5 in Application.OpenForms)
+            foreach (Form Lab_EmployeeStatus in Application.OpenForms)
             {
-                if (Form5.Name == "Form5")
+                if (Lab_EmployeeStatus.Name == "Lab_EmployeeStatus")
                 {
                     Isopen = true;
-                    Form5.BringToFront();
+                    Lab_EmployeeStatus.BringToFront();
                     break;
                 }
             }
             if (Isopen == false)
             {
-                Lab_EmployeeStatus form5 = new Lab_EmployeeStatus();
-                form5.Show();
+                Lab_EmployeeStatus Lab_EmployeeStatus = new Lab_EmployeeStatus();
+                Lab_EmployeeStatus.Show();
             }
         }
 
         private void button16_Click_1(object sender, EventArgs e)
         {
             bool Isopen = false;
-            foreach (Form Form6 in Application.OpenForms)
+            foreach (Form Lab_TestToDo in Application.OpenForms)
             {
-                if (Form6.Name == "Form6")
+                if (Lab_TestToDo.Name == "Lab_TestToDo")
                 {
                     Isopen = true;
-                    Form6.BringToFront();
+                    Lab_TestToDo.BringToFront();
                     break;
                 }
             }
             if (Isopen == false)
             {
-                Lab_TestToDo form6 = new Lab_TestToDo();
-                form6.Show();
+                Lab_TestToDo Lab_TestToDo = new Lab_TestToDo();
+                Lab_TestToDo.Show();
             }
         }
 
         private void button15_Click_1(object sender, EventArgs e)
         {
             bool Isopen = false;
-            foreach (Form Form9 in Application.OpenForms)
+            foreach (Form Lab_CompleteTestDetails in Application.OpenForms)
             {
-                if (Form9.Name == "Form9")
+                if (Lab_CompleteTestDetails.Name == "Lab_CompleteTestDetails")
                 {
                     Isopen = true;
-                    Form9.BringToFront();
+                    Lab_CompleteTestDetails.BringToFront();
                     break;
                 }
             }
             if (Isopen == false)
             {
-                Lab_CompleteTestDetails form9 = new Lab_CompleteTestDetails();
-                form9.Show();
+                Lab_CompleteTestDetails Lab_CompleteTestDetails = new Lab_CompleteTestDetails();
+                Lab_CompleteTestDetails.Show();
             }
         }
 
         private void button14_Click_1(object sender, EventArgs e)
         {
             bool Isopen = false;
-            foreach (Form Form3 in Application.OpenForms)
+            foreach (Form Lab_Inventory in Application.OpenForms)
             {
-                if (Form3.Name == "Form3")
+                if (Lab_Inventory.Name == "Lab_Inventory")
                 {
                     Isopen = true;
-                    Form3.BringToFront();
+                    Lab_Inventory.BringToFront();
                     break;
                 }
             }
             if (Isopen == false)
             {
-                Lab_Inventory form3 = new Lab_Inventory();
-                form3.Show();
+                Lab_Inventory Lab_Inventory = new Lab_Inventory();
+                Lab_Inventory.Show();
             }
         }
     }

@@ -27,6 +27,11 @@ namespace HMS_Software_V1._01.Admin
 
             this.AdminName = adminName;
             A_DS_adminName_lbl.Text = AdminName;
+
+            string formattedDate = DateTime.Today.ToString("dd-MM-yyyy");
+            string formattedTime = DateTime.Now.ToString("h.mm tt");
+            A_DS_time.Text = formattedTime;
+            A_DS_date.Text = formattedDate;
         }
 
         private void Admin_DoctorSearch_Load(object sender, EventArgs e)
