@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/HMS_Software_V1_1/HMS_Software_V.01/DatabaseMithilaHMS.mdf
+/HMS_Software_V1_1/HMS_Software_V.01/DatabaseMithilaHMS_log.ldf
