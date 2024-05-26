@@ -25,11 +25,8 @@ namespace HMS_Software_V2
         {
             InitializeComponent();
 
-            // In your form
-            Database_Connector dbConn = new Database_Connector();
-
             // Open the connection
-            using (SqlConnection connect = dbConn.GetConnection())
+            using (SqlConnection connect = new Database_Connector().GetConnection())
             {
                 connect.Open();
 
@@ -45,6 +42,9 @@ namespace HMS_Software_V2
 
                 rdr.Close();
             }
+
+
+
 
 
         }

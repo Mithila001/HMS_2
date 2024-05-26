@@ -12,7 +12,7 @@ namespace HMS_Software_V1._01
         {
             get
             {
-                return @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""D:\Programming\Github\Repositories - Local\HMS_2\HMS_Software_V1_1\HMS_Software_V.01\DatabaseMithilaHMS.mdf"";Integrated Security=True";
+                return @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Programming\Github\HMS_Mithila\HMS_Software_V1_1\HMS_Software_V.01\DatabaseMithilaHMS.mdf;Integrated Security=True";
             }
         }
     }

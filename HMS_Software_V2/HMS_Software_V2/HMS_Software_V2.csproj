@@ -9,7 +9,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assest\icons\icons8-search-18.png" />
+    <None Remove="Assest\icons\icons8-search-250.png" />
+    <None Remove="Assest\icons\icons8-search-30.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assest\icons\icons8-search-18.png" />
+    <Resource Include="Assest\icons\icons8-search-250.png" />
+    <Resource Include="Assest\icons\icons8-search-30.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="General Purpose\General_UserControls\" />
   </ItemGroup>
 
 </Project>

@@ -147,6 +147,62 @@ namespace HMS_Software_V1._01.Admission_Officer
 
         }
 
+        private void MyInsertDataToAdmittedPatient()
+        {
+            try
+            {
+
+
+                string query6 = "INSERT INTO Admitted_Patients (P_RID, P_NameWithInitials, P_Age, P_Gender, P_Admit_To, P_Condition, P_Visite_TotalRounds, P_Admitted_Date, P_Admitted_Time, P_Ward) " +
+                 "VALUES (@P_RID, @P_NameWithInitials, @P_Age, @P_Gender, @P_Admit_To, @P_Condition, @P_Visite_TotalRounds, @P_Admitted_Date, @P_Admitted_Time, @P_Ward)";
+
+                using (SqlConnection connect = new SqlConnection(MyCommonConnecString.ConnectionString))
+                {
+                    connect.Open();
+                    using (SqlCommand insertCommand2 = new SqlCommand(query6, connect))
+                    {
+                        // Adding date and time
+                        DateTime currentDate = DateTime.Today;
+                        string formattedDate = currentDate.ToString("d MMMM yyyy");
+
+                        DateTime currentTime = DateTime.Now;
+                        string timeString = currentTime.ToString("hh:mm tt");
+
+
+                        insertCommand2.Parameters.AddWithValue("@P_RID", PatientRID);
+                        insertCommand2.Parameters.AddWithValue("@P_NameWithInitials", PatientName);
+                        insertCommand2.Parameters.AddWithValue("@P_Age", PatientAge);
+                        insertCommand2.Parameters.AddWithValue("@P_Gender", PatientGender);
+                        insertCommand2.Parameters.AddWithValue("@P_Admit_To", "Ward");
+                        insertCommand2.Parameters.AddWithValue("@P_Condition", "Just Admitted");
+                        insertCommand2.Parameters.AddWithValue("@P_Visite_TotalRounds", 0);
+                        insertCommand2.Parameters.AddWithValue("@P_Admitted_Date", formattedDate);
+                        insertCommand2.Parameters.AddWithValue("@P_Admitted_Time", currentTime);
+                        insertCommand2.Parameters.AddWithValue("@P_Ward", AOVR_ward_tbx.Text);
+
+                        int rowsAffected = insertCommand2.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("Doctor record inserted successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Failed to insert Doctor record.");
+                            MessageBox.Show("Failed to insert Doctor record", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        } // No need
+
+
+
+
         string WardNumber;
         private bool isAdmitted = false;
         private string patientStatus;
