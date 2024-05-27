@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +61,29 @@ namespace HMS_Software_V2.Reception
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+           
+
+
+        }
+
+        private void SearchBar_tbx_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Debug.WriteLine($"\n --- TextBox_TextChanged --- \n");
+            string searchText = SearchBar_tbx.Text.Trim();
+
+            // Get the default view of the data grid's items source
+            DataView dataView = ((DataView)showPatientsRecord_DataGW.ItemsSource);
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                
+                dataView.RowFilter = $"[P_NameWithIinitials] LIKE '%{searchText}%'"; 
+            }
+            else
+            {
+
+                dataView.RowFilter = "";
+            }
 
         }
     }

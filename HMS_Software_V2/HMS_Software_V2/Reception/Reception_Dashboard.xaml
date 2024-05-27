@@ -83,15 +83,15 @@
             </Grid.ColumnDefinitions>
 
             <Border CornerRadius="20" Height="125" Width="256" Grid.Column="0">
-                <Button Content="Search Patient" Style= "{StaticResource PrettyButtonStyle}" Height="127" HorizontalAlignment="Left" Width="256" />
+                <Button Content="Search Patient" Style= "{StaticResource PrettyButtonStyle1}" Height="127" HorizontalAlignment="Left" Width="256" />
             </Border>
 
             <Border CornerRadius="20" Height="125" Width="256" Grid.Column="1">
-                <Button Content="Clinics" Style= "{StaticResource PrettyButtonStyle}" Height="127" Width="256" />
+                <Button Content="Clinics" Style= "{StaticResource PrettyButtonStyle1}" Height="127" Width="256" />
             </Border>
 
             <Border CornerRadius="20" Height="125" Width="256" Grid.Column="2">
-                <Button Content="Register Patients" Style= "{StaticResource PrettyButtonStyle}" Height="127" Width="256" />
+                <Button Content="Register Patients" Style= "{StaticResource PrettyButtonStyle1}" Height="127" Width="256" />
             </Border>
 
 

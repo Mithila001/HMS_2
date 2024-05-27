@@ -12,10 +12,15 @@
     <Window.Resources>
         
         <!-- To center Column headers -->
-            <Style TargetType="DataGridColumnHeader">
+        <Style TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
         </Style>
-        
+        <Style TargetType="DataGridCell">
+            <Setter Property="FontSize" Value="16"/>
+            <!-- Adjust the font size as needed -->
+        </Style>
+
     </Window.Resources>
 
     <Grid Background="#FFE6FEF9">
@@ -58,7 +63,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Border BorderBrush="Transparent" BorderThickness="0" CornerRadius="5" Grid.Column="0">
-                            <TextBox TextWrapping="Wrap" Text="a" BorderThickness="0"  VerticalContentAlignment="Center" Background="{x:Null}"/>
+                            <TextBox x:Name="SearchBar_tbx" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" BorderThickness="0"  VerticalContentAlignment="Center" Background="{x:Null}" FontSize="22" TextChanged="SearchBar_tbx_TextChanged"/>
                         </Border>
                         <Border BorderBrush="Transparent" BorderThickness="0" CornerRadius="5" Grid.Column="1">
                             <Image Source="pack://application:,,,/Assest/icons/icons8-search-30.png" MinWidth="30" MinHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -82,13 +87,13 @@
         
             <DataGrid x:Name="showPatientsRecord_DataGW" AutoGenerateColumns="False" Grid.Row="2" Margin="10,5,10,5">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Patient Name" Binding="{Binding P_NameWithIinitials}" MinWidth="150"/>
-                <DataGridTextColumn Header="NIC" Binding="{Binding P_NIC}" MinWidth="120"/>
-                <DataGridTextColumn Header="Registration ID" Binding="{Binding P_RegistrationID}" MinWidth="120" />
-                <DataGridTextColumn Header="Age" Binding="{Binding P_Age}" MinWidth="80" />
-                <DataGridTextColumn Header="Patient TP" Binding="{Binding P_ContactNo}" MinWidth="120" />
+                <DataGridTextColumn Header="Patient Name" Binding="{Binding P_NameWithIinitials}" MinWidth="200"/>
+                <DataGridTextColumn Header="NIC" Binding="{Binding P_NIC}" MinWidth="150"/>
+                <DataGridTextColumn Header="Registration ID" Binding="{Binding P_RegistrationID}" MinWidth="150" />
+                <DataGridTextColumn Header="Age" Binding="{Binding P_Age}" MinWidth="100" />
+                <DataGridTextColumn Header="Patient TP" Binding="{Binding P_ContactNo}" MinWidth="150" />
 
-                <DataGridTextColumn Header="Current Status" Binding="{Binding P_CurrentStatus}" MinWidth="100">
+                <DataGridTextColumn x:Name="PatientDetails_DataGV" Header="Current Status" Binding="{Binding P_CurrentStatus}" MinWidth="150">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             
@@ -104,7 +109,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Guardian Name" Binding="{Binding P_G_Name}" MinWidth="150" />
+                <DataGridTextColumn Header="Guardian Name" Binding="{Binding P_G_Name}" MinWidth="200" />
                 <DataGridTextColumn Header="Guardian TP" Binding="{Binding P_G_ContactNo}" MinWidth="120" />
             </DataGrid.Columns>
         </DataGrid>
