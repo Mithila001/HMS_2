@@ -26,24 +26,25 @@ namespace HMS_Software_V2.Reception.R_UserControls
         }
 
 
-        public string? ClinicType { get; set; }
+        public int? ClinicTypeID { get; set; }
         public string? Availability { get; set; }
 
-        public event EventHandler<MyClinicTypeEventArgs>? ClinicTypeClicked;
+        public event EventHandler<MyClinicTypeEventArgs>? MyClinicTypeClicked;
 
         private void ClinicType_UC_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            ClinicTypeClicked?.Invoke(this, new MyClinicTypeEventArgs(ClinicType, Availability));
+            int clinicTypeID = ClinicTypeID ?? 0;
+            MyClinicTypeClicked?.Invoke(this, new MyClinicTypeEventArgs(clinicTypeID, Availability!));
         }
     }
     public class MyClinicTypeEventArgs : EventArgs
     {
-        public string ClinicType { get; }
+        public int ClinicTypeID { get; }
         public string Availability { get; }
 
-        public MyClinicTypeEventArgs(string clinicType, string availability)
+        public MyClinicTypeEventArgs(int clinicTypeID, string availability)
         {
-            ClinicType = clinicType;
+            ClinicTypeID = clinicTypeID;
             Availability = availability;
         }
     }

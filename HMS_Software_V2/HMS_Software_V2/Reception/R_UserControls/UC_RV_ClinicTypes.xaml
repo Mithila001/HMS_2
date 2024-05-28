@@ -11,19 +11,27 @@
         <Style x:Key="HoverableBorderStyle" TargetType="Border">
 
             <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderBrush" Value="#7F000000"/>
+            <Setter Property="BorderThickness" Value="1"/>
 
             <Style.Triggers>
                 <Trigger Property="UIElement.IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#FFD4D4D4"/>
                     <Setter Property="BorderBrush" Value="#FFD4D4D4"/>
                 </Trigger>
+               
+
+
             </Style.Triggers>
             
         </Style>
+
+        <!-- Define DropShadowEffect resource -->
+        <DropShadowEffect x:Key="ShadowEffect" ShadowDepth="2" BlurRadius="5" Color="Black" Opacity="0.5"/>
+
     </UserControl.Resources>
 
-    <Border Style="{StaticResource HoverableBorderStyle}" CornerRadius="5" BorderThickness="5">
+    <Border Style="{StaticResource HoverableBorderStyle}" Effect="{StaticResource ShadowEffect}" SnapsToDevicePixels="True"    CornerRadius="5">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

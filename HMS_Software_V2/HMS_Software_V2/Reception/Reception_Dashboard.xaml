@@ -32,8 +32,8 @@
 
         <!-- ================================================= Row 1 Col 1 ================================================= -->
 
+        <!-- Second Grid -->
         <Grid Grid.Row="1" Margin="30,10,30,10">
-            <!-- Second Grid -->
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
