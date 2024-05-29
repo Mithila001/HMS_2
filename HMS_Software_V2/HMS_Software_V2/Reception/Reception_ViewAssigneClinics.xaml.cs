@@ -188,5 +188,11 @@ namespace HMS_Software_V2.Reception
             }
 
         }
+
+        private void Reception_ViewAssigneClinics1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Reception_Dashboard reception_Dashboard = new Reception_Dashboard();    
+            reception_Dashboard.Show();
+        }
     }
 }

@@ -86,5 +86,11 @@ namespace HMS_Software_V2.Reception
             }
 
         }
+
+        private void Reception_PatientSearch1_Closing(object sender, CancelEventArgs e)
+        {
+            Reception_Dashboard reception_Dashboard = new Reception_Dashboard();
+            reception_Dashboard.Show();
+        }
     }
 }

@@ -84,5 +84,31 @@ namespace HMS_Software_V2.Reception
 
 
         }
+
+        private void SearchPatient_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Reception_PatientSearch reception_PatientSearch = new Reception_PatientSearch();
+            reception_PatientSearch.Show();
+            this.Close();
+        }
+
+        private void ShowClinics_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Reception_ViewAssigneClinics reception_ViewAssigne = new Reception_ViewAssigneClinics();
+            reception_ViewAssigne.Show();
+            this.Close();
+        }
+
+        private void RegisterPatient_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Reception_RegisterPatient reception_RegisterPatient = new Reception_RegisterPatient();
+            reception_RegisterPatient.Show();
+            this.Close();
+        }
+
+        private void Reception_Dashboard1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+           
+        }
     }
 }
