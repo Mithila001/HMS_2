@@ -11,7 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition/>
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="250"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -26,8 +26,8 @@
         <Border BorderBrush="Black" BorderThickness="2" CornerRadius="8" Margin="10,5,10,0" Grid.Row="0" Grid.RowSpan="1"  Grid.ColumnSpan="5"/>
 
         <Label Content="Doctor Name"  HorizontalAlignment="Left" VerticalAlignment="Top"    Margin="20,15,0,0"  FontSize="20" FontWeight="Bold"/>
-        <Label Content="Specialty"    HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="24,0,0,15"  FontSize="14"/>
-        <Label Content="Outpation Dipartment" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="336" FontSize="26" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
+        <Label Content="Specialty"    HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="24,0,0,15"  FontSize="16" FontWeight="Regular"/>
+        <Label Content="Outpatient Dipartment" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" FontSize="32" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
 
         <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="15" Margin="20">
 
@@ -49,7 +49,7 @@
 
         </Border>
 
-        <Border Grid.Row="1" Grid.Column="2" BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="15" Margin="20">
+        <Border Grid.Row="1" Grid.Column="3" BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="15" Margin="20">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.5*"/>
@@ -72,7 +72,7 @@
         </Border>
 
 
-        <Border Grid.Row="1" Grid.Column="3" BorderBrush="Black" BorderThickness="1" Background="#FFB8FFB5" CornerRadius="15" Margin="20">
+        <Border Grid.Row="1" Grid.Column="2" BorderBrush="Black" BorderThickness="1" Background="#FFB8FFB5" CornerRadius="15" Margin="20">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="113*"/>
@@ -86,18 +86,28 @@
                 </Grid.RowDefinitions>
 
                 <Label Content="Patient" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,40" FontSize="26" FontWeight="Bold" Height="45" Width="96"/>
-                <TextBox Grid.Row="2" Grid.ColumnSpan="2" Margin="10,5,10,0" FontSize="18" VerticalAlignment="Top" MinHeight="30" MinWidth="200" MaxWidth="350" Height="30"/>
+                <TextBox x:Name="patientRID_tbx" Grid.Row="2" Grid.ColumnSpan="2" Margin="10,5,10,0" FontSize="18" VerticalAlignment="Top" MinHeight="30" MinWidth="200" MaxWidth="350" Height="30"/>
 
                 <Border CornerRadius="20" Height="50" Grid.Row="2" Margin="10,0,5,0" VerticalAlignment="Center" Grid.Column="0">
-                    <Button Content="Reset" Style= "{StaticResource PrettyButtonStyle2}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" />
+                    <Button x:Name="reset_btn" Content="Reset"     Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="reset_btn_Click" />
                 </Border>
                 <Border CornerRadius="20" Height="50" Grid.Row="2" Margin="5,0,10,0" VerticalAlignment="Center" Grid.Column="1">
-                    <Button Content="Confirm" Style= "{StaticResource PrettyButtonStyle2}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" />
+                    <Button x:Name="confirm_btn" Content="Confirm"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="confirm_btn_Click" />
                 </Border>
 
             </Grid>
         </Border>
 
+        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="8" Margin="10,5,10,10" Grid.Row="3" Grid.RowSpan="1"  Grid.ColumnSpan="5"/>
+
+        <Label Content="1st January 2024"   Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="70,0,0,70" FontSize="46" FontWeight="Bold"/>
+        <Label Content="Monday"             Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="70,70,0,0" FontSize="40" FontWeight="Bold"/>
+
+        <Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="15" Margin="100,20,100,20" HorizontalAlignment="Stretch">
+            <Label Content="10:45 PM" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" FontSize="42" FontWeight="Bold"/>
+        </Border>
+
+    
 
     </Grid>
 </Window>
