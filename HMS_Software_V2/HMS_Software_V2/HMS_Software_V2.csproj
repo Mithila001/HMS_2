@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="Assest\icons\icons8-add-100.png" />
     <None Remove="Assest\icons\icons8-correct-100.png" />
+    <None Remove="Assest\icons\icons8-delete-100.png" />
     <None Remove="Assest\icons\icons8-search-18.png" />
     <None Remove="Assest\icons\icons8-search-250.png" />
     <None Remove="Assest\icons\icons8-search-30.png" />
@@ -23,6 +24,7 @@
   <ItemGroup>
     <Resource Include="Assest\icons\icons8-add-100.png" />
     <Resource Include="Assest\icons\icons8-correct-100.png" />
+    <Resource Include="Assest\icons\icons8-delete-100.png" />
     <Resource Include="Assest\icons\icons8-search-18.png" />
     <Resource Include="Assest\icons\icons8-search-250.png" />
     <Resource Include="Assest\icons\icons8-search-30.png" />

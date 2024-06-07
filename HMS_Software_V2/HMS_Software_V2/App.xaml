@@ -28,6 +28,8 @@
         <SolidColorBrush x:Key="ButtonPressedBrush" Color="#46237a"/>
 
         <!-- Define a style for buttons using these resources -->
+
+        <!-- Button type 1 -->
         <Style x:Key="PrettyButtonStyle1" TargetType="Button">
 
             <Setter Property="Template">
@@ -59,7 +61,9 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Define a style for buttons using these resources -->
+        
+        <!-- Button type 2 -->
+             
         <Style x:Key="PrettyButtonStyle2" TargetType="Button">
 
             <Setter Property="Template">
@@ -67,7 +71,7 @@
                     <ControlTemplate TargetType="Button">
                         <!-- Roundign Conors with a Custom Temeplate -->
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
-                BorderThickness="1" CornerRadius="10">
+                                BorderThickness="1" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
@@ -92,6 +96,40 @@
             </Style.Triggers>
         </Style>
 
+
+        <!-- Button type 3 (Add Button) -->
+
+        <Style x:Key="PrettyButtonStyle3" TargetType="Button">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <!-- Roundign Conors with a Custom Temeplate -->
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                                   BorderThickness="1" CornerRadius="20">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Background" Value= "#FF1895E6"/>
+            <Setter Property="Foreground" Value= "White"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="BorderBrush" Value= "Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value= "#FF0F6AA5"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value= "#FF0F6AA5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
     </Application.Resources>
 </Application>    
