@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HMS_Software_V2._DataManage_Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,22 @@ namespace HMS_Software_V2.Doctor_ClincOPD
     /// <summary>
     /// Interaction logic for DCO_PatientCheck.xaml
     /// </summary>
+    /// 
     public partial class DCO_PatientCheck : Window
     {
+      
         public DCO_PatientCheck()
         {
             InitializeComponent();
+
+            doctorName_lbl.Content = SharedData.doctorData.doctorName;
+            SharedData.doctorData.doctorName = "Dr. Wakum";
+
+        }
+        private void DCO_PatientCheck1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DCO_Dashboard dCO_Dashboard = new DCO_Dashboard();
+            dCO_Dashboard.Show();
         }
     }
 }
