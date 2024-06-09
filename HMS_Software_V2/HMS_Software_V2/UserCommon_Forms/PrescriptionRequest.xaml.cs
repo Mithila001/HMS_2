@@ -42,7 +42,7 @@ namespace HMS_Software_V2.UserCommon_Forms
 
             AddPrescription_WrapP.SizeChanged += (sender, e) =>
             {
-                uc_UCF_PrescriptionRequest.Width = uc_UCF_PrescriptionRequest.ActualWidth - uc_UCF_PrescriptionRequest.Margin.Left - uc_UCF_PrescriptionRequest.Margin.Right;
+                uc_UCF_PrescriptionRequest.Width = AddPrescription_WrapP.ActualWidth - uc_UCF_PrescriptionRequest.Margin.Left - uc_UCF_PrescriptionRequest.Margin.Right;
             };
             uc_UCF_PrescriptionRequest.Width = AddPrescription_WrapP.ActualWidth - uc_UCF_PrescriptionRequest.Margin.Left - uc_UCF_PrescriptionRequest.Margin.Right;
 

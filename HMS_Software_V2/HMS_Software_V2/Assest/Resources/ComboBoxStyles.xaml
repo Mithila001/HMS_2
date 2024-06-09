@@ -251,7 +251,7 @@
                               ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                               Content="{TemplateBinding SelectionBoxItem}"
                               ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" 
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              HorizontalAlignment="Center"
                               IsHitTestVisible="false" Margin="{TemplateBinding Padding}" 
                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                               VerticalAlignment="Center"/>
