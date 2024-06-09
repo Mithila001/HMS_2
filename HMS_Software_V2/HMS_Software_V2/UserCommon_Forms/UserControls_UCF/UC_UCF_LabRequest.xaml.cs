@@ -28,19 +28,23 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
             InitializeComponent();
 
             investigationTypeSearch_listBox.SelectionChanged += investigationTypeSearch_tbx_SelectionChanged;
+            specimentSearch_ListBox.SelectionChanged += specimentSearch_tbx_SelectionChanged;
+            RequestType_ListBox.SelectionChanged += RequestType_tbx_SelectionChanged;
         }
 
         private List<string> data = new List<string>
-            {
-                "Alexander", "Amelia", "Aria", "Asher", "Ava", "Anthony", "Aiden", "Andrew", "Aurelia", "Arlo"
-            };
+        {
+            "Alexander", "Amelia", "Aria", "Asher", "Ava", "Anthony", "Aiden", "Andrew", "Aurelia", "Arlo"
+        };
 
 
         private List<string> data2 = new List<string>
-            {
-                "Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape", "Honeydew","Ann" ,"Annyooooooooooooo"
-            };
+        {
+            "Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape", "Honeydew","Ann" ,"Annyooooooooooooo"
+        };
 
+
+        // For Display the ListBox when the user types in the TextBox
         private void specimentSearch_tbx_KeyUp(object sender, KeyEventArgs e)
         {
             string query = specimentSearch_tbx.Text.ToLower();
@@ -96,26 +100,6 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
         }
 
 
-
-        private void RequestType_tbx_LostFocus(object sender, RoutedEventArgs e)
-        {
-            RequestType_ListBox.ItemsSource = null;
-            RequestType_PopUp.IsOpen = false;
-        }
-
-        private void specimentSearch_tbx_LostFocus(object sender, RoutedEventArgs e)
-        {
-            RequestType_ListBox.ItemsSource = null;
-            RequestType_PopUp.IsOpen = false;
-        }
-
-        private void investigationTypeSearch_tbx_LostFocus(object sender, RoutedEventArgs e)
-        {
-            RequestType_ListBox.ItemsSource = null;
-            RequestType_PopUp.IsOpen = false;
-        }
-
-
         // ---------------------------------------------------------------------------------------------------------------
 
         private WrapPanel? parent;
@@ -126,13 +110,14 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
         }
 
 
-        bool isClicked = false;
+        bool isClicked = false; // Flag
+        static int LabRequestAddCount = 1;
+
 
         private void AddLabRequest_btn_Click(object sender, RoutedEventArgs e)
         {
-            if(isClicked)
-    {
-                // Check if parent is not null
+            if(isClicked) // If the button is already clicked, remove the user control
+            {
                 if (parent != null)
                 {
                     parent.Children.Remove(this);
@@ -140,7 +125,10 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
                 return;
             }
 
+            LabRequestCount_lbl.Content = LabRequestAddCount.ToString();
+
             isClicked = true;
+            LabRequestAddCount += 1;
 
             // Raise the event
             AddLabRequestClicked?.Invoke();
@@ -153,7 +141,7 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
             // Lower the image scale
             AddLabRequestViewbox.Width = AddLabRequestViewbox.Height = 50;
 
-            // Change the button background color to red
+            // Change the button background color
             AddLabRequest_btn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FA5882"));
 
             // Add hover and click effects
@@ -162,6 +150,9 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
             AddLabRequest_btn.PreviewMouseDown += (s, e) => AddLabRequest_btn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0040"));
         }
 
+
+
+        // For Select an item from the ListBox
         private void investigationTypeSearch_tbx_SelectionChanged(object sender, RoutedEventArgs e)
         {
             // Check if an item is selected
@@ -180,5 +171,63 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
                 investigationTypeSearch_popup.IsOpen = false;
             }
         }
+
+        private void specimentSearch_tbx_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (specimentSearch_ListBox.SelectedItem != null)
+            {
+                string? selectedItem = specimentSearch_ListBox.SelectedItem.ToString();
+                specimentSearch_tbx.Text = selectedItem;
+                specimentSearch_ListBox.SelectedItem = null;
+                specimentSearch_popup.IsOpen = false;
+            }
+        }
+
+        private void RequestType_tbx_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+            if (RequestType_ListBox.SelectedItem != null)
+            {
+                string? selectedItem = RequestType_ListBox.SelectedItem.ToString();
+                RequestType_tbx.Text = selectedItem;
+
+                RequestType_ListBox.SelectedItem = null;
+                RequestType_PopUp.IsOpen = false;
+            }
+        }
+
+
+
+        // If the user clicks an another TextBox, close the rest of the popup
+        private void investigationTypeSearch_tbx_GotFocus(object sender, RoutedEventArgs e)
+        {
+            RequestType_ListBox.ItemsSource = null;
+            RequestType_PopUp.IsOpen = false;
+
+            specimentSearch_ListBox.ItemsSource = null;
+            specimentSearch_popup.IsOpen = false;
+
+        }
+
+        private void specimentSearch_tbx_GotFocus(object sender, RoutedEventArgs e)
+        {
+            RequestType_ListBox.ItemsSource = null;
+            RequestType_PopUp.IsOpen = false;
+
+            investigationTypeSearch_listBox.ItemsSource = null;
+            investigationTypeSearch_popup.IsOpen = false;
+
+        }
+
+        private void RequestType_tbx_GotFocus(object sender, RoutedEventArgs e)
+        {
+            investigationTypeSearch_listBox.ItemsSource = null;
+            investigationTypeSearch_popup.IsOpen = false;
+
+            specimentSearch_ListBox.ItemsSource = null;
+            specimentSearch_popup.IsOpen = false;
+
+        }
+
     }
 }

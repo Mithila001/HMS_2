@@ -12,7 +12,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:HMS_Software_V2"
-             StartupUri="UserCommon_Forms/LabRequests.xaml">
+             StartupUri="UserCommon_Forms/Test.xaml">
 
     <!--
     Doctor_ClincOPD/DCO_Dashboard.xaml
@@ -22,114 +22,130 @@
                 
     <Application.Resources>
 
-        <!-- Define brush resources for button background -->
-        <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#412edb"/>
-        <SolidColorBrush x:Key="ButtonMouseOverBrush" Color="#46237a"/>
-        <SolidColorBrush x:Key="ButtonPressedBrush" Color="#46237a"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Assest/Resources/ComboBoxStyles.xaml"/>
 
-        <!-- Define a style for buttons using these resources -->
+            </ResourceDictionary.MergedDictionaries>
 
-        <!-- Button type 1 -->
-        <Style x:Key="PrettyButtonStyle1" TargetType="Button">
 
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button"> <!-- Roundign Conors with a Custom Temeplate -->
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
-                        BorderThickness="1" CornerRadius="20">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <!--#region Button Styles -->
+            <!-- Define brush resources for button background -->
+            <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#412edb"/>
+            <SolidColorBrush x:Key="ButtonMouseOverBrush" Color="#46237a"/>
+            <SolidColorBrush x:Key="ButtonPressedBrush" Color="#46237a"/>
 
-            <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <!-- Define a style for buttons using these resources -->
 
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource ButtonMouseOverBrush}"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="{StaticResource ButtonPressedBrush}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+            <!-- Button type 1 -->
+            <Style x:Key="PrettyButtonStyle1" TargetType="Button">
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <!-- Roundign Conors with a Custom Temeplate -->
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                BorderThickness="1" CornerRadius="20">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource ButtonMouseOverBrush}"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value="{StaticResource ButtonPressedBrush}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+
+            <!-- Button type 2 -->
+
+            <Style x:Key="PrettyButtonStyle2" TargetType="Button">
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <!-- Roundign Conors with a Custom Temeplate -->
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="1" CornerRadius="10">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource ButtonMouseOverBrush}"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value="{StaticResource ButtonPressedBrush}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+
+            <!-- Button type 3 (Add Button) -->
+
+            <Style x:Key="PrettyButtonStyle3" TargetType="Button">
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <!-- Roundign Conors with a Custom Temeplate -->
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                           BorderThickness="1" CornerRadius="20">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <Setter Property="Background" Value= "#FF1895E6"/>
+                <Setter Property="Foreground" Value= "White"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="BorderBrush" Value= "Transparent"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value= "#FF0F6AA5"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value= "#FF0F6AA5"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <!--#endregion-->
+
+
+        </ResourceDictionary>
+        
 
         
-        <!-- Button type 2 -->
-             
-        <Style x:Key="PrettyButtonStyle2" TargetType="Button">
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <!-- Roundign Conors with a Custom Temeplate -->
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="1" CornerRadius="10">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-            <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource ButtonMouseOverBrush}"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="{StaticResource ButtonPressedBrush}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-
-        <!-- Button type 3 (Add Button) -->
-
-        <Style x:Key="PrettyButtonStyle3" TargetType="Button">
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <!-- Roundign Conors with a Custom Temeplate -->
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
-                                   BorderThickness="1" CornerRadius="20">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-            <Setter Property="Background" Value= "#FF1895E6"/>
-            <Setter Property="Foreground" Value= "White"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="BorderBrush" Value= "Transparent"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value= "#FF0F6AA5"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value= "#FF0F6AA5"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
 
     </Application.Resources>
 </Application>    

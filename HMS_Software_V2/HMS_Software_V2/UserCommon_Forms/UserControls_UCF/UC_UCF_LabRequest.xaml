@@ -5,9 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HMS_Software_V2.UserCommon_Forms.UserControls_UCF"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="850" MinWidth="850" MinHeight="100">
+             d:DesignHeight="100" d:DesignWidth="820" MinWidth="820" MinHeight="90"
+             Margin="0,0,0,5"
+             HorizontalAlignment="Center">
     
-    <Border Background="#FFEDEDED" CornerRadius="10">
+    <Border Background="#FFEDEDED" CornerRadius="10" Margin="0,0,0,0">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
@@ -23,15 +25,15 @@
             <Rectangle Grid.Column="3" Margin="0,8,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="88" Fill="#FFB7B7B7" RadiusX="2" RadiusY="2"/>
 
 
-            <Label Content="X" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold"/>
+            <Label x:Name="LabRequestCount_lbl" Content=" " HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold"/>
 
-            <TextBlock Grid.Column="1" Text="Investigation Type"    VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,20,0,0"/>
-            <TextBlock Grid.Column="2" Text="Specimen Type"         VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,20,0,0"/>
-            <TextBlock Grid.Column="3" Text="Request Type"          VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,20,0,0"/>
+            <TextBlock Grid.Column="1" Text="Investigation Type"    VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,0,0"/>
+            <TextBlock Grid.Column="2" Text="Specimen Type"         VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,0,0"/>
+            <TextBlock Grid.Column="3" Text="Request Type"          VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,0,0"/>
 
             <!-- Inverstigation Type -->
             
-            <TextBox x:Name="investigationTypeSearch_tbx" Height="25" MinWidth="190" MaxWidth="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,20,20,0" Grid.Column="1" FontSize="14" VerticalContentAlignment="Center" KeyUp="investigationTypeSearch_tbx_KeyUp" LostFocus="investigationTypeSearch_tbx_LostFocus" SelectionChanged="investigationTypeSearch_tbx_SelectionChanged"/>
+            <TextBox x:Name="investigationTypeSearch_tbx" Height="25" MinWidth="170" VerticalAlignment="Center" Margin="20,20,20,0" Grid.Column="1" FontSize="14" VerticalContentAlignment="Center" KeyUp="investigationTypeSearch_tbx_KeyUp" SelectionChanged="investigationTypeSearch_tbx_SelectionChanged" GotFocus="investigationTypeSearch_tbx_GotFocus"/>
             <Popup x:Name="investigationTypeSearch_popup" IsOpen="False" PlacementTarget="{Binding ElementName=investigationTypeSearch_tbx}" Placement="Bottom" Grid.Column="1">
                 <ListBox x:Name="investigationTypeSearch_listBox"
                      HorizontalContentAlignment="Stretch" 
@@ -48,7 +50,7 @@
 
             <!-- Specimen -->
 
-            <TextBox x:Name="specimentSearch_tbx" Height="25" MinWidth="190" MaxWidth="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,20,20,0" Grid.Column="2" KeyUp="specimentSearch_tbx_KeyUp" FontSize="14" VerticalContentAlignment="Center" LostFocus="specimentSearch_tbx_LostFocus"/>
+            <TextBox x:Name="specimentSearch_tbx" Height="25" MinWidth="170" VerticalAlignment="Center" Margin="20,20,20,0" Grid.Column="2" KeyUp="specimentSearch_tbx_KeyUp" FontSize="14" VerticalContentAlignment="Center" SelectionChanged="specimentSearch_tbx_SelectionChanged" GotFocus="specimentSearch_tbx_GotFocus"/>
             <Popup x:Name="specimentSearch_popup" IsOpen="False" PlacementTarget="{Binding ElementName=specimentSearch_tbx}" Placement="Bottom" Grid.Column="2">
                 <ListBox x:Name="specimentSearch_ListBox"
                      HorizontalContentAlignment="Stretch" 
@@ -64,7 +66,7 @@
 
             <!-- Request Type -->
 
-            <TextBox x:Name="RequestType_tbx" Height="25" MinWidth="190" MaxWidth="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,20,20,0" Grid.Column="3" FontSize="14" VerticalContentAlignment="Center" KeyUp="RequestType_tbx_KeyUp" LostFocus="RequestType_tbx_LostFocus"/>
+            <TextBox x:Name="RequestType_tbx" Height="25" MinWidth="170" VerticalAlignment="Center" Margin="20,20,20,0" Grid.Column="3" KeyUp="RequestType_tbx_KeyUp" FontSize="14" VerticalContentAlignment="Center" SelectionChanged="RequestType_tbx_SelectionChanged" GotFocus="RequestType_tbx_GotFocus"/>
             <Popup x:Name="RequestType_PopUp" IsOpen="False" PlacementTarget="{Binding ElementName=RequestType_tbx}" Placement="Bottom" Grid.Column="3">
                 <ListBox x:Name="RequestType_ListBox"
                      HorizontalContentAlignment="Stretch" 
@@ -78,6 +80,7 @@
                 </ListBox>
             </Popup>
 
+            
             <Button x:Name="AddLabRequest_btn" Style="{StaticResource PrettyButtonStyle3}" Grid.Column="4" Height="70" Width="70" Click="AddLabRequest_btn_Click">
                 <Viewbox x:Name="AddLabRequestViewbox">
                     <Image Source="pack://application:,,,/HMS_Software_V2;component/Assest/icons/icons8-add-100.png" Stretch="Uniform"/>

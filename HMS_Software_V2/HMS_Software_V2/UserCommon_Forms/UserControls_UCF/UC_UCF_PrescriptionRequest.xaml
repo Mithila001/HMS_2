@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="HMS_Software_V2.UserCommon_Forms.UserControls_UCF.UC_UCF_PrescriptionRequest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HMS_Software_V2.UserCommon_Forms.UserControls_UCF"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="1254" MinHeight="100" MinWidth="1254">
+
+
+    <Border Background="White" CornerRadius="5" BorderBrush="#FF656565" BorderThickness="1">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="80"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Request Count -->
+            
+            <Label x:Name="PerscriptionRequestCount_lbl" Content="X" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
+
+            <!-- Route -->
+            
+            <TextBlock Text="Route" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,20,0,60" Grid.Column="1"/>
+            <ComboBox Margin="10,20,10,0" FontSize="16" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" >
+                <ComboBoxItem Content="Route 1"/>
+                <ComboBoxItem Content="Route 2"/>
+                <ComboBoxItem Content="Route 3"/>
+            </ComboBox>
+
+            <!-- Medicin -->
+            
+            <TextBlock Text="Medicin" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,20,0,60" Grid.Column="2"/>
+
+            <TextBox x:Name="MedicinSearch_tbx" Height="25" MinWidth="170" VerticalAlignment="Center" Margin="10,20,10,0" Grid.Column="2" FontSize="14" VerticalContentAlignment="Center" KeyUp="MedicinSearch_tbx_KeyUp" SelectionChanged="MedicinSearch_tbx_SelectionChanged" GotFocus="MedicinSearch_tbx_GotFocus"/>
+            <Popup x:Name="MedicinSearch_popup" IsOpen="False" PlacementTarget="{Binding ElementName=MedicinSearch_tbx}" Placement="Bottom" Grid.Column="1">
+                <ListBox x:Name="MedicinSearch_listBox"
+                     HorizontalContentAlignment="Stretch" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                     Background="#FFA7A7A7" 
+                     MaxHeight="200"
+                     MinWidth="{Binding ElementName=MedicinSearch_tbx, Path=ActualWidth}"
+                     Padding="0,0,0,0"
+                     Margin="0,0,0,0">  
+                </ListBox>
+            </Popup>
+
+            <!-- Dosage  -->
+
+            <TextBlock Text="Dosage" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,20,0,60" Grid.Column="3"/>
+            <TextBox x:Name="Dosage_tbx" Height="25" MinWidth="170" VerticalAlignment="Center" Margin="10,20,10,0" Grid.Column="3" FontSize="14" VerticalContentAlignment="Center"/>
+
+            <Border Background="#FF234C9E" CornerRadius="5" BorderBrush="#FF656565" BorderThickness="1" Grid.Column="4" Margin="10,20,10,0" Padding="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ComboBox FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <ComboBoxItem Content="Route 1"/>
+                    <ComboBoxItem Content="Route 2"/>
+                    <ComboBoxItem Content="Route 3"/>
+                </ComboBox>
+            </Border>
+
+
+
+            <!-- Add Presciption Button  -->
+
+            <Button x:Name="AddPrescription_btn" Style="{StaticResource PrettyButtonStyle3}" Grid.Column="8" Height="70" Width="70" Click="AddPrescription_btn_Click">
+                <Viewbox x:Name="AddPrescription_Viewbox">
+                    <Image Source="pack://application:,,,/HMS_Software_V2;component/Assest/icons/icons8-add-100.png" Stretch="Uniform"/>
+                </Viewbox>
+            </Button>
+
+            
+            
+
+        </Grid>
+    </Border>
+</UserControl>
