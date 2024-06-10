@@ -1,4 +1,5 @@
-﻿using HMS_Software_V2.Doctor_ClincOPD;
+﻿using HMS_Software_V2._DataManage_Classes;
+using HMS_Software_V2.Doctor_ClincOPD;
 using HMS_Software_V2.UserCommon_Forms.UserControls_UCF;
 using System;
 using System.Collections.Generic;
@@ -26,8 +27,11 @@ namespace HMS_Software_V2.UserCommon_Forms
         {
             InitializeComponent();
 
+            Debug.WriteLine("\n\n----- PrescriptionRequest -----\n");
+
             AddPrescription();
             // _parentForm = null; // You can set _parentForm to null here if you want
+
         }
 
         private DCO_PatientCheck _parentForm;
@@ -35,9 +39,25 @@ namespace HMS_Software_V2.UserCommon_Forms
         {
             InitializeComponent();
 
+            Debug.WriteLine("\n\n----- PrescriptionRequest -----\n");
+
             AddPrescription();
             _parentForm = parentForm;
         }
+
+        private void MyAddBasicDetails()
+        {
+            PatientName_lbl.Content = SharedData.medicalEvent.PatientName;
+            Age_lbl.Content = SharedData.medicalEvent.PatientAge;
+            Gender_lbl.Content = SharedData.medicalEvent.PatientGender;
+
+            TodayDate_lbl.Content = DateTime.Now.ToString("dd/MM/yyyy");
+            TodayTime_lbl.Content = DateTime.Now.ToString("hh:mm tt");
+
+        }
+
+
+
 
         int PrescriptionCount = 0;
         private void AddPrescription()

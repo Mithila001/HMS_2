@@ -1,7 +1,9 @@
 ﻿using HMS_Software_V2._DataManage_Classes;
+using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.UserLogin_Page;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -35,11 +37,65 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
         }
 
-        bool IsConfirmButtonIsClicked = false; //Flag
+        bool IsConfirmButtonIsClicked = false; //Flag related to Form exit
 
         // Button Section ------------------------------------------------------------------------------------
         private void confirm_btn_Click(object sender, RoutedEventArgs e)
         {
+            patientRID_tbx.Text = SharedData.doctorData.pationetRID;
+
+            bool IsdataRead = false;
+
+            using (SqlConnection connection = new Database_Connector().GetConnection())  //to check if the patient RID is correct or not
+            {
+                string query1 = "SELECT * FROM Patient WHERE P_RegistrationID = @patientRID ";
+
+                SqlCommand cmd = new SqlCommand(query1, connection);
+
+                cmd.Parameters.AddWithValue("@patientRID", SharedData.doctorData.pationetRID);
+
+                try
+                {
+                    connection.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            IsdataRead = true;
+                        }
+                    }
+
+                    if (!IsdataRead)
+                    {
+                        // No data was read from the database.
+                        Debug.WriteLine("No data found for the given patient registration RID.");
+                        MessageBox.Show("Incorrect RID", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    }
+                    else
+                    {
+                        IsConfirmButtonIsClicked = true;
+
+                        DCO_PatientCheck dCO_PatientCheck = new DCO_PatientCheck();
+                        dCO_PatientCheck.Show();
+                        this.Close();
+                    }
+
+
+                }
+
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("\nError1: \n" + ex.Message);
+                    MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
             //string patientRID = patientRID_tbx.Text.ToString();
 
             //if (General_Purpose.InputValidations.MyIsNullorempty(patientRID))
@@ -53,11 +109,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
             //}
 
 
-            IsConfirmButtonIsClicked = true;
 
-            DCO_PatientCheck dCO_PatientCheck = new DCO_PatientCheck();
-            dCO_PatientCheck.Show();
-            this.Close();
 
         }
 
