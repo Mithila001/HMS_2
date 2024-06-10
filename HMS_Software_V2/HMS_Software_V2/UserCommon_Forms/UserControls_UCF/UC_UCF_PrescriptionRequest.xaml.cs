@@ -1,5 +1,8 @@
-﻿using System;
+﻿using HMS_Software_V2.General_Purpose;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,17 +25,50 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
     {
         public event Action? AddPrescription;
 
+
         public UC_UCF_PrescriptionRequest()
         {
             InitializeComponent();
+            MyGetMedicinData();
+
 
             MedicinSearch_listBox.SelectionChanged += MedicinSearch_tbx_SelectionChanged;
         }
 
-        private List<string> data = new List<string>
+        private List<(int, string)> MedicalData = new List<(int, string)>();
+        private void MyGetMedicinData()
         {
-            "Alexander", "Amelia", "Aria", "Asher", "Ava", "Anthony", "Aiden", "Andrew", "Aurelia", "Arlo"
-        };
+            using (SqlConnection connection = new Database_Connector().GetConnection())
+            {
+                string query1 = "SELECT * FROM Medicin_Storage";
+
+                SqlCommand cmd = new SqlCommand(query1, connection);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["Medicin_ID"];
+                        string name = (string)reader["Medicin_Name"];
+
+                        MedicalData.Add((id, name));
+
+                    }
+                    reader.Close();
+                }
+
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("\nError1: \n" + ex.Message);
+                    MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+
+        }
 
         private void MedicinSearch_tbx_KeyUp(object sender, KeyEventArgs e)
         {
@@ -43,8 +79,8 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
                 MedicinSearch_popup.IsOpen = false;
                 return;
             }
-
-            var filteredData = data.Where(item => item.ToLower().Contains(query)).Take(10).ToList();
+            // Select(item => item.Item2) to select the 2nd item from the tuple
+            var filteredData = MedicalData.Select(item => item.Item2).Where(item => item.ToLower().Contains(query)).Take(10).ToList();
             MedicinSearch_listBox.ItemsSource = filteredData;
             MedicinSearch_popup.IsOpen = filteredData.Any();
 
@@ -52,18 +88,19 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
             MedicinSearch_listBox.Height += 5;
         }
 
-        private WrapPanel? parent;
 
+        // To remove this user control from the parent WrapPanel
+        private WrapPanel? parent;
         public void SetParent(WrapPanel parent)
         {
             this.parent = parent;
         }
 
         bool isClicked = false; // Flag
-        static int PrescriptionRequestAddCount = 1;
-
         private void AddPrescription_btn_Click(object sender, RoutedEventArgs e)
         {
+            
+
             if (isClicked) // If the button is already clicked, remove the user control
             {
                 if (parent != null)
@@ -73,9 +110,7 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
                 return;
             }
 
-            PerscriptionRequestCount_lbl.Content = PrescriptionRequestAddCount.ToString();
             isClicked = true;
-            PrescriptionRequestAddCount += 1;
 
             AddPrescription?.Invoke();
 

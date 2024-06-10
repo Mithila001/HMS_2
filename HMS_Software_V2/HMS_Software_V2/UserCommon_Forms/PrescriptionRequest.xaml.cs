@@ -1,6 +1,8 @@
-﻿using HMS_Software_V2.UserCommon_Forms.UserControls_UCF;
+﻿using HMS_Software_V2.Doctor_ClincOPD;
+using HMS_Software_V2.UserCommon_Forms.UserControls_UCF;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,13 +27,30 @@ namespace HMS_Software_V2.UserCommon_Forms
             InitializeComponent();
 
             AddPrescription();
-
+            // _parentForm = null; // You can set _parentForm to null here if you want
         }
 
+        private DCO_PatientCheck _parentForm;
+        public PrescriptionRequest(DCO_PatientCheck parentForm)
+        {
+            InitializeComponent();
+
+            AddPrescription();
+            _parentForm = parentForm;
+        }
+
+        int PrescriptionCount = 0;
         private void AddPrescription()
         {
+            PrescriptionCount+= 1;
+
+            Debug.WriteLine("PrescriptionCount => Parent: " + PrescriptionCount);
+
             UC_UCF_PrescriptionRequest uc_UCF_PrescriptionRequest = new UC_UCF_PrescriptionRequest();   
+            uc_UCF_PrescriptionRequest.PerscriptionRequestCount_lbl.Content = PrescriptionCount.ToString();
+
             uc_UCF_PrescriptionRequest.SetParent(AddPrescription_WrapP);
+
 
             // Subscribe to the AddLabRequestClicked event
             uc_UCF_PrescriptionRequest.AddPrescription += () =>
@@ -47,6 +66,14 @@ namespace HMS_Software_V2.UserCommon_Forms
             uc_UCF_PrescriptionRequest.Width = AddPrescription_WrapP.ActualWidth - uc_UCF_PrescriptionRequest.Margin.Left - uc_UCF_PrescriptionRequest.Margin.Right;
 
             AddPrescription_WrapP.Children.Add(uc_UCF_PrescriptionRequest);
+        }
+
+
+
+        private void PrescriptionRequest1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _parentForm.Show();
+
         }
     }
 }

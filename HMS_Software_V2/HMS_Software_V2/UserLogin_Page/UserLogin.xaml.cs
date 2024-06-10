@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Newtonsoft.Json;
+
 namespace HMS_Software_V2.UserLogin_Page
 {
     /// <summary>
@@ -61,8 +63,9 @@ namespace HMS_Software_V2.UserLogin_Page
 
         private void login_btn_Click(object sender, RoutedEventArgs e)
         {
+            HMS_Software_V2._DataManage_Classes.SharedData.doctorData = new HMS_Software_V2._DataManage_Classes.DoctorData(); //This will delete the previous data and add a new copy.
 
-            HMS_Software_V2._DataManage_Classes.SharedData.doctorData = new HMS_Software_V2._DataManage_Classes.DoctorData();
+            SharedData.doctorData.doctorLocation = "OPD"; // Warning! need to modify
 
             SharedData.doctorData.doctorName = "Sam J";
             SharedData.doctorData.doctorID = 1;
@@ -76,6 +79,8 @@ namespace HMS_Software_V2.UserLogin_Page
         private void login_btn2_Click(object sender, RoutedEventArgs e)
         {
             HMS_Software_V2._DataManage_Classes.SharedData.doctorData = new HMS_Software_V2._DataManage_Classes.DoctorData();
+
+           
 
             SharedData.doctorData.doctorName = "Cardi V";
 
