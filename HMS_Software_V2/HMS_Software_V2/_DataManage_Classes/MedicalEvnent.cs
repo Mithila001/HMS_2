@@ -37,19 +37,21 @@ namespace HMS_Software_V2._DataManage_Classes
 
 
         #region LabData Managemet List
-        private List<(int, string)> labInvestigations = new List<(int, string)>();
-        public List<(int, string)> Raw_LabInvestigations
-        {
-            get { return labInvestigations; }
-        }
+        public List<(int, string)> Raw_LabInvestigations = new List<(int, string)>();
 
-        private List<(int, string)> labSpeciment = new List<(int, string)>();
-        public List<(int, string)> Raw_LabSpeciment
-        {
-            get { return labSpeciment; }
-        }
-        
-        
+        public List<(int, string)> Raw_LabSpeciment = new List<(int, string)>();
+
+        //medicinReqeustList => Medicin ID, Medicin Type, Dosage, Frequency, Duration, Route
+        public List<(int, string, string, string, string, string)> Raw_Medicin = new List<(int, string, string, string, string, string)>();
+
+        public List<(int, string)> Raw_AppointmentsRequests = new List<(int, string)>();
+
+        //public List<(int, string)> Raw_LabSpeciment
+        //{
+        //    get { return labSpeciment; }
+        //}
+
+
 
 
         #endregion
@@ -75,7 +77,7 @@ namespace HMS_Software_V2._DataManage_Classes
             PatientAge = string.Empty;
             PatientGender = string.Empty;
 
-            GetLabInfoFromDatabase();
+            
         }
 
         private void GetLabInfoFromDatabase()

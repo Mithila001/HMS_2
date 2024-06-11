@@ -95,5 +95,61 @@ namespace HMS_Software_V2.UserCommon_Forms
             _parentForm.Show();
 
         }
+
+        private void Confirm_btn_Click(object sender, RoutedEventArgs e)
+        {
+            //medicinReqeustList => Medicin ID, Medicin Type, Dosage, Frequency, Duration, Route
+            List<(int, string, string, string, string, string)> medicinReqeustList = new List<(int, string, string, string, string, string)>();
+
+
+            if (AddPrescription_WrapP.Children.OfType<UC_UCF_PrescriptionRequest>().Count() == 1)
+            {
+                var singleChild = AddPrescription_WrapP.Children.OfType<UC_UCF_PrescriptionRequest>().First();
+                if ((string.IsNullOrEmpty(singleChild.MedicinSearch_tbx.Text)) && (string.IsNullOrEmpty(singleChild.AddDuration_tbx.Text))) // Check the textboxes are empty or not
+                {
+                    MessageBox.Show("No Requests", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+
+            foreach (var child in AddPrescription_WrapP.Children)
+            {
+                if (child is UC_UCF_PrescriptionRequest uC_UCF_PrescriptionRequest)
+                {
+                    string medicinType = uC_UCF_PrescriptionRequest.MedicinName_Selected ?? string.Empty;
+                    medicinReqeustList.Add((
+                                 Convert.ToInt32(uC_UCF_PrescriptionRequest.MedcinID_Selected),
+                                 medicinType,
+                                 uC_UCF_PrescriptionRequest.SelectedDosage ?? string.Empty,
+                                 uC_UCF_PrescriptionRequest.SelectedDFrequency ?? string.Empty,
+                                 uC_UCF_PrescriptionRequest.SelectedDuration ?? string.Empty,
+                                 uC_UCF_PrescriptionRequest.SelectedRoute ?? string.Empty)); //add to list
+
+
+                    Debug.WriteLine("\nMainForm => Medicin Type: " + medicinType);
+                    Debug.WriteLine("MainForm => Medicin ID: " + Convert.ToInt32(uC_UCF_PrescriptionRequest.MedcinID_Selected));
+
+                }
+            }
+
+            SharedData.medicalEvent.Raw_Medicin.AddRange(medicinReqeustList); // Add the list to Class List
+            SharedData.medicalEvent.IsPrescriptionRequest = true; 
+
+            #region Debug Outputs
+
+            Debug.WriteLine("\n\n --- List ---"); //!!! Debugging
+            foreach (var item in medicinReqeustList)
+            {
+                Debug.WriteLine($"Medicin  ID: {item.Item1}, Type: {item.Item2}");
+            }
+
+            Debug.WriteLine("\n\n --- List From Class ---"); //!!! Debugging
+            foreach (var item in SharedData.medicalEvent.Raw_Medicin)
+            {
+                Debug.WriteLine($"Medicin  ID: {item.Item1}, Type: {item.Item2}");
+            }
+
+            #endregion
+        }
     }
 }

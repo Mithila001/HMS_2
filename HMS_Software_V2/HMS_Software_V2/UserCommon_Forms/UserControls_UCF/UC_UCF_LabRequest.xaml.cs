@@ -184,32 +184,63 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
         }
 
 
-
+        public string? InvestgationType_selected;
+        public int InvestgationID_selected;
         // For Select an item from the ListBox
         private void investigationTypeSearch_tbx_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            // Check if an item is selected
+
             if (investigationTypeSearch_listBox.SelectedItem != null)
             {
-                // Get the selected item
                 string? selectedItem = investigationTypeSearch_listBox.SelectedItem.ToString();
+
+                // Find the ID that matches the selected item
+                var matchingItem = LabInvestigations.FirstOrDefault(item => item.Item2 == selectedItem);
+
+                if (matchingItem != default)
+                {
+                    InvestgationID_selected = matchingItem.Item1;
+                    // Now you can use id
+                }
 
                 // Assign the selected item's value to the TextBox
                 investigationTypeSearch_tbx.Text = selectedItem;
-
                 // Clear the ListBox's selection
                 investigationTypeSearch_listBox.SelectedItem = null;
-
                 // Close the popup
                 investigationTypeSearch_popup.IsOpen = false;
+
+                InvestgationType_selected = selectedItem;
+                Debug.WriteLine("\nInvestgationType_selected: " + InvestgationType_selected);
+                Debug.WriteLine("InvestgationID_selected: " + InvestgationID_selected);
             }
+
+
+
+
+            
         }
 
+
+        public string? SpecimenType_selected;
+        public int SpecimenID_selected;
         private void specimentSearch_tbx_SelectionChanged(object sender, RoutedEventArgs e)
         {
             if (specimentSearch_ListBox.SelectedItem != null)
             {
                 string? selectedItem = specimentSearch_ListBox.SelectedItem.ToString();
+
+                var matchingItem = LabSpeciment.FirstOrDefault(item => item.Item2 == selectedItem);
+
+                if (matchingItem != default)
+                {
+                    SpecimenID_selected = matchingItem.Item1;
+                    // Now you can use id
+                }
+                SpecimenType_selected = selectedItem;
+                Debug.WriteLine("\nSpecimenType_selected: " + SpecimenType_selected);
+                Debug.WriteLine("SpecimenID_selected: " + SpecimenID_selected);
+
                 specimentSearch_tbx.Text = selectedItem;
                 specimentSearch_ListBox.SelectedItem = null;
                 specimentSearch_popup.IsOpen = false;

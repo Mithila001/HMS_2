@@ -1,4 +1,6 @@
-﻿using HMS_Software_V2.General_Purpose;
+﻿using HMS_Software_V2._DataManage_Classes;
+using HMS_Software_V2.Doctor_ClincOPD;
+using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.Reception.R_UserControls;
 using HMS_Software_V2.UserCommon_Forms.UserControls_UCF;
 using System;
@@ -25,11 +27,14 @@ namespace HMS_Software_V2.UserCommon_Forms
     /// </summary>
     public partial class RequestAppointment : Window
     {
-        public RequestAppointment()
+        private DCO_PatientCheck _parentForm;
+        public RequestAppointment(DCO_PatientCheck parentForm)
         {
             InitializeComponent();
 
             LoadClinicType();
+
+            _parentForm = parentForm;
         }
 
         private void LoadClinicType()
@@ -136,6 +141,57 @@ namespace HMS_Software_V2.UserCommon_Forms
             uC_UFC_Clinictypes.Width = D_Clinictypes_WrapP.ActualWidth - uC_UFC_Clinictypes.Margin.Left - uC_UFC_Clinictypes.Margin.Right;
 
             D_Clinictypes_WrapP.Children.Add(uC_UFC_Clinictypes);
+        }
+
+        private void Confirm_btn_Click(object sender, RoutedEventArgs e)
+        {
+            List<(int, string)> appointmentReqeustList = new List<(int, string)>();
+
+            if (D_RequestedClinics_WrapP.Children.OfType<UC_UCF_ToAssigedClinic>().Count() == 0)
+            {
+                MessageBox.Show("No Requests", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+
+
+            foreach (var child in D_RequestedClinics_WrapP.Children)
+            {
+                if (child is UC_UCF_ToAssigedClinic uC_UCF_ToAssigedClinic)
+                {
+                    string appointmentType = uC_UCF_ToAssigedClinic.UC_UCF_TAC_ClinicName ?? string.Empty;
+                    appointmentReqeustList.Add((Convert.ToInt32(uC_UCF_ToAssigedClinic.UC_UCF_TAC_ClinicID), appointmentType)); //add to list
+
+                    Debug.WriteLine("\nMainForm => Appointment Type: " + appointmentType);
+                    Debug.WriteLine("MainForm => Appointment ID: " + Convert.ToInt32(uC_UCF_ToAssigedClinic.UC_UCF_TAC_ClinicID));
+
+                }
+            }
+
+            SharedData.medicalEvent.Raw_AppointmentsRequests.AddRange(appointmentReqeustList); // Add the list to Class List
+            SharedData.medicalEvent.IsAppointmentRequest = true; 
+
+            #region Debug Outputs
+
+            Debug.WriteLine("\n\n --- List ---"); //!!! Debugging
+            foreach (var item in appointmentReqeustList)
+            {
+                Debug.WriteLine($"Appointment  ID: {item.Item1}, Type: {item.Item2}");
+            }
+
+            Debug.WriteLine("\n\n --- List From Class ---"); //!!! Debugging
+            foreach (var item in SharedData.medicalEvent.Raw_AppointmentsRequests)
+            {
+                Debug.WriteLine($"Appointment  ID: {item.Item1}, Type: {item.Item2}");
+            }
+
+            #endregion
+
+        }
+
+        private void RequestAppointment1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _parentForm.Show();
         }
     }
 }

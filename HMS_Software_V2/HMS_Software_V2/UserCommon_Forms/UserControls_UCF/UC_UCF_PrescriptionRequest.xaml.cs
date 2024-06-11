@@ -35,6 +35,14 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
             MedicinSearch_listBox.SelectionChanged += MedicinSearch_tbx_SelectionChanged;
         }
 
+        public string? SelectedRoute;
+        public string? SelectedDosage;
+        public string? SelectedDFrequency;
+        public string? SelectedDuration;
+
+
+
+
         private List<(int, string)> MedicalData = new List<(int, string)>();
         private void MyGetMedicinData()
         {
@@ -130,11 +138,30 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
             AddPrescription_btn.PreviewMouseDown += (s, e) => AddPrescription_btn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF0040"));
         }
 
+
+
+        public string? MedicinName_Selected;
+        public int MedcinID_Selected;
         private void MedicinSearch_tbx_SelectionChanged(object sender, RoutedEventArgs e)
         {
             if (MedicinSearch_listBox.SelectedItem != null)
             {
                 string? selectedItem = MedicinSearch_listBox.SelectedItem.ToString();
+
+
+                // Find the ID that matches the selected item
+                var matchingItem = MedicalData.FirstOrDefault(item => item.Item2 == selectedItem);
+
+                if (matchingItem != default)
+                {
+                    MedcinID_Selected = matchingItem.Item1;
+                    // Now you can use id
+                }
+                MedicinName_Selected = selectedItem;
+                Debug.WriteLine("\nMedicinName_Selected: " + MedicinName_Selected);
+                Debug.WriteLine("MedcinID_Selected: " + MedcinID_Selected);
+
+
                 MedicinSearch_tbx.Text = selectedItem;
                 MedicinSearch_listBox.SelectedItem = null;
                 MedicinSearch_popup.IsOpen = false;
@@ -148,6 +175,20 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
 
             MedicinSearch_listBox.ItemsSource = null;
             MedicinSearch_popup.IsOpen = false;
+        }
+
+        private void AddDuration_tbx_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (SelectDosage_ComboBox.SelectedItem == null || SelectDuration_comboBox.SelectedItem == null)
+            {
+                return;
+            }
+            SelectedRoute = (SelectRoute_comboBox.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "";
+            SelectedDFrequency = (SelectFrequency_comboBox.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "";
+
+
+            SelectedDosage = $"{Dosage_tbx.Text} , {(SelectDosage_ComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? ""}";
+            SelectedDuration = $"{AddDuration_tbx.Text} , {(SelectDuration_comboBox.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? ""}";
         }
     }
 }

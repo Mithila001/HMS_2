@@ -4,7 +4,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:HMS_Software_V2"
-             StartupUri="UserCommon_Forms\LabRequests.xaml">
+             StartupUri="Doctor_ClincOPD\DCO_PatientCheck.xaml">
 
     <!--
     Doctor_ClincOPD/DCO_Dashboard.xaml
@@ -24,4 +24,7 @@
         </ResourceDictionary>
 
     </Application.Resources>
-</Application>    
+    <!--We left at:  Need to add Lab Request to the table. But lab request data in a two list.  -->
+</Application> 
+    
+   
