@@ -38,7 +38,6 @@ namespace HMS_Software_V2.Doctor_ClincOPD
             Debug.WriteLine("\n\n----- DCO_PatientCheck -----\n");
 
 
-            HMS_Software_V2._DataManage_Classes.SharedData.medicalEvent = new HMS_Software_V2._DataManage_Classes.MedicalEvnent(); // Get a new copy of the medical event template
 
             doctorName_lbl.Content = SharedData.doctorData.doctorName;
             SharedData.doctorData.doctorName = "Dr. Wakum";
@@ -49,6 +48,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
         private void MyGetPatientDetails()
         {
+            //Display the current date and time
             TodayDate_lbl.Content = DateTime.Now.ToString("dd/MM/yyyy");
             TodayTime_lbl.Content = DateTime.Now.ToString("hh:mm tt");
 
@@ -63,8 +63,8 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                 SqlCommand cmd = new SqlCommand(query1, connection);
                 
-                //cmd.Parameters.AddWithValue("@patientRID", SharedData.doctorData.pationetRID);
-                cmd.Parameters.AddWithValue("@patientRID", "P00003"); // Temporary
+                cmd.Parameters.AddWithValue("@patientRID", SharedData.medicalEvent.pationetRID);
+               
                 SharedData.doctorData.doctorID = 1; // Temporary
 
                 try
@@ -85,6 +85,13 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             SharedData.medicalEvent.PatientName = patientName ?? "Not Found";
                             SharedData.medicalEvent.PatientAge = patientAge ?? "Not Found";
                             SharedData.medicalEvent.PatientGender = patientGender ?? "Not Found";
+
+
+                            //Display the patient details
+                            PatientName_lbl.Content = patientName;
+                            PatientAge_lbl.Content = patientAge;
+                            PatientGender_lbl.Content = patientGender;
+
                         }
                     }
 
@@ -382,9 +389,9 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                     #region Add Lab Requests to the LabRequest table
                     string query3 = "INSERT INTO [dbo].[Patient_LabRequest] " +
-                            "([PatientMedicalEvent_ID], [Lab_Specimen_ID], [Lab_Specimen_Name], [Lab_Investigation_ID], [Lab_Investigation_Name]) " +
+                            "([PatientMedicalEvent_ID], [Lab_Specimen_ID], [Lab_Specimen_Name], [Lab_Investigation_ID], [Lab_Investigation_Name], [IsUrgent]) " +
                             "VALUES " +
-                            "(@PatientMedicalEvent_ID, @Lab_Specimen_ID, @Lab_Specimen_Name, @Lab_Investigation_ID, @Lab_Investigation_Name)";
+                            "(@PatientMedicalEvent_ID, @Lab_Specimen_ID, @Lab_Specimen_Name, @Lab_Investigation_ID, @Lab_Investigation_Name, @IsUrgent)";
 
                     for (int i = 0; i < SharedData.medicalEvent.Raw_LabInvestigations.Count; i++)
                     {
@@ -403,6 +410,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             cmd.Parameters.AddWithValue("@Lab_Specimen_Name", investigationList.Item2);
                             cmd.Parameters.AddWithValue("@Lab_Investigation_ID", specimenList.Item1);
                             cmd.Parameters.AddWithValue("@Lab_Investigation_Name", specimenList.Item2);
+                            cmd.Parameters.AddWithValue("@IsUrgent", SharedData.medicalEvent.IsLabRequestUrgent);
 
                             cmd.ExecuteNonQuery();
 
@@ -412,6 +420,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             Debug.WriteLine("Lab_Specimen_Name: " + investigationList.Item2);
                             Debug.WriteLine("Lab_Investigation_ID: " + specimenList.Item1);
                             Debug.WriteLine("Lab_Investigation_Name: " + specimenList.Item2);
+                            Debug.WriteLine("IsUrgent: " + SharedData.medicalEvent.IsLabRequestUrgent);
                         }
                     }
 
@@ -421,11 +430,11 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                     #region Add Appointment Requests to the Patient_AppointmentRequest table
                     string query4 = "INSERT INTO [dbo].[Patient_AppointmentRequest] " +
-                            "([PatientMedicalEvent_ID], [ClinicType_ID]) " +
+                            "([PatientMedicalEvent_ID], [ClinicType_ID], [PatientID]) " +
                             "VALUES " +
-                            "(@PatientMedicalEvent_ID, @ClinicType_ID)";
+                            "(@PatientMedicalEvent_ID, @ClinicType_ID, @PatientID)";
 
-                    foreach (var appointment in SharedData.medicalEvent.Raw_Medicin)
+                    foreach (var appointment in SharedData.medicalEvent.Raw_AppointmentsRequests)
                     {
                         if (appointment.Item1 == 0) //If liest item is empty or invalid(0) 
                         {
@@ -436,6 +445,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                         {
                             cmd.Parameters.AddWithValue("@PatientMedicalEvent_ID", medicalEventID);
                             cmd.Parameters.AddWithValue("@ClinicType_ID", appointment.Item1);
+                            cmd.Parameters.AddWithValue("@PatientID", SharedData.medicalEvent.PatientID);
 
                             cmd.ExecuteNonQuery();
 

@@ -42,9 +42,27 @@ namespace HMS_Software_V2.Doctor_ClincOPD
         // Button Section ------------------------------------------------------------------------------------
         private void confirm_btn_Click(object sender, RoutedEventArgs e)
         {
-            patientRID_tbx.Text = SharedData.doctorData.pationetRID;
 
-            bool IsdataRead = false;
+            string patientRID = patientRID_tbx.Text.ToString();
+
+
+            #region Validations
+            if (General_Purpose.InputValidations.MyIsNullorempty(patientRID))
+            {
+                MessageBox.Show("Enter Patient RID", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!General_Purpose.InputValidations.MyIsOnlyNumbers(patientRID))
+            {
+                MessageBox.Show("Enter only numbers", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            } 
+            #endregion
+
+
+
+            bool IsRID_Valid = false;
 
             using (SqlConnection connection = new Database_Connector().GetConnection())  //to check if the patient RID is correct or not
             {
@@ -52,7 +70,8 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                 SqlCommand cmd = new SqlCommand(query1, connection);
 
-                cmd.Parameters.AddWithValue("@patientRID", SharedData.doctorData.pationetRID);
+                cmd.Parameters.AddWithValue("@patientRID", "P"+patientRID_tbx.Text);
+
 
                 try
                 {
@@ -62,20 +81,27 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                     {
                         while (reader.Read())
                         {
-                            IsdataRead = true;
+                            IsRID_Valid = true;
                         }
                     }
 
-                    if (!IsdataRead)
+                    if (!IsRID_Valid)
                     {
                         // No data was read from the database.
                         Debug.WriteLine("No data found for the given patient registration RID.");
                         MessageBox.Show("Incorrect RID", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
 
                     }
                     else
                     {
-                        IsConfirmButtonIsClicked = true;
+                        HMS_Software_V2._DataManage_Classes.SharedData.medicalEvent = new HMS_Software_V2._DataManage_Classes.MedicalEvnent(); // Get a new copy of the medical event template
+                        
+                        SharedData.medicalEvent.pationetRID = "P" + patientRID_tbx.Text;
+
+
+
+                        IsConfirmButtonIsClicked = true; // So When Form is closed, it will not open the UserLogin Page
 
                         DCO_PatientCheck dCO_PatientCheck = new DCO_PatientCheck();
                         dCO_PatientCheck.Show();
@@ -95,20 +121,6 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                     connection.Close();
                 }
             }
-
-            //string patientRID = patientRID_tbx.Text.ToString();
-
-            //if (General_Purpose.InputValidations.MyIsNullorempty(patientRID))
-            //{
-            //    MessageBox.Show("Enter Patient RID", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
-
-            //if(!General_Purpose.InputValidations.MyIsOnlyNumbers(patientRID))
-            //{
-            //    MessageBox.Show("Enter only numbers", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
-
-
 
 
         }

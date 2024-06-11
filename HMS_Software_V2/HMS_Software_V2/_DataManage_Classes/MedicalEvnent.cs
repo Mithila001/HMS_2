@@ -18,6 +18,7 @@ namespace HMS_Software_V2._DataManage_Classes
     {
         public int MedicalEventID { get; set; }
         public int PatientID { get; set; }
+        public string pationetRID { get; set; }
         public int DoctorID { get; set; }
         public int NurseID { get; set; }
         public DateOnly Date { get; set; }
@@ -40,6 +41,7 @@ namespace HMS_Software_V2._DataManage_Classes
         public List<(int, string)> Raw_LabInvestigations = new List<(int, string)>();
 
         public List<(int, string)> Raw_LabSpeciment = new List<(int, string)>();
+        public bool IsLabRequestUrgent { get; set;}
 
         //medicinReqeustList => Medicin ID, Medicin Type, Dosage, Frequency, Duration, Route
         public List<(int, string, string, string, string, string)> Raw_Medicin = new List<(int, string, string, string, string, string)>();

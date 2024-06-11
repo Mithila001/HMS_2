@@ -150,6 +150,9 @@ namespace HMS_Software_V2.UserCommon_Forms
             }
 
             #endregion
+
+
+            this.Close();
         }
     }
 }

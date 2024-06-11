@@ -187,6 +187,8 @@ namespace HMS_Software_V2.UserCommon_Forms
 
             #endregion
 
+            this.Close();
+
         }
 
         private void RequestAppointment1_Closing(object sender, System.ComponentModel.CancelEventArgs e)

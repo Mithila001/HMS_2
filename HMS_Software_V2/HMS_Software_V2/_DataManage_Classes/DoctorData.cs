@@ -21,7 +21,7 @@ namespace HMS_Software_V2._DataManage_Classes
 
         public string doctorLocation { get; set; }
 
-        public string pationetRID { get; set; }
+        
 
         //Constructor
         public DoctorData()
@@ -31,7 +31,7 @@ namespace HMS_Software_V2._DataManage_Classes
             doctorSpecialization = string.Empty;
             doctorRID = string.Empty;
             doctorLocation = string.Empty;
-            pationetRID = string.Empty;
+            
         }
     }
 

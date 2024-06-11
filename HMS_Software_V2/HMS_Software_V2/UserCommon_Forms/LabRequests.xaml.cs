@@ -83,6 +83,9 @@ namespace HMS_Software_V2.UserCommon_Forms
 
         private void SaveLabRequests_btn_Click(object sender, RoutedEventArgs e)
         {
+
+            SharedData.medicalEvent.IsLabRequestUrgent = IsUrgent_btn.IsChecked ?? false;
+
             List<(int, string)> labRequestDetails = new List<(int, string)>();
             List<(int, string)> specimenDetails = new List<(int, string)>();
 
@@ -120,8 +123,6 @@ namespace HMS_Software_V2.UserCommon_Forms
 
             SharedData.medicalEvent.IsLabRequest = true;
 
-
-
             #region Debug Outputs
             Debug.WriteLine("\n\n --- List ---"); //!!! Debugging
             foreach (var item in labRequestDetails)
@@ -145,8 +146,12 @@ namespace HMS_Software_V2.UserCommon_Forms
             foreach (var item in SharedData.medicalEvent.Raw_LabSpeciment)
             {
                 Debug.WriteLine($"Specimen = 2.  ID: {item.Item1}, Type: {item.Item2}");
-            } 
+            }
             #endregion
+
+
+            this.Close();
+
         }
 
         private void LabRequests1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
