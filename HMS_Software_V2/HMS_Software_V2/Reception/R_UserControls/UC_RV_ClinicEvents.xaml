@@ -57,7 +57,7 @@
                 <Label x:Name="ClinicEventTotalSlots" Content="XX" Margin="87,66,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14" FontWeight="Bold" Padding="5,0,5,0" Height="18" Grid.Row="1" Grid.Column="1" />
 
                 <Border CornerRadius="10" Grid.Column="2" MaxWidth="125" VerticalAlignment="Center" HorizontalAlignment="Right" MinHeight="46" MinWidth="150" Height="46" Margin="0,20,25,0">
-                    <Button Content="Assign" Style= "{StaticResource PrettyButtonStyle2}" Height="46" Width="150" HorizontalAlignment="Stretch"  FontSize="14" VerticalAlignment="Stretch" />
+                    <Button x:Name="AssignClinic_btn" Content="Assign" Style= "{StaticResource PrettyButtonStyle2}" Height="46" Width="150" HorizontalAlignment="Stretch"  FontSize="14" VerticalAlignment="Stretch" Click="AssignClinic_btn_Click" IsEnabled="False" Background="Gray" />
                 </Border>
                 
                 <Label Content="Available Slots:" Margin="0,42,83,0" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="14" FontWeight="Regular" Padding="5,0,5,0" Height="18" Grid.Column="2" Grid.Row="1" />
