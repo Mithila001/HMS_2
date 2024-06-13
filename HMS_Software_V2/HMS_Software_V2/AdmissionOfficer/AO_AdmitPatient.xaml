@@ -1,4 +1,4 @@
-﻿<Window x:Class="HMS_Software_V2.AdmissionOfficer.AO_AdmitPatient"
+﻿<Window x:Name="AO_AdmitPatient1" x:Class="HMS_Software_V2.AdmissionOfficer.AO_AdmitPatient"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:HMS_Software_V2.AdmissionOfficer"
         mc:Ignorable="d"
         Title="AO_AdmitPatient" Height="720" Width="1280" WindowStartupLocation="CenterScreen"
-        MinHeight="720" MinWidth="1280">
+        MinHeight="720" MinWidth="1280" Closing="AO_AdmitPatient1_Closing">
+
+    <Window.Resources>
+        <Style x:Key="LabelStyle1" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+    </Window.Resources>
 
 
     <Grid Background="#FFE6FEF9">
@@ -24,9 +34,9 @@
         <Border Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="Black" Margin="5,5,5,5" CornerRadius="5">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="466*"/>
+                    <ColumnDefinition Width="300*"/>
+                    <ColumnDefinition Width="400*"/>
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
 
@@ -35,11 +45,11 @@
                 <Rectangle Grid.Column="2" Margin="0,1,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="84" Fill="#FFB7B7B7" RadiusX="1" RadiusY="1"/>
 
 
-                <Label Content="DoctorName" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Margin="10,0,0,30"/>
+                <Label x:Name="AdmissionOfficerName_lbl" Content="DoctorName" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Margin="10,0,0,30"/>
                 <TextBlock Text="Addmission Officer" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,30,0,0"/>
 
-                <Label Content="21 Augest 2024" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,30" Grid.Column="1"/>
-                <Label Content="12.30 PM" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,30,0,0" Grid.Column="1"/>
+                <Label x:Name="todayDate" Content="21 Augest 2024" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,30" Grid.Column="1"/>
+                <Label x:Name="todayTime" Content="12.30 PM" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,30,0,0" Grid.Column="1"/>
 
                 <TextBlock Text="Addmission Office" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="2" FontWeight="Bold"/>
 
@@ -70,16 +80,16 @@
                 </GroupBox>
 
                 <TextBlock Text="Name:" Grid.Row="1" Grid.Column="0" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0"/>
-                <Label x:Name="patientName_lbl" Content="patientrName" Grid.Row="1" Grid.Column="0" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,21,0,0" Padding="0"/>
+                <Label x:Name="patientName_lbl" Content="patientrName" Grid.Row="1" Grid.Column="0" Margin="20,21,0,0" Style="{StaticResource LabelStyle1}"/>
 
                 <TextBlock Text="Age:" Grid.Row="2" Grid.Column="0" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,4,0,0"/>
-                <Label x:Name="patientAge_lbl" Content="patientName" Grid.Row="2" Grid.Column="0" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,20,0,0" Padding="0"/>
+                <Label x:Name="patientAge_lbl" Content="patientName" Grid.Row="2" Grid.Column="0" Margin="20,20,0,0" Style="{StaticResource LabelStyle1}"/>
 
                 <TextBlock Text="Gender:" Grid.Row="1" Grid.Column="1" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0"/>
-                <Label x:Name="patientGender_lbl" Content="MaleFemal" Grid.Row="1" Grid.Column="1" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,21,0,0" Padding="0"/>
+                <Label x:Name="patientGender_lbl" Content="MaleFemal" Grid.Row="1" Grid.Column="1" Margin="20,21,0,0" Style="{StaticResource LabelStyle1}"/>
 
                 <TextBlock Text="ID:" Grid.Row="2" Grid.Column="1" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,4,0,0"/>
-                <Label x:Name="patientRID_lbl" Content="PXXXXX" Grid.Row="2" Grid.Column="1" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,20,0,0" Padding="0"/>
+                <Label x:Name="patientRID_lbl" Content="PXXXXX" Grid.Row="2" Grid.Column="1" Margin="20,20,0,0" Style="{StaticResource LabelStyle1}"/>
 
 
                 <GroupBox Margin="0,0,2,2" BorderBrush="#FF3E3939" Padding="5,0,5,0" Grid.Row="0" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="2">
@@ -89,16 +99,16 @@
                 </GroupBox>
 
                 <TextBlock Text="Name:" Grid.Row="1" Grid.Column="2" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0"/>
-                <Label x:Name="doctorName_lbl" Content="DoctorName" Grid.Row="1" Grid.Column="2" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,21,0,0" Padding="0"/>
+                <Label x:Name="doctorName_lbl" Content="DoctorName" Grid.Row="1" Grid.Column="2" Margin="20,21,0,0" Style="{StaticResource LabelStyle1}"/>
 
                 <TextBlock Text="Specialty:" Grid.Row="2" Grid.Column="2" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,4,0,0"/>
-                <Label x:Name="doctorSpecialty_lbl" Content="DoctorSpecialty" Grid.Row="2" Grid.Column="2" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,20,0,0" Padding="0"/>
+                <Label x:Name="doctorSpecialty_lbl" Content="DoctorSpecialty" Grid.Row="2" Grid.Column="2" Margin="20,20,0,0" Style="{StaticResource LabelStyle1}"/>
 
                 <TextBlock Text="Status:" Grid.Row="1" Grid.Column="3" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0"/>
-                <Label x:Name="urgentStatus_lbl" Content="Defualt/Urgrnt" Grid.Row="1" Grid.Column="3" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,21,0,0" Padding="0"/>
+                <Label x:Name="urgentStatus_lbl" Content="Defualt/Urgrnt" Grid.Row="1" Grid.Column="3" Margin="20,21,0,0" Style="{StaticResource LabelStyle1}"/>
 
                 <TextBlock Text="ID:" Grid.Row="2" Grid.Column="3" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,4,0,0"/>
-                <Label x:Name="doctorRID_lbl" Content="DXXXXX" Grid.Row="2" Grid.Column="3" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20,20,0,0" Padding="0"/>
+                <Label x:Name="doctorRID_lbl" Content="DXXXXX" Grid.Row="2" Grid.Column="3" Margin="20,20,0,0" Style="{StaticResource LabelStyle1}"/>
 
 
                 <GroupBox Margin="0,0,2,2" BorderBrush="#FF3E3939" Padding="5,0,5,0" Grid.Row="0" Grid.RowSpan="4" Grid.Column="4" Grid.ColumnSpan="1">
@@ -106,7 +116,7 @@
                         <TextBlock Text="Send From" FontWeight="Regular" FontSize="12" />
                     </GroupBox.Header>
                 </GroupBox>
-                <Label x:Name="doctorReqeustComeFrom_lbl" Content="Clinic" Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" Padding="0"/>
+                <Label x:Name="doctorReqeustComeFrom_lbl" Content="Clinic" Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" Padding="0" FontWeight="SemiBold"/>
 
             </Grid>
         </Border>
@@ -115,8 +125,8 @@
 
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Grid.RowSpan="2" Margin="5" CornerRadius="5"/>
 
-        <TextBlock Text="Refferel Note" Grid.Row="2" Grid.Column="0" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
-        <TextBox x:Name="referalNote_tbx" Margin="10,50,10,10" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" IsReadOnly="True" SelectionBrush="White"/>
+        <TextBlock Text="Refferel Note" Grid.Row="2" Grid.Column="0" FontSize="24" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
+        <TextBox x:Name="referalNote_tbx" Margin="10,50,10,10" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" IsReadOnly="True" SelectionBrush="White" Cursor="Arrow"/>
 
 
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Margin="5" CornerRadius="5">
@@ -135,9 +145,9 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Ward No:" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,110,0" FontWeight="SemiBold"/>
-                        <CheckBox x:Name="WardNo_Select_CheckBox" Style="{StaticResource CustomSwitchButton}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26" Foreground="#0B4F6C" Margin="80,0,0,0" ></CheckBox>
+                        <CheckBox x:Name="WardNo_Select_CheckBox" Style="{StaticResource CustomSwitchButton}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26" Foreground="#0B4F6C" Margin="80,0,0,0" Cursor="Hand" Checked="WardNo_Select_CheckBox_Checked" ></CheckBox>
 
-                        <TextBox x:Name="WardNo_tbx" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" MinWidth="200" MinHeight="30" TextAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                        <TextBox x:Name="WardNo_tbx" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" MinWidth="200" MinHeight="30" TextAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="SemiBold" Margin="0,5,0,0" IsEnabled="False"/>
 
                     </Grid>
                 </Border>
@@ -148,7 +158,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="ETU:" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,80,0" FontWeight="SemiBold"/>
-                        <CheckBox x:Name="ETU_Selecte_CheckBox" Style="{StaticResource CustomSwitchButton}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26" Foreground="#0B4F6C" Margin="80,0,0,0" ></CheckBox>
+                        <CheckBox x:Name="ETU_Selecte_CheckBox" Style="{StaticResource CustomSwitchButton}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26" Foreground="#0B4F6C" Margin="80,0,0,0" Cursor="Hand" Checked="ETU_Selecte_CheckBox_Checked" ></CheckBox>
 
                     </Grid>
                 </Border>
@@ -159,12 +169,12 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="PCU:" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,80,0" FontWeight="SemiBold"/>
-                        <CheckBox x:Name="IsPCU_Select_CheckVox" Style="{StaticResource CustomSwitchButton}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26" Foreground="#0B4F6C" Margin="80,0,0,0" ></CheckBox>
+                        <CheckBox x:Name="IsPCU_Select_CheckVox" Style="{StaticResource CustomSwitchButton}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26" Foreground="#0B4F6C" Margin="80,0,0,0" Cursor="Hand" Checked="IsPCU_Select_CheckVox_Checked" ></CheckBox>
                     </Grid>
                 </Border>
 
                 <Border CornerRadius="20" Height="50" Grid.Row="3" Margin="10,0,10,20" VerticalAlignment="Bottom" Grid.Column="1">
-                    <Button x:Name="Admit_btn" Content="Admit"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" />
+                    <Button x:Name="Admit_btn" Content="Admit"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18"  Cursor="Hand" Click="Admit_btn_Click"/>
                 </Border>
 
 

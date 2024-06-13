@@ -22,9 +22,11 @@ namespace HMS_Software_V2.AdmissionOfficer.UserControls_AO
     /// </summary>
     public partial class UC_AO_AdmitRequest : UserControl
     {
-        public UC_AO_AdmitRequest()
+        private AO_Dashboard dashboardWindow;
+        public UC_AO_AdmitRequest(AO_Dashboard dashboard)
         {
             InitializeComponent();
+            dashboardWindow = dashboard;
         }
 
         public int PatientID { get; set; }
@@ -39,13 +41,23 @@ namespace HMS_Software_V2.AdmissionOfficer.UserControls_AO
         public string? D_NameWithInitials { get; set; }
         public string? D_Specialty { get; set; }
 
+        public int PatientAdmitRequestID { get; set; }
+
+        
         private void UC_AO_AdmitRequest1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            HMS_Software_V2._DataManage_Classes.SharedData.admissioOfficer = new HMS_Software_V2._DataManage_Classes.AdmissioOfficer(); // Get a new copy of the medical event template
+            HMS_Software_V2._DataManage_Classes.SharedData.admissioOfficer = new HMS_Software_V2._DataManage_Classes.AdmissioOfficer(); // Get a new copy of the template
+
+            MyAssigneDataToClass();// Assign the data to the class
 
             MyDebugPrintProperties();
 
             //HMS_Software_V2._DataManage_Classes.SharedData.admissioOfficer = null;
+
+            AO_AdmitPatient aO_AdmitPatient = new AO_AdmitPatient();
+            aO_AdmitPatient.Show();
+
+            dashboardWindow.Close();
 
 
 
@@ -84,6 +96,7 @@ namespace HMS_Software_V2.AdmissionOfficer.UserControls_AO
             SharedData.admissioOfficer.P_RegistrationID = P_RegistrationID ?? "Error";
             SharedData.admissioOfficer.D_NameWithInitials = D_NameWithInitials ?? "Error";
             SharedData.admissioOfficer.D_Specialty = D_Specialty ?? "Error";
+            SharedData.admissioOfficer.PatientAdmitRequestID = PatientAdmitRequestID;
         }
     }
 }

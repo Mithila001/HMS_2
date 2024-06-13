@@ -1,11 +1,11 @@
-﻿<Window x:Class="HMS_Software_V2.AdmissionOfficer.AD_DirectAdmit"
+﻿<Window x:Name="AD_DirectAdmit1" x:Class="HMS_Software_V2.AdmissionOfficer.AO_DirectAdmit"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HMS_Software_V2.AdmissionOfficer"
         mc:Ignorable="d"
-        Title="AD_DirectAdmit"  Height="720" Width="1280" WindowStartupLocation="CenterScreen" MinHeight="720" MinWidth="1280">
+        Title="AO_DirectAdmit"  Height="720" Width="1280" WindowStartupLocation="CenterScreen" MinHeight="720" MinWidth="1280" Closing="AD_DirectAdmit1_Closing">
     <Grid Background="#FFE6FEF9">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -213,7 +213,7 @@
                 </Border>
 
                 <Border CornerRadius="20" Height="50" Grid.Row="3" Margin="10,0,10,20" VerticalAlignment="Bottom" Grid.Column="1">
-                    <Button x:Name="Admit_btn" Content="Admit"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" />
+                    <Button x:Name="Admit_btn" Content="Admit"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="Admit_btn_Click" />
                 </Border>
 
 

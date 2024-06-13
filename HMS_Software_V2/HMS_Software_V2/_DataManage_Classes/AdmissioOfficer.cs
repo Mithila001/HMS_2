@@ -20,6 +20,8 @@ namespace HMS_Software_V2._DataManage_Classes
         public string D_NameWithInitials { get; set; }
         public string D_Specialty { get; set; }
 
+        public int PatientAdmitRequestID { get; set; }
+
 
         //Constructor
         public AdmissioOfficer()
@@ -35,6 +37,7 @@ namespace HMS_Software_V2._DataManage_Classes
             P_RegistrationID = string.Empty;
             D_NameWithInitials = string.Empty;
             D_Specialty = string.Empty;
+            PatientAdmitRequestID = 0;
         }
     }
 }

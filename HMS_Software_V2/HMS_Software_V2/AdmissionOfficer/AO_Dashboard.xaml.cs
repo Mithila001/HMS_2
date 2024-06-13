@@ -29,6 +29,11 @@ namespace HMS_Software_V2.AdmissionOfficer
         {
             InitializeComponent();
 
+
+            HMS_Software_V2._DataManage_Classes.SharedData.userData = new HMS_Software_V2._DataManage_Classes.UserData(); // Get a new copy of the template
+            SharedData.userData.UserID = 3; //Temporary
+            SharedData.userData.UserName = "V C K Ukkupala"; //Temporary
+
             LoadClinicData();
         }
 
@@ -37,7 +42,7 @@ namespace HMS_Software_V2.AdmissionOfficer
         {
             using (SqlConnection connection = new Database_Connector().GetConnection())
             {
-                string query1 = "SELECT DPR.PatientID, DPR.Doctor_ID, DPR.P_ReferralNote, DPR.Is_Urgent, DPR.SendFrom_Location, " +
+                string query1 = "SELECT DPR.PatientID, DPR.Doctor_ID, DPR.P_ReferralNote, DPR.Is_Urgent, DPR.SendFrom_Location, DPR.DocPatientAdmitRequest_ID, " +
                 "P.P_NameWithIinitials, P.P_Age, P.P_Gender, P.P_RegistrationID, " +
                 "D.D_NameWithInitials, D.D_Specialty " +
                 "FROM Doc_PatientAdmit_Request DPR " +
@@ -54,7 +59,7 @@ namespace HMS_Software_V2.AdmissionOfficer
 
                     while (reader.Read())
                     {
-                        UC_AO_AdmitRequest uC_AO_AdmitRequest = new UC_AO_AdmitRequest();
+                        UC_AO_AdmitRequest uC_AO_AdmitRequest = new UC_AO_AdmitRequest(this);
                         uC_AO_AdmitRequest.patientName_lbl.Content = reader["P_NameWithIinitials"].ToString();
                         uC_AO_AdmitRequest.patientRID_lbl.Content = reader["P_RegistrationID"].ToString();
                         uC_AO_AdmitRequest.patientGender_lbl.Content = reader["P_Gender"].ToString();
@@ -70,6 +75,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                         uC_AO_AdmitRequest.P_RegistrationID = reader["P_RegistrationID"].ToString() ?? "Error";
                         uC_AO_AdmitRequest.D_NameWithInitials = reader["D_NameWithInitials"].ToString() ?? "Error";
                         uC_AO_AdmitRequest.D_Specialty = reader["D_Specialty"].ToString() ?? "Error";
+                        uC_AO_AdmitRequest.PatientAdmitRequestID = Convert.ToInt32(reader["DocPatientAdmitRequest_ID"]);
 
 
                         //SharedData.admissioOfficer.PatientID = Convert.ToInt32(reader["PatientID"]);
@@ -128,6 +134,12 @@ namespace HMS_Software_V2.AdmissionOfficer
             }
 
 
+        }
+
+        private void DirectAdmit_btn_Click(object sender, RoutedEventArgs e)
+        {
+            AO_DirectAdmit_Popup aO_DirectAdmit_Popup = new AO_DirectAdmit_Popup(this);
+            aO_DirectAdmit_Popup.ShowDialog();
         }
     }
 }
