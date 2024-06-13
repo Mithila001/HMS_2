@@ -63,6 +63,7 @@ namespace HMS_Software_V2._DataManage_Classes
         {
             MedicalEventID = 0;
             PatientID = 0;
+            pationetRID = string.Empty;
             DoctorID = 0;
             NurseID = 0;
             Date = new DateOnly();

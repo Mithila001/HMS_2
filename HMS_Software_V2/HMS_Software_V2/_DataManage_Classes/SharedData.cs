@@ -19,5 +19,7 @@ namespace HMS_Software_V2._DataManage_Classes
 
         // For a Medical Event
         public static MedicalEvnent medicalEvent = new MedicalEvnent();
+
+        public static AdmissioOfficer admissioOfficer = new AdmissioOfficer();
     }
 }

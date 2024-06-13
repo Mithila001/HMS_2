@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HMS_Software_V2.Doctor_ClincOPD"
         mc:Ignorable="d"
-        Title="DCO_PatientCheck" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="DCO_PatientCheck1_Closing">
+        Title="DCO_PatientCheck" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="DCO_PatientCheck1_Closing"
+        MinHeight="720" MinWidth="1280">
     <Grid Background="#FFE6FEF9">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

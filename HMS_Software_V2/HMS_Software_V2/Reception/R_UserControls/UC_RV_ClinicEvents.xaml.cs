@@ -24,7 +24,7 @@ namespace HMS_Software_V2.Reception.R_UserControls
         public delegate void MyAssignClinicEventHandler(object sender, EventArgs e, int clinicEventID, int clinicTypeID);
 
         // Define the event using the delegate
-        public event MyAssignClinicEventHandler AssignClinicClicked;
+        public event MyAssignClinicEventHandler? AssignClinicClicked;
 
         public UC_RV_ClinicEvents()
         {

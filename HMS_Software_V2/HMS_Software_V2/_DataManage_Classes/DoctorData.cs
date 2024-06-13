@@ -30,7 +30,7 @@ namespace HMS_Software_V2._DataManage_Classes
             doctorName = "Dr. Joe";
             doctorSpecialization = string.Empty;
             doctorRID = string.Empty;
-            doctorLocation = string.Empty;
+            doctorLocation = "Clinic";
             
         }
     }

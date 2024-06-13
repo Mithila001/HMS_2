@@ -25,6 +25,8 @@ namespace HMS_Software_V2.Doctor_ClincOPD
     /// </summary>
     public partial class DCO_Dashboard : Window
     {
+        
+
         public DCO_Dashboard()
         {
             InitializeComponent();
@@ -33,9 +35,37 @@ namespace HMS_Software_V2.Doctor_ClincOPD
             SharedData.doctorData.doctorID = 1;
             SharedData.doctorData.doctorSpecialization = "General Physician";
 
+            if(SharedData.doctorData.doctorLocation == "Clinic")
+            {
+                MyDoctorClinic();   
 
+            }
+            else if(SharedData.doctorData.doctorLocation == "OPD")
+            {
+                //MyDoctorOPD();
+            }
+            else
+            {
+                MessageBox.Show("Error: Doctor Location is not Valid", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                this.Close();
+            }
 
         }
+
+        //bool IsClinic = false;
+        //bool IsOPD = false;
+        //private void MyDoctorOPD()
+        //{
+        //    IsOPD = true;
+        //}
+
+        private void MyDoctorClinic()
+        {
+            dipartmentName_lbl.Content = "Outpatient Dipartment (Clinic)";
+            //IsClinic = true;
+        }
+
+
 
         bool IsConfirmButtonIsClicked = false; //Flag related to Form exit
 
@@ -95,6 +125,28 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                     }
                     else
                     {
+
+                        //if (IsClinic)
+                        //{
+                        //    string query2 = "SELECT * FROM Patient_AppointmentRequest WHERE P_RegistrationID = @patientRID ";
+
+                        //    SqlCommand cmd2 = new SqlCommand(query2, connection);
+
+                        //    cmd2.Parameters.AddWithValue("@patientRID", "P" + patientRID_tbx.Text);
+
+                        //    using (SqlDataReader reader2 = cmd2.ExecuteReader())
+                        //    {
+                        //        while (reader2.Read())
+                        //        {
+                        //            IsRID_Valid = true;
+                        //        }
+                        //        reader2.Close();
+                        //    }
+
+
+                        //}
+
+
                         HMS_Software_V2._DataManage_Classes.SharedData.medicalEvent = new HMS_Software_V2._DataManage_Classes.MedicalEvnent(); // Get a new copy of the medical event template
                         
                         SharedData.medicalEvent.pationetRID = "P" + patientRID_tbx.Text;

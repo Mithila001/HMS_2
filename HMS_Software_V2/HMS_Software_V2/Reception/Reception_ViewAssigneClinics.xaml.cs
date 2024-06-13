@@ -275,7 +275,7 @@ namespace HMS_Software_V2.Reception
 
 
 
-                    // update the Patient_AppointmentRequest Table slots count
+                    // update the ClinicEvents Table slots count
                     string query1 = "UPDATE ClinicEvents SET CE_TakenSlots = CE_TakenSlots + 1 WHERE ClinicEvent_ID = @clinicEventId";
                     using (SqlCommand cmd = new SqlCommand(query1, connection))
                     {
@@ -293,10 +293,12 @@ namespace HMS_Software_V2.Reception
 
 
                     // Update the Patient_AppointmentRequest Table
-                    string query2 = "UPDATE Patient_AppointmentRequest SET IsBooked = 1 WHERE PatientAppointmentRequest_ID = @PatientAppointmentRequest_ID";
+                    string query2 = "UPDATE Patient_AppointmentRequest SET IsBooked = 1, ClinicEvent_ID = @ClinicEvent_ID"+
+                        "  WHERE PatientAppointmentRequest_ID = @PatientAppointmentRequest_ID";
                     using (SqlCommand cmd2 = new SqlCommand(query2, connection))
                     {
                         cmd2.Parameters.AddWithValue("@PatientAppointmentRequest_ID", patientAppointmentRequestID);
+                        cmd2.Parameters.AddWithValue("@ClinicEvent_ID", clinicEventID);
 
                         int rowsAffected = cmd2.ExecuteNonQuery();
 
