@@ -23,5 +23,7 @@ namespace HMS_Software_V2._DataManage_Classes
         public static AdmissioOfficer admissioOfficer = new AdmissioOfficer();
 
         public static UserData userData = new UserData();
+
+        public static Ward_Doctor Ward_Doctor = new Ward_Doctor();
     }
 }

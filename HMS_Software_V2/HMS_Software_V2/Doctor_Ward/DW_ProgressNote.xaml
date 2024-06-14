@@ -1,0 +1,72 @@
+﻿<Window x:Class="HMS_Software_V2.Doctor_Ward.DW_ProgressNote"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HMS_Software_V2.Doctor_Ward"
+        mc:Ignorable="d"
+        Title="DW_ProgressNote" Height="720" Width="1280" WindowStartupLocation="CenterScreen"
+        MinHeight="720" MinWidth="1280">
+
+    <Window.Resources>
+        <Style x:Key="ProgressNoteTextStyle1" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Margin" Value="10,0,0,1"/>
+
+        </Style>
+        <Style x:Key="ProgressNote_LabelStyle1" TargetType="Label">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="20,0,0,1"/>
+            <Setter Property="Padding" Value="0"/>
+
+        </Style>
+    </Window.Resources>
+    
+    
+    <Grid Background="#FFE6FEF9">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="10,5,10,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Grid.Column="0" Grid.RowSpan="6" Margin="0,5,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="176" Fill="#FFB7B7B7" RadiusX="2" RadiusY="2"/>
+
+
+                <TextBlock Text="Progress Note" Grid.RowSpan="6" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <TextBlock Text="Doctor Name:" Style="{StaticResource ProgressNoteTextStyle1}" Grid.Column="1"/>
+                <Label Content="NOte" Style="{StaticResource ProgressNote_LabelStyle1}" Grid.Column="1" Grid.Row="1"/>
+
+            </Grid>
+            
+        </Border>
+
+    </Grid>
+</Window>
