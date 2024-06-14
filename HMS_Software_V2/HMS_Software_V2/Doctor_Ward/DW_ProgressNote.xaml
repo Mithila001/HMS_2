@@ -18,26 +18,30 @@
 
         </Style>
         <Style x:Key="ProgressNote_LabelStyle1" TargetType="Label">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Margin" Value="20,0,0,1"/>
+            <Setter Property="Margin" Value="15,0,0,1"/>
             <Setter Property="Padding" Value="0"/>
 
         </Style>
     </Window.Resources>
-    
-    
+
+
     <Grid Background="#FFE6FEF9">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="963*"/>
+            <ColumnDefinition Width="317*" MaxWidth="330"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="180"/>
             <RowDefinition Height="50"/>
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="10,5,10,10">
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="10,5,10,10" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -52,21 +56,237 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Rectangle Grid.Column="0" Grid.RowSpan="6" Margin="0,5,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="176" Fill="#FFB7B7B7" RadiusX="2" RadiusY="2"/>
+                <Rectangle Grid.Column="0" Grid.RowSpan="6" Margin="0,5,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="155" Fill="#FFB7B7B7" RadiusX="2" RadiusY="2"/>
+                <Rectangle Grid.Column="2" Grid.RowSpan="6" Margin="0,5,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="155" Fill="#FFB7B7B7" RadiusX="2" RadiusY="2"/>
+                <Rectangle Grid.Column="5" Grid.RowSpan="6" Margin="2,5,2,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1" Height="155" Fill="#FFB7B7B7" RadiusX="2" RadiusY="2"/>
+
+                <Rectangle Grid.Column="1" Grid.RowSpan="6" Margin="0,5,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="155" Fill="#FFB7B7B7" RadiusX="2" RadiusY="2"/>
+
 
 
                 <TextBlock Text="Progress Note" Grid.RowSpan="6" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                <TextBlock Text="Doctor Name:" Style="{StaticResource ProgressNoteTextStyle1}" Grid.Column="1"/>
-                <Label Content="NOte" Style="{StaticResource ProgressNote_LabelStyle1}" Grid.Column="1" Grid.Row="1"/>
+                <TextBlock Text="Doctor Name:" Style="{StaticResource ProgressNoteTextStyle1}" Grid.Column="1" Grid.Row="0"/>
+                <Label Content="Doctro Name" Style="{StaticResource ProgressNote_LabelStyle1}" Grid.Column="1" Grid.Row="1"/>
+
+                <TextBlock Text="Specialty:" Style="{StaticResource ProgressNoteTextStyle1}" Grid.Column="1" Grid.Row="2"/>
+                <Label Content="Doctor Specialty" Style="{StaticResource ProgressNote_LabelStyle1}" Grid.Column="1" Grid.Row="3"/>
+
+                <TextBlock Text="Doctor RID:" Style="{StaticResource ProgressNoteTextStyle1}" Grid.Column="1" Grid.Row="4"/>
+                <Label Content="DXXXXXX" Style="{StaticResource ProgressNote_LabelStyle1}" Grid.Column="1" Grid.Row="5"/>
+
+
+                <TextBlock Text="Ward:" Style="{StaticResource ProgressNoteTextStyle1}" Grid.Column="2" Grid.Row="0"/>
+                <Label Content="Ward Name" Style="{StaticResource ProgressNote_LabelStyle1}" Grid.Column="2" Grid.Row="1"/>
+
+                <TextBlock Text="Date:" Style="{StaticResource ProgressNoteTextStyle1}" Grid.Column="2" Grid.Row="2"/>
+                <Label Content="20th Augest 2024" Style="{StaticResource ProgressNote_LabelStyle1}" Grid.Column="2" Grid.Row="3"/>
+
+                <TextBlock Text="Time:" Style="{StaticResource ProgressNoteTextStyle1}" Grid.Column="2" Grid.Row="4"/>
+                <Label Content="12.05 PM" Style="{StaticResource ProgressNote_LabelStyle1}" Grid.Column="2" Grid.Row="5"/>
+
+
+
+                <Border Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="6" CornerRadius="10" Background="#FFD5FFA3"/>
+
+                <TextBlock Text="Patient Name:" Style="{StaticResource ProgressNoteTextStyle1}" Grid.Column="3" Grid.Row="0"/>
+                <Label Content="Patient Name" Style="{StaticResource ProgressNote_LabelStyle1}" Grid.Column="3" Grid.Row="1"/>
+
+                <TextBlock Text="Patient Condition:" Style="{StaticResource ProgressNoteTextStyle1}" Grid.Column="3" Grid.Row="2"/>
+                <Label Content="Conditon Status" Style="{StaticResource ProgressNote_LabelStyle1}" Grid.Column="3" Grid.Row="3"/>
+
+                <TextBlock Text="Patient RID:" Style="{StaticResource ProgressNoteTextStyle1}" Grid.Column="3" Grid.Row="4"/>
+                <Label Content="PXXXXX" Style="{StaticResource ProgressNote_LabelStyle1}" Grid.Column="3" Grid.Row="5"/>
+
+                <TextBlock Text="Visit Count:" Style="{StaticResource ProgressNoteTextStyle1}" Grid.Column="4" Grid.Row="0"/>
+                <Label Content="XX" Style="{StaticResource ProgressNote_LabelStyle1}" Grid.Column="4" Grid.Row="1"/>
+
+
+                <TextBlock Text="Discharge Patient" Grid.Column="5" Grid.Row= "1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+                <Border CornerRadius="20" Height="50" Width="180" Margin="5,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="6" Grid.RowSpan="2">
+                    <Button Content="Discharge"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" />
+                </Border>
+
 
             </Grid>
-            
         </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8" Margin="10,5,10,10" Grid.Row="1" Grid.RowSpan="3"  Grid.ColumnSpan="1">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100*"/>
+                    <RowDefinition Height="70*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="60*"/>
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
+
+                
+
+                <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.ColumnSpan="2"  >
+                    <GroupBox.Header>
+                        <TextBlock Text="History Of Presenting Complaints" FontWeight="Regular" FontSize="11" />
+                    </GroupBox.Header>
+
+                    <TextBox x:Name="historyOfPComplaints_tbx" Margin="0"
+                     Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" 
+                     AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
+                </GroupBox>
+
+                <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="1" Grid.Column="0">
+                    <GroupBox.Header>
+                        <TextBlock Text="Past Medical History" FontWeight="Regular" FontSize="11" />
+                    </GroupBox.Header>
+
+                    <TextBox x:Name="pastMedicalHistory_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
+                </GroupBox>
+
+                <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="2" Grid.Column="0" Grid.RowSpan="2">
+                    <GroupBox.Header>
+                        <TextBlock Text="Past Surgical History" FontWeight="Regular" FontSize="11" />
+                    </GroupBox.Header>
+
+                    <TextBox x:Name="pastSurgicalHistory_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
+
+                </GroupBox>
+
+                <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="4" Grid.Column="0" Grid.RowSpan="2">
+                    <GroupBox.Header>
+                        <TextBlock Text="Family History" FontWeight="Regular" FontSize="11" />
+                    </GroupBox.Header>
+
+                    <TextBox x:Name="familyHistory_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
+                </GroupBox>
+
+                <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+                    <GroupBox.Header>
+                        <TextBlock Text="Examinations/Notes" FontWeight="Regular" FontSize="11" />
+                    </GroupBox.Header>
+
+                    <TextBox x:Name="examinationNotes_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
+                </GroupBox>
+
+                <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+                    <GroupBox.Header>
+                        <TextBlock Text="Medications" FontWeight="Regular" FontSize="11" />
+                    </GroupBox.Header>
+
+                    <TextBox x:Name="medication_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
+                </GroupBox>
+
+                <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2">
+                    <GroupBox.Header>
+                        <TextBlock Text="Allergies" FontWeight="Regular" FontSize="11" />
+                    </GroupBox.Header>
+
+                    <TextBox x:Name="alergies_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
+                </GroupBox>
+
+                <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="5" Grid.Column="1" Grid.RowSpan="1">
+                    <GroupBox.Header>
+                        <TextBlock Text="Social History" FontWeight="Regular" FontSize="11" />
+                    </GroupBox.Header>
+
+                    <TextBox x:Name="socialHistory_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
+                </GroupBox>
+
+
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" BorderBrush="#FF292929" BorderThickness="1" CornerRadius="10" Margin="0,5,10,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100*" MaxHeight="120"/>
+                    <RowDefinition Height="80*" MaxHeight="90"/>
+                    <RowDefinition Height="60*" MaxHeight="80"/>
+                    <RowDefinition Height="60*" MaxHeight="80"/>
+                    <RowDefinition Height="60*" MaxHeight="80"/>
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="5*" MaxHeight="20"/>
+                </Grid.RowDefinitions>
+
+
+                <TextBlock Text="Patient Condition" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Margin="0,0,0,60" FontWeight="SemiBold"/>
+                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" MinHeight="50" MinWidth="290" Margin="5,20,5,0" AcceptsReturn="True" TextWrapping="Wrap"/>
+
+                <Border Grid.Row="1" Background="#FFD5FFA3" BorderBrush="#FF757575" BorderThickness=".5"/>
+
+                <Border CornerRadius="20" Height="50" Width="250" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Grid.RowSpan="1">
+                    <Button Content="View History"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Cursor="Hand" />
+                </Border>
+
+                
+
+                <Border CornerRadius="20" Height="50" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Margin="0,0,0,0">
+                    <Button x:Name="AddPrescription_btn" Style= "{StaticResource PrettyButtonStyle2}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Cursor="Hand">
+                        <Grid Height="50" Width="250">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Prescription" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Margin="0,0,0,2"/>
+                            <Image x:Name="AddPrescription_image" Source="pack://application:,,,/HMS_Software_V2;component/Assest/icons/icons8-add-100.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="1"/>
+
+                        </Grid>
+                    </Button>
+                </Border>
+
+                <Border CornerRadius="20" Height="50" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Margin="0,0,0,0">
+                    <Button x:Name="Add_LabRequest_btn" Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Cursor="Hand">
+                        <Grid Height="50" Width="250">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Lab Request" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Margin="0,0,0,0"/>
+                            <Image x:Name="Add_LabRequest_image" Source="pack://application:,,,/HMS_Software_V2;component/Assest/icons/icons8-add-100.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="1"/>
+
+                        </Grid>
+                    </Button>
+                </Border>
+
+                <Border CornerRadius="20" Height="50" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Margin="0,0,0,0">
+                    <Button x:Name="MonitorRequest_btn" Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Cursor="Hand" >
+                        <Grid Height="50" Width="250">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Monitor" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Margin="0,0,0,2"/>
+                            <Image x:Name="MonitorRequest_image" Source="pack://application:,,,/HMS_Software_V2;component/Assest/icons/icons8-add-100.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="1"/>
+
+                        </Grid>
+                    </Button>
+                </Border>
+
+                <Rectangle Margin="10,1,10,10" Grid.Row="5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1" Fill="#FFB7B7B7" RadiusX="2" RadiusY="2"/>
+
+                <Border CornerRadius="20" Height="50" Width="250" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" Grid.Column="0" Grid.RowSpan="1">
+                    <Button Content="Confirm"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Cursor="Hand" />
+                </Border>
+
+
+                
+
+            </Grid>
+
+        </Border>
+
 
     </Grid>
 </Window>
