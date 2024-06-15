@@ -22,9 +22,11 @@ namespace HMS_Software_V2.Doctor_Ward.UserControls_DW
     /// </summary>
     public partial class UC_DW_WardPatients : UserControl
     {
-        public UC_DW_WardPatients()
+        private DW_MainPage ParentPageReferece;
+        public UC_DW_WardPatients(DW_MainPage dW_MainPage)
         {
             InitializeComponent();
+            ParentPageReferece = dW_MainPage;
         }
 
         public int PatientID { get; set; }
@@ -37,6 +39,7 @@ namespace HMS_Software_V2.Doctor_Ward.UserControls_DW
         public string? PatientAge { get; set; }
         public string? PatientRID {  get; set; }
         public bool IsVisitedByTheDoctor { get; set; }
+
 
         private void UC_DW_WardPatients1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -57,6 +60,12 @@ namespace HMS_Software_V2.Doctor_Ward.UserControls_DW
                 SharedData.medicalEvent.PatientName = PatientName ?? "Error";
                 SharedData.medicalEvent.PatientAge = PatientAge ?? "Error";
                 SharedData.medicalEvent.PatientGender = PatientGender ?? "Error";
+
+                SharedData.medicalEvent.PatientVisitCount = TotalVisitRouds;
+
+                DW_ProgressNote dw_ProgressNote = new DW_ProgressNote();
+                dw_ProgressNote.Show();
+                ParentPageReferece.Close();
 
 
 

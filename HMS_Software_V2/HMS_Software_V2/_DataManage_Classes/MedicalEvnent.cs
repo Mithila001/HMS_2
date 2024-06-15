@@ -35,6 +35,9 @@ namespace HMS_Software_V2._DataManage_Classes
         public string PatientAge { get; set; }
         public string PatientGender { get; set; }
 
+        public int PatientVisitCount { get; set; }
+        public string MonitorRequest { get; set; }
+
 
 
         #region LabData Managemet List
@@ -79,6 +82,9 @@ namespace HMS_Software_V2._DataManage_Classes
             PatientName = string.Empty;
             PatientAge = string.Empty;
             PatientGender = string.Empty;
+
+            PatientVisitCount = 0;
+            MonitorRequest = string.Empty;
 
             
         }

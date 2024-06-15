@@ -1,5 +1,6 @@
 ﻿using HMS_Software_V2._DataManage_Classes;
 using HMS_Software_V2.Doctor_ClincOPD;
+using HMS_Software_V2.Doctor_Ward;
 using HMS_Software_V2.Reception.R_UserControls;
 using HMS_Software_V2.UserCommon_Forms.UserControls_UCF;
 using System;
@@ -26,16 +27,27 @@ namespace HMS_Software_V2.UserCommon_Forms
     {
 
 
-        private DCO_PatientCheck _parentForm;
+        private object _parentForm;
         public LabRequests(DCO_PatientCheck parentForm)
         {
             InitializeComponent();
 
             _parentForm = parentForm;
 
+            Debug.WriteLine("\n\n----- LabRequests => From OPD -----\n");
 
+            AddNewLabRequest();
 
-            Debug.WriteLine("\n\n----- LabRequests -----\n");
+            MyAddBasicDetails();
+        }
+
+        public LabRequests(DW_ProgressNote progressNote)
+        {
+            InitializeComponent();
+
+            _parentForm = progressNote;
+
+            Debug.WriteLine("\n\n----- LabRequests => From Ward -----\n");
 
             AddNewLabRequest();
 
@@ -156,7 +168,17 @@ namespace HMS_Software_V2.UserCommon_Forms
 
         private void LabRequests1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            _parentForm.Show();
+            if (_parentForm is DCO_PatientCheck dcoPatientCheck)
+            {
+                // You can now use dcoPatientCheck to access DCO_PatientCheck specific properties or methods
+                dcoPatientCheck.Show();
+            }
+            else if (_parentForm is DW_ProgressNote dwProgressNote)
+            {
+                // You can now use dwProgressNote to access DW_ProgressNote specific properties or methods
+                dwProgressNote.Show();
+            }
+            
         }
     }
 }

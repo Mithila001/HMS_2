@@ -35,7 +35,7 @@ namespace HMS_Software_V2.Doctor_Ward
             ward_MedicalEventManager.MyStart();
 
 
-            
+            Debug.WriteLine("\n\n============= DW_MainPage =============\n\n");
 
             Temporory();
 
@@ -98,6 +98,7 @@ namespace HMS_Software_V2.Doctor_Ward
                             if (reader.Read()) // Since we're only expecting one record, we use if instead of while
                             {
                                 AdmitRoundManagerID = (int)reader["AdmitMedicalRoundManager_ID"];
+                                SharedData.Ward_Doctor.RoundManagerID = AdmitRoundManagerID;
 
                                 bool round1 = (bool)reader["Round_1"];
                                 bool round2 = (bool)reader["Round_2"];
@@ -225,7 +226,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
                     while (reader.Read())
                     {
-                        UC_DW_WardPatients uC_DW_WardPatients = new UC_DW_WardPatients();
+                        UC_DW_WardPatients uC_DW_WardPatients = new UC_DW_WardPatients(this);
 
 
                         string patientName = reader["P_NameWithIinitials"].ToString() ?? "Error";
@@ -250,15 +251,19 @@ namespace HMS_Software_V2.Doctor_Ward
                         
                         bool isVisitedByDoctor = Convert.ToBoolean(reader["Is_VisistedByDoctor"]);
 
+                        Debug.WriteLine($"---------------------------------------------------------\n\nisVisitedByDoctor: {isVisitedByDoctor}\n\n");
+
                         uC_DW_WardPatients.IsVisitedByTheDoctor = isVisitedByDoctor;
 
                         if (isVisitedByDoctor)
                         {
                             uC_DW_WardPatients.colorIndicator_Retangle.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#46ff46"));
+                            Debug.WriteLine($"Green");
                         }
                         else
                         {
                             uC_DW_WardPatients.colorIndicator_Retangle.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#fd3535"));
+                            Debug.WriteLine($"Red");
                         }
                         
 
@@ -294,11 +299,11 @@ namespace HMS_Software_V2.Doctor_Ward
                         
 
                         DisplayToCheckPatients_WrapP.Children.Add(uC_DW_WardPatients);
-                        Debug.WriteLine($"\n\nuC_DW_WardPatients.Width: {uC_DW_WardPatients.ActualWidth}");
-                        Debug.WriteLine($"ShowWardPatient_WrapP.ActualWidth: {DisplayToCheckPatients_WrapP.ActualWidth}");
-                        Debug.WriteLine($"uC_DW_WardPatients.Margin.Left: {uC_DW_WardPatients.Margin.Left}");
-                        Debug.WriteLine($"uC_DW_WardPatients.Margin.Right: {uC_DW_WardPatients.Margin.Right}");
-                        Debug.WriteLine($"Final Width: {DisplayToCheckPatients_WrapP.ActualWidth - uC_DW_WardPatients.Margin.Left - uC_DW_WardPatients.Margin.Right}");
+                        //Debug.WriteLine($"\n\nuC_DW_WardPatients.Width: {uC_DW_WardPatients.ActualWidth}");
+                        //Debug.WriteLine($"ShowWardPatient_WrapP.ActualWidth: {DisplayToCheckPatients_WrapP.ActualWidth}");
+                        //Debug.WriteLine($"uC_DW_WardPatients.Margin.Left: {uC_DW_WardPatients.Margin.Left}");
+                        //Debug.WriteLine($"uC_DW_WardPatients.Margin.Right: {uC_DW_WardPatients.Margin.Right}");
+                        //Debug.WriteLine($"Final Width: {DisplayToCheckPatients_WrapP.ActualWidth - uC_DW_WardPatients.Margin.Left - uC_DW_WardPatients.Margin.Right}");
 
                         
                     }

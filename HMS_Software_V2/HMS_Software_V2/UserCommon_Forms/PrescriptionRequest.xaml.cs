@@ -1,5 +1,6 @@
 ﻿using HMS_Software_V2._DataManage_Classes;
 using HMS_Software_V2.Doctor_ClincOPD;
+using HMS_Software_V2.Doctor_Ward;
 using HMS_Software_V2.UserCommon_Forms.UserControls_UCF;
 using System;
 using System.Collections.Generic;
@@ -23,26 +24,26 @@ namespace HMS_Software_V2.UserCommon_Forms
     /// </summary>
     public partial class PrescriptionRequest : Window
     {
-        public PrescriptionRequest()
-        {
-            InitializeComponent();
 
-            Debug.WriteLine("\n\n----- PrescriptionRequest -----\n");
-
-            AddPrescription();
-            // _parentForm = null; // You can set _parentForm to null here if you want
-
-        }
-
-        private DCO_PatientCheck _parentForm;
+        private object _parentForm;
         public PrescriptionRequest(DCO_PatientCheck parentForm)
         {
             InitializeComponent();
 
-            Debug.WriteLine("\n\n----- PrescriptionRequest -----\n");
+            Debug.WriteLine("\n\n----- PrescriptionRequest => OPD -----\n");
 
             AddPrescription();
             _parentForm = parentForm;
+        }
+
+        public PrescriptionRequest(DW_ProgressNote progressNote)
+        {
+            InitializeComponent();
+
+            Debug.WriteLine("\n\n----- PrescriptionRequest => Wad -----\n");
+
+            AddPrescription();
+            _parentForm = progressNote;
         }
 
         private void MyAddBasicDetails()
@@ -92,7 +93,16 @@ namespace HMS_Software_V2.UserCommon_Forms
 
         private void PrescriptionRequest1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            _parentForm.Show();
+            if (_parentForm is DCO_PatientCheck dcoPatientCheck)
+            {
+                // You can now use dcoPatientCheck to access DCO_PatientCheck specific properties or methods
+                dcoPatientCheck.Show();
+            }
+            else if (_parentForm is DW_ProgressNote dwProgressNote)
+            {
+                // You can now use dwProgressNote to access DW_ProgressNote specific properties or methods
+                dwProgressNote.Show();
+            }
 
         }
 

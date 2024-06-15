@@ -17,6 +17,7 @@ namespace HMS_Software_V2._DataManage_Classes
         public int WardID { get; set; }
         public string WardName { get; set; }
         public int RoundNo { get; set; }
+        public int RoundManagerID { get; set; }
 
         public int PatientID { get; set; }
 

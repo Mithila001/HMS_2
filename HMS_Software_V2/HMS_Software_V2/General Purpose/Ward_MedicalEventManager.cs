@@ -38,6 +38,7 @@ namespace HMS_Software_V2.General_Purpose
 
         public void MyStart()
         {
+            Debug.WriteLine("\n\n<< --------------Ward_MedicalEventManager ----------------- >>\n");
             MyMedicalEventManger_Start();
         }
         private void MyMedicalEventManger_Start()
@@ -89,32 +90,54 @@ namespace HMS_Software_V2.General_Purpose
                         // Check witch time zone is now
                         if (Round1_Time > CurrentTime)
                         {
+                            Debug.WriteLine("In Round 1");
                             SelectedRound = "Round_1";
                             SlectedRoundNumber = 1;
 
                             if (!Round1) // If not Checked in that timzone
                             {
+                                Debug.WriteLine("ADD new In Round 1 State");
                                 MyCreateAdmitEvent_Step_1(); //Update the record
+                            }
+                            else
+                            {
+                                Debug.WriteLine("Already Checked in Round 1 => Return");
+                                return;   
                             }
                         }
                         else if (Round2_Time > CurrentTime)
                         {
+                            Debug.WriteLine("In Round 2");
                             SelectedRound = "Round_2";
                             SlectedRoundNumber = 2;
 
                             if (!Round2)
                             {
+                                Debug.WriteLine("ADD new Round 2 State");
                                 MyCreateAdmitEvent_Step_1();
+                            }
+                            else
+                            {
+                                Debug.WriteLine("Already Checked in Round 2 => Return");
+                                return;
                             }
                         }
                         else
                         {
                             SelectedRound = "Round_3";
                             SlectedRoundNumber = 3;
+                            Debug.WriteLine("In Round 3");
 
                             if (!Round3)
                             {
+                                Debug.WriteLine("ADD new In Round 3 State");
                                 MyCreateAdmitEvent_Step_1();
+                            }
+                            else
+                            {
+                                Debug.WriteLine("Already Checked in Round 3 => Return");
+                                return;
+
                             }
                         }
                     } // If alrady created a record today
@@ -155,6 +178,7 @@ namespace HMS_Software_V2.General_Purpose
 
         private void MyCreateAdmitEvent_Step_1()
         {
+            Debug.WriteLine("<< MyCreateAdmitEvent_Step_1 >>");
             using (SqlConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
@@ -203,6 +227,7 @@ namespace HMS_Software_V2.General_Purpose
 
         private void MyCreateAdmitEvent_Step_2(int admittedPatientId, int patientId, string condition, int totalRounds, int ward)
         {
+            Debug.WriteLine("<< MyCreateAdmitEvent_Step_2 >>");
             using (SqlConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
