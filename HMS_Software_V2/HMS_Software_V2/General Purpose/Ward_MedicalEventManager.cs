@@ -233,6 +233,20 @@ namespace HMS_Software_V2.General_Purpose
                 connection.Open();
                 try
                 {
+                    #region UPDATE Old WardMedicalEvent Status in Admitted_Patients_VisitEvent Table
+                    string query5 = $"UPDATE Admitted_Patients_VisitEvent SET Is_RoundTimeOut = 1";
+
+                    using (SqlCommand command1 = new SqlCommand(query5, connection))
+                    {
+                        // No need to add SelectedRound as a parameter since it's part of the query
+                        Debug.WriteLine("\nUPDATE Old WardMedicalEvent Status in Admitted_Patients_VisitEvent Table");
+
+                        command1.ExecuteNonQuery();
+                    }
+                    #endregion
+
+                 
+
                     #region INSERT INTO Admitted_Patients_VisitEvent Table
                     string query1 = "INSERT INTO Admitted_Patients_VisitEvent (Patient_ID, P_Condition, Visited_Doctor_ID, Visited_Nurse_ID,"+
                         " Visite_Round,P_MedicalEventID, Is_VisistedByDoctor, Is_VisitedByNurse, P_WardNo, N_TreatmentStatus, Total_VisitRounds, VisitPerDay_ID)" +

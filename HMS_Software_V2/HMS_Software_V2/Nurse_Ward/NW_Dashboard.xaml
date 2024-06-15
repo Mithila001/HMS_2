@@ -38,31 +38,31 @@
 
 
 
-                <Label Content="Nurese Name" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Margin="10,0,0,0" Height="32"/>
+                <Label x:Name="nurseName_lbl" Content="Nurese Name" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Margin="10,0,0,0" Height="32"/>
                 <TextBlock Grid.Row="1" Text="Nurse" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,5" Height="21" Width="42"/>
-                <Label Content="LicenceNumber" Grid.Row="2" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="10,0,0,5" Height="26"/>
+                <Label x:Name="nurseLicenceNo_lbl" Content="LicenceNumber" Grid.Row="2" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="10,0,0,5" Height="26"/>
 
                 <TextBlock Grid.Column="1" Text="Ward" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"/>
-                <Label Content="WardName" Grid.Row="1" Grid.Column="1" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,0"/>
-                <Label Content="xx" Grid.Row="2" Grid.Column="1" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,10"/>
+                <Label x:Name="wardName_lbl" Content="WardName" Grid.Row="1" Grid.Column="1" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,0"/>
+                <Label x:Name="wardNumber_lbl" Content="xx" Grid.Row="2" Grid.Column="1" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,10"/>
 
-                <Label Content="24th July 2024" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,10" Height="27"/>
-                <Label Content="06.45 PM" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,0" Height="27"/>
+                <Label x:Name="todayDate_lbl" Content="24th July 2024" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,10" Height="27"/>
+                <Label x:Name="todaytime_lbl" Content="06.45 PM" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,0" Height="27"/>
 
                 <Border Grid.Column="3" Grid.RowSpan="3" Background="White" Margin="10,10,10,10" BorderBrush="Black" BorderThickness=".5" CornerRadius="10"/>
-                <TextBlock Grid.Column="3" Grid.Row="0" Grid.RowSpan="3" Text="Total Patients" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,30"/>
-                <Label Content="xx" Grid.Column="3" Grid.Row="0" Grid.RowSpan="3" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,25,0,0" Height="26"/>
+                <TextBlock Grid.Column="3" Grid.Row="0" Grid.RowSpan="3" Text="Total Pending" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,30"/>
+                <Label x:Name="totalPending_lbl" Content="xx" Grid.Column="3" Grid.Row="0" Grid.RowSpan="3" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,25,0,0" Height="26"/>
 
                 <Border Grid.Column="4" Grid.RowSpan="3" Background="White" Margin="10,10,10,10" BorderBrush="Black" BorderThickness=".5" CornerRadius="10"/>
-                <TextBlock Grid.Column="4" Grid.Row="0" Grid.RowSpan="4" Text="Total Patients" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,30"/>
-                <Label Content="xx" Grid.Column="4" Grid.Row="0" Grid.RowSpan="3" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,25,0,0" Height="26"/>
+                <TextBlock Grid.Column="4" Grid.Row="0" Grid.RowSpan="4" Text="Total Completed" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,30"/>
+                <Label x:Name="totalCompleted_lbl" Content="xx" Grid.Column="4" Grid.Row="0" Grid.RowSpan="3" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,25,0,0" Height="26"/>
 
             </Grid>
         </Border>
 
         <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="10,5,10,10">
-            <ScrollViewer>
-                <StackPanel x:Name="showToTratePatients_WrapP" Margin="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="1">
+                <StackPanel x:Name="showToTratePatients_WrapP" Margin="1" HorizontalAlignment="Stretch">
 
                 </StackPanel>
             </ScrollViewer>

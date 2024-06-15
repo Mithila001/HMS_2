@@ -25,5 +25,9 @@ namespace HMS_Software_V2._DataManage_Classes
         public static UserData userData = new UserData();
 
         public static Ward_Doctor Ward_Doctor = new Ward_Doctor();
+
+        public static Ward_Nurse Ward_Nurse = new Ward_Nurse();
+        
+        public static Ward_NursePatient Ward_NursePatient = new Ward_NursePatient();
     }
 }

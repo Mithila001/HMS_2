@@ -27,7 +27,7 @@
         </ResourceDictionary>
 
     </Application.Resources>
-    <!--We left at: Need to work on DW_MainPage form close and the effect that can have with User Controls  -->
+    <!--We left at: Need to Create Patient nurse treatment page  -->
 </Application> 
     
    

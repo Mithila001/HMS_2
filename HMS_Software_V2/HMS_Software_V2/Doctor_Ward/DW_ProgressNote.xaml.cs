@@ -420,7 +420,7 @@ namespace HMS_Software_V2.Doctor_Ward
                     #region UPDATE Admitted_Patients_VisitEvent
                     string query1 = "UPDATE Admitted_Patients_VisitEvent SET" +
                                     " Visited_Doctor_ID = @Visited_Doctor_ID, Visite_Date= @Visite_Date, Visite_Time = @Visite_Time," +
-                                    " P_MedicalEventID = @P_MedicalEventID, Is_VisistedByDoctor = 1" +
+                                    " P_MedicalEventID = @P_MedicalEventID, Is_VisistedByDoctor = 1, P_Condition = @P_Condition" +
                                     " WHERE Patient_ID = @Patient_ID AND VisitPerDay_ID = @MedicalRoundManagerID";
 
                     using (SqlCommand cmd = new SqlCommand(query1, connection))
@@ -432,6 +432,7 @@ namespace HMS_Software_V2.Doctor_Ward
                         cmd.Parameters.AddWithValue("@P_MedicalEventID", MedicalEventID);
                         cmd.Parameters.AddWithValue("@Patient_ID", SharedData.medicalEvent.PatientID);
                         cmd.Parameters.AddWithValue("@MedicalRoundManagerID", SharedData.Ward_Doctor.RoundManagerID);
+                        cmd.Parameters.AddWithValue("@P_Condition", SharedData.medicalEvent.PatientMedicalCondition);
 
                         int rowsAffected = cmd.ExecuteNonQuery();
                         if (rowsAffected > 0)

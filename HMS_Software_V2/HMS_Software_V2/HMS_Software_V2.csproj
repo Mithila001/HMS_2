@@ -36,7 +36,6 @@
   <ItemGroup>
     <Folder Include="Doctor_ClincOPD\UserControls_DCO\" />
     <Folder Include="General Purpose\General_UserControls\" />
-    <Folder Include="Nurse_Ward\NuresWard_UserControls\" />
   </ItemGroup>
 
 </Project>
