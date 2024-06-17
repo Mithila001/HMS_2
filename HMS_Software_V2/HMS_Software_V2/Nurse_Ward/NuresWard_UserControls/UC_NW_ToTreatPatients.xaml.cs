@@ -36,6 +36,8 @@ namespace HMS_Software_V2.Nurse_Ward.NuresWard_UserControls
         public string? PatientAge { get; set; }
         public string? PatientTreatmentStatus { get; set; }
 
+        public int PatientMedicalEventID {  get; set; }
+
         private void UC_NW_ToTreatPatients1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if(PatientTreatmentStatus == "Completed")
@@ -51,8 +53,14 @@ namespace HMS_Software_V2.Nurse_Ward.NuresWard_UserControls
                 SharedData.Ward_NursePatient.PatientGender = PatientGender ?? "Error";
                 SharedData.Ward_NursePatient.PatientAge = PatientAge ?? "Error";
                 SharedData.Ward_NursePatient.PatientCondition = PatientCondition ?? "Error";
+                SharedData.Ward_NursePatient.PatientMedicalEventID = PatientMedicalEventID;
 
-                
+                NW_PatientTreat nW_PatientTreat = new NW_PatientTreat();
+                nW_PatientTreat.Show();
+                parentForm.Close();
+
+
+
             }
 
         }

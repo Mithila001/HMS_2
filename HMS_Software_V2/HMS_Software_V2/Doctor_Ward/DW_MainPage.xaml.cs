@@ -210,14 +210,15 @@ namespace HMS_Software_V2.Doctor_Ward
         {
             using (SqlConnection connection = new Database_Connector().GetConnection())
             {
-                string query1 = "SELECT APV.Patient_ID, APV.P_Condition, APV.Visite_Round, APV.N_TreatmentStatus, APV.Total_VisitRounds, APV.Is_VisistedByDoctor, " +
-                 "P.P_NameWithIinitials, P.P_Age, P.P_Gender, P.P_RegistrationID " +
-                 "FROM Admitted_Patients_VisitEvent APV " +
-                 "INNER JOIN Patient P ON P.Patient_ID = APV.Patient_ID " +
-                 $"WHERE APV.VisitPerDay_ID = {AdmitRoundManagerID} " +
-                 "ORDER BY APV.Is_VisistedByDoctor ASC";
+                string query1 = "SELECT APV.Patient_ID, APV.P_Condition, APV.Visite_Round, APV.N_TreatmentStatus, APV.Total_VisitRounds, APV.Is_VisistedByDoctor, APV.Is_RoundTimeOut, " +
+                "P.P_NameWithIinitials, P.P_Age, P.P_Gender, P.P_RegistrationID " +
+                "FROM Admitted_Patients_VisitEvent APV " +
+                "INNER JOIN Patient P ON P.Patient_ID = APV.Patient_ID " +
+                "WHERE APV.VisitPerDay_ID = @AdmitRoundManagerID AND APV.Is_RoundTimeOut = 0 " +
+                "ORDER BY APV.Is_VisistedByDoctor ASC";
 
                 SqlCommand cmd = new SqlCommand(query1, connection);
+                cmd.Parameters.AddWithValue("@AdmitRoundManagerID", AdmitRoundManagerID);
 
                 try
                 {

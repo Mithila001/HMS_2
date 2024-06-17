@@ -1,5 +1,9 @@
-﻿using System.Configuration;
+﻿using HMS_Software_V2.Doctor_Ward;
+using HMS_Software_V2.General_Purpose;
+using HMS_Software_V2.Nurse_Ward;
+using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Windows;
 
 namespace HMS_Software_V2
@@ -11,7 +15,19 @@ namespace HMS_Software_V2
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            Debug.WriteLine("\nWard_MedicalEventManager Triggerd\n");
+            Ward_MedicalEventManager ward_MedicalEventManager = new Ward_MedicalEventManager();
+            ward_MedicalEventManager.MyStart();
+            Debug.WriteLine("\n=========================================================\n\nApplication_Startup\n\n");
+            Debug.WriteLine("Ward_MedicalEventManager Triggerd\n");
 
+            // --------------------- Nurse Ward ---------------------
+
+            NW_Dashboard nW_Dashboard = new NW_Dashboard();
+            nW_Dashboard.Show();
+
+            DW_MainPage dW_MainPage = new DW_MainPage();
+            //dW_MainPage.Show();
         }
     }
 

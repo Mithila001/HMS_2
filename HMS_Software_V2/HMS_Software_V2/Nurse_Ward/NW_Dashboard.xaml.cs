@@ -114,7 +114,7 @@ namespace HMS_Software_V2.Nurse_Ward
         {
             using (SqlConnection connection = new Database_Connector().GetConnection())
             {
-                string query1 = "SELECT APV.Patient_ID, APV.P_Condition, APV.N_TreatmentStatus, APV.Is_VisistedByDoctor, " +
+                string query1 = "SELECT APV.Patient_ID, APV.P_Condition, APV.N_TreatmentStatus, APV.Is_VisistedByDoctor, APV.P_MedicalEventID," +
                 "P.P_NameWithIinitials, P.P_Age, P.P_Gender, P.P_RegistrationID " +
                 "FROM Admitted_Patients_VisitEvent APV " +
                 "INNER JOIN Patient P ON P.Patient_ID = APV.Patient_ID " +
@@ -150,6 +150,9 @@ namespace HMS_Software_V2.Nurse_Ward
                         uC_NW_ToTreatPatients.PatientCondition = patientCondition;
                         uC_NW_ToTreatPatients.PatientGender = patientGender;
                         uC_NW_ToTreatPatients.PatientAge = patientAge;
+
+                        uC_NW_ToTreatPatients.PatientMedicalEventID = Convert.ToInt32(reader["P_MedicalEventID"]);
+                        Debug.WriteLine($"\nP_MedicalEventID : {Convert.ToInt32(reader["P_MedicalEventID"])}");
 
 
                         #region Change Color

@@ -337,10 +337,10 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                     #region Add Prescription Requests to the PrescriptionRequest table
                     string query2 = "INSERT INTO Patient_PrescriptionRequest (PatientMedicalEvent_ID, Patient_ID, Doctor_ID, PR_Route, PR_Medicin, PR_Medicin_ID," +
-                                    " PR_Dosage, PR_Frequency, PR_Duration, PR_Time, PR_Date, PR__IsCompleted) "
+                                    " PR_Dosage, PR_Frequency, PR_Duration, PR_Time, PR_Date, PR__IsCompleted, LabelName) "
 
                                     + "VALUES (@PatientMedicalEvent_ID, @Patient_ID, @Doctor_ID, @PR_Route, @PR_Medicin, @PR_Medicin_ID, @PR_Dosage, @PR_Frequency, @PR_Duration," +
-                                    " @PR_Time, @PR_Date, @PR__IsCompleted);";
+                                    " @PR_Time, @PR_Date, @PR__IsCompleted, @LabelName);";
 
 
                     foreach (var medicin in SharedData.medicalEvent.Raw_Medicin)
@@ -365,6 +365,12 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             cmd.Parameters.AddWithValue("@PR_Date", date);
                             cmd.Parameters.AddWithValue("@PR__IsCompleted", false);
 
+
+                            MedicalRequest_LabelCreator medicalRequest_LabelCreator = new MedicalRequest_LabelCreator();
+                            string label = medicalRequest_LabelCreator.Create_Prescription_Label(medicin.Item2, medicin.Item1, medicalEventID);
+
+                            cmd.Parameters.AddWithValue("@LabelName", label ?? "Error");
+
                             cmd.ExecuteNonQuery();
 
 
@@ -381,6 +387,8 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             Debug.WriteLine("PR_Time: " + time);
                             Debug.WriteLine("PR_Date: " + date);
                             Debug.WriteLine("PR__IsCompleted: " + false);
+
+                            Debug.WriteLine("\nLabelName: " + label);
                         }
                     }
                     #endregion
@@ -389,9 +397,9 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                     #region Add Lab Requests to the LabRequest table
                     string query3 = "INSERT INTO [dbo].[Patient_LabRequest] " +
-                            "([PatientMedicalEvent_ID], [Lab_Specimen_ID], [Lab_Specimen_Name], [Lab_Investigation_ID], [Lab_Investigation_Name], [IsUrgent]) " +
+                            "([PatientMedicalEvent_ID], [Lab_Specimen_ID], [Lab_Specimen_Name], [Lab_Investigation_ID], [Lab_Investigation_Name], [IsUrgent], [LabelNumber]) " +
                             "VALUES " +
-                            "(@PatientMedicalEvent_ID, @Lab_Specimen_ID, @Lab_Specimen_Name, @Lab_Investigation_ID, @Lab_Investigation_Name, @IsUrgent)";
+                            "(@PatientMedicalEvent_ID, @Lab_Specimen_ID, @Lab_Specimen_Name, @Lab_Investigation_ID, @Lab_Investigation_Name, @IsUrgent, @LabelNumber)";
 
                     for (int i = 0; i < SharedData.medicalEvent.Raw_LabInvestigations.Count; i++)
                     {
@@ -412,6 +420,13 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             cmd.Parameters.AddWithValue("@Lab_Investigation_Name", specimenList.Item2);
                             cmd.Parameters.AddWithValue("@IsUrgent", SharedData.medicalEvent.IsLabRequestUrgent);
 
+                            MedicalRequest_LabelCreator medicalRequest_LabelCreator = new MedicalRequest_LabelCreator();
+                            string label = medicalRequest_LabelCreator.Create_LabRequest_Label(investigationList.Item2, investigationList.Item1, specimenList.Item2, specimenList.Item1, medicalEventID);
+
+                            cmd.Parameters.AddWithValue("@LabelNumber", label ?? "Error");
+
+
+
                             cmd.ExecuteNonQuery();
 
                             Debug.WriteLine("\n ------ Inserting the following values Lab Request ------");
@@ -421,6 +436,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             Debug.WriteLine("Lab_Investigation_ID: " + specimenList.Item1);
                             Debug.WriteLine("Lab_Investigation_Name: " + specimenList.Item2);
                             Debug.WriteLine("IsUrgent: " + SharedData.medicalEvent.IsLabRequestUrgent);
+                            Debug.WriteLine("\nLabelName: " + label);
                         }
                     }
 
@@ -477,4 +493,5 @@ namespace HMS_Software_V2.Doctor_ClincOPD
             }
         }
     }
+
 }

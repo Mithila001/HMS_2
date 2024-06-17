@@ -101,8 +101,8 @@ namespace HMS_Software_V2.General_Purpose
                             }
                             else
                             {
-                                Debug.WriteLine("Already Checked in Round 1 => Return");
-                                return;   
+                                Debug.WriteLine("Already Checked in Round 1");
+                                  
                             }
                         }
                         else if (Round2_Time > CurrentTime)
@@ -118,8 +118,8 @@ namespace HMS_Software_V2.General_Purpose
                             }
                             else
                             {
-                                Debug.WriteLine("Already Checked in Round 2 => Return");
-                                return;
+                                Debug.WriteLine("Already Checked in Round 2");
+                                
                             }
                         }
                         else
@@ -135,8 +135,8 @@ namespace HMS_Software_V2.General_Purpose
                             }
                             else
                             {
-                                Debug.WriteLine("Already Checked in Round 3 => Return");
-                                return;
+                                Debug.WriteLine("Already Checked in Round 3");
+                                
 
                             }
                         }
@@ -184,6 +184,19 @@ namespace HMS_Software_V2.General_Purpose
                 connection.Open();
                 try
                 {
+
+                    #region UPDATE Old WardMedicalEvent Status in Admitted_Patients_VisitEvent Table
+                    string query5 = $"UPDATE Admitted_Patients_VisitEvent SET Is_RoundTimeOut = 1";
+
+                    using (SqlCommand command1 = new SqlCommand(query5, connection))
+                    {
+                        // No need to add SelectedRound as a parameter since it's part of the query
+                        Debug.WriteLine("\nUPDATE Old WardMedicalEvent Status in Admitted_Patients_VisitEvent Table");
+
+                        command1.ExecuteNonQuery();
+                    }
+                    #endregion
+
                     #region SELECT All Admitted Patients
                     string query1 = "SELECT AdmittedPatient_ID, Patient_ID, AP_Condition, AP_VisiteTotalRounds, AP_Ward FROM Admitted_Patients";
 
@@ -233,17 +246,7 @@ namespace HMS_Software_V2.General_Purpose
                 connection.Open();
                 try
                 {
-                    #region UPDATE Old WardMedicalEvent Status in Admitted_Patients_VisitEvent Table
-                    string query5 = $"UPDATE Admitted_Patients_VisitEvent SET Is_RoundTimeOut = 1";
-
-                    using (SqlCommand command1 = new SqlCommand(query5, connection))
-                    {
-                        // No need to add SelectedRound as a parameter since it's part of the query
-                        Debug.WriteLine("\nUPDATE Old WardMedicalEvent Status in Admitted_Patients_VisitEvent Table");
-
-                        command1.ExecuteNonQuery();
-                    }
-                    #endregion
+                    
 
                  
 
