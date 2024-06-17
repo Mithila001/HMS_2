@@ -54,13 +54,10 @@ namespace HMS_Software_V2.Nurse_Ward
             nurseName_lbl.Content = SharedData.Ward_Nurse.NurseName;
             nurseLicenceNo_lbl.Content = SharedData.Ward_Nurse.NureseLicenceNumber;
             wardName_lbl.Content = SharedData.Ward_Nurse.WardName;
-            wardNumber_lbl.Content = SharedData.Ward_Nurse.WardNumber;
+            wardNumber_lbl.Content = "No:"+SharedData.Ward_Nurse.WardNumber+"";
 
             todayDate_lbl.Content = DateTime.Now.ToString("dd/MM/yyyy");
             todaytime_lbl.Content = DateTime.Now.ToString("hh:mm:ss tt");
-
-
-           
 
 
             using (SqlConnection connection = new Database_Connector().GetConnection())
@@ -80,7 +77,7 @@ namespace HMS_Software_V2.Nurse_Ward
                     }
                     #endregion
 
-                    #region Get Total Pending Patients Count
+                    #region Get Total Completed Patients Count
                     string query3 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE Is_VisistedByDoctor =1 AND Is_RoundTimeOut = 0 AND Is_VisitedByNurse = 1";
                     using (SqlCommand command2 = new SqlCommand(query3, connection))
                     {

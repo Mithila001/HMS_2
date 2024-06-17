@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HMS_Software_V2.Nurse_Ward.NuresWard_UserControls"
              mc:Ignorable="d" 
-             MinWidth="1220" MinHeight="100">
+             MinWidth="1220" MinHeight="100" Margin="0,0,0,10">
     
     <UserControl.Resources>
         <Style x:Key="HoverableBorderStyle" TargetType="Border">
@@ -50,7 +50,7 @@
 
 
             <Viewbox Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="50">
-                <CheckBox x:Name="Completed_comboBox" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                <CheckBox x:Name="Completed_CheckBox" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
             </Viewbox>
 
             <Border CornerRadius="20" Height="50" Width="220" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2">

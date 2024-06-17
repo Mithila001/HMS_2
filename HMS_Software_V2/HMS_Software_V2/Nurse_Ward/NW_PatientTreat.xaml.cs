@@ -52,6 +52,9 @@ namespace HMS_Software_V2.Nurse_Ward
         bool IsLabRequest = false;
         bool IsPrescription = false;
         string MonitorRequest = "";
+
+        bool IsPrescriptionRequestCompleted = false;
+        bool IsMonitorRequestCompleted = false;
         private void MyLoadRequestedTreatments()
         {
             using (SqlConnection connection = new Database_Connector().GetConnection())
@@ -62,7 +65,7 @@ namespace HMS_Software_V2.Nurse_Ward
                     connection.Open();
 
                     #region SELECT Available Reqeust From PatientMedical_Event table
-                    string query1 = "SELECT PME_Is_LabRequest, PME_Is_PrescriptionRequest, PME_MonitorRequest FROM PatientMedical_Event WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
+                    string query1 = "SELECT PME_Is_LabRequest, PME_Is_PrescriptionRequest, PME_MonitorRequest, PME_Is_PrescriptionR_Completed, PME_IsMonitorRequestComplet FROM PatientMedical_Event WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
                     using (SqlCommand command = new SqlCommand(query1, connection))
                     {
                        
@@ -82,8 +85,17 @@ namespace HMS_Software_V2.Nurse_Ward
                                 int monitorRequestColumnIndex = reader.GetOrdinal("PME_MonitorRequest");
                                 MonitorRequest = reader.IsDBNull(monitorRequestColumnIndex) ? string.Empty : reader.GetString(monitorRequestColumnIndex);
 
+                                int isPrescriptionRequestCompleted = reader.GetOrdinal("PME_Is_PrescriptionR_Completed");
+                                IsPrescriptionRequestCompleted = !reader.IsDBNull(isPrescriptionRequestCompleted) && reader.GetBoolean(isPrescriptionRequestCompleted);
+
+                                int isMonitorRequestCompleted = reader.GetOrdinal("PME_IsMonitorRequestComplet");
+                                IsMonitorRequestCompleted = !reader.IsDBNull(isMonitorRequestCompleted) && reader.GetBoolean(isMonitorRequestCompleted);
+
                                 MyFilterMeicalEvenrRequests();
                                 Debug.WriteLine("\nRound => SELECT Available Reqeust From PatientMedical_Event table");
+
+                                Debug.WriteLine("IsPrescriptionRequestCompleted: " + IsPrescriptionRequestCompleted);
+                                Debug.WriteLine("PME_IsMonitorRequestComplet: " + IsMonitorRequestCompleted);
 
                             }
                             else
@@ -204,6 +216,21 @@ namespace HMS_Software_V2.Nurse_Ward
 
                         UC_NW_P_PrescrioptionsView uc_NW_P_PrescrioptionsView = new UC_NW_P_PrescrioptionsView(this);
 
+                        uc_NW_P_PrescrioptionsView.PatientMedicalEvnetID =  SharedData.Ward_NursePatient.PatientMedicalEventID;
+
+
+                        if (IsPrescriptionRequestCompleted)
+                        {
+                            uc_NW_P_PrescrioptionsView.Completed_CheckBox.IsChecked = true;
+                        }
+                        else
+                        {
+                            uc_NW_P_PrescrioptionsView.Completed_CheckBox.IsChecked = false;
+                        }
+
+
+
+
                         // Add the user control to the parent container
                         ShowDoctorRequests_WrapP.Children.Add(uc_NW_P_PrescrioptionsView);
 
@@ -226,6 +253,17 @@ namespace HMS_Software_V2.Nurse_Ward
 
 
                         UC_NW_P_MonitorRequests uc_NW_P_MonitorRequests = new UC_NW_P_MonitorRequests(this);
+                        uc_NW_P_MonitorRequests.PatientMedicalaEventID = SharedData.Ward_NursePatient.PatientMedicalEventID;
+
+
+                        if (IsMonitorRequestCompleted)
+                        {
+                            uc_NW_P_MonitorRequests.Completed_CheckBox.IsChecked = true;
+                        }
+                        else
+                        {
+                            uc_NW_P_MonitorRequests.Completed_CheckBox.IsChecked = false;
+                        }
 
                         // Add the user control to the parent container
                         ShowDoctorRequests_WrapP.Children.Add(uc_NW_P_MonitorRequests);
@@ -261,10 +299,15 @@ namespace HMS_Software_V2.Nurse_Ward
 
         }
 
-        private void save_btn_Click(object sender, RoutedEventArgs e)
+        private async void save_btn_Click(object sender, RoutedEventArgs e)
         {
-            MyAssigneLabRequests();
             Debug.WriteLine("\n---------- save_btn_Click ----------\n");
+            MyAssigneLabRequests();
+            MyAssigPrescriptionRequests();
+            MyAssigneMonitorReqeust();
+
+            await Task.Delay(0001); // 1000ms = 1s
+            this.Close();
 
         }
 
@@ -275,7 +318,9 @@ namespace HMS_Software_V2.Nurse_Ward
             Debug.WriteLine("\n\n---------- MyAssigneLabRequests ----------\n");
 
             #region Get and Store required Lab Requesrt User Control's data
-            List<(bool IsSelected, int PublicIntValue)> labData = new List<(bool, int)>();
+
+
+            List<(bool IsSelected, int labRwquestID)> labData = new List<(bool, int)>();
 
             foreach (var control in ShowDoctorRequests_WrapP.Children)
             {
@@ -283,9 +328,9 @@ namespace HMS_Software_V2.Nurse_Ward
 
                 if (control is UC_NW_P_LabRequest uC_NW_P_LabRequest)
                 {
-                    ComboBox? comboBox = uC_NW_P_LabRequest.FindName("Completed_comboBox") as ComboBox;
-                    bool isSelected = comboBox != null && comboBox.SelectedItem != null;
-                    Debug.WriteLine("IsSelected: " + isSelected);
+                    CheckBox? checkBox = uC_NW_P_LabRequest.FindName("Completed_checkbox") as CheckBox;
+                    bool isSelected = checkBox != null && checkBox.IsChecked == true;
+                    Debug.WriteLine("Get => IsSelected: " + isSelected);
 
                     int labrequestID = uC_NW_P_LabRequest.LabRequestID;
                     Debug.WriteLine("labrequestID: " + labrequestID);
@@ -295,64 +340,84 @@ namespace HMS_Software_V2.Nurse_Ward
                     foundUserControls = true;
                 }
             }
+
+
             #endregion
 
             Debug.WriteLine("foundUserControls: " + foundUserControls);
-            //#region UPDATE DB Table
-            //if (foundUserControls)
-            //{
-            //    using (SqlConnection connection = new Database_Connector().GetConnection())
-            //    {
-            //        connection.Open();
+            #region UPDATE DB Table
+            if (foundUserControls)
+            {
+                using (SqlConnection connection = new Database_Connector().GetConnection())
+                {
+                    connection.Open();
 
-            //        try
-            //        {
-            //            connection.Open();
+                    try
+                    {
+                        
 
-            //            #region UPDATE Patient_LabRequest
-            //            string query = "UPDATE Patient_LabRequest SET Is_Completed = @IsCompleted WHERE PatientLabRequests_ID = @PatientLabRequests_ID";
+                        #region UPDATE Patient_LabRequest
+                        string query = "UPDATE Patient_LabRequest SET Is_Completed = @IsCompleted WHERE PatientLabRequests_ID = @PatientLabRequests_ID";
 
-            //            foreach (var (IsSelected, LabRequestID) in labData)
-            //            {
-            //                // Assuming "IsCompleted" is the column you want to update
-            //                // and "PatientLabRequests_ID" is the primary key column of "Patient_LabRequest" table
+                        foreach (var (IsSelected, labRwquestID) in labData)
+                        {
+                            // Assuming "IsCompleted" is the column you want to update
+                            // and "PatientLabRequests_ID" is the primary key column of "Patient_LabRequest" table
 
-            //                using (SqlCommand command = new SqlCommand(query, connection))
-            //                {
-            //                    command.Parameters.AddWithValue("@IsCompleted", IsSelected);
-            //                    command.Parameters.AddWithValue("@PatientLabRequests_ID", LabRequestID);
-
-
-            //                    command.ExecuteNonQuery();
-
-            //                    Debug.WriteLine($"Patient_LabRequest Updated => IsCompleted:{IsSelected}, PatientLabRequests_ID:{LabRequestID} ");
-
-            //                }
-            //            }
-            //            #endregion
+                            using (SqlCommand command = new SqlCommand(query, connection))
+                            {
+                                command.Parameters.AddWithValue("@IsCompleted", IsSelected);
+                                command.Parameters.AddWithValue("@PatientLabRequests_ID", labRwquestID);
 
 
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            Debug.WriteLine("\nError5: \n" + ex.Message);
-            //            MessageBox.Show("Error5: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //            return;
-            //        }
-            //        finally
-            //        {
-            //            connection.Close();
-            //        }
+                                command.ExecuteNonQuery();
 
-            //    }
+                                Debug.WriteLine($"Patient_LabRequest Updated => IsCompleted:{IsSelected}, PatientLabRequests_ID:{labRwquestID} ");
 
-            //}
-            //else
-            //{
-            //    Debug.WriteLine("\nNo Lab Request user controls found !!!!!!!!");
-            //    return;
-            //} 
-            //#endregion
+                            }
+                        }
+                        #endregion
+
+
+                        #region UPDATE Admitted_Patients_VisitEvent
+                        string query2 = "UPDATE Admitted_Patients_VisitEvent SET N_TreatmentStatus = @N_TreatmentStatus WHERE Patient_ID = @Patient_ID";
+
+                        using (SqlCommand command = new SqlCommand(query2, connection))
+                        {
+                            command.Parameters.AddWithValue("@N_TreatmentStatus", "In Progress");
+                            command.Parameters.AddWithValue("@Patient_ID", SharedData.Ward_NursePatient.PatientID);
+
+
+                            command.ExecuteNonQuery();
+
+                            Debug.WriteLine($"Admitted_Patients_VisitEvent Updated => N_TreatmentStatus - In Progress, Patient_ID:{SharedData.Ward_NursePatient.PatientID} ");
+
+                        }
+                        
+                        #endregion
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("\nError5: \n" + ex.Message);
+                        MessageBox.Show("Error5: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+
+                }
+
+            }
+            else
+            {
+                Debug.WriteLine("\nNo Lab Request user controls found !!!!!!!!");
+                return;
+            }
+            #endregion
 
 
         }
@@ -361,11 +426,12 @@ namespace HMS_Software_V2.Nurse_Ward
         {
             Debug.WriteLine("\n\n---------- MyAssigPrescriptionRequests ----------\n");
 
+            bool isSelected = false;
+            int medicalEvnetID = 0;
+
             bool foundUserControls = false;
 
-            Debug.WriteLine("\n\n---------- MyAssigneLabRequests ----------\n");
-
-            #region Get and Store required Lab Requesrt User Control's data
+            #region Get and Store Prescription Requesrt User Control's data
 
             foreach (var control in ShowDoctorRequests_WrapP.Children)
             {
@@ -373,26 +439,317 @@ namespace HMS_Software_V2.Nurse_Ward
 
                 if (control is UC_NW_P_PrescrioptionsView uC_NW_P_PrescrioptionsView)
                 {
-                    ComboBox? comboBox = uC_NW_P_PrescrioptionsView.FindName("Completed_comboBox") as ComboBox;
-                    bool isSelected = comboBox != null && comboBox.SelectedItem != null;
-                    Debug.WriteLine("IsSelected: " + isSelected);
+                    CheckBox? checkBox = uC_NW_P_PrescrioptionsView.FindName("Completed_CheckBox") as CheckBox;
 
-                    int medicalEvnetID = uC_NW_P_PrescrioptionsView.PatientMedicalEvnetID;
-                    Debug.WriteLine("PatientMedicalEvnetID: " + medicalEvnetID);
+                    // Check if the CheckBox is checked
+                    isSelected = checkBox != null && checkBox.IsChecked == true;
+                    Debug.WriteLine("Prescription => IsSelected: " + isSelected);
+
+                    medicalEvnetID = uC_NW_P_PrescrioptionsView.PatientMedicalEvnetID;
+                    Debug.WriteLine("Prescription => PatientMedicalEvnetID: " + medicalEvnetID);
 
                     foundUserControls = true;
+                    break;
+                }
+            }
+            #endregion
+            
+
+            if (foundUserControls && isSelected)
+            {
+                if (medicalEvnetID == 0)
+                {
+                    MessageBox.Show("Failde to get Medical Evnet ID. Medical Evetn ID:" + medicalEvnetID, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
+                using (SqlConnection connection = new Database_Connector().GetConnection())
+                {
+                    connection.Open();
+
+                    try
+                    {
+
+                        #region UPDATE PatientMedical_Event Table
+                        string query = "UPDATE Patient_PrescriptionRequest SET PR__IsCompleted = @PR__IsCompleted WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
+
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@PR__IsCompleted", isSelected);
+                            command.Parameters.AddWithValue("@PatientMedicalEvent_ID", medicalEvnetID);
+                            command.ExecuteNonQuery();
+                            Debug.WriteLine("\nUPDATE Patient_PrescriptionRequest Table,  MedicalEventID: " + medicalEvnetID);
+                        }
+                        #endregion
+
+                        #region UPDATE Patient_PrescriptionRequest Table
+                        string query2 = "UPDATE PatientMedical_Event SET PME_Is_PrescriptionR_Completed = @PME_Is_PrescriptionR_Completed WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
+
+                        using (SqlCommand command = new SqlCommand(query2, connection))
+                        {
+                            command.Parameters.AddWithValue("@PME_Is_PrescriptionR_Completed", isSelected);
+                            command.Parameters.AddWithValue("@PatientMedicalEvent_ID", medicalEvnetID);
+                            command.ExecuteNonQuery();
+                            Debug.WriteLine("\nUPDATE Patient_PrescriptionRequest Table,  MedicalEventID: " + medicalEvnetID);
+                        }
+                        #endregion
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error6: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        Debug.WriteLine("\nError5: \n" + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+
+            }//Update Patient_PrescriptionRequest Table
+            
+        }
+
+        private void MyAssigneMonitorReqeust()
+        {
+
+            bool isSelected = false;
+            int medicalEvnetID = 0;
+            bool foundUserControls = false;
+
+            #region Get and Store required Monitor Request User Control's data
+
+            foreach (var control in ShowDoctorRequests_WrapP.Children)
+            {
+                Debug.WriteLine("\nforeach (var control in ShowDoctorRequests_WrapP.Children)");
+
+                if (control is UC_NW_P_MonitorRequests uC_NW_P_MonitorRequests)
+                {
+                    CheckBox? checkBox = uC_NW_P_MonitorRequests.FindName("Completed_CheckBox") as CheckBox;
+
+                    // Check if the CheckBox is checked
+                    isSelected = checkBox != null && checkBox.IsChecked == true;
+                    Debug.WriteLine("Monitor => IsSelected: " + isSelected);
+
+                    medicalEvnetID = uC_NW_P_MonitorRequests.PatientMedicalaEventID;
+                    Debug.WriteLine("Monitor => PatientMedicalaEventID: " + medicalEvnetID);
+
+                    foundUserControls = true;
+                    break;
                 }
             }
             #endregion
 
 
-            if (foundUserControls)
-            {
 
-            }
+            if (foundUserControls && isSelected)
+            {
+                if (medicalEvnetID == 0)
+                {
+                    MessageBox.Show("Failde to get Medical Evnet ID. Medical Evetn ID:" + medicalEvnetID, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                using (SqlConnection connection = new Database_Connector().GetConnection())
+                {
+                    connection.Open();
+
+                    try
+                    {
+
+                        #region UPDATE PatientMedical_Event Table
+                        string query = "UPDATE PatientMedical_Event SET PME_IsMonitorRequestComplet = @PME_IsMonitorRequestComplet WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
+
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@PME_IsMonitorRequestComplet", isSelected);
+                            command.Parameters.AddWithValue("@PatientMedicalEvent_ID", medicalEvnetID);
+                            command.ExecuteNonQuery();
+                            Debug.WriteLine("\nUPDATE PatientMedical_Event Table,  MedicalEventID: " + medicalEvnetID);
+                            Debug.WriteLine("\nUPDATE PatientMedical_Event Table,  PME_IsMonitorRequestComplet: " + isSelected);
+                        }
+                        #endregion
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error6: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        Debug.WriteLine("\nError5: \n" + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+
+            }//Update Medical Event Table Table
+
+
+
+
         }
 
+        private void NW_PatientTreat1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            NW_Dashboard nW_Dashboard = new NW_Dashboard();
+            nW_Dashboard.Show();
+        }
 
+        private void complete_btn_Click(object sender, RoutedEventArgs e)
+        {
+            bool isLabRequestCompleted = true;
+            bool isPrescriptionRequestCompleted = true;
+            bool isMonitorRequestCompleted = true;
+
+            #region Scan throug LabRequest User Controls
+            foreach (var control in ShowDoctorRequests_WrapP.Children)
+            {
+                Debug.WriteLine("\nScan throug LabRequest User Controls)");
+
+                if (control is UC_NW_P_LabRequest uC_NW_P_LabRequest)
+                {
+                    CheckBox? checkBox = uC_NW_P_LabRequest.FindName("Completed_checkbox") as CheckBox;
+                    bool isSelected = checkBox != null && checkBox.IsChecked == true;
+                    Debug.WriteLine("LabReqeust Check => IsSelected: " + isSelected);
+
+                    if (!isSelected)
+                    {
+                        isLabRequestCompleted = false;
+                        break;
+                    }
+
+                }
+            } 
+            #endregion
+
+
+            #region Scan through Prescription Request User Controls
+
+            foreach (var control in ShowDoctorRequests_WrapP.Children)
+            {
+                Debug.WriteLine("\nScan through Prescription Request User Controls)");
+
+                if (control is UC_NW_P_PrescrioptionsView uC_NW_P_PrescrioptionsView)
+                {
+                    CheckBox? checkBox = uC_NW_P_PrescrioptionsView.FindName("Completed_CheckBox") as CheckBox;
+
+                    // Check if the CheckBox is checked
+                    bool isSelected = checkBox != null && checkBox.IsChecked == true;
+                    Debug.WriteLine("Prescription => IsSelected: " + isSelected);
+
+                    if(!isSelected)
+                    {
+                        isPrescriptionRequestCompleted = false;
+                        break;
+                    }
+                }
+            }
+            #endregion
+
+
+            #region Scan through Monitor Request User Control's data
+
+            foreach (var control in ShowDoctorRequests_WrapP.Children)
+            {
+                Debug.WriteLine("\nScan through Monitor Request User Control's data");
+
+                if (control is UC_NW_P_MonitorRequests uC_NW_P_MonitorRequests)
+                {
+                    CheckBox? checkBox = uC_NW_P_MonitorRequests.FindName("Completed_CheckBox") as CheckBox;
+
+                    // Check if the CheckBox is checked
+                    bool isSelected = checkBox != null && checkBox.IsChecked == true;
+                    Debug.WriteLine("Monitor => IsSelected: " + isSelected);
+
+                    if (!isSelected)
+                    {
+                        isMonitorRequestCompleted = false;
+                        break;
+                    }
+  
+                }
+            }
+            #endregion
+
+
+
+            if (isLabRequestCompleted && isPrescriptionRequestCompleted && isMonitorRequestCompleted)
+            {
+                #region UPDATE Admitted_Patients_VisitEvent
+                using (SqlConnection connection = new Database_Connector().GetConnection())
+                {
+                    connection.Open();
+
+                    try
+                    {
+                        string query2 = "UPDATE Admitted_Patients_VisitEvent SET N_TreatmentStatus = @N_TreatmentStatus, Is_VisitedByNurse = @Is_VisitedByNurse  WHERE Patient_ID = @Patient_ID AND Is_RoundTimeOut = 0 ";
+
+                        using (SqlCommand command = new SqlCommand(query2, connection))
+                        {
+                            command.Parameters.AddWithValue("@N_TreatmentStatus", "Completed");
+                            command.Parameters.AddWithValue("@Is_VisitedByNurse", 1);
+                            command.Parameters.AddWithValue("@Patient_ID", SharedData.Ward_NursePatient.PatientID);
+                            command.ExecuteNonQuery();
+                            this.Close();
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error8" + ex, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                } 
+                #endregion
+            }
+            else
+            {
+                var result = MessageBox.Show("All The Tasks Are Not Completed! Want to Continue?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                #region If Yes -> Update Admitted_Patients_VisitEvent
+                if (result == MessageBoxResult.Yes)
+                {
+                    using (SqlConnection connection = new Database_Connector().GetConnection())
+                    {
+                        connection.Open();
+
+                        try
+                        {
+                            string query2 = "UPDATE Admitted_Patients_VisitEvent SET N_TreatmentStatus = @N_TreatmentStatus, Is_VisitedByNurse = @Is_VisitedByNurse  WHERE Patient_ID = @Patient_ID AND Is_RoundTimeOut = 0 ";
+
+                            using (SqlCommand command = new SqlCommand(query2, connection))
+                            {
+                                command.Parameters.AddWithValue("@N_TreatmentStatus", "Completed");
+                                command.Parameters.AddWithValue("@Is_VisitedByNurse", 1);
+                                command.Parameters.AddWithValue("@Patient_ID", SharedData.Ward_NursePatient.PatientID);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error8" + ex, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        finally
+                        {
+                            connection.Close();
+                        }
+                    }
+
+
+                    this.Close();
+                }
+                else
+                {
+                    return;
+                } 
+                #endregion
+
+            }
+
+
+        }
     }
     
 }

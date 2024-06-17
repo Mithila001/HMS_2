@@ -32,7 +32,9 @@ namespace HMS_Software_V2.Nurse_Ward.NuresWard_UserControls
 
         private void ViewInfo_btn_Click(object sender, RoutedEventArgs e)
         {
-            
+            NW_ShowPrescriptionRequest nW_ShowPrescriptionRequest = new NW_ShowPrescriptionRequest(parentFormReferece);
+            nW_ShowPrescriptionRequest.Show();
+            parentFormReferece.Hide();
         }
     }
 }

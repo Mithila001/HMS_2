@@ -26,8 +26,14 @@ namespace HMS_Software_V2
             NW_Dashboard nW_Dashboard = new NW_Dashboard();
             nW_Dashboard.Show();
 
-            DW_MainPage dW_MainPage = new DW_MainPage();
+            //DW_MainPage dW_MainPage = new DW_MainPage();
             //dW_MainPage.Show();
+
+            //NW_ShowPrescriptionRequest nW_ShowPrescriptionRequest = new NW_ShowPrescriptionRequest();
+            //nW_ShowPrescriptionRequest.Show();
+
+            //Test test = new Test();
+            //test.Show();
         }
     }
 

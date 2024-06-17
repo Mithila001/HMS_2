@@ -28,6 +28,7 @@ namespace HMS_Software_V2.Nurse_Ward.NuresWard_UserControls
         }
 
         public bool IsCompleted { get; set; }
+        public int PatientMedicalaEventID { get; set; }
 
         private void ViewInfo_btn_Click(object sender, RoutedEventArgs e)
         {
