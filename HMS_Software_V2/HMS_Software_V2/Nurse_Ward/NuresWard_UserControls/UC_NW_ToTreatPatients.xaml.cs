@@ -55,6 +55,9 @@ namespace HMS_Software_V2.Nurse_Ward.NuresWard_UserControls
                 SharedData.Ward_NursePatient.PatientCondition = PatientCondition ?? "Error";
                 SharedData.Ward_NursePatient.PatientMedicalEventID = PatientMedicalEventID;
 
+                parentForm.IsGoingToLoginPage = false;
+
+
                 NW_PatientTreat nW_PatientTreat = new NW_PatientTreat();
                 nW_PatientTreat.Show();
                 parentForm.Close();

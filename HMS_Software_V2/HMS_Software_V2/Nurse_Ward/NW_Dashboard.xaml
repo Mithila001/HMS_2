@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HMS_Software_V2.Nurse_Ward"
         mc:Ignorable="d"
         Title="NW_Dashboard" Height="720" Width="1280" WindowStartupLocation="CenterScreen"
-        MinHeight="720" MinWidth="1280">
+        MinHeight="720" MinWidth="1280" Closing="Window_Closing">
 
 
     <Grid Background="#FFE6FEF9">

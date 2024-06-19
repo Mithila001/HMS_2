@@ -28,6 +28,8 @@ namespace HMS_Software_V2.Nurse_Ward
     {
         public NW_PatientTreat()
         {
+            Debug.WriteLine("\n\n\n =================================================== NW_PatientTreat ===================================================\n\n ");
+
             InitializeComponent();
 
             MyLoadBasicDetails();
@@ -37,6 +39,7 @@ namespace HMS_Software_V2.Nurse_Ward
 
         private void MyLoadBasicDetails()
         {
+           
             patientName_lbl.Content = SharedData.Ward_NursePatient.PatientName;
             patientRID_lbl.Content = SharedData.Ward_NursePatient.PatientID;
             patientAge_lbl.Content = SharedData.Ward_NursePatient.PatientAge;
@@ -57,13 +60,14 @@ namespace HMS_Software_V2.Nurse_Ward
         bool IsMonitorRequestCompleted = false;
         private void MyLoadRequestedTreatments()
         {
+            Debug.WriteLine("\n Method => MyLoadRequestedTreatments() ");
             using (SqlConnection connection = new Database_Connector().GetConnection())
             {
 
                 try
                 {
                     connection.Open();
-
+                    Debug.WriteLine("\n SELECT Available Reqeust From [PatientMedical_Event] table ");
                     #region SELECT Available Reqeust From PatientMedical_Event table
                     string query1 = "SELECT PME_Is_LabRequest, PME_Is_PrescriptionRequest, PME_MonitorRequest, PME_Is_PrescriptionR_Completed, PME_IsMonitorRequestComplet FROM PatientMedical_Event WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
                     using (SqlCommand command = new SqlCommand(query1, connection))
@@ -75,7 +79,7 @@ namespace HMS_Software_V2.Nurse_Ward
                         {
                             if (reader.Read())
                             {
-
+                                Debug.WriteLine("Found Record ");
                                 int isLabRequestColumnIndex = reader.GetOrdinal("PME_Is_LabRequest");
                                 IsLabRequest = !reader.IsDBNull(isLabRequestColumnIndex) && reader.GetBoolean(isLabRequestColumnIndex);
 
@@ -91,11 +95,22 @@ namespace HMS_Software_V2.Nurse_Ward
                                 int isMonitorRequestCompleted = reader.GetOrdinal("PME_IsMonitorRequestComplet");
                                 IsMonitorRequestCompleted = !reader.IsDBNull(isMonitorRequestCompleted) && reader.GetBoolean(isMonitorRequestCompleted);
 
-                                MyFilterMeicalEvenrRequests();
-                                Debug.WriteLine("\nRound => SELECT Available Reqeust From PatientMedical_Event table");
 
+                                Debug.WriteLine("\n ------------------------------------------------------");
+
+                                Debug.WriteLine("IsLabReques: "+ IsLabRequest);
+                                Debug.WriteLine("IsPrescription: " + IsPrescription);
+                                Debug.WriteLine("MonitorRequest: " + MonitorRequest);
                                 Debug.WriteLine("IsPrescriptionRequestCompleted: " + IsPrescriptionRequestCompleted);
-                                Debug.WriteLine("PME_IsMonitorRequestComplet: " + IsMonitorRequestCompleted);
+                                Debug.WriteLine("IsMonitorRequestCompleted: " + IsMonitorRequestCompleted);
+                                Debug.WriteLine("\n ------------------------------------------------------");
+
+
+                                Debug.WriteLine("\n Method =>  MyFilterMeicalEvenrRequests() ");
+                                MyFilterMeicalEvenrRequests();
+                                
+
+                               
 
                             }
                             else
@@ -135,6 +150,8 @@ namespace HMS_Software_V2.Nurse_Ward
                     // Getting Lab Requests
                     if (IsLabRequest)
                     {
+                        Debug.WriteLine("\n Getting Lab Request from DB ");
+
                         #region SELECT Lab Reqests
 
                         int dataReadCounter = 0;
@@ -455,7 +472,7 @@ namespace HMS_Software_V2.Nurse_Ward
             #endregion
             
 
-            if (foundUserControls && isSelected)
+            if (foundUserControls)
             {
                 if (medicalEvnetID == 0)
                 {
@@ -470,7 +487,7 @@ namespace HMS_Software_V2.Nurse_Ward
                     try
                     {
 
-                        #region UPDATE PatientMedical_Event Table
+                        #region UPDATE Patient_PrescriptionRequest Table
                         string query = "UPDATE Patient_PrescriptionRequest SET PR__IsCompleted = @PR__IsCompleted WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
@@ -482,7 +499,7 @@ namespace HMS_Software_V2.Nurse_Ward
                         }
                         #endregion
 
-                        #region UPDATE Patient_PrescriptionRequest Table
+                        #region UPDATE PatientMedical_Event Table
                         string query2 = "UPDATE PatientMedical_Event SET PME_Is_PrescriptionR_Completed = @PME_Is_PrescriptionR_Completed WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
 
                         using (SqlCommand command = new SqlCommand(query2, connection))
@@ -492,6 +509,23 @@ namespace HMS_Software_V2.Nurse_Ward
                             command.ExecuteNonQuery();
                             Debug.WriteLine("\nUPDATE Patient_PrescriptionRequest Table,  MedicalEventID: " + medicalEvnetID);
                         }
+                        #endregion
+
+                        #region UPDATE Admitted_Patients_VisitEvent
+                        string query3 = "UPDATE Admitted_Patients_VisitEvent SET N_TreatmentStatus = @N_TreatmentStatus WHERE Patient_ID = @Patient_ID";
+
+                        using (SqlCommand command = new SqlCommand(query3, connection))
+                        {
+                            command.Parameters.AddWithValue("@N_TreatmentStatus", "In Progress");
+                            command.Parameters.AddWithValue("@Patient_ID", SharedData.Ward_NursePatient.PatientID);
+
+
+                            command.ExecuteNonQuery();
+
+                            Debug.WriteLine($"Admitted_Patients_VisitEvent Updated => N_TreatmentStatus - In Progress, Patient_ID:{SharedData.Ward_NursePatient.PatientID} ");
+
+                        }
+
                         #endregion
 
                     }
@@ -542,7 +576,7 @@ namespace HMS_Software_V2.Nurse_Ward
 
 
 
-            if (foundUserControls && isSelected)
+            if (foundUserControls)
             {
                 if (medicalEvnetID == 0)
                 {
@@ -568,6 +602,23 @@ namespace HMS_Software_V2.Nurse_Ward
                             Debug.WriteLine("\nUPDATE PatientMedical_Event Table,  MedicalEventID: " + medicalEvnetID);
                             Debug.WriteLine("\nUPDATE PatientMedical_Event Table,  PME_IsMonitorRequestComplet: " + isSelected);
                         }
+                        #endregion
+
+                        #region UPDATE Admitted_Patients_VisitEvent
+                        string query2 = "UPDATE Admitted_Patients_VisitEvent SET N_TreatmentStatus = @N_TreatmentStatus WHERE Patient_ID = @Patient_ID";
+
+                        using (SqlCommand command = new SqlCommand(query2, connection))
+                        {
+                            command.Parameters.AddWithValue("@N_TreatmentStatus", "In Progress");
+                            command.Parameters.AddWithValue("@Patient_ID", SharedData.Ward_NursePatient.PatientID);
+
+
+                            command.ExecuteNonQuery();
+
+                            Debug.WriteLine($"Admitted_Patients_VisitEvent Updated => N_TreatmentStatus - In Progress, Patient_ID:{SharedData.Ward_NursePatient.PatientID} ");
+
+                        }
+
                         #endregion
 
                     }
@@ -725,6 +776,9 @@ namespace HMS_Software_V2.Nurse_Ward
                                 command.Parameters.AddWithValue("@N_TreatmentStatus", "Completed");
                                 command.Parameters.AddWithValue("@Is_VisitedByNurse", 1);
                                 command.Parameters.AddWithValue("@Patient_ID", SharedData.Ward_NursePatient.PatientID);
+                                command.ExecuteNonQuery();
+
+                                Debug.WriteLine("\n If Yes -> Update Admitted_Patients_VisitEvent ");
                             }
                         }
                         catch (Exception ex)

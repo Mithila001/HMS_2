@@ -4,6 +4,7 @@ using HMS_Software_V2.Doctor_Ward.UserControls_DW;
 using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.Nurse_Ward.NuresWard_UserControls;
 using HMS_Software_V2.Reception.R_UserControls;
+using HMS_Software_V2.UserLogin_Page;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -32,7 +33,7 @@ namespace HMS_Software_V2.Nurse_Ward
             InitializeComponent();
 
 
-            MyTemporary();
+            //MyTemporary();
 
             MyDisplayBasicData();
 
@@ -226,10 +227,22 @@ namespace HMS_Software_V2.Nurse_Ward
         }
         private async void WaitTimer()
         {
-            Debug.WriteLine("\n Width:");
+            Debug.WriteLine("\n WaitTimer");
             await Task.Delay(5000);
 
            
+        }
+
+        public bool IsGoingToLoginPage = true;
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsGoingToLoginPage)
+            {
+                UserLogin userLogin = new UserLogin();
+                userLogin.Show();
+            }
+            
+            
         }
     }
 }

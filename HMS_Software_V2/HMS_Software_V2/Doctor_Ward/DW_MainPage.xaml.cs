@@ -2,6 +2,7 @@
 using HMS_Software_V2.AdmissionOfficer.UserControls_AO;
 using HMS_Software_V2.Doctor_Ward.UserControls_DW;
 using HMS_Software_V2.General_Purpose;
+using HMS_Software_V2.UserLogin_Page;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -37,7 +38,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
             Debug.WriteLine("\n\n============= DW_MainPage =============\n\n");
 
-            Temporory();
+            //Temporory();
 
             MyLoad_BasicDetails();
 
@@ -326,5 +327,16 @@ namespace HMS_Software_V2.Doctor_Ward
 
         }
 
+        public bool IsGoingToUserLoginPage = true;
+        private void DW_MainPage1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsGoingToUserLoginPage)
+            {
+                UserLogin userLogin = new UserLogin();
+                userLogin.Show();
+            }
+            
+            
+        }
     }
 }
