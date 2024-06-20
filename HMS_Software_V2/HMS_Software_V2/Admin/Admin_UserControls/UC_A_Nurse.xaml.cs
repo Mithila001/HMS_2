@@ -1,5 +1,7 @@
-﻿using System;
+﻿using HMS_Software_V2.General_Purpose;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,42 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
         public UC_A_Nurse()
         {
             InitializeComponent();
+            MyGetNurseData();
+        }
+
+        private void MyGetNurseData()
+        {
+            using (SqlConnection connection = new Database_Connector().GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    #region Get Total Nurses Count
+                    string query2 = "SELECT COUNT(*) FROM Nurse";
+                    using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    {
+
+                        int count = (int)command2.ExecuteScalar();
+                        totalNurses.Content = count.ToString();
+                    }
+
+                    #endregion
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+
+            }
         }
     }
 }

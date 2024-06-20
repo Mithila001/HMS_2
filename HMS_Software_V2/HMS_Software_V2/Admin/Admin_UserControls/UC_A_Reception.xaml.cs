@@ -1,5 +1,7 @@
-﻿using System;
+﻿using HMS_Software_V2.General_Purpose;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,44 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
         public UC_A_Reception()
         {
             InitializeComponent();
+            MyGetReceptionData();
+        }
+
+        private void MyGetReceptionData()
+        {
+            using (SqlConnection connection = new Database_Connector().GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    //#region Get Total Reception Count
+                    //string query2 = "SELECT COUNT(*) FROM Patient WHERE P_CurrentStatus = 'Out-Patient' OR P_CurrentStatus = 'New Registered' ";
+                    //using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    //{
+
+                    //    int count = (int)command2.ExecuteScalar();
+                    //    totalReceptions.Content = count.ToString();
+                    //}
+
+                    //#endregion
+
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+
+            }
         }
     }
 }
