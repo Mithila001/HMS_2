@@ -10,12 +10,16 @@
 
   <ItemGroup>
     <None Remove="Assest\icons\icons8-add-100.png" />
+    <None Remove="Assest\icons\icons8-appointment-100.png" />
     <None Remove="Assest\icons\icons8-correct-100.png" />
     <None Remove="Assest\icons\icons8-delete-100.png" />
+    <None Remove="Assest\icons\icons8-doctor-100.png" />
+    <None Remove="Assest\icons\icons8-home-100.png" />
+    <None Remove="Assest\icons\icons8-nurse-100.png" />
+    <None Remove="Assest\icons\icons8-patient-100.png" />
+    <None Remove="Assest\icons\icons8-reception-100.png" />
     <None Remove="Assest\icons\icons8-search-100.png" />
-    <None Remove="Assest\icons\icons8-search-18.png" />
     <None Remove="Assest\icons\icons8-search-250.png" />
-    <None Remove="Assest\icons\icons8-search-30.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,12 +29,16 @@
 
   <ItemGroup>
     <Resource Include="Assest\icons\icons8-add-100.png" />
+    <Resource Include="Assest\icons\icons8-appointment-100.png" />
     <Resource Include="Assest\icons\icons8-correct-100.png" />
     <Resource Include="Assest\icons\icons8-delete-100.png" />
+    <Resource Include="Assest\icons\icons8-doctor-100.png" />
+    <Resource Include="Assest\icons\icons8-home-100.png" />
+    <Resource Include="Assest\icons\icons8-nurse-100.png" />
+    <Resource Include="Assest\icons\icons8-patient-100.png" />
+    <Resource Include="Assest\icons\icons8-reception-100.png" />
     <Resource Include="Assest\icons\icons8-search-100.png" />
-    <Resource Include="Assest\icons\icons8-search-18.png" />
     <Resource Include="Assest\icons\icons8-search-250.png" />
-    <Resource Include="Assest\icons\icons8-search-30.png" />
   </ItemGroup>
 
   <ItemGroup>

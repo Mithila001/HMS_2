@@ -43,6 +43,8 @@ namespace HMS_Software_V2
             Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
             admin_Dashboard.Show();
 
+            
+
         }
     }
 

@@ -1,6 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+
+    <BitmapImage x:Key="AddIconImage1" UriSource="../icons/icons8-add-100.png"/>
+
+    <SolidColorBrush x:Key="C_Defult_ButtonBackgroundBrush1" Color="#FF4F007F"/>
+    
+    <Color x:Key="C_MouseEnter_ButtonColor1">#412edb</Color>
+    <Color x:Key="C_MouseLeave_ButtonColor1">#FF4F007F</Color>
+
+    
     <!--// Dock Bar Button Style //-->
 
     <Style x:Key="DockBtnStyle2"
@@ -12,15 +21,20 @@
         <Setter Property="Width"
             Value="50" />
 
+        <Setter Property="Background" Value="{StaticResource C_Defult_ButtonBackgroundBrush1}"/>
+
         <Setter Property="Template">
 
             <Setter.Value>
 
                 <ControlTemplate TargetType="{x:Type Button}">
 
-                    <Border x:Name="border"
-                        BorderThickness="0"
-                        Background="{TemplateBinding Background}" />
+                    <Border x:Name="border2" BorderThickness="0" Background="{TemplateBinding Background}" Padding="5" CornerRadius="10">
+                        <Grid>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+
 
                 </ControlTemplate>
 
@@ -41,6 +55,7 @@
                         <DoubleAnimation Storyboard.TargetProperty="(Button.Height)"
                                      To="65"
                                      Duration="0:0:0.3" />
+                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="{StaticResource C_MouseEnter_ButtonColor1}" Duration="0:0:0.3"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
@@ -55,6 +70,7 @@
                         <DoubleAnimation Storyboard.TargetProperty="(Button.Height)"
                                      To="50"
                                      Duration="0:0:0.3" />
+                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="{StaticResource C_MouseLeave_ButtonColor1}" Duration="0:0:0.3"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
@@ -63,23 +79,24 @@
 
     <!--// Dock Bar Button Popup //-->
 
+
     <Style x:Key="PopupStyle2"
-       TargetType="Popup">
+        TargetType="Popup">
 
         <Setter Property="AllowsTransparency"
-            Value="True" />
+        Value="True" />
 
         <Setter Property="VerticalOffset"
-            Value="-30" />
+        Value="10" />
 
-        <Setter Property="HorizontalAlignment"
-            Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center"/>
 
         <Setter Property="Height"
-            Value="35" />
+        Value="35" />
 
         <Setter Property="Placement"
-            Value="Top" />
+        Value="Right" />
 
     </Style>
 
@@ -92,13 +109,13 @@
             Value="27" />
 
         <Setter Property="Background"
-            Value="#FFFFFF" />
+            Value="#3eb3ff" />
 
         <Setter Property="CornerRadius"
             Value="4" />
 
         <Setter Property="VerticalAlignment"
-            Value="Top" />
+            Value="Center" />
 
     </Style>
 
@@ -133,13 +150,13 @@
             Value="Center" />
 
         <Setter Property="VerticalAlignment"
-            Value="Bottom" />
+            Value="Center" />
 
         <Setter Property="Data"
             Value="M0,0 L8,8 16,0 L0,0" />
 
         <Setter Property="Fill"
-            Value="#FFFFFF" />
+            Value="#3eb3ff" />
 
         <Setter Property="Height"
             Value="8" />
@@ -148,10 +165,26 @@
             Value="16" />
 
         <Setter Property="Stroke"
-            Value="#FFFFFF" />
+            Value="#3eb3ff" />
 
         <Setter Property="Stretch"
             Value="None" />
+
+        
+
+
+        <!-- Adding the RotateTransform to rotate the arrow -->
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.9" ScaleY="1.6"/>
+                    <!-- Adjust ScaleX and ScaleY to scale the arrow -->
+                    <RotateTransform Angle="90" CenterX="1" CenterY="1"/>
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="RenderTransformOrigin"
+         Value="0.5,0.5" />
 
     </Style>
 
