@@ -24,7 +24,7 @@
                 <ResourceDictionary Source="Assest/Resources/SwtichButton.xaml"/>
                 <ResourceDictionary Source="Admin\Dock Style.xaml"/>
 				<ResourceDictionary Source="Assest/Resources/SidePanelStyles.xaml"/>
-				
+				<ResourceDictionary Source="Assest/Resources/AdminUserControlsResources.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
 
