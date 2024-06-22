@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using Newtonsoft.Json;
+using HMS_Software_V2.Doctor_Ward;
+using HMS_Software_V2.Nurse_Ward;
 
 namespace HMS_Software_V2.UserLogin_Page
 {
@@ -34,58 +36,32 @@ namespace HMS_Software_V2.UserLogin_Page
 
         }
 
-        private List<string> data = new List<string>
+        private void DoctorWard_btn_Click(object sender, RoutedEventArgs e)
         {
-            "Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape", "Honeydew","Ann"
-        };
-
-        private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            string query = SearchTextBox.Text.ToLower();
-            if (string.IsNullOrEmpty(query))
-            {
-                SearchResultsListBox.ItemsSource = null;
-                SearchResultsPopup.IsOpen = false;
-                return;
-            }
-
-            var filteredData = data.Where(item => item.ToLower().Contains(query)).Take(10).ToList();
-            SearchResultsListBox.ItemsSource = filteredData;
-            SearchResultsPopup.IsOpen = filteredData.Any();
+            HMS_Software_V2._DataManage_Classes.SharedData.Ward_Doctor = new HMS_Software_V2._DataManage_Classes.Ward_Doctor(); // Get a new copy of the template
+            SharedData.Ward_Doctor.DoctorName = "Dr. John Doe";
+            SharedData.Ward_Doctor.DoctorID = 3;
+            SharedData.Ward_Doctor.DoctorSpeciality = "General Physician";
+            SharedData.Ward_Doctor.WardID = 6;
+            SharedData.Ward_Doctor.WardName = "Maternity";
 
 
-            // Assuming each item in the ListBox has a height of 20
-            SearchResultsListBox.Height = filteredData.Count * 20;
-        }
-
-        
-
-
-        private void login_btn_Click(object sender, RoutedEventArgs e)
-        {
-            HMS_Software_V2._DataManage_Classes.SharedData.doctorData = new HMS_Software_V2._DataManage_Classes.DoctorData(); //This will delete the previous data and add a new copy.
-
-            SharedData.doctorData.doctorLocation = "OPD"; // Warning! need to modify
-
-            SharedData.doctorData.doctorName = "Sam J";
-            SharedData.doctorData.doctorID = 1;
-            SharedData.doctorData.doctorSpecialization = "General Physician";
-
-            DCO_Dashboard dCO_Dashboard = new DCO_Dashboard();
-            dCO_Dashboard.Show();
+            DW_MainPage dW_MainPage = new DW_MainPage();
+            dW_MainPage.Show();
             this.Close();
         }
 
-        private void login_btn2_Click(object sender, RoutedEventArgs e)
+        private void NureceWard_btn_Click(object sender, RoutedEventArgs e)
         {
-            HMS_Software_V2._DataManage_Classes.SharedData.doctorData = new HMS_Software_V2._DataManage_Classes.DoctorData();
+            HMS_Software_V2._DataManage_Classes.SharedData.Ward_Nurse = new HMS_Software_V2._DataManage_Classes.Ward_Nurse(); // Get a new copy of the template
+            SharedData.Ward_Nurse.NurseID = 4;
+            SharedData.Ward_Nurse.NurseName = "J C Kalubovial";
+            SharedData.Ward_Nurse.WardName = "General Ward";
+            SharedData.Ward_Nurse.NureseLicenceNumber = "Nurse-0001";
+            SharedData.Ward_Nurse.WardNumber = 1;
 
-           
-
-            SharedData.doctorData.doctorName = "Cardi V";
-
-            DCO_Dashboard dCO_Dashboard = new DCO_Dashboard();
-            dCO_Dashboard.Show();
+            NW_Dashboard nW_Dashboard = new NW_Dashboard();
+            nW_Dashboard.Show();
             this.Close();
         }
     }

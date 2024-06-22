@@ -63,6 +63,9 @@ namespace HMS_Software_V2.Doctor_Ward.UserControls_DW
 
                 SharedData.medicalEvent.PatientVisitCount = TotalVisitRouds;
 
+
+                ParentPageReferece.IsGoingToUserLoginPage = false;
+
                 DW_ProgressNote dw_ProgressNote = new DW_ProgressNote();
                 dw_ProgressNote.Show();
                 ParentPageReferece.Close();

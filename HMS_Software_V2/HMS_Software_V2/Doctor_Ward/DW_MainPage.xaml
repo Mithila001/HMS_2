@@ -7,7 +7,7 @@
         xmlns:UserControls_DW="clr-namespace:HMS_Software_V2.Doctor_Ward.UserControls_DW" x:Name="DW_MainPage1" x:Class="HMS_Software_V2.Doctor_Ward.DW_MainPage"
         mc:Ignorable="d"
         Title="DW_MainPage" Height="720" Width="1280" WindowStartupLocation="CenterScreen"
-        MinHeight="720" MinWidth="1280">
+        MinHeight="720" MinWidth="1280" Closing="DW_MainPage1_Closing">
     <Grid Background="#FFE6FEF9">
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>

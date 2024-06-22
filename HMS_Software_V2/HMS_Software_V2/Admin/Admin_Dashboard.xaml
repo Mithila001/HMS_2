@@ -1,0 +1,240 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HMS_Software_V2.Admin"
+        xmlns:Admin_UserControls="clr-namespace:HMS_Software_V2.Admin.Admin_UserControls" x:Class="HMS_Software_V2.Admin.Admin_Dashboard"
+        mc:Ignorable="d"
+        Title="Admin_Dashboard" Height="720" Width="1280" WindowStartupLocation="CenterScreen"
+        MinHeight="720" MinWidth="1280">
+
+
+
+
+
+
+    <Grid Background="#FFE6FEF9">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="95"/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="1" Grid.ColumnSpan="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="5,5,10,5">
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="415*" MaxWidth="450"/>
+                    <ColumnDefinition Width="415*"/>
+                    <ColumnDefinition Width="250*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Grid.Column="0" Margin="0,5,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="78" Fill="#FFB7B7B7" RadiusX="1" RadiusY="1"/>
+                <Rectangle Grid.Column="1" Margin="0,5,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="78" Fill="#FFB7B7B7" RadiusX="1" RadiusY="1"/>
+
+                <Label x:Name="selectedPage_lbl" Content="SelectedSection" FontSize="34" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
+
+                <Label x:Name="adminName_lbl" Content="Admin Name" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,30" Grid.Column="1" Padding="0"/>
+                <TextBlock Text="Admin" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,30,0,0" Grid.Column="1"/>
+
+                <Label x:Name="todatDate_lbl" Content="20th Augest 2022" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,35" Grid.Column="2" Padding="0"/>
+                <Label x:Name="todayTime_lbl" Content="4.52 PM" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,35,0,0" Grid.Column="2" Padding="0"/>
+
+
+            </Grid>
+
+        </Border>
+
+        <Grid Grid.RowSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border Background="#FF4F007F" Grid.RowSpan="8" CornerRadius="0,20,20,0" VerticalAlignment="Center" Height="520"/>
+
+            <Button Grid.Row="1" x:Name="Home_btn" Style="{StaticResource DockBtnStyle2}" Click="Home_btn_Click">
+                <Grid>
+                    <Image Source="..\Assest\icons\icons8-home-100.png" Stretch="UniformToFill"/>
+                    <Popup Width="100"
+                        HorizontalOffset="10"
+                        PlacementTarget="{Binding ElementName=Home_btn}"
+                        IsOpen="{Binding IsMouseOver, ElementName=Home_btn, Mode=OneWay}"
+                        Style="{StaticResource PopupStyle2}">
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="16"/>
+                                <!-- For the arrow -->
+                                <ColumnDefinition Width="80"/>
+                                <!-- For the content -->
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Style="{StaticResource ArrowPath2}" />
+                            <Border Grid.Column="1" Style="{StaticResource border2}">
+                                <TextBlock Text="Home" Style="{StaticResource PopupText2}" />
+                            </Border>
+                        </Grid>
+                    </Popup>
+                </Grid>
+
+            </Button>
+
+
+            <Button Grid.Row="2" x:Name="Doctor_btn" Style="{StaticResource DockBtnStyle2}" Click="Doctor_btn_Click">
+                <Grid>
+                    <Image Source="..\Assest\icons\icons8-doctor-100.png" Stretch="UniformToFill"/>
+                    <Popup Width="100"
+                            HorizontalOffset="10"
+                            PlacementTarget="{Binding ElementName=Doctor_btn}"
+                            IsOpen="{Binding IsMouseOver, ElementName=Doctor_btn, Mode=OneWay}"
+                            Style="{StaticResource PopupStyle2}">
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="16"/>
+                                <!-- For the arrow -->
+                                <ColumnDefinition Width="80"/>
+                                <!-- For the content -->
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Style="{StaticResource ArrowPath2}" />
+                            <Border Grid.Column="1" Style="{StaticResource border2}">
+                                <TextBlock Text="Doctor" Style="{StaticResource PopupText2}" />
+                            </Border>
+                        </Grid>
+                    </Popup>
+                </Grid>
+
+            </Button>
+
+
+            <Button Grid.Row="3" x:Name="Nurce_btn" Style="{StaticResource DockBtnStyle2}" Click="Nurce_btn_Click">
+                <Grid>
+                    <Image Source="..\Assest\icons\icons8-nurse-100.png" Stretch="UniformToFill"/>
+                    <Popup Width="100"
+                            HorizontalOffset="10"
+                            PlacementTarget="{Binding ElementName=Nurce_btn}"
+                            IsOpen="{Binding IsMouseOver, ElementName=Nurce_btn, Mode=OneWay}"
+                            Style="{StaticResource PopupStyle2}">
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="16"/>
+                                <!-- For the arrow -->
+                                <ColumnDefinition Width="80"/>
+                                <!-- For the content -->
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Style="{StaticResource ArrowPath2}" />
+                            <Border Grid.Column="1" Style="{StaticResource border2}">
+                                <TextBlock Text="Nurse" Style="{StaticResource PopupText2}" />
+                            </Border>
+                        </Grid>
+                    </Popup>
+                </Grid>
+
+            </Button>
+
+
+            <Button Grid.Row="4" x:Name="Patient_btn" Style="{StaticResource DockBtnStyle2}" Click="Patient_btn_Click">
+                <Grid>
+                    <Image Source="..\Assest\icons\icons8-patient-100.png" Stretch="UniformToFill"/>
+                    <Popup Width="100"
+                            HorizontalOffset="10"
+                            PlacementTarget="{Binding ElementName=Patient_btn}"
+                            IsOpen="{Binding IsMouseOver, ElementName=Patient_btn, Mode=OneWay}"
+                            Style="{StaticResource PopupStyle2}">
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="16"/>
+                                <!-- For the arrow -->
+                                <ColumnDefinition Width="80"/>
+                                <!-- For the content -->
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Style="{StaticResource ArrowPath2}" />
+                            <Border Grid.Column="1" Style="{StaticResource border2}">
+                                <TextBlock Text="Patient" Style="{StaticResource PopupText2}" />
+                            </Border>
+                        </Grid>
+                    </Popup>
+                </Grid>
+
+            </Button>
+
+
+            <Button Grid.Row="5" x:Name="Reception_btn" Style="{StaticResource DockBtnStyle2}" Click="Reception_btn_Click">
+                <Grid>
+                    <Image Source="..\Assest\icons\icons8-reception-100.png" Stretch="UniformToFill"/>
+                    <Popup Width="130"
+                            HorizontalOffset="10"
+                            PlacementTarget="{Binding ElementName=Reception_btn}"
+                            IsOpen="{Binding IsMouseOver, ElementName=Reception_btn, Mode=OneWay}"
+                            Style="{StaticResource PopupStyle2}">
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="16"/>
+                                <!-- For the arrow -->
+                                <ColumnDefinition Width="90"/>
+                                <!-- For the content -->
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Style="{StaticResource ArrowPath2}" />
+                            <Border Grid.Column="1" Style="{StaticResource border2}">
+                                <TextBlock Text="Reception" Style="{StaticResource PopupText2}" />
+                            </Border>
+                        </Grid>
+                    </Popup>
+                </Grid>
+
+            </Button>
+
+
+            <Button Grid.Row="6" x:Name="Appointment_btn" Style="{StaticResource DockBtnStyle2}" Click="Appointment_btn_Click">
+                <Grid>
+                    <Image Source="..\Assest\icons\icons8-appointment-100.png" Stretch="UniformToFill"/>
+                    <Popup Width="130"
+                            HorizontalOffset="10"
+                            PlacementTarget="{Binding ElementName=Appointment_btn}"
+                            IsOpen="{Binding IsMouseOver, ElementName=Appointment_btn, Mode=OneWay}"
+                            Style="{StaticResource PopupStyle2}">
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="16"/>
+                                <!-- For the arrow -->
+                                <ColumnDefinition Width="110"/>
+                                <!-- For the content -->
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Style="{StaticResource ArrowPath2}" />
+                            <Border Grid.Column="1" Style="{StaticResource border2}">
+                                <TextBlock Text="Appointment" Style="{StaticResource PopupText2}" />
+                            </Border>
+                        </Grid>
+                    </Popup>
+                </Grid>
+
+            </Button>
+
+
+        </Grid>
+
+        <Admin_UserControls:UC_A_Appointments x:Name="UserControl_Appointments"     Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch"/>
+        <Admin_UserControls:UC_A_Reception x:Name="UserControl_Reception"           Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch"/>
+        <Admin_UserControls:UC_A_Patients x:Name="UserControl_Patients"             Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch"/>
+        <Admin_UserControls:UC_A_Nurse x:Name="UserControl_Nurse"                   Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch"/>
+        <Admin_UserControls:UC_A_Doctors x:Name="UserControl_Doctors"               Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch"/>
+        <Admin_UserControls:UC_A_Home x:Name="UserControl_Home"                     Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch"/>
+
+
+
+
+
+
+
+    </Grid>
+</Window>

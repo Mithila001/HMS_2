@@ -13,25 +13,10 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="login_btn" Height="50" Width="200" Click="login_btn_Click" Margin="88,0,112,84" VerticalAlignment="Bottom" Grid.Column="0">Login</Button>
-        <Button x:Name="login_btn2" Width="200" Click="login_btn2_Click" Margin="71,106,529,0" Height="50" VerticalAlignment="Top">Login2</Button>
+        <Button x:Name="DoctorWard_btn" Content="Doctor Ward" Height="50" Width="200"  Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Click="DoctorWard_btn_Click"/>
+        <Button x:Name="NureceWard_btn" Content="Nurse Ward" Width="200"  Margin="0" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Click="NureceWard_btn_Click"/>
 
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="192*"/>
-            </Grid.RowDefinitions>
-            <TextBox x:Name="SearchTextBox" Height="30" VerticalAlignment="Center" Margin="50,0,50,0" KeyUp="SearchTextBox_KeyUp"/>
-            <Popup x:Name="SearchResultsPopup" IsOpen="False" PlacementTarget="{Binding ElementName=SearchTextBox}" Placement="Bottom">
-                <ListBox x:Name="SearchResultsListBox" 
-                     HorizontalContentAlignment="Stretch" 
-                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                     ScrollViewer.VerticalScrollBarVisibility="Disabled" 
-                     Background="#FFA7A7A7" 
-                     MaxHeight="200">   
-                </ListBox>
-            </Popup>
-        </Grid>
+
 
     </Grid>
 </Window>
