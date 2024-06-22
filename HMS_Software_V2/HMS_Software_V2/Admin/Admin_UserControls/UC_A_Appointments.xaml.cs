@@ -64,5 +64,11 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
 
             }
         }
+
+        private void AppointmentAdd_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_ClinicEvents_Add admin_ClinicEvents_Add = new Admin_ClinicEvents_Add();
+            admin_ClinicEvents_Add.ShowDialog();
+        }
     }
 }

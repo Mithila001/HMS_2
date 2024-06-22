@@ -41,11 +41,11 @@
 
 
             <Border CornerRadius="20" Height="50" Width="250" Margin="5,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
-                <Button x:Name="DoctorAdd_btn" Content="Add"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" />
+                <Button x:Name="DoctorAdd_btn" Content="Add"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="DoctorAdd_btn_Click" />
             </Border>
 
             <Border CornerRadius="20" Height="50" Width="250" Margin="5,0,280,0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2">
-                <Button x:Name="DoctorSearch_btn" Content="Search"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" />
+                <Button x:Name="DoctorSearch_btn" Content="Search"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="DoctorSearch_btn_Click" />
             </Border>
 
 

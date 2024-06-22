@@ -75,5 +75,11 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
 
             }
         }
+
+        private void PatientSearch_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Patient_Search admin_Patient_Search = new Admin_Patient_Search();
+            admin_Patient_Search.ShowDialog();
+        }
     }
 }

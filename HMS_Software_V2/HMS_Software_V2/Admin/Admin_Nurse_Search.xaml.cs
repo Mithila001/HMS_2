@@ -1,4 +1,5 @@
-﻿using HMS_Software_V2.Admin.Admin_UserControls;
+﻿using HMS_Software_V2._DataManage_Classes;
+using HMS_Software_V2.Admin.Admin_UserControls;
 using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,23 @@ namespace HMS_Software_V2.Admin
         public Admin_Nurse_Search()
         {
             InitializeComponent();
+
+            adminName_lbl.Content = SharedData.adminData.AdminName;
+            #region Get and Assign Date Time
+            int day = DateTime.Now.Day;
+            string daySuffix = day switch
+            {
+                1 or 21 or 31 => "st",
+                2 or 22 => "nd",
+                3 or 23 => "rd",
+                _ => "th"
+            };
+
+            todatDate_lbl.Content = $"{day}{daySuffix} {DateTime.Now:MMMM yyyy}";
+
+            todayTime_lbl.Content = DateTime.Now.ToString("hh:mm: tt");
+            #endregion
+
             MyShowTable();
 
             showNurse_DataGrid.ItemsSource = Nurses;

@@ -29,6 +29,22 @@ namespace HMS_Software_V2.Admin
         {
             InitializeComponent();
 
+            adminName_lbl.Content = SharedData.adminData.AdminName;
+            #region Get and Assign Date Time
+            int day = DateTime.Now.Day;
+            string daySuffix = day switch
+            {
+                1 or 21 or 31 => "st",
+                2 or 22 => "nd",
+                3 or 23 => "rd",
+                _ => "th"
+            };
+
+            todatDate_lbl.Content = $"{day}{daySuffix} {DateTime.Now:MMMM yyyy}";
+
+            todayTime_lbl.Content = DateTime.Now.ToString("hh:mm: tt");
+            #endregion
+
         }
 
         private void Register_btn_Click(object sender, RoutedEventArgs e)

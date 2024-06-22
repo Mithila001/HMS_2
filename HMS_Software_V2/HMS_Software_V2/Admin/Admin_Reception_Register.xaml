@@ -151,6 +151,9 @@
                         <TextBlock Text="Email:" Style="{StaticResource textStyle1}" />
                         <TextBox  x:Name="reception_Email" Style="{StaticResource textStyleForTexBox}" AcceptsReturn="True"/>
 
+                        <TextBlock Text="Spcecialty:" Style="{StaticResource textStyle1}" />
+                        <TextBox  x:Name="reception_Specialty" Style="{StaticResource textStyleForTexBox}" AcceptsReturn="True"/>
+
 
 
                     </StackPanel>
@@ -160,8 +163,17 @@
         </ScrollViewer>
 
         <Border CornerRadius="20" Height="50" Width="250" Grid.Column="2" Grid.Row="2" Margin="0,0,50,0" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Button x:Name="Register_btn" Content="Register" Style= "{StaticResource PrettyButtonStyle2}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" />
+            <Button x:Name="Register_btn" Content="Register" Style= "{StaticResource PrettyButtonStyle2}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Click="Register_btn_Click" />
         </Border>
+
+        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5"/>
+
+        <Label Content="User Name:" Grid.Row="2" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Margin="16,0,0,30"/>
+        <Label x:Name="outputUserName_lbl" Content="-----------" Grid.Row="2" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Margin="100,0,0,34" FontWeight="SemiBold"/>
+
+        <Label Content="Passworde:" Grid.Row="2" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Margin="19,34,0,0"/>
+        <Label x:Name="outputUserPassword_lbl" Content="-----------" Grid.Row="2" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Margin="100,30,0,0" FontWeight="SemiBold"/>
+
 
 
 

@@ -64,5 +64,17 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
 
             }
         }
+
+        private void ReceptionAdd_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Reception_Register admin_Reception_Register = new Admin_Reception_Register();
+            admin_Reception_Register.ShowDialog();
+        }
+
+        private void Receptionseach_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Reception_Search admin_Reception_Search = new Admin_Reception_Search();
+            admin_Reception_Search.ShowDialog();
+        }
     }
 }

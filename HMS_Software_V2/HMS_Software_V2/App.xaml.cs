@@ -41,13 +41,10 @@ namespace HMS_Software_V2
             //UserLogin userLogin = new UserLogin();
             //userLogin.Show();
 
-            //Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
-            //admin_Dashboard.Show();
+            Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
+            admin_Dashboard.Show();
 
-            Admin_Doctor_Register admin_Doctor_Register = new Admin_Doctor_Register();
-            admin_Doctor_Register.Show();
 
-            
 
         }
     }

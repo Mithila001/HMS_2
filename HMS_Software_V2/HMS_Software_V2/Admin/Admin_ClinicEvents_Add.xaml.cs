@@ -1,4 +1,5 @@
-﻿using HMS_Software_V2.General_Purpose;
+﻿using HMS_Software_V2._DataManage_Classes;
+using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.Reception.R_UserControls;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,32 @@ namespace HMS_Software_V2.Admin
         public Admin_ClinicEvents_Add()
         {
             InitializeComponent();
+
+            adminName_lbl.Content = SharedData.adminData.AdminName;
+
+
+            #region Get and Assign Date Time
+            int day = DateTime.Now.Day;
+            string daySuffix = day switch
+            {
+                1 or 21 or 31 => "st",
+                2 or 22 => "nd",
+                3 or 23 => "rd",
+                _ => "th"
+            };
+
+            todatDate_lbl.Content = $"{day}{daySuffix} {DateTime.Now:MMMM yyyy}";
+
+            todayTime_lbl.Content = DateTime.Now.ToString("hh:mm: tt");
+            #endregion
+
+
             PopulateTimeValues();
 
             MyDisplayClincEvnets();
+
+
+
 
         }
 
@@ -110,8 +134,6 @@ namespace HMS_Software_V2.Admin
             showClinicEvnets_ListView.ItemsSource = clinicEvents;
 
         }
-        
-
 
     }
 

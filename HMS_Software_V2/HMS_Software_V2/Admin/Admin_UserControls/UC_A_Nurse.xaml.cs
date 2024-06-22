@@ -62,5 +62,17 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
 
             }
         }
+
+        private void NurseAdd_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Nurse_Register admin_Nurse_Register = new Admin_Nurse_Register();
+            admin_Nurse_Register.ShowDialog();
+        }
+
+        private void NurseSearch_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Nurse_Search admin_Nurse_Search = new Admin_Nurse_Search();
+            admin_Nurse_Search.ShowDialog();
+        }
     }
 }
