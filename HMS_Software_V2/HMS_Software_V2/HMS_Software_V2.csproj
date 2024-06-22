@@ -19,7 +19,9 @@
     <None Remove="Assest\icons\icons8-patient-100.png" />
     <None Remove="Assest\icons\icons8-reception-100.png" />
     <None Remove="Assest\icons\icons8-search-100.png" />
+    <None Remove="Assest\icons\icons8-search-100_Black.png" />
     <None Remove="Assest\icons\icons8-search-250.png" />
+    <None Remove="Assest\icons\icons8-search-50.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,7 +40,9 @@
     <Resource Include="Assest\icons\icons8-patient-100.png" />
     <Resource Include="Assest\icons\icons8-reception-100.png" />
     <Resource Include="Assest\icons\icons8-search-100.png" />
+    <Resource Include="Assest\icons\icons8-search-100_Black.png" />
     <Resource Include="Assest\icons\icons8-search-250.png" />
+    <Resource Include="Assest\icons\icons8-search-50.png" />
   </ItemGroup>
 
   <ItemGroup>

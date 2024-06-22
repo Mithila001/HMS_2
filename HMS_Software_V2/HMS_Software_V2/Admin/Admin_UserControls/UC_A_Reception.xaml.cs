@@ -36,16 +36,16 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
                 {
                     connection.Open();
 
-                    //#region Get Total Reception Count
-                    //string query2 = "SELECT COUNT(*) FROM Patient WHERE P_CurrentStatus = 'Out-Patient' OR P_CurrentStatus = 'New Registered' ";
-                    //using (SqlCommand command2 = new SqlCommand(query2, connection))
-                    //{
+                    #region Get Total Reception Count
+                    string query2 = "SELECT COUNT(*) FROM Reception";
+                    using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    {
 
-                    //    int count = (int)command2.ExecuteScalar();
-                    //    totalReceptions.Content = count.ToString();
-                    //}
+                        int count = (int)command2.ExecuteScalar();
+                        totalReceptions.Content = count.ToString();
+                    }
 
-                    //#endregion
+                    #endregion
 
 
 

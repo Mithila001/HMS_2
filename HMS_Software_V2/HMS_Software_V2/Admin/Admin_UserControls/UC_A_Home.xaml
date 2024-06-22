@@ -34,7 +34,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Total Doctors" FontSize="26" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1"/>
-                    <Label Content="999" FontSize="32" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Padding="0"/>
+                    <Label x:Name="totalDoctors_lbl" Content="999" FontSize="32" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Padding="0"/>
 
                 </Grid>
             </Border>
@@ -48,7 +48,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Total Nurses" FontSize="26" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1"/>
-                    <Label Content="999" FontSize="32" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Padding="0"/>
+                    <Label x:Name="totalNurses_lbl" Content="999" FontSize="32" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Padding="0"/>
 
                 </Grid>
             </Border>
@@ -62,7 +62,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Total Patients" FontSize="26" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1"/>
-                    <Label Content="999" FontSize="32" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Padding="0"/>
+                    <Label x:Name="totalPatients_lbl" Content="999" FontSize="32" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Padding="0"/>
 
                 </Grid>
             </Border>
@@ -76,7 +76,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Total Receptions" FontSize="26" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1"/>
-                    <Label Content="999" FontSize="32" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Padding="0"/>
+                    <Label x:Name="totalReceptions_lbl" Content="999" FontSize="32" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Padding="0"/>
 
                 </Grid>
             </Border>
@@ -90,7 +90,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Today's Clinics" FontSize="26" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1"/>
-                    <Label Content="999" FontSize="32" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Padding="0"/>
+                    <Label x:Name="totalTodaysClinics_lbl" Content="999" FontSize="32" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Padding="0"/>
 
                 </Grid>
             </Border>
@@ -104,7 +104,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Total Wards" FontSize="26" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1"/>
-                    <Label Content="999" FontSize="32" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Padding="0"/>
+                    <Label x:Name="totalWards_lbl" Content="999" FontSize="32" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Padding="0"/>
 
                 </Grid>
             </Border>

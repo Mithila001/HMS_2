@@ -1,4 +1,5 @@
 ﻿using HMS_Software_V2.Admin;
+using HMS_Software_V2.Admin.Admin_UserControls;
 using HMS_Software_V2.Doctor_Ward;
 using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.Nurse_Ward;
@@ -40,8 +41,11 @@ namespace HMS_Software_V2
             //UserLogin userLogin = new UserLogin();
             //userLogin.Show();
 
-            Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
-            admin_Dashboard.Show();
+            //Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
+            //admin_Dashboard.Show();
+
+            Admin_Doctor_Register admin_Doctor_Register = new Admin_Doctor_Register();
+            admin_Doctor_Register.Show();
 
             
 

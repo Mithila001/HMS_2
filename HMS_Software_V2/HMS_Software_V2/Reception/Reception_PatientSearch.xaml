@@ -71,7 +71,7 @@
                             <TextBox x:Name="SearchBar_tbx" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" BorderThickness="0"  VerticalContentAlignment="Center" Background="{x:Null}" FontSize="22" TextChanged="SearchBar_tbx_TextChanged"/>
                         </Border>
                         <Border BorderBrush="Transparent" BorderThickness="0" CornerRadius="5" Grid.Column="1">
-                            <Image Source="pack://application:,,,/Assest/icons/icons8-search-30.png" MinWidth="30" MinHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Image Source="pack://application:,,,/Assest/icons/icons8-search-100_Black.png" MinWidth="30" MinHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
 
                     </Grid>
