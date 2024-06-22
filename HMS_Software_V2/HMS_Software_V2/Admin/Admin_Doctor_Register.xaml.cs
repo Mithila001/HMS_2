@@ -31,8 +31,6 @@ namespace HMS_Software_V2.Admin
 
         }
 
-
-
         private void Register_btn_Click(object sender, RoutedEventArgs e)
         {
             MyGetUserInputData();
@@ -166,8 +164,8 @@ namespace HMS_Software_V2.Admin
 
             if (InputValidations.MyIsNullorempty(BloodGroup))
             {
-                Console.WriteLine("NIC is required.");
-                MessageBox.Show("NIC is required", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine("BloodGroup is required.");
+                MessageBox.Show("BloodGroup is required", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -331,11 +329,13 @@ namespace HMS_Software_V2.Admin
 
             string userPassword = $"{nameWithoutSpaces}{randomNumber}{DoctorID}D";
 
-            string userName = $"Doctor_{nameWithoutSpaces}";
+            string userName = $"D_{nameWithoutSpaces}";
+
+            MyAddUserLoginToTable(userName, userPassword);
 
         }
 
-        void MyAddUserLoginToTable()
+        void MyAddUserLoginToTable(string userName, string password)
         {
             using (SqlConnection connection = new Database_Connector().GetConnection())
             {
@@ -361,8 +361,18 @@ namespace HMS_Software_V2.Admin
                             cmd.Parameters.AddWithValue("@UserPosition", "Doctor");
                         }
 
-                        cmd.Parameters.AddWithValue("@UserName", DateOfBirth);
-                        cmd.Parameters.AddWithValue("@UserPassword", DateOfBirth);
+                        cmd.Parameters.AddWithValue("@UserName", userName);
+                        cmd.Parameters.AddWithValue("@UserPassword", password);
+
+                        cmd.ExecuteNonQuery();
+
+                        outputUserName_lbl.Content = userName;
+                        outputUserPassword_lbl.Content = password;
+
+                        Register_btn.IsEnabled = false;
+
+
+
 
                     }
                 }
