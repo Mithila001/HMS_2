@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HMS_Software_V2.UserCommon_Forms.UserControls_UCF"
              mc:Ignorable="d" 
-             MinHeight="350" MinWidth="900">
+             MinHeight="400" MinWidth="900">
     <Border Background="#FFE6FEF9" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -14,7 +14,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
-                <RowDefinition Height="220"/>
+                <RowDefinition Height="220*"/>
             </Grid.RowDefinitions>
 
 
@@ -28,7 +28,9 @@
 
             <TextBlock Text="Results" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Margin="10,10,0,0"/>
 
-            <TextBox x:Name="labResults_tbx" Grid.Row="1" Grid.ColumnSpan="2" Margin="10,35,10,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" TextWrapping="Wrap" Padding="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <TextBox x:Name="labResults_tbx" Grid.Row="1" Grid.ColumnSpan="2" Margin="10,35,10,10" IsReadOnly="True" VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto" TextWrapping="Wrap" Padding="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14"/>
+
 
         </Grid>
     </Border>

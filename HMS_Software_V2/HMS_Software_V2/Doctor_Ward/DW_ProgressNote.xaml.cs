@@ -371,10 +371,10 @@ namespace HMS_Software_V2.Doctor_Ward
                         using (SqlCommand cmd = new SqlCommand(query3, connection))
                         {
                             cmd.Parameters.AddWithValue("@PatientMedicalEvent_ID", MedicalEventID);
-                            cmd.Parameters.AddWithValue("@Lab_Specimen_ID", investigationList.Item1);
-                            cmd.Parameters.AddWithValue("@Lab_Specimen_Name", investigationList.Item2);
-                            cmd.Parameters.AddWithValue("@Lab_Investigation_ID", specimenList.Item1);
-                            cmd.Parameters.AddWithValue("@Lab_Investigation_Name", specimenList.Item2);
+                            cmd.Parameters.AddWithValue("@Lab_Specimen_ID", specimenList.Item1);
+                            cmd.Parameters.AddWithValue("@Lab_Specimen_Name", specimenList.Item2);
+                            cmd.Parameters.AddWithValue("@Lab_Investigation_ID", investigationList.Item1);
+                            cmd.Parameters.AddWithValue("@Lab_Investigation_Name", investigationList.Item2);
                             cmd.Parameters.AddWithValue("@IsUrgent", SharedData.medicalEvent.IsLabRequestUrgent);
                             string labelName = new MedicalRequest_LabelCreator().Create_LabRequest_Label(investigationList.Item2, investigationList.Item1, specimenList.Item2, specimenList.Item1, MedicalEventID);
                             cmd.Parameters.AddWithValue("@LabelNumber", labelName);

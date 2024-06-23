@@ -105,7 +105,7 @@
 
 
                 <Border CornerRadius="20" Height="45" Width="180" Grid.Column="3" Grid.Row="0" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Button x:Name="View_LabRequest_btn" Content="Lab Request" Style= "{StaticResource PrettyButtonStyle2}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20"/>
+                    <Button x:Name="View_LabRequest_btn" Content="Lab Request" Style= "{StaticResource PrettyButtonStyle2}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Click="View_LabRequest_btn_Click"/>
                 </Border>
 
                 <Border CornerRadius="20" Height="45" Width="180" Grid.Column="3" Grid.Row="1" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -113,7 +113,7 @@
                 </Border>
 
                 <Border CornerRadius="20" Height="45" Width="180" Grid.Column="4" Grid.Row="0" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Button x:Name="View_ProgressNote_btn" Content="Progress Note" Style= "{StaticResource PrettyButtonStyle2}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20"/>
+                    <Button x:Name="View_ProgressNote_btn" Content="Progress Notes" Style= "{StaticResource PrettyButtonStyle2}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Click="View_ProgressNote_btn_Click"/>
                 </Border>
 
                 <Border CornerRadius="20" Height="45" Width="   180" Grid.Column="4" Grid.Row="1" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">

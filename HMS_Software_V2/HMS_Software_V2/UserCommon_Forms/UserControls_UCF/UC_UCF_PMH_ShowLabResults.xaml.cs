@@ -25,9 +25,6 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
             InitializeComponent();
         }
 
-        private void MyLoadData()
-        {
-
-        }
+        
     }
 }

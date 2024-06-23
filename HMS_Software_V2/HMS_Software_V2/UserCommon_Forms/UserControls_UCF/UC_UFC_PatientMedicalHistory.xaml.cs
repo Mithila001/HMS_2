@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HMS_Software_V2._DataManage_Classes;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -21,16 +22,33 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
     /// </summary>
     public partial class UC_UFC_PatientMedicalHistory : UserControl
     {
-        int MedicalEventID;
-        public UC_UFC_PatientMedicalHistory(int medicalenvetID)
+        int MedicalEvnetID;
+        public UC_UFC_PatientMedicalHistory(int medicalEventID)
         {
             InitializeComponent();
-            this.MedicalEventID = medicalenvetID;
 
-            
+            MedicalEvnetID = medicalEventID;
+ 
 
         }
 
-        
+        private void View_LabRequest_btn_Click(object sender, RoutedEventArgs e)
+        {
+            SharedData.viewPatientHistory.PatientMedicalEventID = MedicalEvnetID;
+
+            PMH_ViewLabResults pMH_ViewLabResults = new PMH_ViewLabResults();
+            pMH_ViewLabResults.ShowDialog();
+        }
+
+        private void View_ProgressNote_btn_Click(object sender, RoutedEventArgs e)
+        {
+            SharedData.viewPatientHistory.PatientMedicalEventID = MedicalEvnetID;
+
+            SharedData.viewPatientHistory.MedicalEvnentDate = medicalEventDate_lbl.Content.ToString() ?? "Error";
+            SharedData.viewPatientHistory.MedicalEvnentTime = visitedTime_lbl.Content.ToString() ?? "Error";
+
+            PMH_ViewProgressReporsts pMH_ViewProgressReporsts = new PMH_ViewProgressReporsts();
+            pMH_ViewProgressReporsts.ShowDialog();
+        }
     }
 }

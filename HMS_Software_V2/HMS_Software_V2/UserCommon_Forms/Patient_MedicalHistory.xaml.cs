@@ -23,12 +23,26 @@ namespace HMS_Software_V2.UserCommon_Forms
     /// <summary>
     /// Interaction logic for Patient_MedicalHistory.xaml
     /// </summary>
+
+    /// <include>
+    /// Required ViewPatientHistory.cs instance with data added to it
+    /// </include>
     public partial class Patient_MedicalHistory : Window
     {
         public Patient_MedicalHistory()
         {
             InitializeComponent();
             MyLoadMedicalHistory();
+
+            TemporyData();
+        }
+
+        private void TemporyData()
+        {
+            HMS_Software_V2._DataManage_Classes.SharedData.viewPatientHistory = new HMS_Software_V2._DataManage_Classes.ViewPatientHistory(); // Get a new copy of the template
+
+            SharedData.viewPatientHistory.PatientID = 2;
+
         }
 
 
