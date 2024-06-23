@@ -50,5 +50,21 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
             PMH_ViewProgressReporsts pMH_ViewProgressReporsts = new PMH_ViewProgressReporsts();
             pMH_ViewProgressReporsts.ShowDialog();
         }
+
+        private void View_Prescription_btn_Click(object sender, RoutedEventArgs e)
+        {
+            SharedData.viewPatientHistory.PatientMedicalEventID = MedicalEvnetID;
+
+            PMH_ViewPrescriptionrequest pMH_ViewPrescriptionrequest = new PMH_ViewPrescriptionrequest();
+            pMH_ViewPrescriptionrequest.ShowDialog();
+        }
+
+        private void View_MonitorResults_btn_Click(object sender, RoutedEventArgs e)
+        {
+            SharedData.viewPatientHistory.PatientMedicalEventID = MedicalEvnetID;
+
+            PMH_ViewMonitorReuslts pMH_ViewMonitorReuslts = new PMH_ViewMonitorReuslts();
+            pMH_ViewMonitorReuslts.ShowDialog();
+        }
     }
 }
