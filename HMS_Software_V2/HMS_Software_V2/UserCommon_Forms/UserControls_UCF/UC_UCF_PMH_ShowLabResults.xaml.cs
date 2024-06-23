@@ -10,18 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HMS_Software_V2.UserCommon_Forms
+namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
 {
     /// <summary>
-    /// Interaction logic for Test.xaml
+    /// Interaction logic for UC_UCF_PMH_ShowLabResults.xaml
     /// </summary>
-    public partial class Test : Window
+    public partial class UC_UCF_PMH_ShowLabResults : UserControl
     {
-        public Test()
+        public UC_UCF_PMH_ShowLabResults()
         {
             InitializeComponent();
+        }
+
+        private void MyLoadData()
+        {
+
         }
     }
 }
