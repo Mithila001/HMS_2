@@ -136,6 +136,7 @@ namespace HMS_Software_V2.Nurse_Ward
                         uC_NW_ToTreatPatients.patientRID_lbl.Content = patientRID;
                         uC_NW_ToTreatPatients.pateintGender_lbl.Content = patientGender;
                         uC_NW_ToTreatPatients.patientMedicalCondition_lbl.Content = patientCondition;
+                        uC_NW_ToTreatPatients.patientAge_lbl.Content = patientAge;
 
 
                         uC_NW_ToTreatPatients.PatientID = Convert.ToInt32(reader["Patient_ID"]);

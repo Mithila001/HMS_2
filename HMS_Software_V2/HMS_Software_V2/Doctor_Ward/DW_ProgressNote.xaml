@@ -224,7 +224,7 @@
                 <Border Grid.Row="1" Background="#FFD5FFA3" BorderBrush="#FF757575" BorderThickness=".5"/>
 
                 <Border CornerRadius="20" Height="50" Width="250" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Grid.RowSpan="1">
-                    <Button x:Name="ViewPatientMedicalHistory_btn" Content="View History"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Cursor="Hand" />
+                    <Button x:Name="ViewPatientMedicalHistory_btn" Content="View History"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Cursor="Hand" Click="ViewPatientMedicalHistory_btn_Click" />
                 </Border>
 
                 

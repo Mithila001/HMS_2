@@ -37,7 +37,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
             if (SharedData.doctorData.doctorLocation == "Clinic")
             {
                 MyDoctorClinic(); 
-                IsClinic = true;
+                
                 
 
             }
@@ -63,7 +63,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
         private void MyDoctorClinic()
         {
             dipartmentName_lbl.Content = "Outpatient Dipartment (Clinic)";
-            //IsClinic = true;
+            IsClinic = true;
         }
 
 
@@ -137,7 +137,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                             SqlCommand cmd2 = new SqlCommand(query2, connection);
 
-                            cmd2.Parameters.AddWithValue("@PatientID", "P" + PatientID);
+                            cmd2.Parameters.AddWithValue("@PatientID", PatientID);
 
                             using (SqlDataReader reader2 = cmd2.ExecuteReader())
                             {
@@ -157,6 +157,8 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                                 SqlCommand cmd3 = new SqlCommand(query3, connection);
                                 cmd3.Parameters.AddWithValue("@PatientAppointmentRequest_ID", patientAppointmentID);
                                 cmd3.ExecuteNonQuery();
+
+                                
 
                             }
                             else

@@ -1,4 +1,5 @@
-﻿using HMS_Software_V2.General_Purpose;
+﻿using HMS_Software_V2._DataManage_Classes;
+using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.Reception.R_UserControls;
 using HMS_Software_V2.UserLogin_Page;
 using System;
@@ -29,9 +30,31 @@ namespace HMS_Software_V2.Reception
         public Reception_Dashboard()
         {
             InitializeComponent();
-            Debug.WriteLine("InitializeComponent");
+
+            MyLoadBasicData();
+
             LoadClinicData();
 
+        }
+
+        private void MyLoadBasicData()
+        {
+            #region Get and Assign Date Time
+            int day = DateTime.Now.Day;
+            string daySuffix = day switch
+            {
+                1 or 21 or 31 => "st",
+                2 or 22 => "nd",
+                3 or 23 => "rd",
+                _ => "th"
+            };
+
+            todayDate.Content = $"{day}{daySuffix} {DateTime.Now:MMMM yyyy}";
+
+            todayTime.Content = DateTime.Now.ToString("hh:mm: tt");
+            #endregion
+
+            receptionName_lbl.Content = SharedData.receptionData.ReceptionName;
         }
 
         private void LoadClinicData()
@@ -55,17 +78,50 @@ namespace HMS_Software_V2.Reception
                         uC_RD_ClinicInfo.clincName.Content = reader["CT_Name"].ToString();
                         uC_RD_ClinicInfo.hallNumber.Content = reader["CE_HallNumber"].ToString();
 
+                        TimeSpan startTimeValue = (TimeSpan)reader["CE_StartTime"];
+                        string startTime = new DateTime(startTimeValue.Ticks).ToString("hh:mm tt");
 
-                        // Adjust the width of the user control to match the width of the parent container
-                        clinicAvailability_WrapP.SizeChanged += (sender, e) =>
+                        TimeSpan endTimeValue = (TimeSpan)reader["CE_EndTime"];
+                        string endTime = new DateTime(endTimeValue.Ticks).ToString("hh:mm tt");
+
+                        string clinicEventTime = $"{startTime} - {endTime}";
+                        uC_RD_ClinicInfo.timePeriod_lbl.Content = clinicEventTime;
+
+
+                        DateTime clinicEventDate = (DateTime)reader["CE_Date"];
+                        DateTime today = DateTime.Today;
+                        TimeSpan currentTime = DateTime.Now.TimeOfDay;
+
+                        if (currentTime < endTimeValue)
                         {
-                            uC_RD_ClinicInfo.Width = clinicAvailability_WrapP.ActualWidth - uC_RD_ClinicInfo.Margin.Left - uC_RD_ClinicInfo.Margin.Right;
-                            Debug.WriteLine("\n Width:" + uC_RD_ClinicInfo.Width);
-                            Debug.WriteLine("\n clinicAvailability_WrapP.ActualWidth:" + clinicAvailability_WrapP.ActualWidth);
-                        };
-                        uC_RD_ClinicInfo.Width = clinicAvailability_WrapP.ActualWidth - uC_RD_ClinicInfo.Margin.Left - uC_RD_ClinicInfo.Margin.Right;
+                            uC_RD_ClinicInfo.availabilityBorder_border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF66FF86"));
+                            uC_RD_ClinicInfo.clinic_Availability.Content = "Available";
+                        }
+                        else
+                        {
+                            uC_RD_ClinicInfo.availabilityBorder_border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFF7979"));
+                            uC_RD_ClinicInfo.clinic_Availability.Content = "Not Available";
+                        }
 
-                        clinicAvailability_WrapP.Children.Add(uC_RD_ClinicInfo);
+
+
+                        if(clinicEventDate == today)
+                        {
+                            // Adjust the width of the user control to match the width of the parent container
+                            clinicAvailability_WrapP.SizeChanged += (sender, e) =>
+                            {
+                                uC_RD_ClinicInfo.Width = clinicAvailability_WrapP.ActualWidth - uC_RD_ClinicInfo.Margin.Left - uC_RD_ClinicInfo.Margin.Right;
+                                Debug.WriteLine("\n Width:" + uC_RD_ClinicInfo.Width);
+                                Debug.WriteLine("\n clinicAvailability_WrapP.ActualWidth:" + clinicAvailability_WrapP.ActualWidth);
+                            };
+                            uC_RD_ClinicInfo.Width = clinicAvailability_WrapP.ActualWidth - uC_RD_ClinicInfo.Margin.Left - uC_RD_ClinicInfo.Margin.Right;
+
+                            clinicAvailability_WrapP.Children.Add(uC_RD_ClinicInfo);
+
+                        }
+
+
+                        
                     }
                     reader.Close();
 
@@ -90,6 +146,9 @@ namespace HMS_Software_V2.Reception
         {
             Reception_PatientSearch reception_PatientSearch = new Reception_PatientSearch();
             reception_PatientSearch.Show();
+
+            IsMovingToUserLoggin = false;
+
             this.Close();
         }
 
@@ -97,6 +156,9 @@ namespace HMS_Software_V2.Reception
         {
             Reception_ViewAssigneClinics reception_ViewAssigne = new Reception_ViewAssigneClinics();
             reception_ViewAssigne.Show();
+
+            IsMovingToUserLoggin = false;
+
             this.Close();
         }
 
@@ -104,13 +166,22 @@ namespace HMS_Software_V2.Reception
         {
             Reception_RegisterPatient reception_RegisterPatient = new Reception_RegisterPatient();
             reception_RegisterPatient.Show();
+
+            IsMovingToUserLoggin = false;
+
             this.Close();
         }
 
+        bool IsMovingToUserLoggin = true;
         private void Reception_Dashboard1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            UserLogin userLogin = new UserLogin();
-            userLogin.Show();
+            if (IsMovingToUserLoggin)
+            {
+                UserLogin userLogin = new UserLogin();
+                userLogin.Show();
+
+            }
+            
             
            
         }

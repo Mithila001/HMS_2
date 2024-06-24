@@ -20,6 +20,7 @@ using HMS_Software_V2.Doctor_Ward;
 using HMS_Software_V2.Nurse_Ward;
 using HMS_Software_V2.Admin;
 using HMS_Software_V2.Reception;
+using HMS_Software_V2.AdmissionOfficer;
 
 namespace HMS_Software_V2.UserLogin_Page
 {
@@ -99,6 +100,7 @@ namespace HMS_Software_V2.UserLogin_Page
         {
             HMS_Software_V2._DataManage_Classes.SharedData.Ward_Doctor = new HMS_Software_V2._DataManage_Classes.Ward_Doctor(); // Get a new copy of the template
             SharedData.Ward_Doctor.DoctorName = "Dr. John Doe";
+            SharedData.Ward_Doctor.DoctorRID = "D00023";
             SharedData.Ward_Doctor.DoctorID = 3;
             SharedData.Ward_Doctor.DoctorSpeciality = "General Physician";
             SharedData.Ward_Doctor.WardID = 6;
@@ -127,13 +129,20 @@ namespace HMS_Software_V2.UserLogin_Page
 
         private void Reception_Click(object sender, RoutedEventArgs e)
         {
-            HMS_Software_V2._DataManage_Classes.SharedData.receptionData = new HMS_Software_V2._DataManage_Classes.ReceptionData(); // Get a new copy of the template
+           HMS_Software_V2._DataManage_Classes.SharedData.receptionData = new HMS_Software_V2._DataManage_Classes.ReceptionData(); // Get a new copy of the template
 
             SharedData.receptionData.ReceptionID = 5;
             SharedData.receptionData.ReceptionName = "J C Kalubovial";
 
             Reception_Dashboard reception_Dashboard = new Reception_Dashboard();
             reception_Dashboard.Show();
+            this.Close();
+        }
+
+        private void AdmissionOfficer_Click(object sender, RoutedEventArgs e)
+        {
+            AO_Dashboard aO_Dashboard = new AO_Dashboard();
+            aO_Dashboard.Show();
             this.Close();
         }
     }

@@ -38,6 +38,8 @@ namespace HMS_Software_V2._DataManage_Classes
         public int PatientVisitCount { get; set; }
         public string MonitorRequest { get; set; }
 
+        public bool IsAdmitUrgent { get; set; }
+
 
 
         #region LabData Managemet List
@@ -85,6 +87,8 @@ namespace HMS_Software_V2._DataManage_Classes
 
             PatientVisitCount = 0;
             MonitorRequest = string.Empty;
+
+            IsAdmitUrgent = false;
 
             
         }

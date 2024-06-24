@@ -1,5 +1,6 @@
 ﻿using HMS_Software_V2._DataManage_Classes;
 using HMS_Software_V2.Doctor_ClincOPD;
+using HMS_Software_V2.Doctor_Ward;
 using HMS_Software_V2.Doctor_Ward.UserControls_DW;
 using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.UserCommon_Forms.UserControls_UCF;
@@ -30,11 +31,27 @@ namespace HMS_Software_V2.UserCommon_Forms
     /// </include>
     public partial class Patient_MedicalHistory : Window
     {
-        DCO_PatientCheck parentFormreReferece;
+        bool IsFromOPD = false;
+        DCO_PatientCheck? parentFormre_OPD;
         public Patient_MedicalHistory(DCO_PatientCheck dCO_PatientCheck)
         {
             InitializeComponent();
-            this.parentFormreReferece = dCO_PatientCheck;
+            this.parentFormre_OPD = dCO_PatientCheck;
+            IsFromOPD = true;
+
+            MyLoadBasicData();
+            MyLoadMedicalHistory();
+
+            TemporyData();
+        }
+
+        bool IsFromWard = false;
+        DW_ProgressNote? parentForm_Ward;
+        public Patient_MedicalHistory(DW_ProgressNote dW_ProgressNote)
+        {
+            InitializeComponent();
+            this.parentForm_Ward = dW_ProgressNote;
+            IsFromWard = true;
 
             MyLoadBasicData();
             MyLoadMedicalHistory();
@@ -187,13 +204,24 @@ namespace HMS_Software_V2.UserCommon_Forms
                 finally
                 {
                     connection.Close();
+
+                    totalOpdVisits_lbl.Content = TotalOPD_Visits;
+                    totalWardVisits_lbl.Content = TotalWard_Visits;
                 }
             }
         }
 
         private void Patient_MedicalHistory1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            parentFormreReferece.Show();
+            if (IsFromOPD)
+            {
+                parentFormre_OPD?.Show();
+            }
+            else if (IsFromWard)
+            {
+                parentForm_Ward?.Show();
+            }
+            
             
         }
     }
