@@ -3,6 +3,7 @@ using HMS_Software_V2.Admin.Admin_UserControls;
 using HMS_Software_V2.Doctor_Ward;
 using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.Nurse_Ward;
+using HMS_Software_V2.UserCommon_Forms;
 using HMS_Software_V2.UserLogin_Page;
 using System.Configuration;
 using System.Data;
@@ -41,8 +42,8 @@ namespace HMS_Software_V2
             //UserLogin userLogin = new UserLogin();
             //userLogin.Show();
 
-            Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
-            admin_Dashboard.Show();
+            Patient_MedicalHistory patient_MedicalHistory = new Patient_MedicalHistory();
+            patient_MedicalHistory.Show();
 
 
 

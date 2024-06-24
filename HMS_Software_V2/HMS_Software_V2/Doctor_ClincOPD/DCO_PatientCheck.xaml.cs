@@ -492,6 +492,20 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
             }
         }
+
+        private void ViewPatientHistory_btn_Click(object sender, RoutedEventArgs e)
+        {
+            HMS_Software_V2._DataManage_Classes.SharedData.viewPatientHistory = new HMS_Software_V2._DataManage_Classes.ViewPatientHistory(); // Get a new copy of the template
+            
+            SharedData.viewPatientHistory.PatientID = SharedData.medicalEvent.PatientID;
+            SharedData.viewPatientHistory.PatientName = SharedData.medicalEvent.PatientName;
+            SharedData.viewPatientHistory.PatientRID = SharedData.medicalEvent.pationetRID;
+
+
+            Patient_MedicalHistory patient_MedicalHistory = new Patient_MedicalHistory(this);
+            patient_MedicalHistory.Show();
+            this.Hide();
+        }
     }
 
 }

@@ -31,6 +31,8 @@ namespace HMS_Software_V2._DataManage_Classes
         public static Ward_NursePatient Ward_NursePatient = new Ward_NursePatient();
 
         public static AdminData adminData = new AdminData();
+
+        public static ViewPatientHistory viewPatientHistory = new ViewPatientHistory();
     }
 
 }

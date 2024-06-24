@@ -86,7 +86,7 @@
                 <TextBlock Text="Patient History"  HorizontalAlignment="Center" Margin="10,10,5,0" FontSize="18" TextAlignment="Right" VerticalAlignment="Top" FontWeight="SemiBold"/>
 
                 <Border CornerRadius="20" Height="50" Width="250" Margin="5,10,10,0" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1">
-                    <Button Content="View"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" />
+                    <Button x:Name="ViewPatientHistory_btn" Content="View"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="ViewPatientHistory_btn_Click" />
                 </Border>
 
             </Grid>

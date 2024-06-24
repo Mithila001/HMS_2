@@ -1,0 +1,77 @@
+﻿<Window x:Class="HMS_Software_V2.UserCommon_Forms.PMH_ViewPrescriptionrequest"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HMS_Software_V2.UserCommon_Forms"
+        mc:Ignorable="d"
+        Title="PMH_ViewPrescriptionrequest" MinHeight="600" MinWidth="1280" Height="600" Width="1280" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="DarkCyan"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="MinWidth" Value="200"/>
+            <Setter Property="Background" Value="#FF4AE2FF" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
+
+        </Style>
+
+        <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+
+    </Window.Resources>
+
+
+    <Grid Background="#FFE6FEF9">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <Border BorderBrush="Black" BorderThickness="1" Margin="10,5,10,5" CornerRadius="10"/>
+        <TextBlock Text="Prescription Table" FontSize="30" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0"/>
+
+        <DataGrid x:Name="showPrescriptionReq_DataGrid"
+          AutoGenerateColumns="False"
+          Margin="10"
+          Grid.Row="1"
+          HorizontalContentAlignment="Stretch"
+          VerticalContentAlignment="Center"
+          Cursor="Hand"
+          AlternatingRowBackground="Gainsboro"
+          VerticalGridLinesBrush="Black"
+          IsReadOnly="True"
+      
+          ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+          RowStyle="{StaticResource DataGridRowStyle}"
+          CellStyle="{StaticResource DataGridCellStyle}" Background="#FF7D7D7D">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Medicin" Binding="{Binding Medicin}"/>
+                <DataGridTextColumn Header="Route" Binding="{Binding Route}"/>
+                <DataGridTextColumn Header="Dosage" Binding="{Binding Dosage}"/>
+                <DataGridTextColumn Header="Frequency" Binding="{Binding Frequency}"/>
+                <DataGridTextColumn Header="Duration" Binding="{Binding Duration}"/>
+                <DataGridTextColumn Header="Label No" Binding="{Binding LabelNo}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+    </Grid>
+</Window>
