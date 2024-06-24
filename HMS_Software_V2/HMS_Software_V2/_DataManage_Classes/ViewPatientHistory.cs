@@ -11,6 +11,9 @@ namespace HMS_Software_V2._DataManage_Classes
         public int PatientID { get; set; }
         public int PatientMedicalEventID { get; set; }
 
+        public string PatientName { get; set; }
+        public string PatientRID { get; set; }
+
         public string MedicalEvnentDate { get; set; }
         public string MedicalEvnentTime { get; set; }
 
@@ -21,6 +24,8 @@ namespace HMS_Software_V2._DataManage_Classes
             PatientMedicalEventID = 0;
             MedicalEvnentDate = "";
             MedicalEvnentTime = "";
+            PatientName = "";
+            PatientRID = "";
         }
     }
 

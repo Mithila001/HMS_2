@@ -1,4 +1,5 @@
 ﻿using HMS_Software_V2._DataManage_Classes;
+using HMS_Software_V2.Doctor_ClincOPD;
 using HMS_Software_V2.Doctor_Ward.UserControls_DW;
 using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.UserCommon_Forms.UserControls_UCF;
@@ -29,9 +30,13 @@ namespace HMS_Software_V2.UserCommon_Forms
     /// </include>
     public partial class Patient_MedicalHistory : Window
     {
-        public Patient_MedicalHistory()
+        DCO_PatientCheck parentFormreReferece;
+        public Patient_MedicalHistory(DCO_PatientCheck dCO_PatientCheck)
         {
             InitializeComponent();
+            this.parentFormreReferece = dCO_PatientCheck;
+
+            MyLoadBasicData();
             MyLoadMedicalHistory();
 
             TemporyData();
@@ -39,13 +44,19 @@ namespace HMS_Software_V2.UserCommon_Forms
 
         private void TemporyData()
         {
-            HMS_Software_V2._DataManage_Classes.SharedData.viewPatientHistory = new HMS_Software_V2._DataManage_Classes.ViewPatientHistory(); // Get a new copy of the template
 
-            SharedData.viewPatientHistory.PatientID = 2;
+           
 
         }
 
+        private void MyLoadBasicData()
+        {
+            patientName_lbl.Content = SharedData.viewPatientHistory.PatientName;
+            patientRID_lbl.Content = SharedData.viewPatientHistory.PatientRID;
+        }
 
+        int TotalOPD_Visits = 0;
+        int TotalClinic_Visits = 0;
         private void MyLoadMedicalHistory()
         {
             using (SqlConnection connection = new Database_Connector().GetConnection())
@@ -105,6 +116,23 @@ namespace HMS_Software_V2.UserCommon_Forms
                         //string visitedTime = visitedTime_get.ToString("hh:mm: tt");
 
                         string location = reader["PME_Location"].ToString() ?? "Error";
+
+                        if(location == "OPD")
+                        {
+                            TotalOPD_Visits++;
+                        }
+                        else if(location == "Clinic")
+                        {
+                            TotalClinic_Visits++;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Mismatched Location: " + location, "Error", MessageBoxButton.OK, MessageBoxImage.Error);   
+                        }
+
+
+
+
                         bool isLabRequest = Convert.ToBoolean(reader["PME_Is_LabRequest"]);
                         bool isPrescriptionRequest = Convert.ToBoolean(reader["PME_Is_PrescriptionRequest"]);
                         string p_examinationNotes = reader["PME_PatientExaminationNote"].ToString() ?? "Error";
@@ -158,6 +186,12 @@ namespace HMS_Software_V2.UserCommon_Forms
                     connection.Close();
                 }
             }
+        }
+
+        private void Patient_MedicalHistory1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            parentFormreReferece.Show();
+            this.Close();
         }
     }
 }
