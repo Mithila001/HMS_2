@@ -47,7 +47,7 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Text="Ward Visits" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0"/>
-                        <Label x:Name="totalClinicVisits_lbl" Content="99" Grid.Row="1" FontSize="22" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
+                        <Label x:Name="totalWardVisits_lbl" Content="99" Grid.Row="1" FontSize="22" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
 
                     </Grid>
                 </Border>

@@ -25,24 +25,25 @@ namespace HMS_Software_V2.Doctor_ClincOPD
     /// </summary>
     public partial class DCO_Dashboard : Window
     {
-        
 
+        bool IsClinic = false;
         public DCO_Dashboard()
         {
             InitializeComponent();
 
             doctorName_lbl.Content = SharedData.doctorData.doctorName;
-            SharedData.doctorData.doctorID = 1;
-            SharedData.doctorData.doctorSpecialization = "General Physician";
+           
 
-            if(SharedData.doctorData.doctorLocation == "Clinic")
+            if (SharedData.doctorData.doctorLocation == "Clinic")
             {
-                MyDoctorClinic();   
+                MyDoctorClinic(); 
+                IsClinic = true;
+                
 
             }
             else if(SharedData.doctorData.doctorLocation == "OPD")
             {
-                //MyDoctorOPD();
+                MyDoctorOPD();
             }
             else
             {
@@ -52,12 +53,12 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
         }
 
-        //bool IsClinic = false;
+        
         //bool IsOPD = false;
-        //private void MyDoctorOPD()
-        //{
-        //    IsOPD = true;
-        //}
+        private void MyDoctorOPD()
+        {
+            dipartmentName_lbl.Content = "Outpatient Dipartment (OPD)";
+        }
 
         private void MyDoctorClinic()
         {
@@ -91,7 +92,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
             #endregion
 
 
-
+            int PatientID = 0;
             bool IsRID_Valid = false;
 
             using (SqlConnection connection = new Database_Connector().GetConnection())  //to check if the patient RID is correct or not
@@ -111,6 +112,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                     {
                         while (reader.Read())
                         {
+                            PatientID = Convert.ToInt32(reader["Patient_ID"]);
                             IsRID_Valid = true;
                         }
                     }
@@ -126,25 +128,45 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                     else
                     {
 
-                        //if (IsClinic)
-                        //{
-                        //    string query2 = "SELECT * FROM Patient_AppointmentRequest WHERE P_RegistrationID = @patientRID ";
+                        if (IsClinic)
+                        {
+                            bool isGotAnAppointment = false;
+                            int patientAppointmentID = 0;
 
-                        //    SqlCommand cmd2 = new SqlCommand(query2, connection);
+                            string query2 = "SELECT * FROM Patient_AppointmentRequest WHERE PatientID = @PatientID AND IsVisitedByDoctor = 0 ";
 
-                        //    cmd2.Parameters.AddWithValue("@patientRID", "P" + patientRID_tbx.Text);
+                            SqlCommand cmd2 = new SqlCommand(query2, connection);
 
-                        //    using (SqlDataReader reader2 = cmd2.ExecuteReader())
-                        //    {
-                        //        while (reader2.Read())
-                        //        {
-                        //            IsRID_Valid = true;
-                        //        }
-                        //        reader2.Close();
-                        //    }
+                            cmd2.Parameters.AddWithValue("@PatientID", "P" + PatientID);
+
+                            using (SqlDataReader reader2 = cmd2.ExecuteReader())
+                            {
+                                while (reader2.Read())
+                                {
+                                    isGotAnAppointment = true;
+
+                                    patientAppointmentID = Convert.ToInt32(reader2["PatientAppointmentRequest_ID"]);
+                                }
+                                reader2.Close();
+                            }
+
+                            if (isGotAnAppointment)
+                            {
+                                string query3 = "UPDATE Patient_AppointmentRequest SET IsVisitedByDoctor = 1 WHERE PatientAppointmentRequest_ID = @PatientAppointmentRequest_ID";
+
+                                SqlCommand cmd3 = new SqlCommand(query3, connection);
+                                cmd3.Parameters.AddWithValue("@PatientAppointmentRequest_ID", patientAppointmentID);
+                                cmd3.ExecuteNonQuery();
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Patient has not requested an appointment", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
 
 
-                        //}
+                        }
 
 
                         HMS_Software_V2._DataManage_Classes.SharedData.medicalEvent = new HMS_Software_V2._DataManage_Classes.MedicalEvnent(); // Get a new copy of the medical event template

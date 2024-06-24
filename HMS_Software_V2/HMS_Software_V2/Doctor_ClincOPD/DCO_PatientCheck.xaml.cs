@@ -21,6 +21,7 @@ using System.Data.SqlClient;
 using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.Reception.R_UserControls;
 using System.Collections;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HMS_Software_V2.Doctor_ClincOPD
 {
@@ -40,7 +41,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
 
             doctorName_lbl.Content = SharedData.doctorData.doctorName;
-            SharedData.doctorData.doctorName = "Dr. Wakum";
+            
 
             MyGetPatientDetails();
         }
@@ -65,7 +66,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                 
                 cmd.Parameters.AddWithValue("@patientRID", SharedData.medicalEvent.pationetRID);
                
-                SharedData.doctorData.doctorID = 1; // Temporary
+                
 
                 try
                 {
@@ -185,7 +186,179 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
         private void Admit_btn_Click(object sender, RoutedEventArgs e)
         {
-            
+
+            #region Check If At least one TextBox is Filled
+
+            string ExaminationNote = "";
+            bool IsAtLeastOneNoteEmpty = false;
+
+            var textBoxes = new List<TextBox>
+            {
+                historyOfPComplaints_tbx,
+                pastMedicalHistory_tbx,
+                pastSurgicalHistory_tbx,
+                familyHistory_tbx,
+                examinationNotes_tbx,
+                medication_tbx,
+                alergies_tbx,
+                socialHistory_tbx
+            };
+
+            // Iterate through each textbox and check for content
+            foreach (var textBox in textBoxes)
+            {
+                if (string.IsNullOrEmpty(textBox.Text))
+                {
+                    textBox.Text = "No Data";
+                }
+                else
+                {
+                    IsAtLeastOneNoteEmpty = true;
+                }
+            }
+            #endregion
+
+            #region Assign Examination Notes To a single variable
+            if (IsAtLeastOneNoteEmpty)
+            {
+                Dictionary<string, string> textBoxContents = new Dictionary<string, string>
+                {
+                    { "History Of Presenting Complaints", historyOfPComplaints_tbx.Text },
+                    { "PastMedical History", pastMedicalHistory_tbx.Text },
+                    { "PastSurgical History", pastSurgicalHistory_tbx.Text },
+                    { "Familty History", familyHistory_tbx.Text },
+                    { "Examination Notes", examinationNotes_tbx.Text },
+                    { "Medications", medication_tbx.Text },
+                    { "Allergies", alergies_tbx.Text },
+                    { "Socical History", socialHistory_tbx.Text }
+                };
+
+                ExaminationNote = JsonConvert.SerializeObject(textBoxContents, Newtonsoft.Json.Formatting.Indented);
+                SharedData.medicalEvent.PersonExaminationNote = ExaminationNote;
+
+            }
+            else
+            {
+                MessageBox.Show("No data added to the  at least one note.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            #endregion
+
+
+            SharedData.medicalEvent.PatientMedicalCondition = "In-Patient";
+            SharedData.medicalEvent.IsInpationt = true;
+
+            SharedData.medicalEvent.Date = DateOnly.FromDateTime(DateTime.Now);
+            SharedData.medicalEvent.Time = TimeOnly.FromDateTime(DateTime.Now);
+
+            SharedData.medicalEvent.DoctorID = SharedData.doctorData.doctorID;
+
+            Debug.WriteLine("\n SharedData.medicalEvent.DoctorID: " + SharedData.doctorData.doctorID + " \n");
+
+            if (SharedData.doctorData.doctorLocation == "OPD")
+            {
+                SharedData.medicalEvent.Location = "OPD";
+            }
+            else if (SharedData.doctorData.doctorLocation == "Clinic")
+            {
+                SharedData.medicalEvent.Location = "Clinic";
+                // Warning! Need to Complete
+            }
+            else
+            {
+                SharedData.medicalEvent.Location = "Location Not Found";
+            }
+
+
+
+
+            int medicalEventID = 0;
+
+            using (SqlConnection connection = new Database_Connector().GetConnection())
+            {
+                connection.Open();
+
+                try
+                {
+                    DateTime dateRaw = new DateTime(SharedData.medicalEvent.Date.Year, SharedData.medicalEvent.Date.Month, SharedData.medicalEvent.Date.Day);
+                    string date = dateRaw.ToString("yyyy-MM-dd");
+                    TimeSpan timeSpan = SharedData.medicalEvent.Time.ToTimeSpan();
+                    string time = timeSpan.ToString(@"hh\:mm");
+
+
+                    #region Insert Data To Medical Event Table 
+                    string query = "INSERT INTO PatientMedical_Event (Patient_ID, PME_Doctor_ID, PME_Nurse_ID, PME_Date, PME_Time, PME_Location, PME_Is_LabRequest," +
+                                    " PME_Is_PrescriptionRequest, PME_Is_PatientAppointment, PME_PatientExaminationNote, PME_PatietnMedicalCondition, PME_Is_InPatient) "
+                                    + "VALUES (@Patient_ID, @PME_Doctor_ID, @PME_Nurse_ID, @PME_Date, @PME_Time, @PME_Location, @PME_Is_LabRequest, @PME_Is_PrescriptionRequest, @PME_Is_PatientAppointment," +
+                                      " @PME_PatientExaminationNote, @PME_PatietnMedicalCondition, @PME_Is_InPatient); SELECT SCOPE_IDENTITY();";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+
+
+                        Debug.WriteLine("\n ------ Inserting the following values into PatientMedical_Event ------");
+                        Debug.WriteLine("Patient_ID: " + SharedData.medicalEvent.PatientID);
+                        Debug.WriteLine("PME_Doctor_ID: " + SharedData.medicalEvent.DoctorID);
+                        Debug.WriteLine("PME_Nurse_ID: " + 0);
+                        Debug.WriteLine("PME_Date: " + date);
+                        Debug.WriteLine("PME_Time: " + time);
+                        Debug.WriteLine("PME_Location: " + SharedData.medicalEvent.Location);
+                        Debug.WriteLine("PME_Is_LabRequest: " + SharedData.medicalEvent.IsLabRequest);
+                        Debug.WriteLine("PME_Is_PrescriptionRequest: " + SharedData.medicalEvent.IsPrescriptionRequest);
+                        Debug.WriteLine("PME_Is_PatientAppointment: " + SharedData.medicalEvent.IsAppointmentRequest);
+                        Debug.WriteLine("PME_PatientExaminationNote: " + SharedData.medicalEvent.PersonExaminationNote);
+                        Debug.WriteLine("PME_PatietnMedicalCondition: " + SharedData.medicalEvent.PatientMedicalCondition);
+                        Debug.WriteLine("PME_Is_InPatient: " + SharedData.medicalEvent.IsInpationt);
+
+
+
+
+                        cmd.Parameters.AddWithValue("@Patient_ID", SharedData.medicalEvent.PatientID);
+                        cmd.Parameters.AddWithValue("@PME_Doctor_ID", SharedData.medicalEvent.DoctorID);
+                        cmd.Parameters.AddWithValue("@PME_Nurse_ID", 0);
+
+
+
+                        cmd.Parameters.AddWithValue("@PME_Date", date);
+                        cmd.Parameters.AddWithValue("@PME_Time", time);
+                        cmd.Parameters.AddWithValue("@PME_Location", SharedData.medicalEvent.Location);
+                        cmd.Parameters.AddWithValue("@PME_Is_LabRequest", SharedData.medicalEvent.IsLabRequest);
+                        cmd.Parameters.AddWithValue("@PME_Is_PrescriptionRequest", SharedData.medicalEvent.IsPrescriptionRequest);
+                        cmd.Parameters.AddWithValue("@PME_Is_PatientAppointment", SharedData.medicalEvent.IsAppointmentRequest);
+                        cmd.Parameters.AddWithValue("@PME_PatientExaminationNote", SharedData.medicalEvent.PersonExaminationNote);
+                        cmd.Parameters.AddWithValue("@PME_PatietnMedicalCondition", SharedData.medicalEvent.PatientMedicalCondition);
+                        cmd.Parameters.AddWithValue("@PME_Is_InPatient", SharedData.medicalEvent.IsInpationt);
+
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            medicalEventID = Convert.ToInt32(result);
+                            Debug.WriteLine("\nInserted Medical Event ID: " + medicalEventID);
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error: Medical Event ID is not generated", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                    }
+                    #endregion
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("\nError1: \n" + ex.Message);
+                    MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+
         }
 
 
@@ -204,36 +377,66 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
 
 
-            #region Examination Note get and storing
-            string HistoryOfPresentingComplaints = GetRichTextBoxText(HistoryOfPresentingComplaints_Rtbx);
-            string PastMedicalHistory = GetRichTextBoxText(PastMedicalHistory_Rtbx);
-            string PastSurgicalHistory = GetRichTextBoxText(PastSurgicalHistory_Rtbx);
-            string FamiltyHistory = GetRichTextBoxText(FamiltyHistory_Rtbx);
-            string ExaminationNotes = GetRichTextBoxText(ExaminationNotes_Rtbx);
-            string Medications = GetRichTextBoxText(Medications_Rtbx);
-            string Allergies = GetRichTextBoxText(Allergies_Rtbx);
-            string SocicalHistory = GetRichTextBoxText(SoficalHistory_Rtbx);
+            #region Check If At least one TextBox is Filled
 
 
-            Dictionary<string, string> sections = new Dictionary<string, string>
-{
-            { "History Of Presenting Complaints", HistoryOfPresentingComplaints },
-            { "PastMedical History", PastMedicalHistory },
-            { "PastSurgical History", PastSurgicalHistory },
-            { "Familty History", FamiltyHistory },
-            { "Examination Notes", ExaminationNotes },
-            { "Medications", Medications },
-            { "Allergies", Allergies },
-            { "Socical History", SocicalHistory }
-};
+            bool IsAtLeastOneNoteEmpty = false;
+            string ExaminationNote = "";
 
-            string examinationNote_json = JsonConvert.SerializeObject(sections, Newtonsoft.Json.Formatting.Indented);
+            var textBoxes = new List<TextBox>
+            {
+                historyOfPComplaints_tbx,
+                pastMedicalHistory_tbx,
+                pastSurgicalHistory_tbx,
+                familyHistory_tbx,
+                examinationNotes_tbx,
+                medication_tbx,
+                alergies_tbx,
+                socialHistory_tbx
+            };
 
-            Debug.WriteLine("\n ExaminationNote Json file: " + examinationNote_json + " \n"); 
+            // Iterate through each textbox and check for content
+            foreach (var textBox in textBoxes)
+            {
+                if (string.IsNullOrEmpty(textBox.Text))
+                {
+                    textBox.Text = "No Data";
+                }
+                else
+                {
+                    IsAtLeastOneNoteEmpty = true;
+                }
+            }
+            #endregion
+
+            #region Assign Examination Notes To a single variable
+            if (IsAtLeastOneNoteEmpty)
+            {
+                Dictionary<string, string> textBoxContents = new Dictionary<string, string>
+                {
+                    { "History Of Presenting Complaints", historyOfPComplaints_tbx.Text },
+                    { "PastMedical History", pastMedicalHistory_tbx.Text },
+                    { "PastSurgical History", pastSurgicalHistory_tbx.Text },
+                    { "Familty History", familyHistory_tbx.Text },
+                    { "Examination Notes", examinationNotes_tbx.Text },
+                    { "Medications", medication_tbx.Text },
+                    { "Allergies", alergies_tbx.Text },
+                    { "Socical History", socialHistory_tbx.Text }
+                };
+
+                ExaminationNote = JsonConvert.SerializeObject(textBoxContents, Newtonsoft.Json.Formatting.Indented);
+                SharedData.medicalEvent.PersonExaminationNote = ExaminationNote;
+
+            }
+            else
+            {
+                MessageBox.Show("No data added to the  at least one note.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             #endregion
 
 
-            SharedData.medicalEvent.PersonExaminationNote = examinationNote_json;
+            SharedData.medicalEvent.PersonExaminationNote = ExaminationNote;
             SharedData.medicalEvent.PatientMedicalCondition = "Out-Patient";
             SharedData.medicalEvent.IsInpationt = false;
 
@@ -476,7 +679,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                     #endregion
 
-
+                    this.Close();
 
                 }
 
@@ -491,6 +694,8 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                 }
 
             }
+
+           
         }
 
         private void ViewPatientHistory_btn_Click(object sender, RoutedEventArgs e)

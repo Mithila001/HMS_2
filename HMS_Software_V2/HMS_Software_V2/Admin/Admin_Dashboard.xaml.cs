@@ -1,4 +1,5 @@
 ﻿using HMS_Software_V2._DataManage_Classes;
+using HMS_Software_V2.UserLogin_Page;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,10 +59,7 @@ namespace HMS_Software_V2.Admin
 
         private void TemporyData()
         {
-            HMS_Software_V2._DataManage_Classes.SharedData.adminData = new HMS_Software_V2._DataManage_Classes.AdminData(); // Get a new copy of the template
-
-            SharedData.adminData.AdminID = 2;
-            SharedData.adminData.AdminName = "V J Horathana";
+           
         }
 
         private void Home_btn_Click(object sender, RoutedEventArgs e)
@@ -179,6 +177,12 @@ namespace HMS_Software_V2.Admin
                 UserControl_Patients.Visibility = Visibility.Collapsed;
                 UserControl_Reception.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void Admin_UserControls_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            UserLogin userLogin = new UserLogin();
+            userLogin.Show();
         }
     }
 }

@@ -53,10 +53,13 @@ namespace HMS_Software_V2.UserCommon_Forms
         {
             patientName_lbl.Content = SharedData.viewPatientHistory.PatientName;
             patientRID_lbl.Content = SharedData.viewPatientHistory.PatientRID;
+
+            totalOpdVisits_lbl.Content = TotalOPD_Visits;
+            totalWardVisits_lbl.Content = TotalWard_Visits;
         }
 
         int TotalOPD_Visits = 0;
-        int TotalClinic_Visits = 0;
+        int TotalWard_Visits = 0;
         private void MyLoadMedicalHistory()
         {
             using (SqlConnection connection = new Database_Connector().GetConnection())
@@ -80,7 +83,7 @@ namespace HMS_Software_V2.UserCommon_Forms
 
                 SqlCommand cmd = new SqlCommand(query1, connection);
                 //cmd.Parameters.AddWithValue("@Patient_ID", SharedData.Ward_Doctor.PatientID);
-                cmd.Parameters.AddWithValue("@Patient_ID", 2);
+                cmd.Parameters.AddWithValue("@Patient_ID", SharedData.viewPatientHistory.PatientID);
 
                 try
                 {
@@ -117,17 +120,17 @@ namespace HMS_Software_V2.UserCommon_Forms
 
                         string location = reader["PME_Location"].ToString() ?? "Error";
 
-                        if(location == "OPD")
+                        if(location == "OPD" || location == "Clinic")
                         {
                             TotalOPD_Visits++;
                         }
-                        else if(location == "Clinic")
+                        else if(location == "Ward")
                         {
-                            TotalClinic_Visits++;
+                            TotalWard_Visits++;
                         }
                         else
                         {
-                            MessageBox.Show("Mismatched Location: " + location, "Error", MessageBoxButton.OK, MessageBoxImage.Error);   
+                            //MessageBox.Show("Mismatched Location: " + location, "Error", MessageBoxButton.OK, MessageBoxImage.Error);   
                         }
 
 
@@ -191,7 +194,7 @@ namespace HMS_Software_V2.UserCommon_Forms
         private void Patient_MedicalHistory1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             parentFormreReferece.Show();
-            this.Close();
+            
         }
     }
 }

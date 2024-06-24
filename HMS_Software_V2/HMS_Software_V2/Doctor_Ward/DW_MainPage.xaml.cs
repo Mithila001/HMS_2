@@ -54,12 +54,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
         private void Temporory()
         {
-            HMS_Software_V2._DataManage_Classes.SharedData.Ward_Doctor = new HMS_Software_V2._DataManage_Classes.Ward_Doctor(); // Get a new copy of the template
-            SharedData.Ward_Doctor.DoctorName = "Dr. John Doe";
-            SharedData.Ward_Doctor.DoctorID = 3;
-            SharedData.Ward_Doctor.DoctorSpeciality = "General Physician";
-            SharedData.Ward_Doctor.WardID = 6;
-            SharedData.Ward_Doctor.WardName = "Maternity";
+            
         }
 
         private void MyLoad_BasicDetails()

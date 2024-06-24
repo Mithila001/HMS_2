@@ -180,18 +180,15 @@
                 </Grid.RowDefinitions>
 
 
+
                 <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.ColumnSpan="2"  >
                     <GroupBox.Header>
                         <TextBlock Text="History Of Presenting Complaints" FontWeight="Regular" FontSize="11" />
                     </GroupBox.Header>
 
-                    <RichTextBox x:Name="HistoryOfPresentingComplaints_Rtbx">
-                        <FlowDocument>
-                            <Paragraph LineHeight="1">
-                                <LineBreak/>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
+                    <TextBox x:Name="historyOfPComplaints_tbx" Margin="0"
+             Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" 
+             AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
                 </GroupBox>
 
                 <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="1" Grid.Column="0">
@@ -199,13 +196,7 @@
                         <TextBlock Text="Past Medical History" FontWeight="Regular" FontSize="11" />
                     </GroupBox.Header>
 
-                    <RichTextBox x:Name="PastMedicalHistory_Rtbx">
-                        <FlowDocument>
-                            <Paragraph LineHeight="1">
-                                <LineBreak/>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
+                    <TextBox x:Name="pastMedicalHistory_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
                 </GroupBox>
 
                 <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="2" Grid.Column="0" Grid.RowSpan="2">
@@ -213,13 +204,8 @@
                         <TextBlock Text="Past Surgical History" FontWeight="Regular" FontSize="11" />
                     </GroupBox.Header>
 
-                    <RichTextBox x:Name="PastSurgicalHistory_Rtbx">
-                        <FlowDocument>
-                            <Paragraph LineHeight="1">
-                                <LineBreak/>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
+                    <TextBox x:Name="pastSurgicalHistory_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
+
                 </GroupBox>
 
                 <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="4" Grid.Column="0" Grid.RowSpan="2">
@@ -227,13 +213,7 @@
                         <TextBlock Text="Family History" FontWeight="Regular" FontSize="11" />
                     </GroupBox.Header>
 
-                    <RichTextBox x:Name="FamiltyHistory_Rtbx">
-                        <FlowDocument>
-                            <Paragraph LineHeight="1">
-                                <LineBreak/>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
+                    <TextBox x:Name="familyHistory_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
                 </GroupBox>
 
                 <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
@@ -241,13 +221,7 @@
                         <TextBlock Text="Examinations/Notes" FontWeight="Regular" FontSize="11" />
                     </GroupBox.Header>
 
-                    <RichTextBox x:Name="ExaminationNotes_Rtbx">
-                        <FlowDocument>
-                            <Paragraph LineHeight="1">
-                                <LineBreak/>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
+                    <TextBox x:Name="examinationNotes_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
                 </GroupBox>
 
                 <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
@@ -255,13 +229,7 @@
                         <TextBlock Text="Medications" FontWeight="Regular" FontSize="11" />
                     </GroupBox.Header>
 
-                    <RichTextBox x:Name="Medications_Rtbx">
-                        <FlowDocument>
-                            <Paragraph LineHeight="1">
-                                <LineBreak/>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
+                    <TextBox x:Name="medication_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
                 </GroupBox>
 
                 <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2">
@@ -269,30 +237,16 @@
                         <TextBlock Text="Allergies" FontWeight="Regular" FontSize="11" />
                     </GroupBox.Header>
 
-                    <RichTextBox x:Name="Allergies_Rtbx">
-                        <FlowDocument>
-                            <Paragraph LineHeight="1">
-                                <LineBreak/>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
+                    <TextBox x:Name="alergies_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
                 </GroupBox>
 
                 <GroupBox Margin="0,0,0,0" BorderBrush="#FFCECECE" Padding="0,0,0,0" Grid.Row="5" Grid.Column="1" Grid.RowSpan="1">
                     <GroupBox.Header>
-                        <TextBlock Text="Sofical History" FontWeight="Regular" FontSize="11" />
+                        <TextBlock Text="Social History" FontWeight="Regular" FontSize="11" />
                     </GroupBox.Header>
 
-                    <RichTextBox x:Name="SoficalHistory_Rtbx">
-                        <FlowDocument>
-                            <Paragraph LineHeight="1">
-                                <LineBreak/>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
+                    <TextBox x:Name="socialHistory_tbx" Margin="0" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14"/>
                 </GroupBox>
-
-
 
 
             </Grid>

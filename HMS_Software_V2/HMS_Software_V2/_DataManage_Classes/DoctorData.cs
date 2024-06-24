@@ -27,10 +27,10 @@ namespace HMS_Software_V2._DataManage_Classes
         public DoctorData()
         {
             doctorID = 0;
-            doctorName = "Dr. Joe";
+            doctorName = "";
             doctorSpecialization = string.Empty;
             doctorRID = string.Empty;
-            doctorLocation = "Clinic";
+            doctorLocation = "";
             
         }
     }

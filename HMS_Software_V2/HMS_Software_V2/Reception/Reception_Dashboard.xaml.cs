@@ -1,5 +1,6 @@
 ﻿using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.Reception.R_UserControls;
+using HMS_Software_V2.UserLogin_Page;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -108,6 +109,9 @@ namespace HMS_Software_V2.Reception
 
         private void Reception_Dashboard1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            UserLogin userLogin = new UserLogin();
+            userLogin.Show();
+            
            
         }
     }

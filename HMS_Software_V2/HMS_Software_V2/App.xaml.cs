@@ -39,11 +39,10 @@ namespace HMS_Software_V2
             //Test test = new Test();
             //test.Show();
 
-            //UserLogin userLogin = new UserLogin();
-            //userLogin.Show();
+            UserLogin userLogin = new UserLogin();
+            userLogin.Show();
 
-            Patient_MedicalHistory patient_MedicalHistory = new Patient_MedicalHistory();
-            patient_MedicalHistory.Show();
+
 
 
 

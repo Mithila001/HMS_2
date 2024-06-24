@@ -43,12 +43,7 @@ namespace HMS_Software_V2.Nurse_Ward
 
         private void MyTemporary()
         {
-            HMS_Software_V2._DataManage_Classes.SharedData.Ward_Nurse = new HMS_Software_V2._DataManage_Classes.Ward_Nurse(); // Get a new copy of the template
-            SharedData.Ward_Nurse.NurseID = 4;
-            SharedData.Ward_Nurse.NurseName = "J C Kalubovial";
-            SharedData.Ward_Nurse.WardName = "General Ward";
-            SharedData.Ward_Nurse.NureseLicenceNumber = "Nurse-0001";
-            SharedData.Ward_Nurse.WardNumber = 1;
+            
         }
         private void MyDisplayBasicData()
         {

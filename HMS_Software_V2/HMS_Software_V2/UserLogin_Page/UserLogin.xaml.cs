@@ -18,6 +18,8 @@ using System.Windows.Shapes;
 using Newtonsoft.Json;
 using HMS_Software_V2.Doctor_Ward;
 using HMS_Software_V2.Nurse_Ward;
+using HMS_Software_V2.Admin;
+using HMS_Software_V2.Reception;
 
 namespace HMS_Software_V2.UserLogin_Page
 {
@@ -38,6 +40,63 @@ namespace HMS_Software_V2.UserLogin_Page
 
         private void DoctorWard_btn_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
+
+        private void NureceWard_btn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Admin_Click(object sender, RoutedEventArgs e)
+        {
+
+            HMS_Software_V2._DataManage_Classes.SharedData.adminData = new HMS_Software_V2._DataManage_Classes.AdminData(); // Get a new copy of the template
+
+            // We currently dont have an admin table in the database so we will use a tempory data
+            SharedData.adminData.AdminID = 2;
+            SharedData.adminData.AdminName = "V J Horathana";
+
+            Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
+            admin_Dashboard.Show();
+            this.Close();
+
+        }
+
+        private void DoctorOPD_Click(object sender, RoutedEventArgs e)
+        {
+            HMS_Software_V2._DataManage_Classes.SharedData.doctorData = new HMS_Software_V2._DataManage_Classes.DoctorData(); // Get a new copy of the template
+
+            SharedData.doctorData.doctorID = 1;
+            SharedData.doctorData.doctorName = "Dr. John Doe";
+            SharedData.doctorData.doctorSpecialization = "General Physician";
+            SharedData.doctorData.doctorLocation = "OPD";
+
+            DCO_Dashboard dCO_Dashboard = new DCO_Dashboard();
+            dCO_Dashboard.Show();
+            this.Close();
+
+        }
+
+        private void DoctorCinic_Click(object sender, RoutedEventArgs e)
+        {
+            HMS_Software_V2._DataManage_Classes.SharedData.doctorData = new HMS_Software_V2._DataManage_Classes.DoctorData(); // Get a new copy of the template
+
+            SharedData.doctorData.doctorID = 1;
+            SharedData.doctorData.doctorName = "Dr. John Doe";
+            SharedData.doctorData.doctorSpecialization = "General Physician";
+            SharedData.doctorData.doctorLocation = "Clinic";
+            SharedData.Ward_Doctor.WardID = 6;
+            SharedData.Ward_Doctor.WardName = "Maternity";
+
+            DCO_Dashboard dCO_Dashboard = new DCO_Dashboard();
+            dCO_Dashboard.Show();
+            this.Close();
+
+        }
+
+        private void DoctorWard_Click(object sender, RoutedEventArgs e)
+        {
             HMS_Software_V2._DataManage_Classes.SharedData.Ward_Doctor = new HMS_Software_V2._DataManage_Classes.Ward_Doctor(); // Get a new copy of the template
             SharedData.Ward_Doctor.DoctorName = "Dr. John Doe";
             SharedData.Ward_Doctor.DoctorID = 3;
@@ -45,13 +104,13 @@ namespace HMS_Software_V2.UserLogin_Page
             SharedData.Ward_Doctor.WardID = 6;
             SharedData.Ward_Doctor.WardName = "Maternity";
 
-
             DW_MainPage dW_MainPage = new DW_MainPage();
             dW_MainPage.Show();
             this.Close();
+
         }
 
-        private void NureceWard_btn_Click(object sender, RoutedEventArgs e)
+        private void Nurse_Click(object sender, RoutedEventArgs e)
         {
             HMS_Software_V2._DataManage_Classes.SharedData.Ward_Nurse = new HMS_Software_V2._DataManage_Classes.Ward_Nurse(); // Get a new copy of the template
             SharedData.Ward_Nurse.NurseID = 4;
@@ -62,6 +121,19 @@ namespace HMS_Software_V2.UserLogin_Page
 
             NW_Dashboard nW_Dashboard = new NW_Dashboard();
             nW_Dashboard.Show();
+            this.Close();
+
+        }
+
+        private void Reception_Click(object sender, RoutedEventArgs e)
+        {
+            HMS_Software_V2._DataManage_Classes.SharedData.receptionData = new HMS_Software_V2._DataManage_Classes.ReceptionData(); // Get a new copy of the template
+
+            SharedData.receptionData.ReceptionID = 5;
+            SharedData.receptionData.ReceptionName = "J C Kalubovial";
+
+            Reception_Dashboard reception_Dashboard = new Reception_Dashboard();
+            reception_Dashboard.Show();
             this.Close();
         }
     }

@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HMS_Software_V2.Admin"
-        xmlns:Admin_UserControls="clr-namespace:HMS_Software_V2.Admin.Admin_UserControls" x:Class="HMS_Software_V2.Admin.Admin_Dashboard"
+        xmlns:Admin_UserControls="clr-namespace:HMS_Software_V2.Admin.Admin_UserControls" x:Name="Admin_UserControls" x:Class="HMS_Software_V2.Admin.Admin_Dashboard"
         mc:Ignorable="d"
         Title="Admin_Dashboard" Height="720" Width="1280" WindowStartupLocation="CenterScreen"
-        MinHeight="720" MinWidth="1280">
+        MinHeight="720" MinWidth="1280" Closing="Admin_UserControls_Closing">
 
 
 
