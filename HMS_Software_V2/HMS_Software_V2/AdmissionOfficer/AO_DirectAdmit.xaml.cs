@@ -97,6 +97,9 @@ namespace HMS_Software_V2.AdmissionOfficer
 
         }
 
+        bool IsEmergancy = false;
+        string EmergancyType = "None";
+
         int InputWardNo = 0;
         string? ExaminationNote;
         private void Admit_btn_Click(object sender, RoutedEventArgs e)
@@ -130,7 +133,6 @@ namespace HMS_Software_V2.AdmissionOfficer
 
             #region Check If At least one TextBox is Filled
 
-
             bool IsAtLeastOneNoteEmpty = false;
 
             var textBoxes = new List<TextBox>
@@ -159,7 +161,6 @@ namespace HMS_Software_V2.AdmissionOfficer
             }
             #endregion
 
-
             #region Assign Examination Notes To a single variable
             if (IsAtLeastOneNoteEmpty)
             {
@@ -183,7 +184,25 @@ namespace HMS_Software_V2.AdmissionOfficer
             {
                 MessageBox.Show("Please fill at least one note.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
-            } 
+            }
+            #endregion
+
+            #region Check if an Emergancy
+            if (IsPCU_Select_CheckVox.IsChecked == true)
+            {
+                IsEmergancy = true;
+                EmergancyType = "PCU";
+            }
+            else if (ETU_Selecte_CheckBox.IsChecked == true)
+            {
+                IsEmergancy = true;
+                EmergancyType = "ETU";
+            }
+            else
+            {
+                IsEmergancy = false;
+                EmergancyType = "None";
+            }
             #endregion
 
 
@@ -247,11 +266,15 @@ namespace HMS_Software_V2.AdmissionOfficer
                     #endregion
 
                     #region UPDATE Patient Table
-                    string query3 = "UPDATE Patient SET P_CurrentStatus = 'In-Patient' WHERE Patient_ID = @Patient_ID";
+                    string query3 = "UPDATE Patient SET P_CurrentStatus = 'In-Patient', P_IsEmergency = @P_IsEmergency, P_EmergancyType = @P_EmergancyType, P_EmergancyAssignedTime = @P_EmergancyAssignedTime WHERE Patient_ID = @Patient_ID";
 
                     using (SqlCommand command3 = new SqlCommand(query3, connection))
                     {
                         command3.Parameters.AddWithValue("@Patient_ID", SharedData.admissioOfficer.PatientID);
+
+                        command3.Parameters.AddWithValue("@P_IsEmergency", IsEmergancy);
+                        command3.Parameters.AddWithValue("@P_EmergancyType", EmergancyType);
+                        command3.Parameters.AddWithValue("@P_EmergancyAssignedTime", DateTime.Now.ToString("hh:mm tt"));
 
                         command3.ExecuteNonQuery();
                     }

@@ -113,6 +113,15 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                         while (reader.Read())
                         {
                             PatientID = Convert.ToInt32(reader["Patient_ID"]);
+
+                            string patientStatus = reader["P_CurrentStatus"].ToString() ?? "";
+
+                            if(patientStatus == "In-Patient")
+                            {
+                                MessageBox.Show("Patient is an In-Patient", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                return;
+                            }
+
                             IsRID_Valid = true;
                         }
                     }

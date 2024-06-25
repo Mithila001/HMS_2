@@ -136,6 +136,8 @@ namespace HMS_Software_V2.AdmissionOfficer
         #endregion
 
         int InputWardNo = 0;
+        bool IsEmergancy = false;
+        string EmergancyType = "";
         private void Admit_btn_Click(object sender, RoutedEventArgs e)
         {
             
@@ -163,6 +165,25 @@ namespace HMS_Software_V2.AdmissionOfficer
             {
                 MessageBox.Show("Please select a ward.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
+            }
+            #endregion
+
+
+            #region Check if an Emergancy
+            if (IsPCU_Select_CheckVox.IsChecked == true)
+            {
+                IsEmergancy = true;
+                EmergancyType = "PCU";
+            }
+            else if (ETU_Selecte_CheckBox.IsChecked == true)
+            {
+                IsEmergancy = true;
+                EmergancyType = "ETU";
+            }
+            else
+            {
+                IsEmergancy = false;
+                EmergancyType = "None";
             } 
             #endregion
 
@@ -190,8 +211,8 @@ namespace HMS_Software_V2.AdmissionOfficer
                         command.Parameters.AddWithValue("@Patient_ID", SharedData.admissioOfficer.PatientID); 
                         command.Parameters.AddWithValue("@AP_Condition", "Just Admitted"); 
                         command.Parameters.AddWithValue("@AP_VisiteTotalRounds", 0); 
-                        command.Parameters.AddWithValue("@AP_AdmittedDate", DateTime.Now.ToString("dd MMMM yyyy"));
-                        command.Parameters.AddWithValue("@AP_AdmittedTime", DateTime.Now.ToString("hh:mm tt")); 
+                        command.Parameters.AddWithValue("@AP_AdmittedDate", DateTime.Now.ToString("yyyy-MM-dd"));
+                        command.Parameters.AddWithValue("@AP_AdmittedTime", DateTime.Now.ToString("HH:mm:ss"));
                         command.Parameters.AddWithValue("@AP_Ward", InputWardNo); 
 
                         command.ExecuteNonQuery();
@@ -211,11 +232,15 @@ namespace HMS_Software_V2.AdmissionOfficer
                     #endregion
 
                     #region UPDATE Patient Table
-                    string query3 = "UPDATE Patient SET P_CurrentStatus = 'In-Patient' WHERE Patient_ID = @Patient_ID";
+                    string query3 = "UPDATE Patient SET P_CurrentStatus = 'In-Patient', P_IsEmergency = @P_IsEmergency, P_EmergancyType = @P_EmergancyType, P_EmergancyAssignedTime = @P_EmergancyAssignedTime  WHERE Patient_ID = @Patient_ID";
 
                     using (SqlCommand command3 = new SqlCommand(query3, connection))
                     {
                         command3.Parameters.AddWithValue("@Patient_ID", SharedData.admissioOfficer.PatientID);
+
+                        command3.Parameters.AddWithValue("@P_IsEmergency", IsEmergancy);
+                        command3.Parameters.AddWithValue("@P_EmergancyType", EmergancyType);
+                        command3.Parameters.AddWithValue("@P_EmergancyAssignedTime", DateTime.Now.ToString("hh:mm tt"));
 
                         command3.ExecuteNonQuery();
                     } 

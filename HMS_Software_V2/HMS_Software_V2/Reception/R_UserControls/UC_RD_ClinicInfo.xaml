@@ -13,7 +13,7 @@
         
     </UserControl.Resources>
 
-    <Border Effect="{StaticResource ShadowEffect}" SnapsToDevicePixels="True" BorderThickness="1" BorderBrush="#FFA5A5A5" Background="White" CornerRadius="3">
+    <Border Effect="{StaticResource ShadowEffect}" SnapsToDevicePixels="True" BorderThickness="1" BorderBrush="#FFA5A5A5" Background="White" CornerRadius="10">
         <Grid Height="100" MinWidth="390">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="27*"/>

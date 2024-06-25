@@ -31,7 +31,7 @@
 
     </UserControl.Resources>
 
-    <Border Style="{StaticResource HoverableBorderStyle}" Effect="{StaticResource ShadowEffect}" SnapsToDevicePixels="True"    CornerRadius="5">
+    <Border Style="{StaticResource HoverableBorderStyle}" Effect="{StaticResource ShadowEffect}" SnapsToDevicePixels="True"    CornerRadius="10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

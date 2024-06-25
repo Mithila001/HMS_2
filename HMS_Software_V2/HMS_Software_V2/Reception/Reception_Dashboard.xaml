@@ -44,39 +44,46 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Grid.ColumnSpan="3" Margin="10,5,10,5" Grid.Row="0" Grid.RowSpan="1"/>
-            <Label Content="XXX" FontSize="20" FontWeight="Bold" Margin="139,45,141,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MinHeight="36"/>
+            <Label x:Name="totalInpatients_lbl" Content="XXX" FontSize="20" FontWeight="Bold" Margin="139,45,141,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MinHeight="36"/>
             <Label Content="Total In-Patients" FontSize="15" FontWeight="Regular" Margin="125,15,116,46" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
 
             <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Grid.ColumnSpan="3" Margin="10,5,10,5" Grid.Row="1" Grid.RowSpan="1"/>
             <Label Content="Total Doctors" FontSize="15" FontWeight="Regular" Margin="0,15,0,45" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="126" Grid.Row="1"/>
-            <Label Content="XXX" FontSize="20" FontWeight="Bold" Margin="0,45,0,9" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" MinHeight="36"/>
+            <Label x:Name="totalDoctors_lbl" Content="XXX" FontSize="20" FontWeight="Bold" Margin="0,45,0,9" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" MinHeight="36"/>
         </Grid>
 
         <!-- ================================================= Row 2 col 2 ================================================= -->
 
-        <Border Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" CornerRadius="3" BorderBrush="#FF929292" BorderThickness="2" Margin="5,0,0,0">
+        <Border Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" CornerRadius="10" BorderBrush="#FF929292" BorderThickness="1" Margin="5,0,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto"  Grid.Row="2" Grid.RowSpan="2" Margin="10,51,2,10">
+                <WrapPanel x:Name="clinicAvailability_WrapP" Grid.Row="2" Margin="1,0,1,1" Grid.RowSpan="2"/>
+            </ScrollViewer>
 
         </Border>
         <Label Content="Today Clinics" FontSize="20" FontWeight="Bold" Margin="105,6,105,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="2" Height="39" VerticalAlignment="Top"/>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto"  Grid.Row="2" Grid.RowSpan="2" Margin="10,51,2,10">
-            <WrapPanel x:Name="clinicAvailability_WrapP" Grid.Row="2" Margin="1,0,1,1" Grid.RowSpan="2"/>
-        </ScrollViewer>
+        
 
         <!-- ================================================= Row 2 col 2 ================================================= -->
         <Label Content="Patients Today" FontSize="15" FontWeight="Bold" Margin="105,6,105,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1"  Grid.Column="1" Height="39" VerticalAlignment="Top"/>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto"  Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="10,51,10,10">
-            <WrapPanel x:Name="todayPatients_WrapP" Margin="1,0,1,1" Grid.Row="1" Grid.RowSpan="2" Background="Aqua"/>
-        </ScrollViewer>
+        <Border CornerRadius="10" BorderBrush="#FF929292" BorderThickness="1" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="10,51,10,10" Padding="2,2,2,0" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto"  >
+                <WrapPanel x:Name="emergancyPatients_WrapP" Margin="1,0,1,1" Grid.Row="1" Grid.RowSpan="2" Background="Transparent"/>
+            </ScrollViewer>
+        </Border>
+         
 
         <!-- ================================================= Row 2 col 3 ================================================= -->
         <Label Content="Discharging Patients" FontSize="15" FontWeight="Bold" Margin="105,6,105,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1"  Grid.Column="2" Height="39" VerticalAlignment="Top"/>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto"  Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="10,51,10,10">
-            <WrapPanel x:Name="DischargingPatients_WrapP" Margin="1,0,1,1" Grid.Row="1" Grid.RowSpan="2" Background="Aqua"/>
-        </ScrollViewer>
+
+        <Border CornerRadius="10" BorderBrush="#FF929292" BorderThickness="1" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="10,51,10,10" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto"  >
+                <WrapPanel x:Name="DischargingPatients_WrapP" Margin="1,0,1,1" Grid.Row="1" Grid.RowSpan="2" Background="Transparent"/>
+            </ScrollViewer>
+        </Border>
 
         <!-- ================================================= Row 3 col 2/3 ================================================= -->
 

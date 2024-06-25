@@ -28,6 +28,18 @@ namespace HMS_Software_V2.Doctor_ClincOPD
         {
             InitializeComponent();
             this.parentForm = dCO_PatientCheck;
+
+
+            if(SharedData.medicalEvent.IsAdmitUrgent)
+            {
+                urgentBorder.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                urgentBorder.Visibility = Visibility.Hidden;
+            }
+
+
         }
 
         private void Confirm_btn_Click(object sender, RoutedEventArgs e)
@@ -135,6 +147,9 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             
                             Debug.WriteLine("\nInserted Data To Doc_PatientAdmit_Request Table");
 
+                            parentForm.Close();
+                            this.Close();
+
                         }
                         else
                         {
@@ -158,6 +173,11 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                 }
             }
 
+        }
+
+        private void DCO_Referral1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            parentForm.Show();
         }
     }
 }

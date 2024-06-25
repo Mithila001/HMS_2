@@ -35,11 +35,13 @@ namespace HMS_Software_V2.Reception
 
             LoadClinicData();
 
+            LoadEmergancyPatientData();
+
         }
 
         private void MyLoadBasicData()
         {
-            #region Get and Assign Date Time
+            #region Get and Assign - Date Time
             int day = DateTime.Now.Day;
             string daySuffix = day switch
             {
@@ -55,6 +57,51 @@ namespace HMS_Software_V2.Reception
             #endregion
 
             receptionName_lbl.Content = SharedData.receptionData.ReceptionName;
+
+            using (SqlConnection connection = new Database_Connector().GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    #region Get Total Doctors Count
+                    string query2 = "SELECT COUNT(*) FROM Doctor";
+                    using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    {
+
+                        int count = (int)command2.ExecuteScalar();
+                        totalDoctors_lbl.Content = count.ToString();
+                    }
+
+                    #endregion
+
+                    #region Get Total In Patient Count
+                    string query4 = "SELECT COUNT(*) FROM Admitted_Patients";
+                    using (SqlCommand command2 = new SqlCommand(query4, connection))
+                    {
+
+                        int count = (int)command2.ExecuteScalar();
+                        totalInpatients_lbl.Content = count.ToString();
+                    }
+
+                    #endregion
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+
+            }
+
+
+
         }
 
         private void LoadClinicData()
@@ -141,6 +188,150 @@ namespace HMS_Software_V2.Reception
 
 
         }
+
+        private void LoadEmergancyPatientData()
+        {
+            using (SqlConnection connection = new Database_Connector().GetConnection())
+            {
+                string query1 = "SELECT P_RegistrationID, P_NameWithIinitials, P_IsEmergency, P_EmergancyType, P_EmergancyAssignedTime " +
+               "FROM Patient WHERE P_IsEmergency = 1 ";
+
+                SqlCommand cmd = new SqlCommand(query1, connection);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string patientRID = reader["P_RegistrationID"].ToString()?? "Error";
+                        
+                        string patientName = reader["P_NameWithIinitials"].ToString() ?? "Error";
+
+                        //bool isEmergency = (bool)reader["P_IsEmergency"];
+                        string emergencyType = reader["P_EmergancyType"].ToString() ?? "Error";
+
+                        TimeSpan assignedTime = (TimeSpan)reader["P_EmergancyAssignedTime"];
+
+                        DateTime time = DateTime.Today.Add(assignedTime); // Convert TimeSpan to DateTime
+                        string formattedTime = time.ToString("hh:mm tt"); ;
+
+
+                        UC_RD_ShowEmergancyPatients uC_RD_ShowEmergancyPatients = new UC_RD_ShowEmergancyPatients();
+                        uC_RD_ShowEmergancyPatients.patientName.Content = patientName;
+                        uC_RD_ShowEmergancyPatients.patientRID.Content = patientRID;
+                        uC_RD_ShowEmergancyPatients.assignedTime_lbl.Content = formattedTime;
+
+                        
+
+
+                        if (emergencyType == "PCU")
+                        {
+                            uC_RD_ShowEmergancyPatients.availabilityBorder_border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#fac0a2"));
+                            uC_RD_ShowEmergancyPatients.emergancyType.Content = "PCU";
+                        }
+                        else if(emergencyType == "ETU")
+                        {
+                            uC_RD_ShowEmergancyPatients.availabilityBorder_border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#edeea8"));
+                            uC_RD_ShowEmergancyPatients.emergancyType.Content = "ETU";
+                        }
+
+
+
+                        // Adjust the width of the user control to match the width of the parent container
+                        emergancyPatients_WrapP.SizeChanged += (sender, e) =>
+                        {
+                            uC_RD_ShowEmergancyPatients.Width = emergancyPatients_WrapP.ActualWidth - uC_RD_ShowEmergancyPatients.Margin.Left - uC_RD_ShowEmergancyPatients.Margin.Right;
+                            
+                        };
+                        uC_RD_ShowEmergancyPatients.Width = emergancyPatients_WrapP.ActualWidth - uC_RD_ShowEmergancyPatients.Margin.Left - uC_RD_ShowEmergancyPatients.Margin.Right;
+
+                        emergancyPatients_WrapP.Children.Add(uC_RD_ShowEmergancyPatients);
+
+
+
+
+                    }
+                    reader.Close();
+
+                }
+
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("\nError1: \n" + ex.Message);
+                    MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        private void LoadDischarginPatients()
+        {
+            using (SqlConnection connection = new Database_Connector().GetConnection())
+            {
+                string query3 = "SELECT PD.PD_Ward_No, P.P_NameWithIinitials, P.P_RegistrationID  " +
+                "FROM Patient_Discharge PD " +
+                "INNER JOIN Patient P ON PD.Patient_ID = P.Patient_ID";
+
+                SqlCommand cmd = new SqlCommand(query3, connection);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        int wardNumber = (int)reader["PD_Ward_No"];
+
+                        string patientName = reader["P_NameWithIinitials"].ToString() ?? "Error";
+
+                        string patientRID = reader["P_RegistrationID"].ToString() ?? "Error";
+
+
+                        UC_RD_ShowDischarginPatients uC_RD_ShowDischarginPatients = new UC_RD_ShowDischarginPatients();
+
+                        uC_RD_ShowDischarginPatients.patientName.Content = patientName;
+                        uC_RD_ShowDischarginPatients.patientRID.Content = patientRID;
+                        uC_RD_ShowDischarginPatients.wardNumber_lbl.Content = wardNumber.ToString();
+
+
+
+                        // Adjust the width of the user control to match the width of the parent container
+                        DischargingPatients_WrapP.SizeChanged += (sender, e) =>
+                        {
+                            uC_RD_ShowDischarginPatients.Width = DischargingPatients_WrapP.ActualWidth - uC_RD_ShowDischarginPatients.Margin.Left - uC_RD_ShowDischarginPatients.Margin.Right;
+
+                        };
+                        uC_RD_ShowDischarginPatients.Width = DischargingPatients_WrapP.ActualWidth - uC_RD_ShowDischarginPatients.Margin.Left - uC_RD_ShowDischarginPatients.Margin.Right;
+
+                        DischargingPatients_WrapP.Children.Add(uC_RD_ShowDischarginPatients);
+
+
+
+
+                    }
+                    reader.Close();
+
+                }
+
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("\nError1: \n" + ex.Message);
+                    MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+        }
+
 
         private void SearchPatient_btn_Click(object sender, RoutedEventArgs e)
         {

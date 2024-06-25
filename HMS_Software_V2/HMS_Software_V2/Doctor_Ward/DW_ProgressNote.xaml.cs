@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -17,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HMS_Software_V2.Doctor_Ward
 {
@@ -509,6 +511,95 @@ namespace HMS_Software_V2.Doctor_Ward
             Patient_MedicalHistory patient_MedicalHistory = new Patient_MedicalHistory(this);
             patient_MedicalHistory.Show();
             this.Hide();
+        }
+
+        private void PatientDischarge_btn_Click(object sender, RoutedEventArgs e)
+        {
+            using (SqlConnection connection = new Database_Connector().GetConnection())
+            {
+                connection.Open();
+
+                try
+                {
+
+                    #region INSERT to Patient_Discharge Table
+                    string query1 = "INSERT INTO Patient_Discharge (Patient_ID, PD_Ward_No, PD_DischardedTime, PD_DischargedDate) "
+
+                                    + "VALUES (@Patient_ID, @PD_Ward_No, @PD_DischardedTime, @PD_DischargedDate);";
+
+                    using (SqlCommand cmd = new SqlCommand(query1, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Patient_ID", SharedData.medicalEvent.PatientID);
+                        cmd.Parameters.AddWithValue("@PD_Ward_No", SharedData.Ward_Doctor.WardID);
+                        cmd.Parameters.AddWithValue("@PD_DischardedTime", DateTime.Now.ToString("HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@PD_DischargedDate", DateTime.Now.ToString("yyyy-MM-dd"));
+
+                        cmd.ExecuteNonQuery();
+
+                    }
+
+                    #endregion
+
+
+                    #region DELETE FROM Admitted_Patients Table
+                    string query2 = "DELETE FROM Admitted_Patients WHERE Patient_ID = @Patient_ID";
+
+                    using (SqlCommand cmd = new SqlCommand(query2, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Patient_ID", SharedData.medicalEvent.PatientID);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            //MessageBox.Show("Medical event deleted successfully.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed To Delete patient record from the Admintted table.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    #endregion
+
+
+                    #region UPDATE Patient Table
+
+                    string query3 = "UPDATE Patient SET P_CurrentStatus = 'Out-Patient' WHERE Patient_ID = @Patient_ID";
+
+                    using (SqlCommand cmd = new SqlCommand(query3, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Patient_ID", SharedData.medicalEvent.PatientID);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("No medical event found with the specified ID.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    } 
+                    #endregion
+
+
+                }
+
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("\nError1: \n" + ex.Message);
+                    MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+
+
+            }
+
         }
     }
 }
