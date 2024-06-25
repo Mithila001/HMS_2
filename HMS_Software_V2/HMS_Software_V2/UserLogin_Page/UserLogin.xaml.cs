@@ -145,5 +145,10 @@ namespace HMS_Software_V2.UserLogin_Page
             aO_Dashboard.Show();
             this.Close();
         }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }

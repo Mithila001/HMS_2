@@ -5,47 +5,166 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HMS_Software_V2.UserLogin_Page"
         mc:Ignorable="d"
-        Title="UserLogin" Height="450" Width="800">
-    
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
-        <Border CornerRadius="20" Height="50" Width="180" Margin="5,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1">
-            <Button x:Name="Admin" Content="Admin"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="Admin_Click" />
-        </Border>
-        <Border CornerRadius="20" Height="50" Width="180" Margin="5,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Grid.RowSpan="1">
-            <Button x:Name="DoctorOPD" Content="Doctor OPD"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="DoctorOPD_Click" />
-        </Border>
-        <Border CornerRadius="20" Height="50" Width="180" Margin="5,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Grid.RowSpan="1">
-            <Button x:Name="DoctorCinic" Content="Doctor Clinic"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="DoctorCinic_Click" />
-        </Border>
-        <Border CornerRadius="20" Height="50" Width="180" Margin="5,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" Grid.RowSpan="1">
-            <Button x:Name="DoctorWard" Content="Doctor Ward"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="DoctorWard_Click" />
-        </Border>
-        <Border CornerRadius="20" Height="50" Width="180" Margin="5,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0" Grid.RowSpan="1">
-            <Button x:Name="Nurse" Content="Nurse"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="Nurse_Click" />
-        </Border>
-        <Border CornerRadius="20" Height="50" Width="180" Margin="5,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0" Grid.RowSpan="1">
-            <Button x:Name="Reception" Content="Reception"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="Reception_Click" />
-        </Border>
-
-        <Border CornerRadius="20" Height="50" Width="180" Margin="5,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.RowSpan="1">
-            <Button x:Name="AdmissionOfficer" Content="Admission Officer"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="AdmissionOfficer_Click" />
-        </Border>
+        Title="UserLogin" Height="500" Width="800" MaxHeight="500" MaxWidth="800" WindowStartupLocation="CenterScreen"
+        Background="Transparent" WindowStyle="None" AllowsTransparency="True" MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
 
+    <Window.Resources>
+        <Style x:Key="CloseButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="0,10,10,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#ff6161"/>
+                    <Setter Property="Foreground" Value="#f5f5f5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-    </Grid>
+        <Style x:Key="labelStyle1" TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,10,0,3"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="20,20,20,20">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                <GradientStop Color="#e6fef9" Offset="0"/>
+                <GradientStop Color="#FF5EC9EB" Offset="0.659"/>
+                <GradientStop Color="#34c5ee" Offset="0.818"/>
+                <GradientStop Color="#46aef7" Offset="1"/>
+                <GradientStop Color="#FFE5FEF9" Offset="0.491"/>
+                <GradientStop Color="#FFA7E3F3" Offset="0.557"/>
+                <GradientStop Color="#FFE6FFF9" Offset="0.395"/>
+                <GradientStop Color="#FF39C6EB" Offset="0.733"/>
+                <GradientStop Color="#FF77D1EC" Offset="0.608"/>
+                <GradientStop Color="#FFE6FFF9" Offset="0.452"/>
+                <GradientStop Color="#FFC6F1F5" Offset="0.526"/>
+            </LinearGradientBrush>
+
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="229*"/>
+                <ColumnDefinition Width="171*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Source="../Assest/Images/HMS V2_Background2.png" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <!--<Label Content="User Login" FontSize="28" FontWeight="Bold" Margin="10,0,0,0" Padding="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
+
+
+            <Button Content="X" Style="{StaticResource CloseButtonStyle}" Grid.Row="0" Grid.Column="1"/>
+
+            <Border Grid.Row="1" Grid.Column="1">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.25,1" EndPoint="1,0">
+                        <GradientStop Color="#e6fef9" Offset="1"/>
+                        <GradientStop Color="#FFE0FDF9" Offset="0.341"/>
+                        <GradientStop Color="#FFE1FDF9" Offset="0.265"/>
+                        <GradientStop Color="#FFD4F8F8" Offset="0.132"/>
+                        <GradientStop Color="#FFC0EEF5" Offset="0"/>
+
+                    </LinearGradientBrush>
+
+                </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="displayUserPosition_lbl" Content="User Login" FontSize="30" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0,0,0"/>
+
+                    <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="0,0,10,0">
+
+                        <StackPanel>
+
+                            <Label Content="Position" Style="{StaticResource labelStyle1}"/>
+                            <ComboBox x:Name="userPosition_combobox" FontSize="16" FontWeight="Regular" VerticalAlignment="Center" Margin="10,0,20,0">
+                                <ComboBoxItem Content="Doctor"/>
+                                <ComboBoxItem Content="Nurse"/>
+                                <ComboBoxItem Content="Receptionist"/>
+                                <ComboBoxItem Content="Admission Officer"/>
+                                <ComboBoxItem Content="Admin"/>
+                            </ComboBox>
+
+                            <Label Content="User Name" Style="{StaticResource labelStyle1}"/>
+                            <TextBox x:Name="userName_tbx" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Margin="10,0,20,0"/>
+
+                            <Label Content="Password" Style="{StaticResource labelStyle1}"/>
+                            <TextBox x:Name="userPassword_tbx" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Margin="10,0,20,0"/>
+
+                            <Label Content="Unit Type" Style="{StaticResource labelStyle1}"/>
+                            <ComboBox x:Name="unitTye_combobox" FontSize="16" FontWeight="Regular" VerticalAlignment="Center" Margin="10,0,20,0">
+                                <ComboBoxItem Content="OPD"/>
+                                <ComboBoxItem Content="Clinic"/>
+                                <ComboBoxItem Content="Ward"/>
+                            </ComboBox>
+
+                            <Label Content="Ward Number" Style="{StaticResource labelStyle1}"/>
+                            <TextBox x:Name="wardNumber_tbx" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Margin="10,0,20,0"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+                    <Border CornerRadius="20" Height="40" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="0,0,0,0">
+                        <Button x:Name="logIn_btn" Content="Login"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18"/>
+                    </Border>
+
+
+                </Grid>
+            </Border>
+
+
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+
+                <Image Grid.Row="1" Source="../Assest/Images/HMS V2.png" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+            </Grid>
+
+
+
+
+        </Grid>
+
+    </Border>
+
 </Window>

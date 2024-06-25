@@ -40,10 +40,10 @@
                 </Grid.RowDefinitions>
 
                 <Label Content="Total OPD Patients"     Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,35" FontSize="20" />
-                <Label Content="XXX"                    Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,35,0,0" FontSize="26" FontWeight="Bold"/>
+                <Label x:Name="totalOpdPatients_lbl" Content="XXX"                    Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,35,0,0" FontSize="26" FontWeight="Bold"/>
 
                 <Label Content="Available OPD Doctors"  Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,35" FontSize="20" />
-                <Label Content="XXX"                    Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,35,0,0" FontSize="26" FontWeight="Bold"/>
+                <Label x:Name="totalOpdDoctors_lbl" Content="XXX"                    Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,35,0,0" FontSize="26" FontWeight="Bold"/>
 
             </Grid>
 
@@ -60,13 +60,13 @@
                 </Grid.RowDefinitions>
 
                 <Label Content="Lab Requests"           Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,35" FontSize="20" />
-                <Label Content="XXX"                    Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,35,0,0" FontSize="26" FontWeight="Bold"/>
+                <Label x:Name="totalLabRequests_lbl" Content="XXX"                    Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,35,0,0" FontSize="26" FontWeight="Bold"/>
 
                 <Label Content="Presciption Requests"   Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,35" FontSize="20" />
-                <Label Content="XXX"                    Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,35,0,0" FontSize="26" FontWeight="Bold"/>
+                <Label x:Name="totalPrescriptionRequests_lbl" Content="XXX"                    Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,35,0,0" FontSize="26" FontWeight="Bold"/>
 
                 <Label Content="Admit Requests"         Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,35" FontSize="20" />
-                <Label Content="XXX"                    Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,35,0,0" FontSize="26" FontWeight="Bold"/>
+                <Label x:Name="totalAdmitRequests_lbl" Content="XXX"                    Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,35,0,0" FontSize="26" FontWeight="Bold"/>
 
             </Grid>
         </Border>

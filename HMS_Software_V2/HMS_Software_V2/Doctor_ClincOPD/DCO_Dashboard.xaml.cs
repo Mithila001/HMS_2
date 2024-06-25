@@ -31,6 +31,8 @@ namespace HMS_Software_V2.Doctor_ClincOPD
         {
             InitializeComponent();
 
+            MyDisplayBasicData();
+
             doctorName_lbl.Content = SharedData.doctorData.doctorName;
            
 
@@ -49,6 +51,89 @@ namespace HMS_Software_V2.Doctor_ClincOPD
             {
                 MessageBox.Show("Error: Doctor Location is not Valid", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 this.Close();
+            }
+
+        }
+
+        private void MyDisplayBasicData()
+        {
+            using (SqlConnection connection = new Database_Connector().GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    #region Get Total OPD Patients Count
+                    string query2 = "SELECT COUNT(*) FROM Patient WHERE P_CurrentStatus = 'Out-Patient'";
+                    using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    {
+
+                        int count = (int)command2.ExecuteScalar();
+                        totalOpdPatients_lbl.Content = count.ToString();
+                    }
+
+                    #endregion
+
+                    #region Get Total OPD Doctors Count
+                    string query3 = "SELECT COUNT(*) FROM Doctor";
+                    using (SqlCommand command2 = new SqlCommand(query3, connection))
+                    {
+
+                        int count = (int)command2.ExecuteScalar();
+                        totalOpdDoctors_lbl.Content = count.ToString();
+                    }
+
+                    #endregion
+
+                    #region Get Total Lab Requests Count
+                    string query4 = "SELECT COUNT(*) FROM Patient_LabRequest WHERE Is_Completed = 0";
+                    using (SqlCommand command2 = new SqlCommand(query4, connection))
+                    {
+
+                        int count = (int)command2.ExecuteScalar();
+                        totalLabRequests_lbl.Content = count.ToString();
+                    }
+
+                    #endregion
+
+                    #region Get Total Prescription Requests Count
+                    string query5 = "SELECT COUNT(*) FROM Patient_PrescriptionRequest WHERE PR__IsCompleted = 0";
+                    using (SqlCommand command2 = new SqlCommand(query5, connection))
+                    {
+
+                        int count = (int)command2.ExecuteScalar();
+                        totalPrescriptionRequests_lbl.Content = count.ToString();
+                    }
+
+                    #endregion
+
+                    #region Get Total Admit Request Count
+                    string query6 = "SELECT COUNT(*) FROM Doc_PatientAdmit_Request WHERE Requested_Date = @Requested_Date";
+                    using (SqlCommand command2 = new SqlCommand(query6, connection))
+                    {
+                        command2.Parameters.AddWithValue("@Requested_Date", DateTime.Today);
+
+                        int count = (int)command2.ExecuteScalar();
+                        totalAdmitRequests_lbl.Content = count.ToString();
+                    }
+
+                    #endregion
+
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+
             }
 
         }
