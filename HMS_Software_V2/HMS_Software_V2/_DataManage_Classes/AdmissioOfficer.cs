@@ -8,6 +8,9 @@ namespace HMS_Software_V2._DataManage_Classes
 {
     public class AdmissioOfficer
     {
+        public int AdmissionOfficerID { get; set; }
+        public string AdmissionOfficerName { get; set; }
+
         public int PatientID { get; set; }
         public int Doctor_ID { get; set; }
         public string P_ReferralNote { get; set; }
@@ -26,6 +29,8 @@ namespace HMS_Software_V2._DataManage_Classes
         //Constructor
         public AdmissioOfficer()
         {
+            AdmissionOfficerID = 0;
+            AdmissionOfficerName = string.Empty;
             PatientID = 0;
             Doctor_ID = 0;
             P_ReferralNote = string.Empty;

@@ -370,7 +370,7 @@ namespace HMS_Software_V2.Admin
 
                         if(IsAdmissionOfficer_ComboBox.IsChecked == true)
                         {
-                            cmd.Parameters.AddWithValue("@UserPosition", "Doctor/AO");
+                            cmd.Parameters.AddWithValue("@UserPosition", "Admission Officer");
                         }
                         else
                         {

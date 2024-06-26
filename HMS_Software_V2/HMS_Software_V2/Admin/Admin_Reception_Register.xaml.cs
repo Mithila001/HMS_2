@@ -332,7 +332,7 @@ namespace HMS_Software_V2.Admin
                         // Assuming you have variables for each of these parameters
                         cmd.Parameters.AddWithValue("@UserID", ReceptionID);
 
-                        cmd.Parameters.AddWithValue("@UserPosition", "Reception");
+                        cmd.Parameters.AddWithValue("@UserPosition", "Receptionist");
 
                         cmd.Parameters.AddWithValue("@UserName", userName);
                         cmd.Parameters.AddWithValue("@UserPassword", password);

@@ -47,7 +47,7 @@
         </Style>
     </Window.Resources>
 
-    <Border CornerRadius="20,20,20,20">
+    <Border CornerRadius="20">
         <Border.Background>
             <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
                 <GradientStop Color="#e6fef9" Offset="0"/>
@@ -76,7 +76,7 @@
                 <ColumnDefinition Width="171*"/>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Row="0" Source="../Assest/Images/HMS V2_Background2.png" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image Grid.Row="0" Source="../Assest/Images/HMS V2_Background2.png" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0"/>
 
             <!--<Label Content="User Login" FontSize="28" FontWeight="Bold" Margin="10,0,0,0" Padding="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
 
@@ -108,8 +108,8 @@
 
                         <StackPanel>
 
-                            <Label Content="Position" Style="{StaticResource labelStyle1}"/>
-                            <ComboBox x:Name="userPosition_combobox" FontSize="16" FontWeight="Regular" VerticalAlignment="Center" Margin="10,0,20,0">
+                            <Label x:Name="userPosition_lbl" Content="Position" Style="{StaticResource labelStyle1}"/>
+                            <ComboBox x:Name="userPosition_combobox" FontSize="16" FontWeight="Regular" VerticalAlignment="Center" Margin="10,0,20,0" SelectionChanged="userPosition_combobox_SelectionChanged">
                                 <ComboBoxItem Content="Doctor"/>
                                 <ComboBoxItem Content="Nurse"/>
                                 <ComboBoxItem Content="Receptionist"/>
@@ -117,20 +117,20 @@
                                 <ComboBoxItem Content="Admin"/>
                             </ComboBox>
 
-                            <Label Content="User Name" Style="{StaticResource labelStyle1}"/>
+                            <Label x:Name="userName_lbl" Content="User Name" Style="{StaticResource labelStyle1}"/>
                             <TextBox x:Name="userName_tbx" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Margin="10,0,20,0"/>
 
-                            <Label Content="Password" Style="{StaticResource labelStyle1}"/>
+                            <Label x:Name="password_lbl" Content="Password" Style="{StaticResource labelStyle1}"/>
                             <TextBox x:Name="userPassword_tbx" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Margin="10,0,20,0"/>
 
-                            <Label Content="Unit Type" Style="{StaticResource labelStyle1}"/>
+                            <Label x:Name="unitType_lbl" Content="Unit Type" Style="{StaticResource labelStyle1}"/>
                             <ComboBox x:Name="unitTye_combobox" FontSize="16" FontWeight="Regular" VerticalAlignment="Center" Margin="10,0,20,0">
                                 <ComboBoxItem Content="OPD"/>
                                 <ComboBoxItem Content="Clinic"/>
                                 <ComboBoxItem Content="Ward"/>
                             </ComboBox>
 
-                            <Label Content="Ward Number" Style="{StaticResource labelStyle1}"/>
+                            <Label x:Name="wardNumber_lbl" Content="Ward Number" Style="{StaticResource labelStyle1}"/>
                             <TextBox x:Name="wardNumber_tbx" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Margin="10,0,20,0"/>
 
                         </StackPanel>
@@ -139,7 +139,7 @@
 
 
                     <Border CornerRadius="20" Height="40" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="0,0,0,0">
-                        <Button x:Name="logIn_btn" Content="Login"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18"/>
+                        <Button x:Name="logIn_btn" Content="Login"   Style= "{StaticResource PrettyButtonStyle2}"    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18" Click="logIn_btn_Click"/>
                     </Border>
 
 

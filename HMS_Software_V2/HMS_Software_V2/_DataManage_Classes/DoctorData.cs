@@ -21,6 +21,9 @@ namespace HMS_Software_V2._DataManage_Classes
 
         public string doctorLocation { get; set; }
 
+        public int wardID { get; set; }
+        public string wardName { get; set; }
+
         
 
         //Constructor
@@ -31,6 +34,8 @@ namespace HMS_Software_V2._DataManage_Classes
             doctorSpecialization = string.Empty;
             doctorRID = string.Empty;
             doctorLocation = "";
+            wardID = 0;
+            wardName = "";
             
         }
     }
