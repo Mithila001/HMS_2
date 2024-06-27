@@ -12,7 +12,7 @@ namespace HMS_Software_V2.General_Purpose
         {
             if (string.IsNullOrEmpty(value))
             {
-                return true;
+                return true; //is null or empty
             }
             else
             {
@@ -24,7 +24,7 @@ namespace HMS_Software_V2.General_Purpose
         {
             if (value.All(char.IsDigit))
             {
-                return true;
+                return true; //is only numbers
             }
             else
             {

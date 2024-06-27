@@ -105,6 +105,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                 AO_DirectAdmit aO_DirectAdmit = new AO_DirectAdmit();
                 aO_DirectAdmit.Show();
 
+                dashboardWindow.IsFormClosing = false;
                 dashboardWindow.Close();
 
             } // Open the dashboard window

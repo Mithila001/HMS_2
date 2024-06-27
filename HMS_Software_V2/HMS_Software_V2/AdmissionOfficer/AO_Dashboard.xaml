@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HMS_Software_V2.AdmissionOfficer"
-        xmlns:UserControls_AO="clr-namespace:HMS_Software_V2.AdmissionOfficer.UserControls_AO" x:Class="HMS_Software_V2.AdmissionOfficer.AO_Dashboard"
+        xmlns:UserControls_AO="clr-namespace:HMS_Software_V2.AdmissionOfficer.UserControls_AO" x:Name="AdmissionOfficer" x:Class="HMS_Software_V2.AdmissionOfficer.AO_Dashboard"
         mc:Ignorable="d"
         Title="AO_Dashboard" Height="720" Width="1280" WindowStartupLocation="CenterScreen"
-        MinHeight="720" MinWidth="1280">
+        MinHeight="720" MinWidth="1280" Closing="AdmissionOfficer_Closing">
     
     
     
@@ -37,13 +37,12 @@
                 <Rectangle Grid.Column="2" Margin="0,1,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="84" Fill="#FFB7B7B7" RadiusX="1" RadiusY="1"/>
 
 
-                <Label Content="DoctorName" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Margin="10,0,0,30"/>
+                <Label x:Name="admissionOfficerName_lbl" Content="DoctorName" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Margin="10,0,0,30"/>
                 <TextBlock Text="Addmission Officer" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,30,0,0"/>
 
-                <Label Content="21 Augest 2024" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,30" Grid.Column="1"/>
-                <Label Content="12.30 PM" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,30,0,0" Grid.Column="1"/>
+                <Label x:Name="todayDate_lbl" Content="21 Augest 2024" FontSize="28" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,0" Grid.Column="1"/>
 
-                <TextBlock Text="Addmission Office" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="2" FontWeight="Bold"/>
+                <TextBlock Text="Addmission Office" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="2" FontWeight="Bold"/>
 
             </Grid>
         </Border>
@@ -63,11 +62,11 @@
                 </Grid.RowDefinitions>
 
 
-                <TextBlock Text="Total Patinets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="1"/>
-                <Label Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="2"/>
+                <TextBlock Text="Total Admitted Patinets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="1"/>
+                <Label  x:Name="totalAdmittedPatients_lbl" Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="2"/>
 
-                <TextBlock Text="Total Patinets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="4"/>
-                <Label Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="5"/>
+                <TextBlock Text="Total Wards" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="4"/>
+                <Label x:Name="totalWards_lbl" Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="5"/>
 
             </Grid>
 
@@ -87,10 +86,10 @@
 
 
                 <TextBlock Text="Admit Request" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="1"/>
-                <Label Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="2"/>
+                <Label x:Name="totalAdmitRequestCounnt_lbl" Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="2"/>
 
                 <TextBlock Text="Admitted" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="4"/>
-                <Label Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="5"/>
+                <Label x:Name="totalAdmittedCount_lbl" Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="5"/>
 
             </Grid>
 
@@ -98,7 +97,7 @@
 
 
         <Border Grid.Column="0" Grid.Row="3" Background="White" Margin="30,5,15,20" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
-            <Label Content="10.20 PM" FontSize="40" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label x:Name="todayTime_lbl" Content="10.20 PM" FontSize="40" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
 
         <Border Grid.Column="1" Grid.Row="3" Margin="15,5,30,20" BorderBrush="Black" BorderThickness="1" CornerRadius="10">

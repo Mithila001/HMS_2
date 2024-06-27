@@ -108,9 +108,10 @@ namespace HMS_Software_V2.Reception
         {
             using (SqlConnection connection = new Database_Connector().GetConnection())
             {
-                string query1 = "SELECT CE.CE_HallNumber, CE.CE_StartTime, CE.CE_EndTime, CE.CE_Date, CE.CE_TotalSlots, CE.CE_TakenSlots, CT.CT_Name " +
+                string query1 = "SELECT CE.CE_HallNumber, CE.CE_StartTime, CE.CE_EndTime, CE.CE_Date, CE.CE_TotalSlots, CE.CE_TakenSlots, CT.CT_Name, D.D_NameWithInitials " +
                "FROM ClinicEvents CE " +
-               "INNER JOIN ClinicType CT ON CE.CE_ClinicType_ID = CT.ClinicType_ID";
+               "INNER JOIN ClinicType CT ON CE.CE_ClinicType_ID = CT.ClinicType_ID " +
+                "INNER JOIN Doctor D ON CE.Doctor_ID = D.Doctor_ID";
 
                 SqlCommand cmd = new SqlCommand(query1, connection);
 
@@ -124,6 +125,7 @@ namespace HMS_Software_V2.Reception
                         UC_RD_ClinicInfo uC_RD_ClinicInfo = new UC_RD_ClinicInfo();
                         uC_RD_ClinicInfo.clincName.Content = reader["CT_Name"].ToString();
                         uC_RD_ClinicInfo.hallNumber.Content = reader["CE_HallNumber"].ToString();
+                        uC_RD_ClinicInfo.doctorName.Content = reader["D_NameWithInitials"].ToString();
 
                         TimeSpan startTimeValue = (TimeSpan)reader["CE_StartTime"];
                         string startTime = new DateTime(startTimeValue.Ticks).ToString("hh:mm tt");

@@ -144,7 +144,7 @@ namespace HMS_Software_V2.Doctor_Ward
                     #endregion
 
 
-                    #region Get Pending Total Completed
+                    #region Get Total Completed
                     string query3 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE VisitPerDay_ID = @VisitPerDay_ID AND Is_VisistedByDoctor = 1";
                     using (SqlCommand command2 = new SqlCommand(query3, connection))
                     {
@@ -164,13 +164,14 @@ namespace HMS_Software_V2.Doctor_Ward
                     #endregion
 
 
-                    #region Get Pending Total Completed
-                    string query4 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE Visited_Doctor_ID = @Visited_Doctor_ID AND Is_VisistedByDoctor = 1";
+                    #region Get Doctor Total Completed
+                    string query4 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE VisitPerDay_ID = @VisitPerDay_ID AND Visited_Doctor_ID = @Visited_Doctor_ID AND Is_VisistedByDoctor = 1";
                     using (SqlCommand command2 = new SqlCommand(query4, connection))
                     {
                         if (AdmitRoundManagerID != 0)
                         {
                             command2.Parameters.AddWithValue("@Visited_Doctor_ID", SharedData.Ward_Doctor.DoctorID);
+                            command2.Parameters.AddWithValue("@VisitPerDay_ID", AdmitRoundManagerID);
 
                             int count = (int)command2.ExecuteScalar();
                             doctorCompleted_lbl.Content = count.ToString();

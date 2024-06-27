@@ -57,8 +57,8 @@ namespace HMS_Software_V2.AdmissionOfficer.UserControls_AO
             AO_AdmitPatient aO_AdmitPatient = new AO_AdmitPatient();
             aO_AdmitPatient.Show();
 
+            dashboardWindow.IsFormClosing = false;
             dashboardWindow.Close();
-
 
 
         }

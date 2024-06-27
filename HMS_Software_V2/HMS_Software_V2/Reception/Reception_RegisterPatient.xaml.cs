@@ -1,4 +1,5 @@
-﻿using HMS_Software_V2.General_Purpose;
+﻿using HMS_Software_V2._DataManage_Classes;
+using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -30,6 +31,28 @@ namespace HMS_Software_V2.Reception
         public Reception_RegisterPatient()
         {
             InitializeComponent();
+            MyLoadBasicData();
+        }
+
+        private void MyLoadBasicData()
+        {
+            #region Get and Assign - Date Time
+            int day = DateTime.Now.Day;
+            string daySuffix = day switch
+            {
+                1 or 21 or 31 => "st",
+                2 or 22 => "nd",
+                3 or 23 => "rd",
+                _ => "th"
+            };
+
+            todayDate.Content = $"{day}{daySuffix} {DateTime.Now:MMMM yyyy}";
+
+            todayTime.Content = DateTime.Now.ToString("hh:mm: tt");
+            #endregion
+
+
+            receptionName.Content = SharedData.receptionData.ReceptionName;
         }
 
         string? PatientRID;

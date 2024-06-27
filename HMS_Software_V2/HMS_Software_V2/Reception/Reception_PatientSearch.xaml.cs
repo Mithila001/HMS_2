@@ -15,7 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using HMS_Software_V2._DataManage_Classes;
 using HMS_Software_V2.General_Purpose;
 
 namespace HMS_Software_V2.Reception
@@ -28,6 +28,8 @@ namespace HMS_Software_V2.Reception
         public Reception_PatientSearch()
         {
             InitializeComponent();
+
+            receptionName_lbl.Content = SharedData.receptionData.ReceptionName;
 
             ShowTableData();
         }

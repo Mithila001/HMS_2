@@ -39,8 +39,8 @@
             <Label x:Name="receptionName" Content="Name" HorizontalAlignment="Left" Margin="21,18,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Padding="5,0,5,0" Height="27"/>
             <Label Content="Reception" HorizontalAlignment="Left" Margin="21,62,0,0" VerticalAlignment="Top" Width="87" FontSize="14" Grid.Row="0" Padding="5,0,5,0" Height="18"/>
 
-            <Label Content="Date" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
-            <Label Content="Time" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.Column="2"/>
+            <Label x:Name="todayDate" Content="Date" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
+            <Label x:Name="todayTime" Content="Time" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.Column="2"/>
 
         </Grid>
 

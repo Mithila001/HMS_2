@@ -112,6 +112,18 @@ namespace HMS_Software_V2.UserLogin_Page
         {
             //Check if texboxes are empty
 
+            if (InputValidations.MyIsNullorempty(userName_tbx.Text))
+            {
+                MessageBox.Show("Error: User Name is Empty", "Error", MessageBoxButton.OK, MessageBoxImage.Error); return;
+            }
+            if (InputValidations.MyIsNullorempty(userPassword_tbx.Text))
+            {
+                MessageBox.Show("Error: Password is Empty", "Error", MessageBoxButton.OK, MessageBoxImage.Error); return;
+            }
+           
+
+
+
             int resivedUserID = 0;
             string resivedWardName = "";
 
@@ -152,8 +164,8 @@ namespace HMS_Software_V2.UserLogin_Page
                     }
                     #endregion
 
-                    resivedUserID = MyIsValideUser(); //Check if the user is valid
                     resivedWardName = MyGetWardDetails(); //Check if the ward is valid
+                    resivedUserID = MyIsValideUser(); //Check if the user is valid
 
                     if (resivedUserID != 0 && resivedWardName != "")
                     {
@@ -164,8 +176,8 @@ namespace HMS_Software_V2.UserLogin_Page
 
                 case "Nurse":
 
-                    resivedUserID = MyIsValideUser();
                     resivedWardName = MyGetWardDetails();
+                    resivedUserID = MyIsValideUser();
                     if (resivedUserID != 0 && resivedWardName != "")
                     {
                         MyNurseLogin(resivedUserID, resivedWardName);
@@ -212,6 +224,66 @@ namespace HMS_Software_V2.UserLogin_Page
 
         }
 
+        private string MyGetWardDetails()
+        {
+
+            #region Ward Input Validation
+            if (InputValidations.MyIsNullorempty(wardNumber_tbx.Text))
+            {
+                MessageBox.Show("Error: Add the Ward Number", "Error", MessageBoxButton.OK, MessageBoxImage.Error); return "";
+            }
+            if (!InputValidations.MyIsOnlyNumbers(wardNumber_tbx.Text))
+            {
+                MessageBox.Show("Error: Add Only numbers to Ward", "Error", MessageBoxButton.OK, MessageBoxImage.Error); return "";
+            } 
+            #endregion
+
+            using (SqlConnection connection = new Database_Connector().GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+
+
+                    string query = "SELECT WardName FROM WardTypes WHERE WardNumber = @WardNumber";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@WardNumber", wardNumber_tbx.Text);
+
+
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read()) // Since we're only expecting one record, we use if instead of while
+                            {
+                                string warName = reader["WardName"].ToString() ?? "Error";
+
+                                return warName;
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error: Ward Details Not Found", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return "";
+
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return "";
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+        }
         private int MyIsValideUser()
         {
             int userID = 0;
@@ -277,54 +349,6 @@ namespace HMS_Software_V2.UserLogin_Page
                 }
             }
 
-
-        }
-        private string MyGetWardDetails()
-        {
-            using(SqlConnection connection = new Database_Connector().GetConnection())
-            {
-                try
-                {
-                    connection.Open();
-
-
-                    string query = "SELECT WardName FROM WardTypes WHERE WardNumber = @WardNumber";
-
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@WardNumber", wardNumber_tbx.Text);
-
-
-
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read()) // Since we're only expecting one record, we use if instead of while
-                            {
-                                string warName = reader["WardName"].ToString() ?? "Error";
-
-                                return warName;
-
-                            }
-                            else
-                            {
-                                MessageBox.Show("Error: Ward Details Not Found", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                                return "";
-
-                            }
-                        }
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return "";
-                }
-                finally
-                {
-                    connection.Close();
-                }
-            }
 
         }
 
@@ -497,7 +521,7 @@ namespace HMS_Software_V2.UserLogin_Page
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error2: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally
                 {
@@ -516,7 +540,7 @@ namespace HMS_Software_V2.UserLogin_Page
                     connection.Open();
 
 
-                    string query = "SELECT Reception_ID, R_NameWithInitials, N_LicenseNo FROM Reception WHERE Reception_ID = @Reception_ID";
+                    string query = "SELECT Reception_ID, R_NameWithInitials FROM Reception WHERE Reception_ID = @Reception_ID";
 
                     using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
@@ -573,7 +597,7 @@ namespace HMS_Software_V2.UserLogin_Page
                     connection.Open();
 
 
-                    string query = "SELECT Doctor_ID, D_NameWithInitials FROM Reception WHERE Doctor_ID = @Doctor_ID";
+                    string query = "SELECT Doctor_ID, D_NameWithInitials FROM Doctor WHERE Doctor_ID = @Doctor_ID";
 
                     using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
@@ -675,6 +699,11 @@ namespace HMS_Software_V2.UserLogin_Page
                 }
             }
 
+        }
+
+        private void fromClose_btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

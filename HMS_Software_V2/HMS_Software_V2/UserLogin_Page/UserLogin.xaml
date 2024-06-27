@@ -81,7 +81,7 @@
             <!--<Label Content="User Login" FontSize="28" FontWeight="Bold" Margin="10,0,0,0" Padding="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
 
 
-            <Button Content="X" Style="{StaticResource CloseButtonStyle}" Grid.Row="0" Grid.Column="1"/>
+            <Button x:Name="fromClose_btn" Content="X" Style="{StaticResource CloseButtonStyle}" Grid.Row="0" Grid.Column="1" Click="fromClose_btn_Click"/>
 
             <Border Grid.Row="1" Grid.Column="1">
                 <Border.Background>

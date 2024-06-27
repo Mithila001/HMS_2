@@ -2,6 +2,7 @@
 using HMS_Software_V2.AdmissionOfficer.UserControls_AO;
 using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.Reception.R_UserControls;
+using HMS_Software_V2.UserLogin_Page;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -29,14 +30,98 @@ namespace HMS_Software_V2.AdmissionOfficer
         {
             InitializeComponent();
 
-
-            HMS_Software_V2._DataManage_Classes.SharedData.userData = new HMS_Software_V2._DataManage_Classes.UserData(); // Get a new copy of the template
-            SharedData.userData.UserID = 3; //Temporary
-            SharedData.userData.UserName = "V C K Ukkupala"; //Temporary
+            MyLoadBasicData();
 
             LoadClinicData();
         }
 
+        private void MyLoadBasicData()
+        {
+            admissionOfficerName_lbl.Content = SharedData.admissioOfficer.AdmissionOfficerName;
+
+            #region Get and Assign Date Time
+            int day = DateTime.Now.Day;
+            string daySuffix = day switch
+            {
+                1 or 21 or 31 => "st",
+                2 or 22 => "nd",
+                3 or 23 => "rd",
+                _ => "th"
+            };
+
+            todayDate_lbl.Content = $"{day}{daySuffix} {DateTime.Now:MMMM yyyy}";
+
+            todayTime_lbl.Content = DateTime.Now.ToString("hh:mm: tt");
+            #endregion
+
+
+            using (SqlConnection connection = new Database_Connector().GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    #region Get Total Admitted Patients Count
+                    string query1 = "SELECT COUNT(*) FROM Admitted_Patients";
+                    using (SqlCommand command2 = new SqlCommand(query1, connection))
+                    {
+
+                        int count = (int)command2.ExecuteScalar();
+                        totalAdmittedPatients_lbl.Content = count.ToString();
+                    }
+
+                    #endregion
+
+
+                    #region Get Total Wards Count
+                    string query2 = "SELECT COUNT(*) FROM WardTypes";
+                    using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    {
+
+                        int count = (int)command2.ExecuteScalar();
+                        totalWards_lbl.Content = count.ToString();
+                    }
+
+                    #endregion
+
+                    #region Get Total Admit Request Count
+                    string query3 = "SELECT COUNT(*) FROM Doc_PatientAdmit_Request WHERE Is_AdmittedToWard = 0 ";
+                    using (SqlCommand command2 = new SqlCommand(query3, connection))
+                    {
+
+                        int count = (int)command2.ExecuteScalar();
+                        totalAdmitRequestCounnt_lbl.Content = count.ToString();
+                    }
+
+                    #endregion
+
+                    #region Get Total Admitted Count
+                    string query4 = "SELECT COUNT(*) FROM Doc_PatientAdmit_Request WHERE Is_AdmittedToWard = 1 ";
+                    using (SqlCommand command2 = new SqlCommand(query4, connection))
+                    {
+
+                        int count = (int)command2.ExecuteScalar();
+                        totalAdmittedCount_lbl.Content = count.ToString();
+                    }
+
+                    #endregion
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+
+            }
+
+        }
 
         private void LoadClinicData()
         {
@@ -140,6 +225,18 @@ namespace HMS_Software_V2.AdmissionOfficer
         {
             AO_DirectAdmit_Popup aO_DirectAdmit_Popup = new AO_DirectAdmit_Popup(this);
             aO_DirectAdmit_Popup.ShowDialog();
+        }
+
+        public bool IsFormClosing = true;
+        private void AdmissionOfficer_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IsFormClosing)
+            {
+                UserLogin userLogin = new UserLogin();
+                userLogin.Show();
+
+            }
+
         }
     }
 }
