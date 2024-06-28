@@ -2,7 +2,7 @@
 using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -96,7 +96,7 @@ namespace HMS_Software_V2.Reception
 
             try
             {
-                using (SqlConnection connection = new Database_Connector().GetConnection())
+                using (SQLiteConnection connection = new Database_Connector().GetConnection())
                 {
                     string query = "INSERT INTO Patient (P_FullName, P_NameWithIinitials, P_Age, P_Gender, P_NIC, P_ContactNo," +
                                     " P_Address, P_DateOfBirth, P_G_Name, P_G_ContactNo, P_G_NIC, P_RegisteredTime, P_RegisteredDate, P_CurrentStatus)" +
@@ -104,7 +104,7 @@ namespace HMS_Software_V2.Reception
                                     " VALUES (@P_FullName, @P_NameWithIinitials, @P_Age, @P_Gender, @P_NIC, @P_ContactNo," +
                                     " @P_Address, @P_DateOfBirth, @P_G_Name, @P_G_ContactNo, @P_G_NIC, @P_RegisteredTime, @P_RegisteredDate, @P_CurrentStatus)";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@P_FullName", p_FullName);
                         cmd.Parameters.AddWithValue("@P_NameWithIinitials", p_NameWithInitials);
@@ -151,7 +151,7 @@ namespace HMS_Software_V2.Reception
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SQLiteException ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }

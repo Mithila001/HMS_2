@@ -22,7 +22,7 @@ using HMS_Software_V2.Admin;
 using HMS_Software_V2.Reception;
 using HMS_Software_V2.AdmissionOfficer;
 using HMS_Software_V2.General_Purpose;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Diagnostics;
 using System.ComponentModel.Design;
@@ -238,7 +238,7 @@ namespace HMS_Software_V2.UserLogin_Page
             } 
             #endregion
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -247,13 +247,13 @@ namespace HMS_Software_V2.UserLogin_Page
 
                     string query = "SELECT WardName FROM WardTypes WHERE WardNumber = @WardNumber";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@WardNumber", wardNumber_tbx.Text);
 
 
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read()) // Since we're only expecting one record, we use if instead of while
                             {
@@ -272,9 +272,9 @@ namespace HMS_Software_V2.UserLogin_Page
                     }
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return "";
                 }
                 finally
@@ -289,7 +289,7 @@ namespace HMS_Software_V2.UserLogin_Page
             int userID = 0;
             string userPosition = "";
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -298,17 +298,17 @@ namespace HMS_Software_V2.UserLogin_Page
 
                     string query = "SELECT UserID, UserPosition FROM UserLogin WHERE UserName = @UserName AND UserPassword = @UserPassword";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@UserName", userName_tbx.Text);
                         cmd.Parameters.AddWithValue("@UserPassword", userPassword_tbx.Text);
 
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read()) // Since we're only expecting one record, we use if instead of while
                             {
-                                userID = (int)reader["UserID"];
+                                userID = Convert.ToInt32(reader["UserID"]);
                                 userPosition = reader["UserPosition"].ToString() ?? "Error";
 
 
@@ -337,9 +337,9 @@ namespace HMS_Software_V2.UserLogin_Page
 
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error2: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return 0;
             
                 }
@@ -356,7 +356,7 @@ namespace HMS_Software_V2.UserLogin_Page
         private void MyDoctorLogin(int userId, string wardName)
         {
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -365,17 +365,17 @@ namespace HMS_Software_V2.UserLogin_Page
 
                     string query = "SELECT Doctor_ID, D_NameWithInitials, D_Specialty, D_RegistrationID FROM Doctor WHERE Doctor_ID = @DoctorID";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@DoctorID", userId);
                        
 
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read()) // Since we're only expecting one record, we use if instead of while
                             {
-                                int doctorID = (int)reader["Doctor_ID"];
+                                int doctorID = Convert.ToInt32(reader["Doctor_ID"]);
                                 string doctorName = reader["D_NameWithInitials"].ToString() ?? "Error";
                                 string doctorSpecialty = reader["D_Specialty"].ToString() ?? "Error";
                                 string doctorRID = reader["D_RegistrationID"].ToString() ?? "Error";
@@ -459,9 +459,9 @@ namespace HMS_Software_V2.UserLogin_Page
                     }
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error3: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally
                 {
@@ -472,7 +472,7 @@ namespace HMS_Software_V2.UserLogin_Page
 
         private void MyNurseLogin(int userId, string wardName)
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -481,17 +481,17 @@ namespace HMS_Software_V2.UserLogin_Page
 
                     string query = "SELECT Nurce_ID, N_NameWithInitials, N_LicenseNo FROM Nurse WHERE Nurce_ID = @Nurce_ID";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@Nurce_ID", userId);
 
 
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read()) // Since we're only expecting one record, we use if instead of while
                             {
-                                int nurseID = (int)reader["Nurce_ID"];
+                                int nurseID = Convert.ToInt32(reader["Nurce_ID"]);
                                 string nurseName = reader["N_NameWithInitials"].ToString() ?? "Error";
                                 string nurseLicenseNo = reader["N_LicenseNo"].ToString() ?? "Error";
 
@@ -519,9 +519,9 @@ namespace HMS_Software_V2.UserLogin_Page
                     }
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
-                    MessageBox.Show("Error2: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error4: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally
                 {
@@ -533,7 +533,7 @@ namespace HMS_Software_V2.UserLogin_Page
 
         private void MyReceptionLogin(int userId)
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -542,17 +542,17 @@ namespace HMS_Software_V2.UserLogin_Page
 
                     string query = "SELECT Reception_ID, R_NameWithInitials FROM Reception WHERE Reception_ID = @Reception_ID";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@Reception_ID", userId);
 
 
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read()) // Since we're only expecting one record, we use if instead of while
                             {
-                                int receptionID = (int)reader["Reception_ID"];
+                                int receptionID = Convert.ToInt32(reader["Reception_ID"]);
                                 string receptionName = reader["R_NameWithInitials"].ToString() ?? "Error";
 
                                 HMS_Software_V2._DataManage_Classes.SharedData.receptionData = new HMS_Software_V2._DataManage_Classes.ReceptionData(); // Get a new copy of the template
@@ -576,9 +576,9 @@ namespace HMS_Software_V2.UserLogin_Page
                     }
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error5: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally
                 {
@@ -590,7 +590,7 @@ namespace HMS_Software_V2.UserLogin_Page
 
         private void MyAdmissionOfficerLogin(int userId)
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -599,17 +599,17 @@ namespace HMS_Software_V2.UserLogin_Page
 
                     string query = "SELECT Doctor_ID, D_NameWithInitials FROM Doctor WHERE Doctor_ID = @Doctor_ID";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@Doctor_ID", userId);
 
 
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read()) // Since we're only expecting one record, we use if instead of while
                             {
-                                int admissionOfficerId = (int)reader["Doctor_ID"];
+                                int admissionOfficerId = Convert.ToInt32(reader["Doctor_ID"]);
                                 string admissionOfficerName = reader["D_NameWithInitials"].ToString() ?? "Error";
 
                                 HMS_Software_V2._DataManage_Classes.SharedData.receptionData = new HMS_Software_V2._DataManage_Classes.ReceptionData(); // Get a new copy of the template
@@ -633,9 +633,9 @@ namespace HMS_Software_V2.UserLogin_Page
                     }
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error6: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally
                 {
@@ -646,7 +646,7 @@ namespace HMS_Software_V2.UserLogin_Page
 
         private void MyAdmin(int userId)
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -655,17 +655,17 @@ namespace HMS_Software_V2.UserLogin_Page
 
                     string query = "SELECT Admin_ID, AdminName FROM Admin WHERE Admin_ID = @Admin_ID";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@Admin_ID", userId);
 
 
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read()) // Since we're only expecting one record, we use if instead of while
                             {
-                                int adminID = (int)reader["Admin_ID"];
+                                int adminID = Convert.ToInt32(reader["Admin_ID"]);
                                 string adminName = reader["AdminName"].ToString() ?? "Error";
 
                                 HMS_Software_V2._DataManage_Classes.SharedData.adminData = new HMS_Software_V2._DataManage_Classes.AdminData(); // Get a new copy of the template
@@ -689,9 +689,9 @@ namespace HMS_Software_V2.UserLogin_Page
                     }
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error7: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 finally
                 {

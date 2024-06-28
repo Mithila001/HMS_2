@@ -2,7 +2,7 @@
 using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
@@ -34,7 +34,7 @@ namespace HMS_Software_V2.UserCommon_Forms
         private void MyGetTableData()
         {
             Debug.WriteLine("---MyGetTableData Triggerd---");
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
 
                 DataTable dataTable = new DataTable();
@@ -52,11 +52,11 @@ namespace HMS_Software_V2.UserCommon_Forms
 
                     string query = "SELECT * FROM Patient_PrescriptionRequest WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
 
-                    SqlCommand command = new SqlCommand(query, connection);
+                    SQLiteCommand command = new SQLiteCommand(query, connection);
 
                     command.Parameters.AddWithValue("@PatientMedicalEvent_ID", SharedData.viewPatientHistory.PatientMedicalEventID);
                    
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -86,7 +86,7 @@ namespace HMS_Software_V2.UserCommon_Forms
 
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError9: \n" + ex.Message);
                     MessageBox.Show("Error9: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

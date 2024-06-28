@@ -6,7 +6,7 @@ using HMS_Software_V2.UserLogin_Page;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -76,24 +76,23 @@ namespace HMS_Software_V2.Doctor_Ward
         {
 
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
 
                 try
                 {
                     connection.Open();
 
-
                     #region Find Witch Ward Round
-                    string query1 = "SELECT TOP 1 AdmitMedicalRoundManager_ID, Round_1, Round_2, Round_3 FROM Admit_MedicalRoundManager ORDER BY AdmitMedicalRoundManager_ID DESC";
+                    string query1 = "SELECT AdmitMedicalRoundManager_ID, Round_1, Round_2, Round_3 FROM Admit_MedicalRoundManager ORDER BY AdmitMedicalRoundManager_ID DESC LIMIT 1";
 
-                    using (SqlCommand command1 = new SqlCommand(query1, connection))
+                    using (SQLiteCommand command1 = new SQLiteCommand(query1, connection))
                     {
-                        using (SqlDataReader reader = command1.ExecuteReader())
+                        using (SQLiteDataReader reader = command1.ExecuteReader())
                         {
                             if (reader.Read()) // Since we're only expecting one record, we use if instead of while
                             {
-                                AdmitRoundManagerID = (int)reader["AdmitMedicalRoundManager_ID"];
+                                AdmitRoundManagerID = Convert.ToInt32(reader["AdmitMedicalRoundManager_ID"]);
                                 SharedData.Ward_Doctor.RoundManagerID = AdmitRoundManagerID;
 
                                 bool round1 = (bool)reader["Round_1"];
@@ -126,13 +125,13 @@ namespace HMS_Software_V2.Doctor_Ward
 
                     #region Get Pending Total Count
                     string query2 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE VisitPerDay_ID = @VisitPerDay_ID AND Is_VisistedByDoctor = 0";
-                    using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query2, connection))
                     {
                         if (AdmitRoundManagerID != 0)
                         {
                             command2.Parameters.AddWithValue("@VisitPerDay_ID", AdmitRoundManagerID);
 
-                            int count = (int)command2.ExecuteScalar();
+                            int count = Convert.ToInt32(command2.ExecuteScalar());
                             totalPending.Content = count.ToString();
                         }
                         else
@@ -146,13 +145,13 @@ namespace HMS_Software_V2.Doctor_Ward
 
                     #region Get Total Completed
                     string query3 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE VisitPerDay_ID = @VisitPerDay_ID AND Is_VisistedByDoctor = 1";
-                    using (SqlCommand command2 = new SqlCommand(query3, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query3, connection))
                     {
                         if (AdmitRoundManagerID != 0)
                         {
                             command2.Parameters.AddWithValue("@VisitPerDay_ID", AdmitRoundManagerID);
 
-                            int count = (int)command2.ExecuteScalar();
+                            int count = Convert.ToInt32(command2.ExecuteScalar());
                             totalCompleted.Content = count.ToString();
                         }
                         else
@@ -166,14 +165,14 @@ namespace HMS_Software_V2.Doctor_Ward
 
                     #region Get Doctor Total Completed
                     string query4 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE VisitPerDay_ID = @VisitPerDay_ID AND Visited_Doctor_ID = @Visited_Doctor_ID AND Is_VisistedByDoctor = 1";
-                    using (SqlCommand command2 = new SqlCommand(query4, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query4, connection))
                     {
                         if (AdmitRoundManagerID != 0)
                         {
                             command2.Parameters.AddWithValue("@Visited_Doctor_ID", SharedData.Ward_Doctor.DoctorID);
                             command2.Parameters.AddWithValue("@VisitPerDay_ID", AdmitRoundManagerID);
 
-                            int count = (int)command2.ExecuteScalar();
+                            int count = Convert.ToInt32(command2.ExecuteScalar());
                             doctorCompleted_lbl.Content = count.ToString();
                         }
                         else
@@ -189,7 +188,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\n MyMedicalEventManger_Start: \n" + ex.Message);
                     MessageBox.Show("MainPage Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -205,7 +204,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
         private void MyLoad_Patients()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT APV.Patient_ID, APV.P_Condition, APV.Visite_Round, APV.N_TreatmentStatus, APV.Total_VisitRounds, APV.Is_VisistedByDoctor, APV.Is_RoundTimeOut, " +
                 "P.P_NameWithIinitials, P.P_Age, P.P_Gender, P.P_RegistrationID " +
@@ -214,13 +213,13 @@ namespace HMS_Software_V2.Doctor_Ward
                 "WHERE APV.VisitPerDay_ID = @AdmitRoundManagerID AND APV.Is_RoundTimeOut = 0 " +
                 "ORDER BY APV.Is_VisistedByDoctor ASC";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
                 cmd.Parameters.AddWithValue("@AdmitRoundManagerID", AdmitRoundManagerID);
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -310,7 +309,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

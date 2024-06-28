@@ -3,7 +3,7 @@ using HMS_Software_V2.Admin.Admin_UserControls;
 using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -256,7 +256,7 @@ namespace HMS_Software_V2.Admin
         int NurseId;
         private void MyInsertDataToTheTable()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
 
@@ -273,7 +273,7 @@ namespace HMS_Software_V2.Admin
                             @N_Specializations, @N_Email, @N_Registered_Date); 
                         SELECT SCOPE_IDENTITY();";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         // Assuming you have variables for each of these parameters
                         cmd.Parameters.AddWithValue("@N_FullName", FullName);
@@ -305,7 +305,7 @@ namespace HMS_Software_V2.Admin
                     }
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError: \n" + ex.Message);
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -337,7 +337,7 @@ namespace HMS_Software_V2.Admin
 
         private void MyAddUserLoginToTable(string userName, string password)
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
 
@@ -347,7 +347,7 @@ namespace HMS_Software_V2.Admin
                                     VALUES
                                     (@UserID, @UserPosition, @UserName, @UserPassword);";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         // Assuming you have variables for each of these parameters
                         cmd.Parameters.AddWithValue("@UserID", NurseId);
@@ -367,7 +367,7 @@ namespace HMS_Software_V2.Admin
 
                     }
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError: \n" + ex.Message);
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -5,7 +5,7 @@ using HMS_Software_V2.UserCommon_Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -61,7 +61,7 @@ namespace HMS_Software_V2.Nurse_Ward
         private void MyLoadRequestedTreatments()
         {
             Debug.WriteLine("\n Method => MyLoadRequestedTreatments() ");
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
 
                 try
@@ -70,12 +70,12 @@ namespace HMS_Software_V2.Nurse_Ward
                     Debug.WriteLine("\n SELECT Available Reqeust From [PatientMedical_Event] table ");
                     #region SELECT Available Reqeust From PatientMedical_Event table
                     string query1 = "SELECT PME_Is_LabRequest, PME_Is_PrescriptionRequest, PME_MonitorRequest, PME_Is_PrescriptionR_Completed, PME_IsMonitorRequestComplet FROM PatientMedical_Event WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
-                    using (SqlCommand command = new SqlCommand(query1, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(query1, connection))
                     {
                        
                         command.Parameters.AddWithValue("@PatientMedicalEvent_ID", SharedData.Ward_NursePatient.PatientMedicalEventID);
 
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        using (SQLiteDataReader reader = command.ExecuteReader())
                         {
                             if (reader.Read())
                             {
@@ -125,7 +125,7 @@ namespace HMS_Software_V2.Nurse_Ward
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error4: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -140,7 +140,7 @@ namespace HMS_Software_V2.Nurse_Ward
         private async void MyFilterMeicalEvenrRequests()
         {
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
 
                 try
@@ -157,11 +157,11 @@ namespace HMS_Software_V2.Nurse_Ward
                         int dataReadCounter = 0;
 
                         string query2 = "SELECT * FROM Patient_LabRequest WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
-                        using (SqlCommand command = new SqlCommand(query2, connection))
+                        using (SQLiteCommand command = new SQLiteCommand(query2, connection))
                         {
                             command.Parameters.AddWithValue("@PatientMedicalEvent_ID", SharedData.Ward_NursePatient.PatientMedicalEventID);
 
-                            using (SqlDataReader reader = command.ExecuteReader())
+                            using (SQLiteDataReader reader = command.ExecuteReader())
                             {
                                 while (reader.Read())
                                 {
@@ -300,7 +300,7 @@ namespace HMS_Software_V2.Nurse_Ward
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error4: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -365,7 +365,7 @@ namespace HMS_Software_V2.Nurse_Ward
             #region UPDATE DB Table
             if (foundUserControls)
             {
-                using (SqlConnection connection = new Database_Connector().GetConnection())
+                using (SQLiteConnection connection = new Database_Connector().GetConnection())
                 {
                     connection.Open();
 
@@ -381,7 +381,7 @@ namespace HMS_Software_V2.Nurse_Ward
                             // Assuming "IsCompleted" is the column you want to update
                             // and "PatientLabRequests_ID" is the primary key column of "Patient_LabRequest" table
 
-                            using (SqlCommand command = new SqlCommand(query, connection))
+                            using (SQLiteCommand command = new SQLiteCommand(query, connection))
                             {
                                 command.Parameters.AddWithValue("@IsCompleted", IsSelected);
                                 command.Parameters.AddWithValue("@PatientLabRequests_ID", labRwquestID);
@@ -399,7 +399,7 @@ namespace HMS_Software_V2.Nurse_Ward
                         #region UPDATE Admitted_Patients_VisitEvent
                         string query2 = "UPDATE Admitted_Patients_VisitEvent SET N_TreatmentStatus = @N_TreatmentStatus WHERE Patient_ID = @Patient_ID";
 
-                        using (SqlCommand command = new SqlCommand(query2, connection))
+                        using (SQLiteCommand command = new SQLiteCommand(query2, connection))
                         {
                             command.Parameters.AddWithValue("@N_TreatmentStatus", "In Progress");
                             command.Parameters.AddWithValue("@Patient_ID", SharedData.Ward_NursePatient.PatientID);
@@ -415,7 +415,7 @@ namespace HMS_Software_V2.Nurse_Ward
 
 
                     }
-                    catch (Exception ex)
+                    catch (SQLiteException ex)
                     {
                         Debug.WriteLine("\nError5: \n" + ex.Message);
                         MessageBox.Show("Error5: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -480,7 +480,7 @@ namespace HMS_Software_V2.Nurse_Ward
                     return;
                 }
 
-                using (SqlConnection connection = new Database_Connector().GetConnection())
+                using (SQLiteConnection connection = new Database_Connector().GetConnection())
                 {
                     connection.Open();
 
@@ -490,7 +490,7 @@ namespace HMS_Software_V2.Nurse_Ward
                         #region UPDATE Patient_PrescriptionRequest Table
                         string query = "UPDATE Patient_PrescriptionRequest SET PR__IsCompleted = @PR__IsCompleted WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
 
-                        using (SqlCommand command = new SqlCommand(query, connection))
+                        using (SQLiteCommand command = new SQLiteCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@PR__IsCompleted", isSelected);
                             command.Parameters.AddWithValue("@PatientMedicalEvent_ID", medicalEvnetID);
@@ -502,7 +502,7 @@ namespace HMS_Software_V2.Nurse_Ward
                         #region UPDATE PatientMedical_Event Table
                         string query2 = "UPDATE PatientMedical_Event SET PME_Is_PrescriptionR_Completed = @PME_Is_PrescriptionR_Completed WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
 
-                        using (SqlCommand command = new SqlCommand(query2, connection))
+                        using (SQLiteCommand command = new SQLiteCommand(query2, connection))
                         {
                             command.Parameters.AddWithValue("@PME_Is_PrescriptionR_Completed", isSelected);
                             command.Parameters.AddWithValue("@PatientMedicalEvent_ID", medicalEvnetID);
@@ -514,7 +514,7 @@ namespace HMS_Software_V2.Nurse_Ward
                         #region UPDATE Admitted_Patients_VisitEvent
                         string query3 = "UPDATE Admitted_Patients_VisitEvent SET N_TreatmentStatus = @N_TreatmentStatus WHERE Patient_ID = @Patient_ID";
 
-                        using (SqlCommand command = new SqlCommand(query3, connection))
+                        using (SQLiteCommand command = new SQLiteCommand(query3, connection))
                         {
                             command.Parameters.AddWithValue("@N_TreatmentStatus", "In Progress");
                             command.Parameters.AddWithValue("@Patient_ID", SharedData.Ward_NursePatient.PatientID);
@@ -529,7 +529,7 @@ namespace HMS_Software_V2.Nurse_Ward
                         #endregion
 
                     }
-                    catch (Exception ex)
+                    catch (SQLiteException ex)
                     {
                         MessageBox.Show("Error6: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         Debug.WriteLine("\nError5: \n" + ex.Message);
@@ -584,7 +584,7 @@ namespace HMS_Software_V2.Nurse_Ward
                     return;
                 }
 
-                using (SqlConnection connection = new Database_Connector().GetConnection())
+                using (SQLiteConnection connection = new Database_Connector().GetConnection())
                 {
                     connection.Open();
 
@@ -594,7 +594,7 @@ namespace HMS_Software_V2.Nurse_Ward
                         #region UPDATE PatientMedical_Event Table
                         string query = "UPDATE PatientMedical_Event SET PME_IsMonitorRequestComplet = @PME_IsMonitorRequestComplet WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
 
-                        using (SqlCommand command = new SqlCommand(query, connection))
+                        using (SQLiteCommand command = new SQLiteCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@PME_IsMonitorRequestComplet", isSelected);
                             command.Parameters.AddWithValue("@PatientMedicalEvent_ID", medicalEvnetID);
@@ -607,7 +607,7 @@ namespace HMS_Software_V2.Nurse_Ward
                         #region UPDATE Admitted_Patients_VisitEvent
                         string query2 = "UPDATE Admitted_Patients_VisitEvent SET N_TreatmentStatus = @N_TreatmentStatus WHERE Patient_ID = @Patient_ID";
 
-                        using (SqlCommand command = new SqlCommand(query2, connection))
+                        using (SQLiteCommand command = new SQLiteCommand(query2, connection))
                         {
                             command.Parameters.AddWithValue("@N_TreatmentStatus", "In Progress");
                             command.Parameters.AddWithValue("@Patient_ID", SharedData.Ward_NursePatient.PatientID);
@@ -622,7 +622,7 @@ namespace HMS_Software_V2.Nurse_Ward
                         #endregion
 
                     }
-                    catch (Exception ex)
+                    catch (SQLiteException ex)
                     {
                         MessageBox.Show("Error6: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         Debug.WriteLine("\nError5: \n" + ex.Message);
@@ -727,7 +727,7 @@ namespace HMS_Software_V2.Nurse_Ward
             if (isLabRequestCompleted && isPrescriptionRequestCompleted && isMonitorRequestCompleted)
             {
                 #region UPDATE Admitted_Patients_VisitEvent
-                using (SqlConnection connection = new Database_Connector().GetConnection())
+                using (SQLiteConnection connection = new Database_Connector().GetConnection())
                 {
                     connection.Open();
 
@@ -735,7 +735,7 @@ namespace HMS_Software_V2.Nurse_Ward
                     {
                         string query2 = "UPDATE Admitted_Patients_VisitEvent SET N_TreatmentStatus = @N_TreatmentStatus, Is_VisitedByNurse = @Is_VisitedByNurse  WHERE Patient_ID = @Patient_ID AND Is_RoundTimeOut = 0 ";
 
-                        using (SqlCommand command = new SqlCommand(query2, connection))
+                        using (SQLiteCommand command = new SQLiteCommand(query2, connection))
                         {
                             command.Parameters.AddWithValue("@N_TreatmentStatus", "Completed");
                             command.Parameters.AddWithValue("@Is_VisitedByNurse", 1);
@@ -745,7 +745,7 @@ namespace HMS_Software_V2.Nurse_Ward
 
                         }
                     }
-                    catch (Exception ex)
+                    catch (SQLiteException ex)
                     {
                         MessageBox.Show("Error8" + ex, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
@@ -763,7 +763,7 @@ namespace HMS_Software_V2.Nurse_Ward
                 #region If Yes -> Update Admitted_Patients_VisitEvent
                 if (result == MessageBoxResult.Yes)
                 {
-                    using (SqlConnection connection = new Database_Connector().GetConnection())
+                    using (SQLiteConnection connection = new Database_Connector().GetConnection())
                     {
                         connection.Open();
 
@@ -771,7 +771,7 @@ namespace HMS_Software_V2.Nurse_Ward
                         {
                             string query2 = "UPDATE Admitted_Patients_VisitEvent SET N_TreatmentStatus = @N_TreatmentStatus, Is_VisitedByNurse = @Is_VisitedByNurse  WHERE Patient_ID = @Patient_ID AND Is_RoundTimeOut = 0 ";
 
-                            using (SqlCommand command = new SqlCommand(query2, connection))
+                            using (SQLiteCommand command = new SQLiteCommand(query2, connection))
                             {
                                 command.Parameters.AddWithValue("@N_TreatmentStatus", "Completed");
                                 command.Parameters.AddWithValue("@Is_VisitedByNurse", 1);
@@ -781,7 +781,7 @@ namespace HMS_Software_V2.Nurse_Ward
                                 Debug.WriteLine("\n If Yes -> Update Admitted_Patients_VisitEvent ");
                             }
                         }
-                        catch (Exception ex)
+                        catch (SQLiteException ex)
                         {
                             MessageBox.Show("Error8" + ex, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         }

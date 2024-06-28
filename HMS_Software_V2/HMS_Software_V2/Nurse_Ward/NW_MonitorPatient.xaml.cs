@@ -2,7 +2,7 @@
 using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -37,7 +37,7 @@ namespace HMS_Software_V2.Nurse_Ward.NuresWard_UserControls
         string? MonitorRequest;
         private void MyGetPreviousAddedData()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
 
                 try
@@ -46,12 +46,12 @@ namespace HMS_Software_V2.Nurse_Ward.NuresWard_UserControls
 
                     #region SELECT Monitro Request And Alrady Addeded Monitor info From PatientMedical_Event table
                     string query1 = "SELECT PME_MonitorRequest_Results, PME_MonitorRequest FROM PatientMedical_Event WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
-                    using (SqlCommand command = new SqlCommand(query1, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(query1, connection))
                     {
 
                         command.Parameters.AddWithValue("@PatientMedicalEvent_ID", SharedData.Ward_NursePatient.PatientMedicalEventID);
 
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        using (SQLiteDataReader reader = command.ExecuteReader())
                         {
                             if (reader.Read())
                             {
@@ -78,7 +78,7 @@ namespace HMS_Software_V2.Nurse_Ward.NuresWard_UserControls
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error4: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -94,7 +94,7 @@ namespace HMS_Software_V2.Nurse_Ward.NuresWard_UserControls
         {
             if (!string.IsNullOrEmpty(monitorInfoInput_TextBox.Text))
             {
-                using (SqlConnection connection = new Database_Connector().GetConnection())
+                using (SQLiteConnection connection = new Database_Connector().GetConnection())
                 {
                     try
                     {
@@ -105,7 +105,7 @@ namespace HMS_Software_V2.Nurse_Ward.NuresWard_UserControls
                         " PME_MonitorRequest_Results = @NewValue" +
                         " WHERE PatientMedicalEvent_ID = @PatientMedicalEvent_ID";
 
-                        using (SqlCommand cmd = new SqlCommand(query2, connection))
+                        using (SQLiteCommand cmd = new SQLiteCommand(query2, connection))
                         {
                             cmd.Parameters.AddWithValue("@NewValue", monitorInfoInput_TextBox.Text);
                             cmd.Parameters.AddWithValue("@PatientMedicalEvent_ID", SharedData.Ward_NursePatient.PatientMedicalEventID);
@@ -131,7 +131,7 @@ namespace HMS_Software_V2.Nurse_Ward.NuresWard_UserControls
 
 
                     }
-                    catch (Exception ex)
+                    catch (SQLiteException ex)
                     {
                         Debug.WriteLine("\nError2: \n" + ex.Message);
                         MessageBox.Show("Error2: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

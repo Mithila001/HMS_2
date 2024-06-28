@@ -3,7 +3,7 @@ using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.UserLogin_Page;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -57,7 +57,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
         private void MyDisplayBasicData()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -65,10 +65,10 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                     #region Get Total OPD Patients Count
                     string query2 = "SELECT COUNT(*) FROM Patient WHERE P_CurrentStatus = 'Out-Patient'";
-                    using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query2, connection))
                     {
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalOpdPatients_lbl.Content = count.ToString();
                     }
 
@@ -76,10 +76,10 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                     #region Get Total OPD Doctors Count
                     string query3 = "SELECT COUNT(*) FROM Doctor";
-                    using (SqlCommand command2 = new SqlCommand(query3, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query3, connection))
                     {
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalOpdDoctors_lbl.Content = count.ToString();
                     }
 
@@ -87,10 +87,10 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                     #region Get Total Lab Requests Count
                     string query4 = "SELECT COUNT(*) FROM Patient_LabRequest WHERE Is_Completed = 0";
-                    using (SqlCommand command2 = new SqlCommand(query4, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query4, connection))
                     {
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalLabRequests_lbl.Content = count.ToString();
                     }
 
@@ -98,10 +98,10 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                     #region Get Total Prescription Requests Count
                     string query5 = "SELECT COUNT(*) FROM Patient_PrescriptionRequest WHERE PR__IsCompleted = 0";
-                    using (SqlCommand command2 = new SqlCommand(query5, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query5, connection))
                     {
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalPrescriptionRequests_lbl.Content = count.ToString();
                     }
 
@@ -109,11 +109,11 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                     #region Get Total Admit Request Count
                     string query6 = "SELECT COUNT(*) FROM Doc_PatientAdmit_Request WHERE Requested_Date = @Requested_Date";
-                    using (SqlCommand command2 = new SqlCommand(query6, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query6, connection))
                     {
                         command2.Parameters.AddWithValue("@Requested_Date", DateTime.Today);
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalAdmitRequests_lbl.Content = count.ToString();
                     }
 
@@ -123,7 +123,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -180,11 +180,11 @@ namespace HMS_Software_V2.Doctor_ClincOPD
             int PatientID = 0;
             bool IsRID_Valid = false;
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())  //to check if the patient RID is correct or not
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())  //to check if the patient RID is correct or not
             {
                 string query1 = "SELECT * FROM Patient WHERE P_RegistrationID = @patientRID ";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
 
                 cmd.Parameters.AddWithValue("@patientRID", "P"+patientRID_tbx.Text);
 
@@ -193,7 +193,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                 {
                     connection.Open();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -229,11 +229,11 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                             string query2 = "SELECT * FROM Patient_AppointmentRequest WHERE PatientID = @PatientID AND IsVisitedByDoctor = 0 ";
 
-                            SqlCommand cmd2 = new SqlCommand(query2, connection);
+                            SQLiteCommand cmd2 = new SQLiteCommand(query2, connection);
 
                             cmd2.Parameters.AddWithValue("@PatientID", PatientID);
 
-                            using (SqlDataReader reader2 = cmd2.ExecuteReader())
+                            using (SQLiteDataReader reader2 = cmd2.ExecuteReader())
                             {
                                 while (reader2.Read())
                                 {
@@ -248,7 +248,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             {
                                 string query3 = "UPDATE Patient_AppointmentRequest SET IsVisitedByDoctor = 1 WHERE PatientAppointmentRequest_ID = @PatientAppointmentRequest_ID";
 
-                                SqlCommand cmd3 = new SqlCommand(query3, connection);
+                                SQLiteCommand cmd3 = new SQLiteCommand(query3, connection);
                                 cmd3.Parameters.AddWithValue("@PatientAppointmentRequest_ID", patientAppointmentID);
                                 cmd3.ExecuteNonQuery();
 
@@ -281,7 +281,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

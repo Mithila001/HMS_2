@@ -2,7 +2,7 @@
 using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -53,7 +53,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
             int medicalEventID = 0;
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
 
@@ -71,7 +71,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                                     + "VALUES (@Patient_ID, @PME_Doctor_ID, @PME_Nurse_ID, @PME_Date, @PME_Time, @PME_Location, @PME_Is_LabRequest, @PME_Is_PrescriptionRequest, @PME_Is_PatientAppointment," +
                                       " @PME_PatientExaminationNote, @PME_PatietnMedicalCondition, @PME_Is_InPatient); SELECT SCOPE_IDENTITY();";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
 
 
@@ -129,7 +129,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                     string query2 = "INSERT INTO Doc_PatientAdmit_Request (PatientID, Doctor_ID, P_ReferralNote, Requested_Time, Requested_Date, Is_Urgent, SendFrom_Location) "
                                     + "VALUES (@PatientID, @Doctor_ID, @P_ReferralNote, @Requested_Time, @Requested_Date, @Is_Urgent, @SendFrom_Location);";
 
-                    using (SqlCommand cmd = new SqlCommand(query2, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query2, connection))
                     {
 
                         cmd.Parameters.AddWithValue("@PatientID", SharedData.medicalEvent.PatientID);
@@ -162,7 +162,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

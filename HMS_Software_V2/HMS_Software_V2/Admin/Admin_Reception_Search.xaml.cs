@@ -3,7 +3,7 @@ using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,7 +52,7 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
 
         private void MyShowTable()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -61,9 +61,9 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
                     #region Get Patient Details
 
                     string query = "SELECT Reception_ID, R_FullName, R_NameWithInitials, R_Age, R_Gender, R_NIC FROM Reception";
-                    SqlCommand command = new SqlCommand(query, connection);
+                    SQLiteCommand command = new SQLiteCommand(query, connection);
 
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -84,7 +84,7 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
 
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;

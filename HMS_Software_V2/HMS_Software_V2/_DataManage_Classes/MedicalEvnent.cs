@@ -1,7 +1,7 @@
 ﻿using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -96,7 +96,7 @@ namespace HMS_Software_V2._DataManage_Classes
         private void GetLabInfoFromDatabase()
         {
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT * FROM Lab_Investigation";
                 string query2 = "SELECT * FROM Lab_Specimen";
@@ -106,22 +106,22 @@ namespace HMS_Software_V2._DataManage_Classes
                     connection.Open();
 
 
-                    SqlCommand cmd1 = new SqlCommand(query1, connection);
-                    SqlDataReader reader1 = cmd1.ExecuteReader();
+                    SQLiteCommand cmd1 = new SQLiteCommand(query1, connection);
+                    SQLiteDataReader reader1 = cmd1.ExecuteReader();
                     while (reader1.Read())
                     {
-                        int id = (int)reader1["Lab_Investigation_ID"];
+                        int id = Convert.ToInt32(reader1["Lab_Investigation_ID"]);
                         string name = (string)reader1["Lab_Investigation_Name"];
 
                         Raw_LabInvestigations.Add((id, name));
                     }
                     reader1.Close();
 
-                    SqlCommand cmd2 = new SqlCommand(query2, connection);
-                    SqlDataReader reader2 = cmd2.ExecuteReader();
+                    SQLiteCommand cmd2 = new SQLiteCommand(query2, connection);
+                    SQLiteDataReader reader2 = cmd2.ExecuteReader();
                     while (reader2.Read())
                     {
-                        int id = (int)reader2["Lab_Specimen_ID"];
+                        int id = Convert.ToInt32(reader2["Lab_Specimen_ID"]);
                         string name = (string)reader2["Lab_Specimen_Name"];
 
                         Raw_LabSpeciment.Add((id, name));
@@ -129,7 +129,7 @@ namespace HMS_Software_V2._DataManage_Classes
                     reader2.Close();
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1 (from a Medical Event Class): \n" + ex.Message);
                     MessageBox.Show("Error1_MEclass: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

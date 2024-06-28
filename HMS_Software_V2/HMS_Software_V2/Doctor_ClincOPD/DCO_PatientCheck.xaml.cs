@@ -17,7 +17,7 @@ using System.Xml;
 
 using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.Reception.R_UserControls;
 using System.Collections;
@@ -58,11 +58,11 @@ namespace HMS_Software_V2.Doctor_ClincOPD
             string? patientAge;
             string? patientGender;
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT * FROM Patient WHERE P_RegistrationID = @patientRID ";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
                 
                 cmd.Parameters.AddWithValue("@patientRID", SharedData.medicalEvent.pationetRID);
                
@@ -72,7 +72,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                 {
                     connection.Open();
 
-                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    using(SQLiteDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -99,7 +99,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -391,7 +391,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
             Debug.WriteLine("\n MyCreatePatientMedicalEvent(); \n");
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
 
@@ -403,7 +403,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                                     + "VALUES (@Patient_ID, @PME_Doctor_ID, @PME_Nurse_ID, @PME_Date, @PME_Time, @PME_Location, @PME_Is_LabRequest, @PME_Is_PrescriptionRequest, @PME_Is_PatientAppointment," +
                                       " @PME_PatientExaminationNote, @PME_PatietnMedicalCondition, @PME_Is_InPatient); SELECT SCOPE_IDENTITY();";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         
 
@@ -472,7 +472,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             continue;
                         }
                         //medicinReqeustList => Medicin ID, Medicin Type, Dosage, Frequency, Duration, Route
-                        using (SqlCommand cmd = new SqlCommand(query2, connection))
+                        using (SQLiteCommand cmd = new SQLiteCommand(query2, connection))
                         {
                             cmd.Parameters.AddWithValue("@PatientMedicalEvent_ID", medicalEventID);
                             cmd.Parameters.AddWithValue("@Patient_ID", SharedData.medicalEvent.PatientID);
@@ -533,7 +533,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             continue;
                         }
 
-                        using (SqlCommand cmd = new SqlCommand(query3, connection))
+                        using (SQLiteCommand cmd = new SQLiteCommand(query3, connection))
                         {
                             cmd.Parameters.AddWithValue("@PatientMedicalEvent_ID", medicalEventID);
                             cmd.Parameters.AddWithValue("@Lab_Specimen_ID", investigationList.Item1);
@@ -579,7 +579,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             continue;
                         }
                         //medicinReqeustList => Medicin ID, Medicin Type, Dosage, Frequency, Duration, Route
-                        using (SqlCommand cmd = new SqlCommand(query4, connection))
+                        using (SQLiteCommand cmd = new SQLiteCommand(query4, connection))
                         {
                             cmd.Parameters.AddWithValue("@PatientMedicalEvent_ID", medicalEventID);
                             cmd.Parameters.AddWithValue("@ClinicType_ID", appointment.Item1);
@@ -602,7 +602,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

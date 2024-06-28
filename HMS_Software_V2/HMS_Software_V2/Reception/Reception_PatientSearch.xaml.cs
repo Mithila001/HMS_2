@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -38,14 +38,14 @@ namespace HMS_Software_V2.Reception
         {
             try
             {
-                using (SqlConnection connection = new Database_Connector().GetConnection())
+                using (SQLiteConnection connection = new Database_Connector().GetConnection())
                 {
                     connection.Open();
                     DataTable table = new DataTable();
 
                     string query1 = "SELECT * FROM Patient";
 
-                    using(SqlDataAdapter adapter = new SqlDataAdapter(query1, connection))
+                    using(SQLiteDataAdapter adapter = new SQLiteDataAdapter(query1, connection))
                     {
                         adapter.Fill(table);
                     }
@@ -54,7 +54,7 @@ namespace HMS_Software_V2.Reception
 
                 }
             }
-            catch(Exception ex)
+            catch(SQLiteException ex)
             {
                 MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 

@@ -1,7 +1,7 @@
 ﻿using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -46,20 +46,20 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
         private List<(int, string)> MedicalData = new List<(int, string)>();
         private void MyGetMedicinData()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT * FROM Medicin_Storage";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        int id = (int)reader["Medicin_ID"];
+                        int id = Convert.ToInt32(reader["Medicin_ID"]);
                         string name = (string)reader["Medicin_Name"];
 
                         MedicalData.Add((id, name));
@@ -68,7 +68,7 @@ namespace HMS_Software_V2.UserCommon_Forms.UserControls_UCF
                     reader.Close();
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

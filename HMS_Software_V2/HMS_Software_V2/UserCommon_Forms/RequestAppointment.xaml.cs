@@ -5,7 +5,7 @@ using HMS_Software_V2.Reception.R_UserControls;
 using HMS_Software_V2.UserCommon_Forms.UserControls_UCF;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -39,16 +39,16 @@ namespace HMS_Software_V2.UserCommon_Forms
 
         private void LoadClinicType()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT * FROM ClinicType";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -79,7 +79,7 @@ namespace HMS_Software_V2.UserCommon_Forms
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

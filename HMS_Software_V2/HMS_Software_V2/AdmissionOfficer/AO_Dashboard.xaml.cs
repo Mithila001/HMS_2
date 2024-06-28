@@ -5,7 +5,7 @@ using HMS_Software_V2.Reception.R_UserControls;
 using HMS_Software_V2.UserLogin_Page;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -55,7 +55,7 @@ namespace HMS_Software_V2.AdmissionOfficer
             #endregion
 
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -63,10 +63,10 @@ namespace HMS_Software_V2.AdmissionOfficer
 
                     #region Get Total Admitted Patients Count
                     string query1 = "SELECT COUNT(*) FROM Admitted_Patients";
-                    using (SqlCommand command2 = new SqlCommand(query1, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query1, connection))
                     {
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalAdmittedPatients_lbl.Content = count.ToString();
                     }
 
@@ -75,10 +75,10 @@ namespace HMS_Software_V2.AdmissionOfficer
 
                     #region Get Total Wards Count
                     string query2 = "SELECT COUNT(*) FROM WardTypes";
-                    using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query2, connection))
                     {
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalWards_lbl.Content = count.ToString();
                     }
 
@@ -86,10 +86,10 @@ namespace HMS_Software_V2.AdmissionOfficer
 
                     #region Get Total Admit Request Count
                     string query3 = "SELECT COUNT(*) FROM Doc_PatientAdmit_Request WHERE Is_AdmittedToWard = 0 ";
-                    using (SqlCommand command2 = new SqlCommand(query3, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query3, connection))
                     {
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalAdmitRequestCounnt_lbl.Content = count.ToString();
                     }
 
@@ -97,10 +97,10 @@ namespace HMS_Software_V2.AdmissionOfficer
 
                     #region Get Total Admitted Count
                     string query4 = "SELECT COUNT(*) FROM Doc_PatientAdmit_Request WHERE Is_AdmittedToWard = 1 ";
-                    using (SqlCommand command2 = new SqlCommand(query4, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query4, connection))
                     {
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalAdmittedCount_lbl.Content = count.ToString();
                     }
 
@@ -108,7 +108,7 @@ namespace HMS_Software_V2.AdmissionOfficer
 
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -125,7 +125,7 @@ namespace HMS_Software_V2.AdmissionOfficer
 
         private void LoadClinicData()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT DPR.PatientID, DPR.Doctor_ID, DPR.P_ReferralNote, DPR.Is_Urgent, DPR.SendFrom_Location, DPR.DocPatientAdmitRequest_ID, " +
                 "P.P_NameWithIinitials, P.P_Age, P.P_Gender, P.P_RegistrationID, " +
@@ -135,12 +135,12 @@ namespace HMS_Software_V2.AdmissionOfficer
                 "INNER JOIN Doctor D ON D.Doctor_ID = DPR.Doctor_ID " +
                 "WHERE Is_AdmittedToWard = 0";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -207,7 +207,7 @@ namespace HMS_Software_V2.AdmissionOfficer
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

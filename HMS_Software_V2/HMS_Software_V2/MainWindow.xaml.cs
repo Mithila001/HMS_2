@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HMS_Software_V2.General_Purpose;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 
 
@@ -26,14 +26,14 @@ namespace HMS_Software_V2
             InitializeComponent();
 
             // Open the connection
-            using (SqlConnection connect = new Database_Connector().GetConnection())
+            using (SQLiteConnection connect = new Database_Connector().GetConnection())
             {
                 connect.Open();
 
                 // Execute your SQL query
                 string sql = "SELECT * FROM TestTable"; // replace 'your_table' with your actual table name
-                SqlCommand cmd = new SqlCommand(sql, connect);
-                SqlDataReader rdr = cmd.ExecuteReader();
+                SQLiteCommand cmd = new SQLiteCommand(sql, connect);
+                SQLiteDataReader rdr = cmd.ExecuteReader();
 
                 while (rdr.Read())
                 {

@@ -2,7 +2,7 @@
 using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -213,7 +213,7 @@ namespace HMS_Software_V2.Admin
         int ReceptionID;
         private void MyInsertDataToTheTable()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
 
@@ -258,7 +258,7 @@ namespace HMS_Software_V2.Admin
                                     ); 
                                     SELECT SCOPE_IDENTITY();";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         // Replace these placeholders with actual values from your application
                         cmd.Parameters.AddWithValue("@R_FullName", FullName);
@@ -285,7 +285,7 @@ namespace HMS_Software_V2.Admin
                     }
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError: \n" + ex.Message);
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -317,7 +317,7 @@ namespace HMS_Software_V2.Admin
 
         private void MyAddUserLoginToTable(string userName, string password)
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
 
@@ -327,7 +327,7 @@ namespace HMS_Software_V2.Admin
                                     VALUES
                                     (@UserID, @UserPosition, @UserName, @UserPassword);";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         // Assuming you have variables for each of these parameters
                         cmd.Parameters.AddWithValue("@UserID", ReceptionID);
@@ -347,7 +347,7 @@ namespace HMS_Software_V2.Admin
 
                     }
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError: \n" + ex.Message);
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

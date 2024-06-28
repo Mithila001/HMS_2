@@ -3,7 +3,7 @@ using HMS_Software_V2.General_Purpose;
 using HMS_Software_V2.Reception.R_UserControls;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -50,10 +50,6 @@ namespace HMS_Software_V2.Admin
             PopulateTimeValues();
 
             MyDisplayClincEvnets();
-
-
-
-
         }
 
         private void PopulateTimeValues()
@@ -83,22 +79,23 @@ namespace HMS_Software_V2.Admin
             public int TakenSlots { get; set; }
             public DateOnly ClinicEvnetDate { get; set; }
         }
+
         private void MyDisplayClincEvnets()
         {
             List<ClinicEvent> clinicEvents = new List<ClinicEvent>();
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT * FROM ClinicEvents WHERE CE_Date > @TodayDate";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
 
                 cmd.Parameters.AddWithValue("@TodayDate", DateTime.Today);
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -116,11 +113,8 @@ namespace HMS_Software_V2.Admin
 
                     }
                     reader.Close();
-
-
                 }
-
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -132,9 +126,7 @@ namespace HMS_Software_V2.Admin
             }
 
             showClinicEvnets_ListView.ItemsSource = clinicEvents;
-
         }
-
     }
 
    

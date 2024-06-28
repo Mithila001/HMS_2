@@ -4,7 +4,7 @@ using HMS_Software_V2.UserCommon_Forms;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -229,7 +229,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
             Debug.WriteLine("\n MyCreatePatientMedicalEvent(); \n");
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
 
@@ -241,7 +241,7 @@ namespace HMS_Software_V2.Doctor_Ward
                                     + "VALUES (@Patient_ID, @PME_Doctor_ID, @PME_Nurse_ID, @PME_Date, @PME_Time, @PME_Location, @PME_Is_LabRequest, @PME_Is_PrescriptionRequest, @PME_Is_PatientAppointment," +
                                       " @PME_PatientExaminationNote, @PME_PatietnMedicalCondition, @PME_Is_InPatient, @PME_MonitorRequest); SELECT SCOPE_IDENTITY();";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
 
 
@@ -313,7 +313,7 @@ namespace HMS_Software_V2.Doctor_Ward
                             continue;
                         }
                         //medicinReqeustList => Medicin ID, Medicin Type, Dosage, Frequency, Duration, Route
-                        using (SqlCommand cmd = new SqlCommand(query2, connection))
+                        using (SQLiteCommand cmd = new SQLiteCommand(query2, connection))
                         {
                             cmd.Parameters.AddWithValue("@PatientMedicalEvent_ID", MedicalEventID);
                             cmd.Parameters.AddWithValue("@Patient_ID", SharedData.medicalEvent.PatientID);
@@ -370,7 +370,7 @@ namespace HMS_Software_V2.Doctor_Ward
                             continue;
                         }
 
-                        using (SqlCommand cmd = new SqlCommand(query3, connection))
+                        using (SQLiteCommand cmd = new SQLiteCommand(query3, connection))
                         {
                             cmd.Parameters.AddWithValue("@PatientMedicalEvent_ID", MedicalEventID);
                             cmd.Parameters.AddWithValue("@Lab_Specimen_ID", specimenList.Item1);
@@ -401,7 +401,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -420,7 +420,7 @@ namespace HMS_Software_V2.Doctor_Ward
         private void MyUpdateingOtherTable()
         {
             Debug.WriteLine("MyUpdateingOtherTable => Method");
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -432,7 +432,7 @@ namespace HMS_Software_V2.Doctor_Ward
                                     " P_MedicalEventID = @P_MedicalEventID, Is_VisistedByDoctor = 1, P_Condition = @P_Condition" +
                                     " WHERE Patient_ID = @Patient_ID AND VisitPerDay_ID = @MedicalRoundManagerID";
 
-                    using (SqlCommand cmd = new SqlCommand(query1, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query1, connection))
                     {
 
                         cmd.Parameters.AddWithValue("@Visited_Doctor_ID", SharedData.Ward_Doctor.DoctorID);
@@ -463,7 +463,7 @@ namespace HMS_Software_V2.Doctor_Ward
                             " AP_Condition = @AP_Condition, AP_VisiteTotalRounds = AP_VisiteTotalRounds + 1" +
                             " WHERE Patient_ID = @Patient_ID";
 
-                    using (SqlCommand cmd = new SqlCommand(query2, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query2, connection))
                     {
                         // Assuming SharedData.medicalEvent.PatientMedicalCondition holds the updated condition
                         cmd.Parameters.AddWithValue("@AP_Condition", SharedData.medicalEvent.PatientMedicalCondition);
@@ -484,7 +484,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError2: \n" + ex.Message);
                     MessageBox.Show("Error2: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -515,7 +515,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
         private void PatientDischarge_btn_Click(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
 
@@ -527,7 +527,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
                                     + "VALUES (@Patient_ID, @PD_Ward_No, @PD_DischardedTime, @PD_DischargedDate);";
 
-                    using (SqlCommand cmd = new SqlCommand(query1, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query1, connection))
                     {
                         cmd.Parameters.AddWithValue("@Patient_ID", SharedData.medicalEvent.PatientID);
                         cmd.Parameters.AddWithValue("@PD_Ward_No", SharedData.Ward_Doctor.WardID);
@@ -544,7 +544,7 @@ namespace HMS_Software_V2.Doctor_Ward
                     #region DELETE FROM Admitted_Patients Table
                     string query2 = "DELETE FROM Admitted_Patients WHERE Patient_ID = @Patient_ID";
 
-                    using (SqlCommand cmd = new SqlCommand(query2, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query2, connection))
                     {
                         cmd.Parameters.AddWithValue("@Patient_ID", SharedData.medicalEvent.PatientID);
                         int rowsAffected = cmd.ExecuteNonQuery();
@@ -566,7 +566,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
                     string query3 = "UPDATE Patient SET P_CurrentStatus = 'Out-Patient' WHERE Patient_ID = @Patient_ID";
 
-                    using (SqlCommand cmd = new SqlCommand(query3, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query3, connection))
                     {
                         cmd.Parameters.AddWithValue("@Patient_ID", SharedData.medicalEvent.PatientID);
                         int rowsAffected = cmd.ExecuteNonQuery();
@@ -585,7 +585,7 @@ namespace HMS_Software_V2.Doctor_Ward
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

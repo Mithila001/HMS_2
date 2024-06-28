@@ -1,7 +1,7 @@
 ﻿using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +30,7 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
 
         private void MyGetAppointmentData()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -38,12 +38,12 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
 
                     #region Get Total Todays Appointment Count
                     string query2 = "SELECT COUNT(*) FROM ClinicEvents WHERE CE_Date = @CE_Date";
-                    using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query2, connection))
                     {
                         // Add the parameter and set its value to today's date
                         command2.Parameters.AddWithValue("@CE_Date", DateTime.Today);
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         todaysAppointments_lbl.Content = count.ToString();
                     }
 
@@ -51,7 +51,7 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
  
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;

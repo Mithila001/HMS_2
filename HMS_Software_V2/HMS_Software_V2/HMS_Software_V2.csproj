@@ -57,4 +57,10 @@
     <Folder Include="General Purpose\General_UserControls\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="HMS_SqlLite_Database1.db">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

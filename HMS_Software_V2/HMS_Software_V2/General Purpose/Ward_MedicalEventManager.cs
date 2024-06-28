@@ -1,7 +1,7 @@
 ﻿using HMS_Software_V2._DataManage_Classes;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -44,7 +44,7 @@ namespace HMS_Software_V2.General_Purpose
         private void MyMedicalEventManger_Start()
         {
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
 
                 try
@@ -54,13 +54,18 @@ namespace HMS_Software_V2.General_Purpose
 
                     #region Getting Admit_MedicalRoundManager Table Data
 
-                    string query1 = "SELECT TOP 1 LastRecorded_Date, Round_1, Round_2, Round_3, AdmitMedicalRoundManager_ID" +
-                        " FROM Admit_MedicalRoundManager" +
-                        " ORDER BY LastRecorded_Date DESC";
+                    //string query1 = "SELECT TOP 1 LastRecorded_Date, Round_1, Round_2, Round_3, AdmitMedicalRoundManager_ID" +
+                    //    " FROM Admit_MedicalRoundManager" +
+                    //    " ORDER BY LastRecorded_Date DESC";
 
-                    SqlCommand cmd = new SqlCommand(query1, connection);
+                    string query1 = "SELECT LastRecorded_Date, Round_1, Round_2, Round_3, AdmitMedicalRoundManager_ID" +
+                " FROM Admit_MedicalRoundManager" +
+                " ORDER BY LastRecorded_Date DESC" +
+                " LIMIT 1";
 
-                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    SQLiteCommand cmd = new SQLiteCommand(query1, connection);
+
+                    using(SQLiteDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -146,7 +151,7 @@ namespace HMS_Software_V2.General_Purpose
                         #region INSERT INTO Admit_MedicalRoundManager Table
                         string query3 = "INSERT INTO Admit_MedicalRoundManager (LastRecorded_Date) VALUES (@LastRecorded_Date)";
 
-                        using (SqlCommand command1 = new SqlCommand(query3, connection))
+                        using (SQLiteCommand command1 = new SQLiteCommand(query3, connection))
                         {
                             command1.Parameters.AddWithValue("@LastRecorded_Date", DateTime.Today.ToString("yyyy-MM-dd"));
 
@@ -161,7 +166,7 @@ namespace HMS_Software_V2.General_Purpose
 
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\n MyMedicalEventManger_Start: \n" + ex.Message);
                     MessageBox.Show("WMM Class Error2: : " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -179,16 +184,17 @@ namespace HMS_Software_V2.General_Purpose
         private void MyCreateAdmitEvent_Step_1()
         {
             Debug.WriteLine("<< MyCreateAdmitEvent_Step_1 >>");
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
-                connection.Open();
+                
                 try
                 {
+                    connection.Open();
 
                     #region UPDATE Old WardMedicalEvent Status in Admitted_Patients_VisitEvent Table
                     string query5 = $"UPDATE Admitted_Patients_VisitEvent SET Is_RoundTimeOut = 1";
 
-                    using (SqlCommand command1 = new SqlCommand(query5, connection))
+                    using (SQLiteCommand command1 = new SQLiteCommand(query5, connection))
                     {
                         // No need to add SelectedRound as a parameter since it's part of the query
                         Debug.WriteLine("\nUPDATE Old WardMedicalEvent Status in Admitted_Patients_VisitEvent Table");
@@ -200,9 +206,11 @@ namespace HMS_Software_V2.General_Purpose
                     #region SELECT All Admitted Patients
                     string query1 = "SELECT AdmittedPatient_ID, Patient_ID, AP_Condition, AP_VisiteTotalRounds, AP_Ward FROM Admitted_Patients";
 
-                    using (SqlCommand command = new SqlCommand(query1, connection))
+                    bool isNoAdmittedPatiens = true;
+
+                    using (SQLiteCommand command = new SQLiteCommand(query1, connection))
                     {
-                        using (SqlDataReader reader2 = command.ExecuteReader())
+                        using (SQLiteDataReader reader2 = command.ExecuteReader())
                         {
                             while (reader2.Read())
                             {
@@ -216,16 +224,22 @@ namespace HMS_Software_V2.General_Purpose
 
                                 MyCreateAdmitEvent_Step_2(admittedPatientId, patientId, condition, totalRounds, ward);
 
+                                isNoAdmittedPatiens = false;
 
                             }
                         }
+                    }
+
+                    if (isNoAdmittedPatiens)
+                    {
+                        MyUpdate_MedicalRoundManager();
                     }
 
 
                     #endregion
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\n MyCreateAdmitEvent_Step_1: \n" + ex.Message);
                     MessageBox.Show("WMM Class Error3:  " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -241,11 +255,11 @@ namespace HMS_Software_V2.General_Purpose
         private void MyCreateAdmitEvent_Step_2(int admittedPatientId, int patientId, string condition, int totalRounds, int ward)
         {
             Debug.WriteLine("<< MyCreateAdmitEvent_Step_2 >>");
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
-                connection.Open();
                 try
                 {
+                connection.Open();
                     
 
                  
@@ -257,7 +271,7 @@ namespace HMS_Software_V2.General_Purpose
                     " VALUES (@Patient_ID, @P_Condition, @Visited_Doctor_ID, @Visited_Nurse_ID, @Visite_Round,"+
                     " @P_MedicalEventID, @Is_VisistedByDoctor, @Is_VisitedByNurse, @P_WardNo, @N_TreatmentStatus, @Total_VisitRounds, @VisitPerDay_ID)";
 
-                    using (SqlCommand command1 = new SqlCommand(query1, connection))
+                    using (SQLiteCommand command1 = new SQLiteCommand(query1, connection))
                     {
                         command1.Parameters.AddWithValue("@Patient_ID", patientId);
                         command1.Parameters.AddWithValue("@P_Condition", condition);
@@ -281,7 +295,7 @@ namespace HMS_Software_V2.General_Purpose
                     Debug.WriteLine("INSERT INTO Admitted_Patients_VisitEvent Table");
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nMyCreateAdmitEvent_Step_2: \n" + ex.Message);
                     MessageBox.Show("WMM Class Error4: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -297,7 +311,7 @@ namespace HMS_Software_V2.General_Purpose
 
         private void MyUpdate_MedicalRoundManager()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
                 try
@@ -305,7 +319,7 @@ namespace HMS_Software_V2.General_Purpose
                     #region UPDATE Admit_MedicalRoundManager Table
                     string query1 = $"UPDATE Admit_MedicalRoundManager SET {SelectedRound} = 1 WHERE AdmitMedicalRoundManager_ID = @AdmitMedicalRoundManager_ID";
 
-                    using (SqlCommand command1 = new SqlCommand(query1, connection))
+                    using (SQLiteCommand command1 = new SQLiteCommand(query1, connection))
                     {
                         // No need to add SelectedRound as a parameter since it's part of the query
                         Debug.WriteLine("\nRoundRecordID: \n" + RoundRecordID);
@@ -319,7 +333,7 @@ namespace HMS_Software_V2.General_Purpose
                     Debug.WriteLine("UPDATE Admit_MedicalRoundManager Table");
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nWard_MedicalEventManager: \n" + ex.Message);
                     MessageBox.Show("WMM Class Error5: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

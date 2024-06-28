@@ -3,7 +3,7 @@ using HMS_Software_V2.AdmissionOfficer.UserControls_AO;
 using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -44,22 +44,22 @@ namespace HMS_Software_V2.AdmissionOfficer
             }
 
             int patientId;
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT Patient_ID FROM Patient WHERE P_RegistrationID = @P_RegistrationID AND P_CurrentStatus = 'Out-Patient'";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
 
                 try
                 {
                     connection.Open();
                     cmd.Parameters.AddWithValue("@P_RegistrationID", "P"+patientRID_tbx.Text);
 
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
-                        patientId = (int)reader["Patient_ID"];
+                        patientId = Convert.ToInt32(reader["Patient_ID"]);
 
                         IsGoingToAdmit_Flag = true;
 
@@ -74,7 +74,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                     }
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -7,7 +7,7 @@ using HMS_Software_V2.Reception.R_UserControls;
 using HMS_Software_V2.UserLogin_Page;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -56,7 +56,7 @@ namespace HMS_Software_V2.Nurse_Ward
             todaytime_lbl.Content = DateTime.Now.ToString("hh:mm:ss tt");
 
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -64,10 +64,10 @@ namespace HMS_Software_V2.Nurse_Ward
 
                     #region Get Total Pending Patients Count
                     string query2 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE Is_VisistedByDoctor =1 AND Is_RoundTimeOut = 0 AND Is_VisitedByNurse = 0";
-                    using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query2, connection))
                     {
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalPending_lbl.Content = count.ToString();
 
                     }
@@ -75,17 +75,17 @@ namespace HMS_Software_V2.Nurse_Ward
 
                     #region Get Total Completed Patients Count
                     string query3 = "SELECT COUNT(*) FROM Admitted_Patients_VisitEvent WHERE Is_VisistedByDoctor =1 AND Is_RoundTimeOut = 0 AND Is_VisitedByNurse = 1";
-                    using (SqlCommand command2 = new SqlCommand(query3, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query3, connection))
                     {
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalCompleted_lbl.Content = count.ToString();
 
                     }
                     #endregion
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -105,7 +105,7 @@ namespace HMS_Software_V2.Nurse_Ward
 
         private async void MyDisplayPatients()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT APV.Patient_ID, APV.P_Condition, APV.N_TreatmentStatus, APV.Is_VisistedByDoctor, APV.P_MedicalEventID," +
                 "P.P_NameWithIinitials, P.P_Age, P.P_Gender, P.P_RegistrationID " +
@@ -114,12 +114,12 @@ namespace HMS_Software_V2.Nurse_Ward
                 "WHERE APV.Is_VisistedByDoctor = 1 AND Is_RoundTimeOut = 0 " +
                 "ORDER BY CASE WHEN APV.N_TreatmentStatus = 'Waiting' THEN 0 ELSE 1 END, APV.N_TreatmentStatus";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -210,7 +210,7 @@ namespace HMS_Software_V2.Nurse_Ward
                     reader.Close();
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error4: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

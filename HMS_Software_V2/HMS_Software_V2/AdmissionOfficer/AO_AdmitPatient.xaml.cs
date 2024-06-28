@@ -2,7 +2,7 @@
 using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -49,7 +49,7 @@ namespace HMS_Software_V2.AdmissionOfficer
             todayTime.Content = DateTime.Now.ToString("hh:mm tt");
 
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 #region Getting Admission Officer ID
                 int admissionOfficeID = SharedData.userData.UserID;
@@ -64,7 +64,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                 string query1 = "SELECT D_NameWithInitials, D_Specialty, D_RegistrationID" +
                             " FROM Doctor WHERE Doctor_ID = @Doctor_ID";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
 
                 try
                 {
@@ -72,7 +72,7 @@ namespace HMS_Software_V2.AdmissionOfficer
 
                     cmd.Parameters.AddWithValue("@Doctor_ID", SharedData.admissioOfficer.Doctor_ID);
 
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
@@ -91,7 +91,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                         MessageBox.Show("No patient found or patient is already an inpatient.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -192,7 +192,7 @@ namespace HMS_Software_V2.AdmissionOfficer
 
         private void MyAddPatientAdmiteDataToDatabase()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 
                 try
@@ -205,7 +205,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                             " (Patient_ID, AP_Condition, AP_VisiteTotalRounds, AP_AdmittedDate, AP_AdmittedTime, AP_Ward)" +
                             " VALUES(@Patient_ID, @AP_Condition, @AP_VisiteTotalRounds, @AP_AdmittedDate, @AP_AdmittedTime, @AP_Ward)";
 
-                    using (SqlCommand command = new SqlCommand(query1, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(query1, connection))
                     {
                        
                         command.Parameters.AddWithValue("@Patient_ID", SharedData.admissioOfficer.PatientID); 
@@ -223,7 +223,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                     #region UPDATE Doc_PatientAdmit_Request Table
                     string query2 = "UPDATE Doc_PatientAdmit_Request SET Is_AdmittedToWard = 1 WHERE DocPatientAdmitRequest_ID = @DocPatientAdmitRequest_ID";
 
-                    using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query2, connection))
                     {
                         command2.Parameters.AddWithValue("@DocPatientAdmitRequest_ID", SharedData.admissioOfficer.PatientAdmitRequestID);
 
@@ -234,7 +234,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                     #region UPDATE Patient Table
                     string query3 = "UPDATE Patient SET P_CurrentStatus = 'In-Patient', P_IsEmergency = @P_IsEmergency, P_EmergancyType = @P_EmergancyType, P_EmergancyAssignedTime = @P_EmergancyAssignedTime  WHERE Patient_ID = @Patient_ID";
 
-                    using (SqlCommand command3 = new SqlCommand(query3, connection))
+                    using (SQLiteCommand command3 = new SQLiteCommand(query3, connection))
                     {
                         command3.Parameters.AddWithValue("@Patient_ID", SharedData.admissioOfficer.PatientID);
 
@@ -249,7 +249,7 @@ namespace HMS_Software_V2.AdmissionOfficer
 
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -2,7 +2,7 @@
 using HMS_Software_V2.Reception.R_UserControls;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -46,16 +46,16 @@ namespace HMS_Software_V2.Reception
 
         private void LoadClinicType()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT * FROM ClinicType";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -106,7 +106,7 @@ namespace HMS_Software_V2.Reception
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -131,7 +131,7 @@ namespace HMS_Software_V2.Reception
             // Your method implementation here
             //MessageBox.Show($"Clinic Type: {clinicTypeID}\nAvailability: {availability}", "Clinic Details", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT ce.*, d.D_NameWithInitials, d.D_Specialty, ce.CE_HallNumber, ce.CE_StartTime,"+
                     " ce.CE_EndTime, ce.CE_Date, ce.CE_TotalSlots, ce.CE_TakenSlots, ce.ClinicEvent_ID ,ct.CT_WardNo " +
@@ -140,13 +140,13 @@ namespace HMS_Software_V2.Reception
                     " INNER JOIN Doctor d ON ce.Doctor_ID = d.Doctor_ID" +
                     " WHERE ce.CE_ClinicType_ID = @clinicTypeID;";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
                 cmd.Parameters.AddWithValue("@clinicTypeID", Convert.ToInt32(clinicTypeID));
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -217,7 +217,7 @@ namespace HMS_Software_V2.Reception
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -239,7 +239,7 @@ namespace HMS_Software_V2.Reception
         {
             int patientAppointmentRequestID = 0;
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
                 
@@ -248,12 +248,12 @@ namespace HMS_Software_V2.Reception
                 {
                     // Check if there any Clinic request givent to this patient in Patient_AppointmentRequest table 
                     string query3 = "SELECT * FROM Patient_AppointmentRequest WHERE PatientID = @PatientID AND IsVisitedByDoctor = 0 AND IsBooked = 0 AND ClinicType_ID = @ClinicType_ID";
-                    using (SqlCommand cmd3 = new SqlCommand(query3, connection))
+                    using (SQLiteCommand cmd3 = new SQLiteCommand(query3, connection))
                     {
                         cmd3.Parameters.AddWithValue("@PatientID", PatientID);
                         cmd3.Parameters.AddWithValue("@ClinicType_ID", clinicType);
 
-                        SqlDataReader reader = cmd3.ExecuteReader();
+                        SQLiteDataReader reader = cmd3.ExecuteReader();
 
                         if (reader.HasRows)
                         {
@@ -277,7 +277,7 @@ namespace HMS_Software_V2.Reception
 
                     // update the ClinicEvents Table slots count
                     string query1 = "UPDATE ClinicEvents SET CE_TakenSlots = CE_TakenSlots + 1 WHERE ClinicEvent_ID = @clinicEventId";
-                    using (SqlCommand cmd = new SqlCommand(query1, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(query1, connection))
                     {
                         cmd.Parameters.AddWithValue("@clinicEventId", clinicEventID);
 
@@ -295,7 +295,7 @@ namespace HMS_Software_V2.Reception
                     // Update the Patient_AppointmentRequest Table
                     string query2 = "UPDATE Patient_AppointmentRequest SET IsBooked = 1, ClinicEvent_ID = @ClinicEvent_ID"+
                         "  WHERE PatientAppointmentRequest_ID = @PatientAppointmentRequest_ID";
-                    using (SqlCommand cmd2 = new SqlCommand(query2, connection))
+                    using (SQLiteCommand cmd2 = new SQLiteCommand(query2, connection))
                     {
                         cmd2.Parameters.AddWithValue("@PatientAppointmentRequest_ID", patientAppointmentRequestID);
                         cmd2.Parameters.AddWithValue("@ClinicEvent_ID", clinicEventID);
@@ -320,7 +320,7 @@ namespace HMS_Software_V2.Reception
 
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -345,10 +345,10 @@ namespace HMS_Software_V2.Reception
 
             bool isPatientRID_Found = false;
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT P_NameWithIinitials, P_Age, P_Gender, Patient_ID FROM Patient WHERE P_RegistrationID = @P_RegistrationID";
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
                 cmd.Parameters.AddWithValue("@P_RegistrationID", "P"+PatientRID_tbx.Text); 
 
                 connection.Open();
@@ -358,7 +358,7 @@ namespace HMS_Software_V2.Reception
 
 
                     #region Getting Patient ID 
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     if (reader.HasRows)
                     {
@@ -391,11 +391,11 @@ namespace HMS_Software_V2.Reception
                     if (isPatientRID_Found)
                     {
                         string query2 = "SELECT ClinicType_ID FROM Patient_AppointmentRequest WHERE PatientID = @PatientID AND IsBooked = 0";
-                        SqlCommand cmd2 = new SqlCommand(query2, connection);
+                        SQLiteCommand cmd2 = new SQLiteCommand(query2, connection);
                         cmd2.Parameters.AddWithValue("@PatientID", PatientID);
 
 
-                        SqlDataReader reader2 = cmd2.ExecuteReader();
+                        SQLiteDataReader reader2 = cmd2.ExecuteReader();
 
                         if (reader2.HasRows)
                         {
@@ -429,7 +429,7 @@ namespace HMS_Software_V2.Reception
 
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);

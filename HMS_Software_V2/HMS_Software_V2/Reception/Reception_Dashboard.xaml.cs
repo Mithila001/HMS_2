@@ -5,7 +5,7 @@ using HMS_Software_V2.UserLogin_Page;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -58,7 +58,7 @@ namespace HMS_Software_V2.Reception
 
             receptionName_lbl.Content = SharedData.receptionData.ReceptionName;
 
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
                 {
@@ -66,10 +66,10 @@ namespace HMS_Software_V2.Reception
 
                     #region Get Total Doctors Count
                     string query2 = "SELECT COUNT(*) FROM Doctor";
-                    using (SqlCommand command2 = new SqlCommand(query2, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query2, connection))
                     {
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalDoctors_lbl.Content = count.ToString();
                     }
 
@@ -77,17 +77,17 @@ namespace HMS_Software_V2.Reception
 
                     #region Get Total In Patient Count
                     string query4 = "SELECT COUNT(*) FROM Admitted_Patients";
-                    using (SqlCommand command2 = new SqlCommand(query4, connection))
+                    using (SQLiteCommand command2 = new SQLiteCommand(query4, connection))
                     {
 
-                        int count = (int)command2.ExecuteScalar();
+                        int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalInpatients_lbl.Content = count.ToString();
                     }
 
                     #endregion
 
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -106,19 +106,19 @@ namespace HMS_Software_V2.Reception
 
         private void LoadClinicData()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT CE.CE_HallNumber, CE.CE_StartTime, CE.CE_EndTime, CE.CE_Date, CE.CE_TotalSlots, CE.CE_TakenSlots, CT.CT_Name, D.D_NameWithInitials " +
                "FROM ClinicEvents CE " +
                "INNER JOIN ClinicType CT ON CE.CE_ClinicType_ID = CT.ClinicType_ID " +
                 "INNER JOIN Doctor D ON CE.Doctor_ID = D.Doctor_ID";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -177,7 +177,7 @@ namespace HMS_Software_V2.Reception
 
                 }
 
-                catch(Exception ex)
+                catch(SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n"+ex.Message);
                     MessageBox.Show("Error1: "+ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -193,17 +193,17 @@ namespace HMS_Software_V2.Reception
 
         private void LoadEmergancyPatientData()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query1 = "SELECT P_RegistrationID, P_NameWithIinitials, P_IsEmergency, P_EmergancyType, P_EmergancyAssignedTime " +
                "FROM Patient WHERE P_IsEmergency = 1 ";
 
-                SqlCommand cmd = new SqlCommand(query1, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
@@ -259,7 +259,7 @@ namespace HMS_Software_V2.Reception
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -273,22 +273,22 @@ namespace HMS_Software_V2.Reception
 
         private void LoadDischarginPatients()
         {
-            using (SqlConnection connection = new Database_Connector().GetConnection())
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 string query3 = "SELECT PD.PD_Ward_No, P.P_NameWithIinitials, P.P_RegistrationID  " +
                 "FROM Patient_Discharge PD " +
                 "INNER JOIN Patient P ON PD.Patient_ID = P.Patient_ID";
 
-                SqlCommand cmd = new SqlCommand(query3, connection);
+                SQLiteCommand cmd = new SQLiteCommand(query3, connection);
 
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SQLiteDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        int wardNumber = (int)reader["PD_Ward_No"];
+                        int wardNumber = Convert.ToInt32(reader["PD_Ward_No"]);
 
                         string patientName = reader["P_NameWithIinitials"].ToString() ?? "Error";
 
@@ -321,7 +321,7 @@ namespace HMS_Software_V2.Reception
 
                 }
 
-                catch (Exception ex)
+                catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
                     MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
