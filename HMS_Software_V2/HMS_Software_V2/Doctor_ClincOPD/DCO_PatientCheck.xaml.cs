@@ -393,15 +393,17 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
             using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
-                connection.Open();
+                
 
                 try
                 {
+                    connection.Open();
+
                     #region Insert Data To Medical Event Table 
                     string query = "INSERT INTO PatientMedical_Event (Patient_ID, PME_Doctor_ID, PME_Nurse_ID, PME_Date, PME_Time, PME_Location, PME_Is_LabRequest," +
                                     " PME_Is_PrescriptionRequest, PME_Is_PatientAppointment, PME_PatientExaminationNote, PME_PatietnMedicalCondition, PME_Is_InPatient) "
                                     + "VALUES (@Patient_ID, @PME_Doctor_ID, @PME_Nurse_ID, @PME_Date, @PME_Time, @PME_Location, @PME_Is_LabRequest, @PME_Is_PrescriptionRequest, @PME_Is_PatientAppointment," +
-                                      " @PME_PatientExaminationNote, @PME_PatietnMedicalCondition, @PME_Is_InPatient); SELECT SCOPE_IDENTITY();";
+                                      " @PME_PatientExaminationNote, @PME_PatietnMedicalCondition, @PME_Is_InPatient); SELECT last_insert_rowid();";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
@@ -440,12 +442,18 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                         cmd.Parameters.AddWithValue("@PME_PatietnMedicalCondition", SharedData.medicalEvent.PatientMedicalCondition);
                         cmd.Parameters.AddWithValue("@PME_Is_InPatient", SharedData.medicalEvent.IsInpationt);
 
+                        Debug.WriteLine("\nAfter cmd.Patamaters: ");
+
+                        //cmd.ExecuteScalar();
+
+                        //int id = Convert.ToInt32(cmd.ExecuteScalar());
+
                         object result = cmd.ExecuteScalar();
                         if (result != null)
                         {
                             medicalEventID = Convert.ToInt32(result);
                             Debug.WriteLine("\nInserted Medical Event ID: " + medicalEventID);
-                            
+
                         }
                         else
                         {
@@ -456,6 +464,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                     #endregion
 
 
+                    Debug.WriteLine("\nAdd Prescription Requests to the PrescriptionRequest table");
 
                     #region Add Prescription Requests to the PrescriptionRequest table
                     string query2 = "INSERT INTO Patient_PrescriptionRequest (PatientMedicalEvent_ID, Patient_ID, Doctor_ID, PR_Route, PR_Medicin, PR_Medicin_ID," +
@@ -469,6 +478,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                     {
                         if (medicin.Item1 == 0) //If liest item is empty or invalid(0) 
                         {
+                            Debug.WriteLine("\nIf liest item is empty or invalid(0) ");
                             continue;
                         }
                         //medicinReqeustList => Medicin ID, Medicin Type, Dosage, Frequency, Duration, Route
@@ -518,10 +528,11 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
 
                     #region Add Lab Requests to the LabRequest table
-                    string query3 = "INSERT INTO [dbo].[Patient_LabRequest] " +
-                            "([PatientMedicalEvent_ID], [Lab_Specimen_ID], [Lab_Specimen_Name], [Lab_Investigation_ID], [Lab_Investigation_Name], [IsUrgent], [LabelNumber]) " +
-                            "VALUES " +
-                            "(@PatientMedicalEvent_ID, @Lab_Specimen_ID, @Lab_Specimen_Name, @Lab_Investigation_ID, @Lab_Investigation_Name, @IsUrgent, @LabelNumber)";
+                    string query3 = "INSERT INTO Patient_LabRequest " +
+                         "(PatientMedicalEvent_ID, Lab_Specimen_ID, Lab_Specimen_Name, Lab_Investigation_ID, Lab_Investigation_Name, IsUrgent, LabelNumber) " +
+                         "VALUES " +
+                         "(@PatientMedicalEvent_ID, @Lab_Specimen_ID, @Lab_Specimen_Name, @Lab_Investigation_ID, @Lab_Investigation_Name, @IsUrgent, @LabelNumber)";
+
 
                     for (int i = 0; i < SharedData.medicalEvent.Raw_LabInvestigations.Count; i++)
                     {
@@ -567,10 +578,13 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
 
                     #region Add Appointment Requests to the Patient_AppointmentRequest table
-                    string query4 = "INSERT INTO [dbo].[Patient_AppointmentRequest] " +
-                            "([PatientMedicalEvent_ID], [ClinicType_ID], [PatientID]) " +
-                            "VALUES " +
-                            "(@PatientMedicalEvent_ID, @ClinicType_ID, @PatientID)";
+                    Debug.WriteLine("\n Start -> Add Appointment Requests to the Patient_AppointmentRequest table ------");
+
+                    string query4 = "INSERT INTO Patient_AppointmentRequest " +
+                                    "(PatientMedicalEvent_ID, ClinicType_ID, PatientID) " +
+                                    "VALUES " +
+                                    "(@PatientMedicalEvent_ID, @ClinicType_ID, @PatientID)";
+
 
                     foreach (var appointment in SharedData.medicalEvent.Raw_AppointmentsRequests)
                     {

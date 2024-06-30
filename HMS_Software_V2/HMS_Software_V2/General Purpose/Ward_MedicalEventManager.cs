@@ -181,6 +181,9 @@ namespace HMS_Software_V2.General_Purpose
 
         }
 
+
+        List<(int admittedPatientId, int patientId, string condition, int totalRounds, int ward)> PatientAdmitEventDetailsList = new List<(int, int, string, int, int)>();
+
         private void MyCreateAdmitEvent_Step_1()
         {
             Debug.WriteLine("<< MyCreateAdmitEvent_Step_1 >>");
@@ -216,17 +219,23 @@ namespace HMS_Software_V2.General_Purpose
                             {
                                 int admittedPatientId = Convert.ToInt32(reader2["AdmittedPatient_ID"]);
                                 int patientId = Convert.ToInt32(reader2["Patient_ID"]);
-                                string condition = reader2["AP_Condition"].ToString()?? "Error";
+                                string condition = reader2["AP_Condition"].ToString() ?? "Error";
                                 int totalRounds = Convert.ToInt32(reader2["AP_VisiteTotalRounds"]);
                                 int ward = Convert.ToInt32(reader2["AP_Ward"]);
 
-                                Debug.WriteLine("SELECT All Admitted Patients");
-
-                                MyCreateAdmitEvent_Step_2(admittedPatientId, patientId, condition, totalRounds, ward);
+                                Debug.WriteLine("Assign Data to PatientAdmitEventDetailsList List ");
+                                PatientAdmitEventDetailsList.Add((admittedPatientId, patientId, condition, totalRounds, ward));
 
                                 isNoAdmittedPatiens = false;
 
                             }
+                            reader2.Close();
+
+                            foreach (var patientDetail in PatientAdmitEventDetailsList)
+                            {
+                                MyCreateAdmitEvent_Step_2(patientDetail.admittedPatientId, patientDetail.patientId, patientDetail.condition, patientDetail.totalRounds, patientDetail.ward);
+                            }
+
                         }
                     }
 
@@ -254,9 +263,11 @@ namespace HMS_Software_V2.General_Purpose
 
         private void MyCreateAdmitEvent_Step_2(int admittedPatientId, int patientId, string condition, int totalRounds, int ward)
         {
+
             Debug.WriteLine("<< MyCreateAdmitEvent_Step_2 >>");
             using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
+                
                 try
                 {
                 connection.Open();
@@ -349,6 +360,22 @@ namespace HMS_Software_V2.General_Purpose
 
 
         }
+
+
+
+        private void CheckConnectionAndReaderStatus(SQLiteConnection connection)
+        {
+            if (connection.State != System.Data.ConnectionState.Closed)
+            {
+                Debug.WriteLine("Connection is still open.");
+            }
+            else
+            {
+                Debug.WriteLine("Connection is closed.");
+            }
+
+        }
+
 
     }
 }

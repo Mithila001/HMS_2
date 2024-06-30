@@ -57,6 +57,26 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
         private void MyDisplayBasicData()
         {
+
+            #region Get and Assign Date Time
+            int day = DateTime.Now.Day;
+            string daySuffix = day switch
+            {
+                1 or 21 or 31 => "st",
+                2 or 22 => "nd",
+                3 or 23 => "rd",
+                _ => "th"
+            };
+
+            todayDate_lbl.Content = $"{day}{daySuffix} {DateTime.Now:MMMM yyyy}";
+
+            today_Time_lbl.Content = DateTime.Now.ToString("hh:mm: tt");
+
+            todayDateName_lbl.Content = DateTime.Now.DayOfWeek.ToString();
+            #endregion
+
+
+
             using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 try
@@ -111,7 +131,8 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                     string query6 = "SELECT COUNT(*) FROM Doc_PatientAdmit_Request WHERE Requested_Date = @Requested_Date";
                     using (SQLiteCommand command2 = new SQLiteCommand(query6, connection))
                     {
-                        command2.Parameters.AddWithValue("@Requested_Date", DateTime.Today);
+                        string formattedDate = DateTime.Today.ToString("yyyy-MM-dd");
+                        command2.Parameters.AddWithValue("@Requested_Date", formattedDate);
 
                         int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalAdmitRequests_lbl.Content = count.ToString();

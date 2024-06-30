@@ -89,9 +89,6 @@ namespace HMS_Software_V2.AdmissionOfficer
 
         private void MyMoveToPatientAdmitWindow(int patientId)
         {
-
-            HMS_Software_V2._DataManage_Classes.SharedData.admissioOfficer = new HMS_Software_V2._DataManage_Classes.AdmissioOfficer(); // Get a new copy of the template
-
             SharedData.admissioOfficer.PatientID = patientId;
 
             this.Close();

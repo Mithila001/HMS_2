@@ -73,11 +73,11 @@ namespace HMS_Software_V2.Admin
             public string? ClinicType { get; set; }
             public int DoctorID { get; set; }
             public string? HallNumber { get; set; }
-            public TimeSpan StartTime { get; set; }
-            public TimeSpan EndTime { get; set; }
+            public string? StartTime { get; set; }
+            public string? EndTime { get; set; }
             public int TotalSlots { get; set; }
             public int TakenSlots { get; set; }
-            public DateOnly ClinicEvnetDate { get; set; }
+            public string? ClinicEvnetDate { get; set; }
         }
 
         private void MyDisplayClincEvnets()
@@ -104,9 +104,9 @@ namespace HMS_Software_V2.Admin
                             ClinicEvnetID = Convert.ToInt32(reader["CE_ClinicType_ID"]),
                             DoctorID = Convert.ToInt32(reader["Doctor_ID"]),
                             HallNumber = reader["CE_HallNumber"].ToString() ?? "Error",
-                            StartTime = (TimeSpan)reader["CE_StartTime"],
-                            EndTime = (TimeSpan)reader["CE_EndTime"],
-                            ClinicEvnetDate = DateOnly.FromDateTime((DateTime)reader["CE_Date"]),
+                            StartTime = reader["CE_StartTime"].ToString() ?? "Error",
+                            EndTime = reader["CE_EndTime"].ToString() ?? "Error",
+                            ClinicEvnetDate = reader["CE_Date"].ToString() ?? "Error",
                             TotalSlots = Convert.ToInt32(reader["CE_TotalSlots"]),
                             TakenSlots = Convert.ToInt32(reader["CE_TakenSlots"])
                         });

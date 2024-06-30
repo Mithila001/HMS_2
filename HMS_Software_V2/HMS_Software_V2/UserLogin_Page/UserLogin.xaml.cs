@@ -612,10 +612,13 @@ namespace HMS_Software_V2.UserLogin_Page
                                 int admissionOfficerId = Convert.ToInt32(reader["Doctor_ID"]);
                                 string admissionOfficerName = reader["D_NameWithInitials"].ToString() ?? "Error";
 
-                                HMS_Software_V2._DataManage_Classes.SharedData.receptionData = new HMS_Software_V2._DataManage_Classes.ReceptionData(); // Get a new copy of the template
+                                HMS_Software_V2._DataManage_Classes.SharedData.admissioOfficer = new HMS_Software_V2._DataManage_Classes.AdmissioOfficer(); // Get a new copy of the template
 
                                 SharedData.admissioOfficer.AdmissionOfficerID = admissionOfficerId;
                                 SharedData.admissioOfficer.AdmissionOfficerName = admissionOfficerName;
+
+                                Debug.WriteLine("Admission Officer ID: " + SharedData.admissioOfficer.AdmissionOfficerID);
+                                Debug.WriteLine("Admission Officer Name: " + SharedData.admissioOfficer.AdmissionOfficerName);
 
                                 AO_Dashboard aO_Dashboard = new AO_Dashboard();
                                 aO_Dashboard.Show();

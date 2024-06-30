@@ -127,11 +127,8 @@ namespace HMS_Software_V2.Reception
                         uC_RD_ClinicInfo.hallNumber.Content = reader["CE_HallNumber"].ToString();
                         uC_RD_ClinicInfo.doctorName.Content = reader["D_NameWithInitials"].ToString();
 
-                        TimeSpan startTimeValue = (TimeSpan)reader["CE_StartTime"];
-                        string startTime = new DateTime(startTimeValue.Ticks).ToString("hh:mm tt");
-
-                        TimeSpan endTimeValue = (TimeSpan)reader["CE_EndTime"];
-                        string endTime = new DateTime(endTimeValue.Ticks).ToString("hh:mm tt");
+                        string startTime = reader["CE_StartTime"].ToString() ?? "Error";
+                        string endTime = reader["CE_EndTime"].ToString() ?? "Error";
 
                         string clinicEventTime = $"{startTime} - {endTime}";
                         uC_RD_ClinicInfo.timePeriod_lbl.Content = clinicEventTime;
@@ -141,6 +138,7 @@ namespace HMS_Software_V2.Reception
                         DateTime today = DateTime.Today;
                         TimeSpan currentTime = DateTime.Now.TimeOfDay;
 
+                        TimeSpan endTimeValue = TimeSpan.Parse(endTime);
                         if (currentTime < endTimeValue)
                         {
                             uC_RD_ClinicInfo.availabilityBorder_border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF66FF86"));
@@ -214,10 +212,10 @@ namespace HMS_Software_V2.Reception
                         //bool isEmergency = (bool)reader["P_IsEmergency"];
                         string emergencyType = reader["P_EmergancyType"].ToString() ?? "Error";
 
-                        TimeSpan assignedTime = (TimeSpan)reader["P_EmergancyAssignedTime"];
+                        //TimeSpan assignedTime = (TimeSpan)reader["P_EmergancyAssignedTime"];
 
-                        DateTime time = DateTime.Today.Add(assignedTime); // Convert TimeSpan to DateTime
-                        string formattedTime = time.ToString("hh:mm tt"); ;
+                        //DateTime time = DateTime.Today.Add(assignedTime); // Convert TimeSpan to DateTime
+                        string formattedTime = reader["P_EmergancyAssignedTime"].ToString() ??"";
 
 
                         UC_RD_ShowEmergancyPatients uC_RD_ShowEmergancyPatients = new UC_RD_ShowEmergancyPatients();

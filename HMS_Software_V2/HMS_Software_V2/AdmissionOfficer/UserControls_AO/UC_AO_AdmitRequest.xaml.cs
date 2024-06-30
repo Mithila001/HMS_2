@@ -46,8 +46,6 @@ namespace HMS_Software_V2.AdmissionOfficer.UserControls_AO
         
         private void UC_AO_AdmitRequest1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            HMS_Software_V2._DataManage_Classes.SharedData.admissioOfficer = new HMS_Software_V2._DataManage_Classes.AdmissioOfficer(); // Get a new copy of the template
-
             MyAssigneDataToClass();// Assign the data to the class
 
             MyDebugPrintProperties();
@@ -80,6 +78,7 @@ namespace HMS_Software_V2.AdmissionOfficer.UserControls_AO
             Debug.WriteLine($"P_RegistrationID: {P_RegistrationID}");
             Debug.WriteLine($"D_NameWithInitials: {D_NameWithInitials}");
             Debug.WriteLine($"D_Specialty: {D_Specialty}");
+            Debug.WriteLine("\nAdmission Officer ID: " + SharedData.admissioOfficer.AdmissionOfficerID);
             #endregion
         }
 

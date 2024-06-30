@@ -88,7 +88,7 @@
                 <TextBlock Text="Admit Request" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="1"/>
                 <Label x:Name="totalAdmitRequestCounnt_lbl" Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="2"/>
 
-                <TextBlock Text="Admitted" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="4"/>
+                <TextBlock Text="Completed Requests" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="4"/>
                 <Label x:Name="totalAdmittedCount_lbl" Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="5"/>
 
             </Grid>

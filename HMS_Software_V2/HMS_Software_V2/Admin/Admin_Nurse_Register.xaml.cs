@@ -271,7 +271,7 @@ namespace HMS_Software_V2.Admin
                             (@N_FullName, @N_NameWithInitials, @N_DateOfBirth, @N_Age,@N_Gender, @N_NIC, @N_ContactNO ,@N_Address, @N_Nationality,
                             @N_BloodGroup, @N_LicenseNo, @N_NursingSchool_Name, @N_Graduated_Year, @N_Degree,@N_Certificates, @N_Position, @N_ExperiaceYears,
                             @N_Specializations, @N_Email, @N_Registered_Date); 
-                        SELECT SCOPE_IDENTITY();";
+                        SELECT last_insert_rowid();";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {

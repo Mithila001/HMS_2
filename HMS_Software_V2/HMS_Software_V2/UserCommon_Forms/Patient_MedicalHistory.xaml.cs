@@ -119,8 +119,8 @@ namespace HMS_Software_V2.UserCommon_Forms
 
 
                         DateTime patientDate = Convert.ToDateTime(reader["PME_Date"]);
-                        TimeSpan visitedTimeSpan = (TimeSpan)reader["PME_Time"];
-                        string visitedTime = visitedTimeSpan.ToString(@"hh\:mm\:ss");
+                        //TimeSpan visitedTimeSpan = (TimeSpan)reader["PME_Time"];
+                        string visitedTime = reader["PME_Time"].ToString()??"";
 
 
                         int day = patientDate.Day;

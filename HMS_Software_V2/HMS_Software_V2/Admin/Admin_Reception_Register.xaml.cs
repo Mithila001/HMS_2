@@ -220,43 +220,44 @@ namespace HMS_Software_V2.Admin
                 try
                 {
                     string query = @"
-                                    INSERT INTO [dbo].[Reception] (
-                                        [R_FullName], 
-                                        [R_NameWithInitials], 
-                                        [R_Age], 
-                                        [R_Gender], 
-                                        [R_BloodGroup], 
-                                        [R_NIC], 
-                                        [R_Nationality], 
-                                        [R_Specialty], 
-                                        [R_Email], 
-                                        [R_ContactNo], 
-                                        [R_ExperiencedYears], 
-                                        [R_Certificates], 
-                                        [R_Address], 
-                                        [R_DateOfBirth], 
-                                        [R_RegisteredTime], 
-                                        [R_RegisteredDate]
-                                    ) 
-                                    VALUES (
-                                        @R_FullName, 
-                                        @R_NameWithInitials, 
-                                        @R_Age, 
-                                        @R_Gender, 
-                                        @R_BloodGroup, 
-                                        @R_NIC, 
-                                        @R_Nationality, 
-                                        @R_Specialty, 
-                                        @R_Email, 
-                                        @R_ContactNo, 
-                                        @R_ExperiencedYears, 
-                                        @R_Certificates, 
-                                        @R_Address, 
-                                        @R_DateOfBirth, 
-                                        @R_RegisteredTime, 
-                                        @R_RegisteredDate
-                                    ); 
-                                    SELECT SCOPE_IDENTITY();";
+                                INSERT INTO Reception (
+                                    R_FullName, 
+                                    R_NameWithInitials, 
+                                    R_Age, 
+                                    R_Gender, 
+                                    R_BloodGroup, 
+                                    R_NIC, 
+                                    R_Nationality, 
+                                    R_Specialty, 
+                                    R_Email, 
+                                    R_ContactNo, 
+                                    R_ExperiencedYears, 
+                                    R_Certificates, 
+                                    R_Address, 
+                                    R_DateOfBirth, 
+                                    R_RegisteredTime, 
+                                    R_RegisteredDate
+                                ) 
+                                VALUES (
+                                    @R_FullName, 
+                                    @R_NameWithInitials, 
+                                    @R_Age, 
+                                    @R_Gender, 
+                                    @R_BloodGroup, 
+                                    @R_NIC, 
+                                    @R_Nationality, 
+                                    @R_Specialty, 
+                                    @R_Email, 
+                                    @R_ContactNo, 
+                                    @R_ExperiencedYears, 
+                                    @R_Certificates, 
+                                    @R_Address, 
+                                    @R_DateOfBirth, 
+                                    @R_RegisteredTime, 
+                                    @R_RegisteredDate
+                                ); 
+                                SELECT last_insert_rowid();";
+
 
                     using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {

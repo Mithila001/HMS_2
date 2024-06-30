@@ -33,7 +33,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Text="OPD Visits" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0"/>
+                        <TextBlock Text="Out-Patient Visits" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0"/>
                         <Label x:Name="totalOpdVisits_lbl" Content="99" Grid.Row="1" FontSize="22" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5"/>
 
                     </Grid>

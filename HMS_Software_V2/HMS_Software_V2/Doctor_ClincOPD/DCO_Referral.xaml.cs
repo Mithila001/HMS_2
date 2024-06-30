@@ -69,14 +69,14 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                     string query = "INSERT INTO PatientMedical_Event (Patient_ID, PME_Doctor_ID, PME_Nurse_ID, PME_Date, PME_Time, PME_Location, PME_Is_LabRequest," +
                                     " PME_Is_PrescriptionRequest, PME_Is_PatientAppointment, PME_PatientExaminationNote, PME_PatietnMedicalCondition, PME_Is_InPatient) "
                                     + "VALUES (@Patient_ID, @PME_Doctor_ID, @PME_Nurse_ID, @PME_Date, @PME_Time, @PME_Location, @PME_Is_LabRequest, @PME_Is_PrescriptionRequest, @PME_Is_PatientAppointment," +
-                                      " @PME_PatientExaminationNote, @PME_PatietnMedicalCondition, @PME_Is_InPatient); SELECT SCOPE_IDENTITY();";
+                                      " @PME_PatientExaminationNote, @PME_PatietnMedicalCondition, @PME_Is_InPatient); SELECT last_insert_rowid();";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
 
 
                         #region Debug Section
-                        Debug.WriteLine("\n ------ Inserting the following values into PatientMedical_Event ------");
+                        Debug.WriteLine("\n\n ------ Inserting the following values into PatientMedical_Event - From Refferal Note ------");
                         Debug.WriteLine("Patient_ID: " + SharedData.medicalEvent.PatientID);
                         Debug.WriteLine("PME_Doctor_ID: " + SharedData.medicalEvent.DoctorID);
                         Debug.WriteLine("PME_Nurse_ID: " + 0);
@@ -127,7 +127,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
                     #region Insert Data To Doc_PatientAdmit_Request Table 
                     string query2 = "INSERT INTO Doc_PatientAdmit_Request (PatientID, Doctor_ID, P_ReferralNote, Requested_Time, Requested_Date, Is_Urgent, SendFrom_Location) "
-                                    + "VALUES (@PatientID, @Doctor_ID, @P_ReferralNote, @Requested_Time, @Requested_Date, @Is_Urgent, @SendFrom_Location);";
+                                    + "VALUES (@PatientID, @Doctor_ID, @P_ReferralNote, @Requested_Time, @Requested_Date, @Is_Urgent, @SendFrom_Location); SELECT last_insert_rowid();";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(query2, connection))
                     {
@@ -147,13 +147,16 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             
                             Debug.WriteLine("\nInserted Data To Doc_PatientAdmit_Request Table");
 
+                            IsGoingBackToPatientCheck = false;
+
                             parentForm.Close();
+
                             this.Close();
 
                         }
                         else
                         {
-                            MessageBox.Show("Error: Medical Event ID is not generated", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Error: Inserted Data To Doc_PatientAdmit_Request Table Faild", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
                     }
@@ -175,9 +178,15 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
         }
 
+        bool IsGoingBackToPatientCheck = true;
         private void DCO_Referral1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            parentForm.Show();
+            if(IsGoingBackToPatientCheck)
+            {
+                parentForm.Show();
+            }
+
+           
         }
     }
 }

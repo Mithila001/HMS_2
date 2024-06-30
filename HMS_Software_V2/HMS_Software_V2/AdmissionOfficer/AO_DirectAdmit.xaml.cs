@@ -38,12 +38,12 @@ namespace HMS_Software_V2.AdmissionOfficer
             TodayDate_lbl.Content = DateTime.Now.ToString("dd MMMM yyyy");
             TodayTime_lbl.Content = DateTime.Now.ToString("hh:mm tt");
 
-            doctorName_lbl.Content = SharedData.userData.UserName;
+            doctorName_lbl.Content = SharedData.admissioOfficer.AdmissionOfficerName;
 
             using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 #region Getting Admission Officer ID
-                int admissionOfficeID = SharedData.userData.UserID;
+                int admissionOfficeID = SharedData.admissioOfficer.AdmissionOfficerID;
                 if (admissionOfficeID == 0)
                 {
                     MessageBox.Show("Error: User ID is not set.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -249,7 +249,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                     using (SQLiteCommand command2 = new SQLiteCommand(query2, connection))
                     {
                         command2.Parameters.AddWithValue("@Patient_ID", SharedData.admissioOfficer.PatientID);
-                        command2.Parameters.AddWithValue("@PME_Doctor_ID", SharedData.userData.UserID); 
+                        command2.Parameters.AddWithValue("@PME_Doctor_ID", SharedData.admissioOfficer.AdmissionOfficerID); 
                         command2.Parameters.AddWithValue("@PME_Nurse_ID", 0); 
                         command2.Parameters.AddWithValue("@PME_Date", DateTime.Now.ToString("yyyy-MM-dd"));
                         command2.Parameters.AddWithValue("@PME_Time", DateTime.Now.ToString("HH:mm:ss")); 

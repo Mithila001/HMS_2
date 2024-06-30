@@ -41,21 +41,22 @@ namespace HMS_Software_V2.AdmissionOfficer
             urgentStatus_lbl.Content = SharedData.admissioOfficer.Is_Urgent ? "Urgent" : "Not Urgent";
             doctorReqeustComeFrom_lbl.Content = SharedData.admissioOfficer.SendFrom_Location;
 
-            AdmissionOfficerName_lbl.Content = SharedData.userData.UserName;
+            AdmissionOfficerName_lbl.Content = SharedData.admissioOfficer.AdmissionOfficerName;
 
             referalNote_tbx.Text = SharedData.admissioOfficer.P_ReferralNote;
 
             todayDate.Content = DateTime.Now.ToString("dd MMMM yyyy");
             todayTime.Content = DateTime.Now.ToString("hh:mm tt");
 
+            Debug.WriteLine("\n\nAdmission Officer ID: " + SharedData.admissioOfficer.AdmissionOfficerID);
 
             using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 #region Getting Admission Officer ID
-                int admissionOfficeID = SharedData.userData.UserID;
+                int admissionOfficeID = SharedData.admissioOfficer.AdmissionOfficerID;
                 if (admissionOfficeID == 0)
                 {
-                    MessageBox.Show("Error: User ID is not set.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error(AO_AdmitPatient): User ID is not set.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 #endregion
@@ -252,7 +253,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                 catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
-                    MessageBox.Show("Error1: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error11: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 finally

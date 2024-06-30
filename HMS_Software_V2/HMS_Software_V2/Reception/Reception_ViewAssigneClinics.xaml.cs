@@ -62,7 +62,7 @@ namespace HMS_Software_V2.Reception
 
                         UC_RV_ClinicTypes uC_RV_ClinicTypes = new UC_RV_ClinicTypes();
                         string clinicTypeName = reader["CT_Name"].ToString() ?? "Error";
-                        string availability = "XXXXX"; // Replace with actual availability if available
+                        string availability = "Available"; // Currently we dont have a way to check the availability
 
                         uC_RV_ClinicTypes.ClinicTypeName.Content = clinicTypeName;
                         uC_RV_ClinicTypes.ClinicAvailabilityToday.Content = availability;
@@ -153,7 +153,7 @@ namespace HMS_Software_V2.Reception
                         Debug.WriteLine("\nD_NameWithInitials: \n" + reader["D_NameWithInitials"].ToString());
                         Debug.WriteLine("\nD_Specialty: \n" + reader["D_Specialty"].ToString());
                         Debug.WriteLine("\nCE_HallNumber: \n" + reader["CE_HallNumber"].ToString());
-                        Debug.WriteLine("\nCE_StartTime: \n" + (TimeSpan)reader["CE_StartTime"]);
+                        Debug.WriteLine("\nCE_StartTime: \n" + reader["CE_StartTime"]);
                         Debug.WriteLine("\nCE_TotalSlots: \n" + Convert.ToInt32(reader["CE_TotalSlots"]));
                         Debug.WriteLine("\nCE_TakenSlots: \n" + Convert.ToInt32(reader["CE_TakenSlots"]));
                         Debug.WriteLine("\nClinicEvent_ID: \n" + Convert.ToInt32(reader["ClinicEvent_ID"]));
@@ -178,10 +178,10 @@ namespace HMS_Software_V2.Reception
                         uC_RV_ClinicEvents.clinicLocation.Content = reader["CE_HallNumber"].ToString();
                         uC_RV_ClinicEvents.clinicWardNo.Content = reader["CT_WardNo"].ToString();
 
-                        TimeSpan ceStartTime = (TimeSpan)reader["CE_StartTime"];
-                        TimeSpan ceEndTime = (TimeSpan)reader["CE_EndTime"];
-                        string formattedStartTime = DateTime.Today.Add(ceStartTime).ToString("hh:mm tt"); // "01:00 PM"
-                        string formattedEndTime = DateTime.Today.Add(ceEndTime).ToString("hh:mm tt"); // "01:00 PM"
+                        string ceStartTime = reader["CE_StartTime"].ToString()??"";
+                        string ceEndTime = reader["CE_EndTime"].ToString() ?? "";
+                        string formattedStartTime = ceStartTime;
+                        string formattedEndTime = ceEndTime;
 
                         uC_RV_ClinicEvents.clinicEventTime.Content = $"{formattedStartTime} to {formattedEndTime}";
 

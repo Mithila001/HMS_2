@@ -239,7 +239,7 @@ namespace HMS_Software_V2.Doctor_Ward
                     string query = "INSERT INTO PatientMedical_Event (Patient_ID, PME_Doctor_ID, PME_Nurse_ID, PME_Date, PME_Time, PME_Location, PME_Is_LabRequest," +
                                     " PME_Is_PrescriptionRequest, PME_Is_PatientAppointment, PME_PatientExaminationNote, PME_PatietnMedicalCondition, PME_Is_InPatient, PME_MonitorRequest) "
                                     + "VALUES (@Patient_ID, @PME_Doctor_ID, @PME_Nurse_ID, @PME_Date, @PME_Time, @PME_Location, @PME_Is_LabRequest, @PME_Is_PrescriptionRequest, @PME_Is_PatientAppointment," +
-                                      " @PME_PatientExaminationNote, @PME_PatietnMedicalCondition, @PME_Is_InPatient, @PME_MonitorRequest); SELECT SCOPE_IDENTITY();";
+                                      " @PME_PatientExaminationNote, @PME_PatietnMedicalCondition, @PME_Is_InPatient, @PME_MonitorRequest); SELECT last_insert_rowid();";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
@@ -355,10 +355,11 @@ namespace HMS_Software_V2.Doctor_Ward
 
 
                     #region Add Lab Requests to the LabRequest table
-                    string query3 = "INSERT INTO [dbo].[Patient_LabRequest] " +
-                            "([PatientMedicalEvent_ID], [Lab_Specimen_ID], [Lab_Specimen_Name], [Lab_Investigation_ID], [Lab_Investigation_Name], [IsUrgent], [LabelNumber]) " +
-                            "VALUES " +
-                            "(@PatientMedicalEvent_ID, @Lab_Specimen_ID, @Lab_Specimen_Name, @Lab_Investigation_ID, @Lab_Investigation_Name, @IsUrgent, @LabelNumber)";
+                    string query3 = "INSERT INTO Patient_LabRequest " +
+                "(PatientMedicalEvent_ID, Lab_Specimen_ID, Lab_Specimen_Name, Lab_Investigation_ID, Lab_Investigation_Name, IsUrgent, LabelNumber) " +
+                "VALUES " +
+                "(@PatientMedicalEvent_ID, @Lab_Specimen_ID, @Lab_Specimen_Name, @Lab_Investigation_ID, @Lab_Investigation_Name, @IsUrgent, @LabelNumber)";
+
 
                     for (int i = 0; i < SharedData.medicalEvent.Raw_LabInvestigations.Count; i++)
                     {
