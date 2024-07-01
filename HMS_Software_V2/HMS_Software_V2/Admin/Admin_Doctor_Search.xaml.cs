@@ -67,7 +67,7 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
 
                     #region Get Total Doctors Count
 
-                    string query = "SELECT Doctor_ID, D_FullName, D_NameWithInitials, D_Age, D_Gender FROM Doctor";
+                    string query = "SELECT Doctor_ID, D_FullName, D_NameWithInitials, D_Age, D_Gender, D_NIC, D_ContactNo, D_Email, D_Position, D_Specialty, D_LicenceNumber FROM Doctor";
                     SQLiteCommand command = new SQLiteCommand(query, connection);
 
                     using (SQLiteDataReader reader = command.ExecuteReader())
@@ -80,7 +80,14 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
                                 D_FullName = reader.IsDBNull(reader.GetOrdinal("D_FullName")) ? null : reader.GetString(reader.GetOrdinal("D_FullName")),
                                 D_NameWithInitials = reader.IsDBNull(reader.GetOrdinal("D_NameWithInitials")) ? null : reader.GetString(reader.GetOrdinal("D_NameWithInitials")),
                                 D_Age = reader.IsDBNull(reader.GetOrdinal("D_Age")) ? 0 : reader.GetInt32(reader.GetOrdinal("D_Age")),
-                                D_Gender = reader.IsDBNull(reader.GetOrdinal("D_Gender")) ? null : reader.GetString(reader.GetOrdinal("D_Gender"))
+                                D_Gender = reader.IsDBNull(reader.GetOrdinal("D_Gender")) ? null : reader.GetString(reader.GetOrdinal("D_Gender")),
+                                D_NIC = reader.IsDBNull(reader.GetOrdinal("D_NIC")) ? null : reader.GetString(reader.GetOrdinal("D_NIC")),
+                                D_ContactNo = reader.IsDBNull(reader.GetOrdinal("D_ContactNo")) ? null : reader.GetString(reader.GetOrdinal("D_ContactNo")),
+                                D_Email = reader.IsDBNull(reader.GetOrdinal("D_Email")) ? null : reader.GetString(reader.GetOrdinal("D_Email")),
+                                D_Position = reader.IsDBNull(reader.GetOrdinal("D_Position")) ? null : reader.GetString(reader.GetOrdinal("D_Position")),
+                                D_Specialization = reader.IsDBNull(reader.GetOrdinal("D_Specialty")) ? null : reader.GetString(reader.GetOrdinal("D_Specialty")),
+                                D_License = reader.IsDBNull(reader.GetOrdinal("D_LicenceNumber")) ? null : reader.GetString(reader.GetOrdinal("D_LicenceNumber"))
+
                             });
 
                         }
@@ -156,5 +163,12 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
         public string? D_NameWithInitials { get; set; }
         public int D_Age { get; set; }
         public string? D_Gender { get; set; }
+
+        public string? D_NIC { get; set; }
+        public string? D_ContactNo { get; set; }
+        public string? D_Email { get; set; }
+        public string? D_Position { get; set; }
+        public string? D_Specialization { get; set; }
+        public string? D_License { get; set; }
     }
 }

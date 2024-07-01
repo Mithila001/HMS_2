@@ -38,14 +38,17 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
             if (SharedData.doctorData.doctorLocation == "Clinic")
             {
-                MyDoctorClinic(); 
+                MyDoctorClinic();
                 
-                
+                SharedData.doctorData.doctorLocation = "Clinic";
+
+
 
             }
             else if(SharedData.doctorData.doctorLocation == "OPD")
             {
                 MyDoctorOPD();
+                SharedData.doctorData.doctorLocation = "OPD";
             }
             else
             {

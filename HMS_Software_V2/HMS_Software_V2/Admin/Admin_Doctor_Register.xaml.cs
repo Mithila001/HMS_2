@@ -1,4 +1,5 @@
 ﻿using HMS_Software_V2._DataManage_Classes;
+using HMS_Software_V2.Admin.Admin_UserControls;
 using HMS_Software_V2.General_Purpose;
 using System;
 using System.Collections.Generic;
@@ -25,9 +26,11 @@ namespace HMS_Software_V2.Admin
     /// </summary>
     public partial class Admin_Doctor_Register : Window
     {
-        public Admin_Doctor_Register()
+        UC_A_Doctors? UserControlReferece;
+        public Admin_Doctor_Register(UC_A_Doctors uC_A_Doctors)
         {
             InitializeComponent();
+            UserControlReferece = uC_A_Doctors;
 
             adminName_lbl.Content = SharedData.adminData.AdminName;
             #region Get and Assign Date Time
@@ -365,7 +368,7 @@ namespace HMS_Software_V2.Admin
 
                     using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
-                        // Assuming you have variables for each of these parameters
+                        
                         cmd.Parameters.AddWithValue("@UserID", DoctorID);
 
                         if(IsAdmissionOfficer_ComboBox.IsChecked == true)
@@ -382,10 +385,11 @@ namespace HMS_Software_V2.Admin
 
                         cmd.ExecuteNonQuery();
 
-                        outputUserName_lbl.Content = userName;
-                        outputUserPassword_lbl.Content = password;
+                        outputUserName_tbx.Text = userName;
+                        outputUserPassword_tbx.Text = password;
 
                         Register_btn.IsEnabled = false;
+                        Register_btn.Background = new SolidColorBrush(Colors.Gray);
 
 
 
@@ -403,6 +407,12 @@ namespace HMS_Software_V2.Admin
                     connection.Close();
                 }
             }
+
+        }
+
+        private void Admin_Doctor_Register1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            UserControlReferece?.MyRefreshData(); // Refresh the data in the user control
 
         }
     }

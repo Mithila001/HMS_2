@@ -516,12 +516,29 @@ namespace HMS_Software_V2.Doctor_Ward
 
         private void PatientDischarge_btn_Click(object sender, RoutedEventArgs e)
         {
+
+            MessageBoxResult result = MessageBox.Show("Do you want to Discharge this Patient?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Debug.WriteLine("User selected Yes. Performing operation...");
+            }
+            else
+            {
+                Debug.WriteLine("Operation cancelled by the user.");
+                return;
+            }
+
+
+
             using (SQLiteConnection connection = new Database_Connector().GetConnection())
             {
                 connection.Open();
 
                 try
                 {
+                    bool task1 = false;
+                    bool task2 = false;
+                    bool task3 = false;
 
                     #region INSERT to Patient_Discharge Table
                     string query1 = "INSERT INTO Patient_Discharge (Patient_ID, PD_Ward_No, PD_DischardedTime, PD_DischargedDate) "
@@ -536,6 +553,7 @@ namespace HMS_Software_V2.Doctor_Ward
                         cmd.Parameters.AddWithValue("@PD_DischargedDate", DateTime.Now.ToString("yyyy-MM-dd"));
 
                         cmd.ExecuteNonQuery();
+                        task1 = true;
 
                     }
 
@@ -553,11 +571,13 @@ namespace HMS_Software_V2.Doctor_Ward
                         if (rowsAffected > 0)
                         {
                             //MessageBox.Show("Medical event deleted successfully.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                            task2 = true;
 
                         }
                         else
                         {
                             MessageBox.Show("Failed To Delete patient record from the Admintted table.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
                         }
                     }
                     #endregion
@@ -574,14 +594,27 @@ namespace HMS_Software_V2.Doctor_Ward
 
                         if (rowsAffected > 0)
                         {
+                            task3 = true;
 
                         }
                         else
                         {
                             MessageBox.Show("No medical event found with the specified ID.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
                         }
                     } 
                     #endregion
+
+                    if(task1 && task2 && task3)
+                    {
+                        MessageBox.Show("Patient Discharged Successfully.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error: Patient Discharge Failed.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
 
 
                 }

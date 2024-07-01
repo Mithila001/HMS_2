@@ -75,6 +75,13 @@
                     <DataGridTextColumn Header="Name with Initials" Binding="{Binding D_NameWithInitials}"/>
                     <DataGridTextColumn Header="Age" Binding="{Binding D_Age}"/>
                     <DataGridTextColumn Header="Gender" Binding="{Binding D_Gender}"/>
+
+                    <DataGridTextColumn Header="NIC" Binding="{Binding D_NIC}"/>
+                    <DataGridTextColumn Header="Contact No" Binding="{Binding D_ContactNo}"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding D_Email}"/>
+                    <DataGridTextColumn Header="Position" Binding="{Binding D_Position}"/>
+                    <DataGridTextColumn Header="Specialy" Binding="{Binding D_Specialization}"/>
+                    <DataGridTextColumn Header="License" Binding="{Binding D_License}"/>
                     <!-- Add other columns as needed -->
                 </DataGrid.Columns>
             </DataGrid>

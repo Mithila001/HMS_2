@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
         public UC_A_Doctors()
         {
             InitializeComponent();
+            Debug.WriteLine("UC_A_Doctors Loaded");
             MyGetDoctorData();
         }
 
@@ -65,14 +67,20 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
 
         private void DoctorAdd_btn_Click(object sender, RoutedEventArgs e)
         {
-            Admin_Doctor_Register admin_Doctor_Register = new Admin_Doctor_Register();
+            Admin_Doctor_Register admin_Doctor_Register = new Admin_Doctor_Register(this);
             admin_Doctor_Register.ShowDialog();
         }
 
         private void DoctorSearch_btn_Click(object sender, RoutedEventArgs e)
         {
-            Admin_Nurse_Search admin_Nurse_Search = new Admin_Nurse_Search();
-            admin_Nurse_Search.ShowDialog();
+            Admin_Doctor_Search admin_Doctor_Search = new Admin_Doctor_Search();
+            admin_Doctor_Search.ShowDialog();
+        }
+
+        public void MyRefreshData()
+        {
+            MyGetDoctorData();
+            //Debug.WriteLine("\n\n---------- Refreshed ---------\n\n");
         }
     }
 }

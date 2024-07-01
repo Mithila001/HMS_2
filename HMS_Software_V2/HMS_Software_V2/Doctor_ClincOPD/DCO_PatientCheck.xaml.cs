@@ -370,10 +370,13 @@ namespace HMS_Software_V2.Doctor_ClincOPD
             {
                 SharedData.medicalEvent.Location = "OPD";
             }
+            else if (SharedData.doctorData.doctorLocation == "Clinic")
+            {
+                SharedData.medicalEvent.Location = "Clinic";
+            }
             else
             {
-                SharedData.medicalEvent.Location = "OPD Tempory";
-                // Warning! Need to Complete
+                SharedData.medicalEvent.Location = "Location Not Found";
             }
 
             MyCreatePatientMedicalEvent();
