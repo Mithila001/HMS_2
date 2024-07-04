@@ -1,5 +1,6 @@
 ﻿using HMS_Software_V2._DataManage_Classes;
 using HMS_Software_V2.General_Purpose;
+using HMS_Software_V2.General_Purpose.General_UserControls;
 using HMS_Software_V2.UserLogin_Page;
 using System;
 using System.Collections.Generic;
@@ -33,19 +34,22 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
             MyDisplayBasicData();
 
-            doctorName_lbl.Content = SharedData.doctorData.doctorName;
-           
+            
 
+            doctorName_lbl.Content = SharedData.doctorData.doctorName;
+
+
+            #region Check If this is CLinic or OPD type
             if (SharedData.doctorData.doctorLocation == "Clinic")
             {
                 MyDoctorClinic();
-                
+
                 SharedData.doctorData.doctorLocation = "Clinic";
 
 
 
             }
-            else if(SharedData.doctorData.doctorLocation == "OPD")
+            else if (SharedData.doctorData.doctorLocation == "OPD")
             {
                 MyDoctorOPD();
                 SharedData.doctorData.doctorLocation = "OPD";
@@ -54,10 +58,10 @@ namespace HMS_Software_V2.Doctor_ClincOPD
             {
                 MessageBox.Show("Error: Doctor Location is not Valid", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 this.Close();
-            }
+            } 
+            #endregion
 
         }
-
         private void MyDisplayBasicData()
         {
 
@@ -167,6 +171,8 @@ namespace HMS_Software_V2.Doctor_ClincOPD
         private void MyDoctorOPD()
         {
             dipartmentName_lbl.Content = "Outpatient Dipartment (OPD)";
+
+            MyOPDProgressBar();
         }
 
         private void MyDoctorClinic()
@@ -174,6 +180,72 @@ namespace HMS_Software_V2.Doctor_ClincOPD
             dipartmentName_lbl.Content = "Outpatient Dipartment (Clinic)";
             IsClinic = true;
         }
+
+        private void MyOPDProgressBar()
+        {
+            int opdCount = -1;
+            int totalCount = -1;
+
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT COUNT(*) FROM PatientMedical_Event WHERE PME_Date = @TodayDate AND PME_Location = 'OPD'";
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    {
+                        // Format today's date as a string that matches the date format in your database
+                        string todayDate = DateTime.Today.ToString("yyyy-MM-dd");
+                        command.Parameters.AddWithValue("@TodayDate", todayDate);
+
+                        opdCount = Convert.ToInt32(command.ExecuteScalar());
+                    }
+
+                    string query2 = "SELECT COUNT(*) FROM PatientMedical_Event WHERE PME_Location = 'OPD' ";
+                    using (SQLiteCommand command = new SQLiteCommand(query2, connection))
+                    {
+
+                        totalCount = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                }
+                catch (SQLiteException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            if(opdCount != -1 && totalCount != -1)
+            {
+                Debug.WriteLine($"\n\n\nOPD Count: {opdCount} \nTotal Count: {totalCount}");
+
+
+                double percentage = (opdCount / (double)totalCount) * 100; // Ensure division is not integer division
+                int roundedPercentage = (int)Math.Round(percentage);
+
+
+                progressBar_UC.UpdateProgressBar(roundedPercentage);
+                progressBar_UC.presentageCount_lbl.Content = $"{opdCount}/{totalCount}";
+                progressBar_UC.presentage_lbl.Content = $"{roundedPercentage}%";
+
+                Debug.WriteLine($"RoundedPercentage: {roundedPercentage}");
+                Debug.WriteLine($"Percentage: {percentage}");
+                
+            }
+            else
+            {
+                MessageBox.Show("Error: OPD Progress Bar Data is not Valid", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
+            
+        }
+
+
 
 
 

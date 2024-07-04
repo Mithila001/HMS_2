@@ -25,23 +25,7 @@ namespace HMS_Software_V2
         {
             InitializeComponent();
 
-            // Open the connection
-            using (SQLiteConnection connect = new Database_Connector().GetConnection())
-            {
-                connect.Open();
-
-                // Execute your SQL query
-                string sql = "SELECT * FROM TestTable"; // replace 'your_table' with your actual table name
-                SQLiteCommand cmd = new SQLiteCommand(sql, connect);
-                SQLiteDataReader rdr = cmd.ExecuteReader();
-
-                while (rdr.Read())
-                {
-                    Debug.WriteLine( " ------------------------------------------------------- "+ rdr[0]);
-                }
-
-                rdr.Close();
-            }
+           
 
 
 

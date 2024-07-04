@@ -42,6 +42,9 @@ namespace HMS_Software_V2
             UserLogin userLogin = new UserLogin();
             userLogin.Show();
 
+            //MainWindow mainWindow = new MainWindow();
+            //mainWindow.Show();
+
 
 
 
