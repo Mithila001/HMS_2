@@ -446,6 +446,11 @@ namespace HMS_Software_V2.Reception
             Requested_ClinicIDs.Clear();
             PatientID = 0;
 
+            patientName_lbl.Content = " ---------- ";
+            patientAge_lbl.Content = " ---------- ";
+            patientGender_lbl.Content = " ---------- ";
+
+
             ViewClinicTypes_WrapP.Children.Clear();
             ClinicEvents_WrapP.Children.Clear();
             LoadClinicType();

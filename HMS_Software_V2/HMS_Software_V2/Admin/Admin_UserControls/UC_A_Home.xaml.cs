@@ -85,7 +85,8 @@ namespace HMS_Software_V2.Admin.Admin_UserControls
                     using (SQLiteCommand command2 = new SQLiteCommand(query6, connection))
                     {
                         // Add the parameter and set its value to today's date
-                        command2.Parameters.AddWithValue("@CE_Date", DateTime.Today);
+                        string todayDateFormatted = DateTime.Today.ToString("yyyy-MM-dd");
+                        command2.Parameters.AddWithValue("@CE_Date", todayDateFormatted);
 
                         int count = Convert.ToInt32(command2.ExecuteScalar());
                         totalTodaysClinics_lbl.Content = count.ToString();

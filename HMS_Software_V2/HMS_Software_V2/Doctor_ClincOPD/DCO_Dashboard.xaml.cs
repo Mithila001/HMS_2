@@ -77,7 +77,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
             todayDate_lbl.Content = $"{day}{daySuffix} {DateTime.Now:MMMM yyyy}";
 
-            today_Time_lbl.Content = DateTime.Now.ToString("hh:mm: tt");
+            today_Time_lbl.Content = DateTime.Now.ToString("hh:mm tt");
 
             todayDateName_lbl.Content = DateTime.Now.DayOfWeek.ToString();
             #endregion
@@ -179,7 +179,10 @@ namespace HMS_Software_V2.Doctor_ClincOPD
         {
             dipartmentName_lbl.Content = "Outpatient Dipartment (Clinic)";
             IsClinic = true;
+            MyClincProgressBar();
         }
+
+
 
         private void MyOPDProgressBar()
         {
@@ -243,6 +246,68 @@ namespace HMS_Software_V2.Doctor_ClincOPD
 
 
             
+        }
+
+        private void MyClincProgressBar()
+        {
+            int clinicTotal = -1;
+            int clinicVisited = -1;
+
+            using (SQLiteConnection connection = new Database_Connector().GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT COUNT(*) FROM Patient_AppointmentRequest WHERE IsBooked = 1";
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    {
+                        // Format today's date as a string that matches the date format in your database
+                        string todayDate = DateTime.Today.ToString("yyyy-MM-dd");
+                        command.Parameters.AddWithValue("@TodayDate", todayDate);
+
+                        clinicTotal = Convert.ToInt32(command.ExecuteScalar());
+                    }
+
+                    string query2 = "SELECT COUNT(*) FROM Patient_AppointmentRequest WHERE IsBooked = 1 AND IsVisitedByDoctor = 1  ";
+                    using (SQLiteCommand command = new SQLiteCommand(query2, connection))
+                    {
+
+                        clinicVisited = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                }
+                catch (SQLiteException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            if (clinicTotal != -1 && clinicVisited != -1)
+            {
+                //Debug.WriteLine($"\n\n\nClinci Count: {opdCount} \nTotal Count: {totalCount}");
+
+
+                double percentage = ( clinicVisited / (double)clinicTotal) * 100; // Ensure division is not integer division
+                int roundedPercentage = (int)Math.Round(percentage);
+
+
+                progressBar_UC.UpdateProgressBar(roundedPercentage);
+                progressBar_UC.presentageCount_lbl.Content = $"{clinicVisited}/{clinicTotal}";
+                progressBar_UC.presentage_lbl.Content = $"{roundedPercentage}%";
+
+
+            }
+            else
+            {
+                MessageBox.Show("Error: Clinic Progress Bar Data is not Valid", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
+
         }
 
 
@@ -323,7 +388,7 @@ namespace HMS_Software_V2.Doctor_ClincOPD
                             bool isGotAnAppointment = false;
                             int patientAppointmentID = 0;
 
-                            string query2 = "SELECT * FROM Patient_AppointmentRequest WHERE PatientID = @PatientID AND IsVisitedByDoctor = 0 ";
+                            string query2 = "SELECT * FROM Patient_AppointmentRequest WHERE PatientID = @PatientID AND IsVisitedByDoctor = 0 And IsBooked = 1 ";
 
                             SQLiteCommand cmd2 = new SQLiteCommand(query2, connection);
 

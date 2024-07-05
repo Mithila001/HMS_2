@@ -82,7 +82,7 @@
                         <TextBox x:Name="clinicAdd_DoctorID" Style="{StaticResource textStyleForTexBox}"/>
 
                         <TextBlock  Text="Date" Style="{StaticResource textStyle1}"/>
-                        <DatePicker x:Name="clinicAdd_DateOfBirth" Margin="0,0,0,10" FirstDayOfWeek="Monday" SelectedDateFormat="Short"/>
+                        <DatePicker x:Name="clinicAdd_date" Margin="0,0,0,10" FirstDayOfWeek="Monday" SelectedDateFormat="Short"/>
 
                         <TextBlock Text="Hall Numbeer" Style="{StaticResource textStyle1}"/>
                         <TextBox x:Name="clinicAdd_HallNumber" Style="{StaticResource textStyleForTexBox}"/>
@@ -111,7 +111,7 @@
                         </Border>
 
                         <TextBlock  Text="Total Slots" Style="{StaticResource textStyle1}"/>
-                        <TextBox x:Name="clinicAdd_ContactNo" Style="{StaticResource textStyleForTexBox}"/>
+                        <TextBox x:Name="clinicAdd_totalSlots" Style="{StaticResource textStyleForTexBox}"/>
 
 
                     </StackPanel>
@@ -146,7 +146,7 @@
         </ScrollViewer>
 
         <Border CornerRadius="20" Height="50" Width="250" Grid.Column="2" Grid.Row="2" Margin="0,0,50,0" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Button x:Name="Register_btn" Content="Register" Style= "{StaticResource PrettyButtonStyle2}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" />
+            <Button x:Name="Register_btn" Content="Register" Style= "{StaticResource PrettyButtonStyle2}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Click="Register_btn_Click" />
         </Border>
 
 

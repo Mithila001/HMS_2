@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HMS_Software_V2.General_Purpose.General_UserControls"
              mc:Ignorable="d" 
-             MaxHeight="315" MaxWidth="280" MinHeight="310" MinWidth="280">
+             MinHeight="290" MinWidth="275">
 
 
     <UserControl.Resources>
@@ -47,9 +47,9 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50*"/>
-                <RowDefinition Height="230*"/>
-                <RowDefinition Height="45*"/>
-                <RowDefinition Height="30*"/>
+                <RowDefinition Height="230*" MaxHeight="240"/>
+                <RowDefinition Height="45*" MaxHeight="50"/>
+                <RowDefinition Height="30*" MaxHeight="35"/>
                 <RowDefinition Height="40*"/>
             </Grid.RowDefinitions>
 

@@ -24,7 +24,7 @@ namespace HMS_Software_V2.General_Purpose.General_UserControls
         {
             InitializeComponent();
 
-            UpdateProgressBar(75);
+            UpdateProgressBar(0);
         }
 
         public void UpdateProgressBar(double percentage)
@@ -45,14 +45,16 @@ namespace HMS_Software_V2.General_Purpose.General_UserControls
             // Determine if the arc should be large (more than 50%)
             bool isLargeArc = percentage > 50;
 
-            // Find the ArcSegment named "arc" in the XAML
-            PathGeometry geometry = progressPath.Data as PathGeometry;
-            PathFigure figure = geometry.Figures[0];
-            ArcSegment arcSegment = figure.Segments[1] as ArcSegment;
-
-            // Update the ArcSegment properties
-            arcSegment.Point = new Point(x, y);
-            arcSegment.IsLargeArc = isLargeArc;
+            if (progressPath.Data is PathGeometry geometry && geometry.Figures.Count > 0)
+            {
+                PathFigure figure = geometry.Figures[0];
+                if (figure.Segments.Count > 1 && figure.Segments[1] is ArcSegment arcSegment)
+                {
+                    // Update the ArcSegment properties
+                    arcSegment.Point = new Point(x, y);
+                    arcSegment.IsLargeArc = isLargeArc;
+                }
+            }
         }
     }
 }

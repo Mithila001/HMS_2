@@ -35,7 +35,7 @@
                 <Rectangle Grid.Column="2"  Margin="0,0,5,0" VerticalAlignment="Center" Height="130" Fill="#99545454" HorizontalAlignment="Right" Width="2" RadiusX="3" RadiusY="3"/>
                 <Rectangle Grid.Column="3"  Margin="0,0,5,0" VerticalAlignment="Center" Height="130" Fill="#99545454" HorizontalAlignment="Right" Width="2" RadiusX="3" RadiusY="3"/>
 
-                <Label x:Name="receptionName" Content="Name" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" FontSize="25" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Padding="0"/>
+                <Label x:Name="receptionName" Content="Name" HorizontalAlignment="Left" Margin="14,15,0,0" VerticalAlignment="Top" FontSize="25" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Padding="0"/>
                 <Label Content="Reception" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="87" FontSize="14" Grid.Row="0" Padding="5,0,5,0" Height="18"/>
 
                 <Label x:Name="todayDate" Content="Date" HorizontalAlignment="Center" Margin="0,0,0,40" VerticalAlignment="Center" FontSize="25" FontWeight="Bold" Padding="0" Grid.Column="1"/>
@@ -74,15 +74,15 @@
                 <StackPanel Grid.Column="3" VerticalAlignment="Center" Margin="5,5,10,0" Height="135">
                     <StackPanel Margin="0,0,0,10" VerticalAlignment="Center">
                         <TextBlock Text="Name:" TextAlignment="Left" MinHeight="16" FontSize="10"/>
-                        <Label x:Name="patientName_lbl" Content="Patient Name" MinHeight="16" FontSize="14" Margin="10,0,0,5" FontWeight="Bold" Padding="0"/>
+                        <Label x:Name="patientName_lbl" Content=" ---------- " MinHeight="16" FontSize="14" Margin="10,0,0,5" FontWeight="Bold" Padding="0"/>
                     </StackPanel>
                     <StackPanel Margin="0,0,0,10" VerticalAlignment="Center">
                         <TextBlock Text="Age:" TextAlignment="Left" MinHeight="16" FontSize="10"/>
-                        <Label x:Name="patientAge_lbl" Content="XXXXXXXXXX" MinHeight="16" FontSize="14" Margin="10,0,0,5" FontWeight="Bold" Padding="0"/>
+                        <Label x:Name="patientAge_lbl" Content=" ---------- " MinHeight="16" FontSize="14" Margin="10,0,0,5" FontWeight="Bold" Padding="0"/>
                     </StackPanel>
                     <StackPanel Margin="0,0,0,10" VerticalAlignment="Center">
                         <TextBlock Text="Gender:" TextAlignment="Left" MinHeight="16" FontSize="10"/>
-                        <Label x:Name="patientGender_lbl" Content="XXXXXXXXXX" MinHeight="16" FontSize="14" Margin="10,0,0,5" FontWeight="Bold" Padding="0"/>
+                        <Label x:Name="patientGender_lbl" Content=" ---------- " MinHeight="16" FontSize="14" Margin="10,0,0,5" FontWeight="Bold" Padding="0"/>
                     </StackPanel>
                 </StackPanel>
 
