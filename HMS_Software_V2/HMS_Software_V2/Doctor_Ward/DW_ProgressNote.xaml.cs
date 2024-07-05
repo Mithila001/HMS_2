@@ -539,6 +539,7 @@ namespace HMS_Software_V2.Doctor_Ward
                     bool task1 = false;
                     bool task2 = false;
                     bool task3 = false;
+                    bool task4 = false;
 
                     #region INSERT to Patient_Discharge Table
                     string query1 = "INSERT INTO Patient_Discharge (Patient_ID, PD_Ward_No, PD_DischardedTime, PD_DischargedDate) "
@@ -582,6 +583,39 @@ namespace HMS_Software_V2.Doctor_Ward
                     }
                     #endregion
 
+                    #region UPDATE Admitted_Patients_VisitEvent Table
+                    string query4 = "UPDATE Admitted_Patients_VisitEvent SET" +
+                                    " Visited_Doctor_ID = @Visited_Doctor_ID, Visite_Date= @Visite_Date, Visite_Time = @Visite_Time," +
+                                    " P_MedicalEventID = @P_MedicalEventID, Is_VisistedByDoctor = 1, P_Condition = @P_Condition," +
+                                    " Is_VisitedByNurse = 1, N_TreatmentStatus = 'Completed' " +
+                                    " WHERE Patient_ID = @Patient_ID AND VisitPerDay_ID = @MedicalRoundManagerID";
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(query4, connection))
+                    {
+
+                        cmd.Parameters.AddWithValue("@Visited_Doctor_ID", SharedData.Ward_Doctor.DoctorID);
+                        cmd.Parameters.AddWithValue("@Visite_Date", DateTime.Now.ToString("yyyy-MM-dd"));
+                        cmd.Parameters.AddWithValue("@Visite_Time", DateTime.Now.ToString("HH:mm"));
+                        cmd.Parameters.AddWithValue("@P_MedicalEventID", MedicalEventID);
+                        cmd.Parameters.AddWithValue("@Patient_ID", SharedData.medicalEvent.PatientID);
+                        cmd.Parameters.AddWithValue("@MedicalRoundManagerID", SharedData.Ward_Doctor.RoundManagerID);
+                        cmd.Parameters.AddWithValue("@P_Condition", "Discharged");
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            Debug.WriteLine("Update successful");
+                            task4 = true;
+                        }
+                        else
+                        {
+                            Debug.WriteLine("Update failed: No rows affected.");
+                            MessageBox.Show("Error: Update failed: No rows affected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                    }
+                    #endregion
+
 
                     #region UPDATE Patient Table
 
@@ -605,7 +639,7 @@ namespace HMS_Software_V2.Doctor_Ward
                     } 
                     #endregion
 
-                    if(task1 && task2 && task3)
+                    if(task1 && task2 && task3 && task4)
                     {
                         MessageBox.Show("Patient Discharged Successfully.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                         this.Close();

@@ -19,11 +19,18 @@ namespace HMS_Software_V2
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            Debug.WriteLine("\n=========================================================\n\nApplication_Startup\n\n");
             Debug.WriteLine("\nWard_MedicalEventManager Triggerd\n");
             Ward_MedicalEventManager ward_MedicalEventManager = new Ward_MedicalEventManager();
             ward_MedicalEventManager.MyStart();
-            Debug.WriteLine("\n=========================================================\n\nApplication_Startup\n\n");
-            Debug.WriteLine("Ward_MedicalEventManager Triggerd\n");
+            Debug.WriteLine("Ward_MedicalEventManager Triggerd -- Ended\n");
+
+            Debug.WriteLine("\nUpdate Records to todays Date\n");
+            ShowCasePurposeONLY_UpdateRecords showCasePurposeONLY_UpdateRecords = new ShowCasePurposeONLY_UpdateRecords();
+            showCasePurposeONLY_UpdateRecords.UpdateRecords();
+
+
+
 
             // --------------------- Nurse Ward ---------------------
 

@@ -121,7 +121,7 @@
                             <TextBox x:Name="userName_tbx" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Margin="10,0,20,0"/>
 
                             <Label x:Name="password_lbl" Content="Password" Style="{StaticResource labelStyle1}"/>
-                            <TextBox x:Name="userPassword_tbx" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Margin="10,0,20,0"/>
+                            <PasswordBox x:Name="userPassword_pwbx" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Margin="10,0,20,0"/>
 
                             <Label x:Name="unitType_lbl" Content="Unit Type" Style="{StaticResource labelStyle1}"/>
                             <ComboBox x:Name="unitTye_combobox" FontSize="16" FontWeight="Regular" VerticalAlignment="Center" Margin="10,0,20,0">

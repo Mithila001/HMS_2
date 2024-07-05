@@ -50,15 +50,15 @@
 
 
                 <TextBlock Text="Name:" FontSize="12" Margin="0,0,0,7" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="50" TextAlignment="Right" Height="16" />
-                <Label x:Name="patientName_lbl" Content="PatientName"  FontSize="18" Margin="60,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Padding="0" FontWeight="SemiBold" Height="24" />
+                <Label x:Name="patientName_lbl" Content="PatientName"  FontSize="18" Margin="60,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Padding="0" FontWeight="SemiBold" />
 
                 <TextBlock Text="Age:" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="1" TextAlignment="Right" Width="50"/>
-                <Label x:Name="patientAge_lbl" Content="XX"  FontSize="16" Margin="60,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="0" Grid.Row="1" FontWeight="SemiBold" Height="21" />
+                <Label x:Name="patientAge_lbl" Content="XX"  FontSize="16" Margin="60,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="0" Grid.Row="1" FontWeight="SemiBold" />
 
                 <TextBlock Text="ID:" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.RowSpan="2"  TextAlignment="Right" Width="23" Height="15"/>
-                <Label x:Name="patientRID_lbl" Content="PXXXXX"  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0" Grid.Column="1" Grid.RowSpan="2" FontWeight="SemiBold" Height="21" />
+                <Label x:Name="patientRID_lbl" Content="PXXXXX"  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0" Grid.Column="1" Grid.RowSpan="2" FontWeight="SemiBold" />
 
-                <Label x:Name="patientMedicalCondition_lbl" Content="Medical Condition"  FontSize="16" Margin="40,28,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Grid.Column="2" Grid.RowSpan="2" FontWeight="SemiBold" Height="19" />
+                <Label x:Name="patientMedicalCondition_lbl" Content="Medical Condition"  FontSize="16" Margin="40,28,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Grid.Column="2" Grid.RowSpan="2" FontWeight="SemiBold" />
 
                 <Rectangle x:Name="colorIndicator_Retangle" Grid.Column="3" Grid.RowSpan="2" Fill="White" RadiusX="4" RadiusY="4" />
 

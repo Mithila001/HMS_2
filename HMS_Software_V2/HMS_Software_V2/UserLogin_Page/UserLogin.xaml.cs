@@ -50,7 +50,6 @@ namespace HMS_Software_V2.UserLogin_Page
             this.DragMove();
         }
 
-      
 
         string SelectedPosition = "";
         private void userPosition_combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -116,7 +115,7 @@ namespace HMS_Software_V2.UserLogin_Page
             {
                 MessageBox.Show("Error: User Name is Empty", "Error", MessageBoxButton.OK, MessageBoxImage.Error); return;
             }
-            if (InputValidations.MyIsNullorempty(userPassword_tbx.Text))
+            if (InputValidations.MyIsNullorempty(userPassword_pwbx.Password))
             {
                 MessageBox.Show("Error: Password is Empty", "Error", MessageBoxButton.OK, MessageBoxImage.Error); return;
             }
@@ -301,7 +300,7 @@ namespace HMS_Software_V2.UserLogin_Page
                     using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@UserName", userName_tbx.Text);
-                        cmd.Parameters.AddWithValue("@UserPassword", userPassword_tbx.Text);
+                        cmd.Parameters.AddWithValue("@UserPassword", userPassword_pwbx.Password);
 
 
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
