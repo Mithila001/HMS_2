@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HMS_Software_V2.AdmissionOfficer"
-        xmlns:UserControls_AO="clr-namespace:HMS_Software_V2.AdmissionOfficer.UserControls_AO" x:Name="AdmissionOfficer" x:Class="HMS_Software_V2.AdmissionOfficer.AO_Dashboard"
+        xmlns:UserControls_AO="clr-namespace:HMS_Software_V2.AdmissionOfficer.UserControls_AO" xmlns:General_UserControls="clr-namespace:HMS_Software_V2.General_Purpose.General_UserControls" x:Name="AdmissionOfficer" x:Class="HMS_Software_V2.AdmissionOfficer.AO_Dashboard"
         mc:Ignorable="d"
         Title="AO_Dashboard" Height="720" Width="1280" WindowStartupLocation="CenterScreen"
         MinHeight="720" MinWidth="1280" Closing="AdmissionOfficer_Closing">
-    
-    
-    
+
+
+
     <Grid Background="#FFE6FEF9">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
@@ -26,15 +26,15 @@
         <Border Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="Black" Margin="5,5,5,5" CornerRadius="5">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="400*"/>
+                    <ColumnDefinition Width="250*"/>
+                    <ColumnDefinition Width="450*"/>
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
 
                 <Rectangle Grid.Column="0" Margin="0,1,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="84" Fill="#FFB7B7B7" RadiusX="1" RadiusY="1"/>
                 <Rectangle Grid.Column="1" Margin="0,1,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="84" Fill="#FFB7B7B7" RadiusX="1" RadiusY="1"/>
-                <Rectangle Grid.Column="2" Margin="0,1,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="84" Fill="#FFB7B7B7" RadiusX="1" RadiusY="1"/>
+                <!--<Rectangle Grid.Column="2" Margin="0,1,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="1" Height="84" Fill="#FFB7B7B7" RadiusX="1" RadiusY="1"/>-->
 
 
                 <Label x:Name="admissionOfficerName_lbl" Content="DoctorName" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" Margin="10,0,0,30"/>
@@ -42,7 +42,9 @@
 
                 <Label x:Name="todayDate_lbl" Content="21 Augest 2024" FontSize="28" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,0" Grid.Column="1"/>
 
-                <TextBlock Text="Addmission Office" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="2" FontWeight="Bold"/>
+                <TextBlock Text="Addmission Office" FontSize="32" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="100,0,0,0" Grid.Column="2" FontWeight="Bold"/>
+
+                <General_UserControls:UC_GP_Logo Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"/>
 
             </Grid>
         </Border>
@@ -62,11 +64,11 @@
                 </Grid.RowDefinitions>
 
 
-                <TextBlock Text="Total Admitted Patinets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="1"/>
-                <Label  x:Name="totalAdmittedPatients_lbl" Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="2"/>
+                <TextBlock Text="Total Admitted Patinets" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="1"/>
+                <Label  x:Name="totalAdmittedPatients_lbl" Content="XX" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="2"/>
 
-                <TextBlock Text="Total Wards" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="4"/>
-                <Label x:Name="totalWards_lbl" Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="5"/>
+                <TextBlock Text="Total Wards" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="4"/>
+                <Label x:Name="totalWards_lbl" Content="XX" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="5"/>
 
             </Grid>
 
@@ -85,11 +87,11 @@
                 </Grid.RowDefinitions>
 
 
-                <TextBlock Text="Admit Request" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="1"/>
-                <Label x:Name="totalAdmitRequestCounnt_lbl" Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="2"/>
+                <TextBlock Text="Admit Request" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="1"/>
+                <Label x:Name="totalAdmitRequestCounnt_lbl" Content="XX" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="2"/>
 
-                <TextBlock Text="Completed Requests" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="4"/>
-                <Label x:Name="totalAdmittedCount_lbl" Content="XX" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="5"/>
+                <TextBlock Text="Completed Requests" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Row="4"/>
+                <Label x:Name="totalAdmittedCount_lbl" Content="XX" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0" Grid.Row="5"/>
 
             </Grid>
 
@@ -119,9 +121,7 @@
 
         <Border Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0,5,10,20" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                <WrapPanel x:Name="AdmitRequest_WrapP" Margin="1">
-                    
-                </WrapPanel>
+                <WrapPanel x:Name="AdmitRequest_WrapP" Margin="1"/>
             </ScrollViewer>
 
         </Border>

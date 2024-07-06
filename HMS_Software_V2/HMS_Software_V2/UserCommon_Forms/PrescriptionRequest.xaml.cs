@@ -32,6 +32,8 @@ namespace HMS_Software_V2.UserCommon_Forms
 
             Debug.WriteLine("\n\n----- PrescriptionRequest => OPD -----\n");
 
+            MyAddBasicDetails();
+
             AddPrescription();
             _parentForm = parentForm;
         }
@@ -42,6 +44,8 @@ namespace HMS_Software_V2.UserCommon_Forms
 
             Debug.WriteLine("\n\n----- PrescriptionRequest => Wad -----\n");
 
+            MyAddBasicDetails();
+
             AddPrescription();
             _parentForm = progressNote;
         }
@@ -51,6 +55,9 @@ namespace HMS_Software_V2.UserCommon_Forms
             PatientName_lbl.Content = SharedData.medicalEvent.PatientName;
             Age_lbl.Content = SharedData.medicalEvent.PatientAge;
             Gender_lbl.Content = SharedData.medicalEvent.PatientGender;
+
+            doctorName_lbl.Content = SharedData.doctorData.doctorName;
+            doctorSpecialty_lbl.Content = SharedData.doctorData.doctorSpecialization;
 
             TodayDate_lbl.Content = DateTime.Now.ToString("dd/MM/yyyy");
             TodayTime_lbl.Content = DateTime.Now.ToString("hh:mm tt");

@@ -64,6 +64,9 @@ namespace HMS_Software_V2.UserCommon_Forms
             PatientAge_lbl.Content = SharedData.medicalEvent.PatientAge;
             Gender_lbl.Content = SharedData.medicalEvent.PatientGender;
 
+            doctorName_lbl.Content = SharedData.doctorData.doctorName;
+            doctorSpecialty_lbl.Content = SharedData.doctorData.doctorSpecialization;
+
         }
 
         private void AddNewLabRequest()

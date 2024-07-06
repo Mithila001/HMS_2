@@ -25,6 +25,13 @@
     <None Remove="Assest\Images\HMS V2 Background.png" />
     <None Remove="Assest\Images\HMS V2.png" />
     <None Remove="Assest\Images\HMS V2_Background2.png" />
+    <None Remove="Assest\Images\HMS_V2_WithLogo%28450px%29.png" />
+    <None Remove="Assest\Images\HMS_V2_WithLogo%28800px%29.png" />
+    <None Remove="Assest\Images\HMS_V2_WithLogo.png" />
+    <None Remove="Assest\Logo\HMS_Logo%28100px%29.png" />
+    <None Remove="Assest\Logo\HMS_Logo%28200px%29.png" />
+    <None Remove="Assest\Logo\HMS_Logo.png" />
+    <None Remove="Assest\Logo\Logo_Symbol.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,10 +57,13 @@
     <Resource Include="Assest\Images\HMS V2 Background.png" />
     <Resource Include="Assest\Images\HMS V2.png" />
     <Resource Include="Assest\Images\HMS V2_Background2.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="General Purpose\General_UserControls\" />
+    <Resource Include="Assest\Images\HMS_V2_WithLogo(450px).png" />
+    <Resource Include="Assest\Images\HMS_V2_WithLogo(800px).png" />
+    <Resource Include="Assest\Images\HMS_V2_WithLogo.png" />
+    <Resource Include="Assest\Logo\HMS_Logo(100px).png" />
+    <Resource Include="Assest\Logo\HMS_Logo(200px).png" />
+    <Resource Include="Assest\Logo\HMS_Logo.png" />
+    <Resource Include="Assest\Logo\Logo_Symbol.png" />
   </ItemGroup>
 
   <ItemGroup>
