@@ -72,39 +72,45 @@ namespace HMS_Software_V2.General_Purpose
 
         public Database_Connector()
         {
-            //connStr = @"Data Source= E:\Programming\Github\HMS_Mithila\HMS_Software_V2\HMS_Software_V2\HMS_SqlLite_Database1.db; Version=3;";
-            //string? fullPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, connStr.Replace("Data Source=", "").Split(';')[0]));
-
-            //if (!File.Exists(fullPath))
-            //{
-            //    MessageBox.Show("Database file not found: " + fullPath);
-            //    return;
-            //}
-
-            //connStr = $@"Data Source={fullPath}; Version=3;";
-
 
 
             // Get the base directory (typically points to bin\Debug or bin\Release when running from Visual Studio)
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-            // Navigate up to the project root directory from the base directory
-            // Adjust the number of "..\" based on your specific project structure
-            string projectDirectory = Path.GetFullPath(Path.Combine(baseDirectory, @"..\..\..\"));
 
-            // Construct the absolute path to the database file
-            string databasePath = Path.Combine(projectDirectory, @"HMS_SqlLite_Database1.db");
 
-            // Check if the database file exists
-            if (!File.Exists(databasePath))
-            {
-                Debug.WriteLine($"Database file not found: {databasePath}");
-                MessageBox.Show($"Database file not found: {databasePath}");
-                return;
-            }
-            Debug.WriteLine($"\n\ndatabasePath: {databasePath}");
-            // Construct the connection string using the absolute path to the database file
-            connStr = $@"Data Source={databasePath}; Version=3;";
+
+            // --------------------------- Uncomment the following lines to run the application from Visual Studio ---------------------------
+            #region Use this if you want to connect to the database From Visual Studio
+            /**
+
+                string projectDirectory = Path.GetFullPath(Path.Combine(baseDirectory, @"..\..\..\"));
+
+                Construct the absolute path to the database file
+                string databasePath = Path.Combine(projectDirectory, @"HMS_SqlLite_Database1.db"); 
+
+                Check if the database file exists
+                if (!File.Exists(databasePath)) 
+                {
+                    Debug.WriteLine($"Database file not found: {databasePath}");
+                    MessageBox.Show($"databasePath: {databasePath}");
+                    MessageBox.Show($"Database file not found: {databasePath}");
+                    return;
+                } 
+                Debug.WriteLine($"\n\ndatabasePath: {databasePath}");
+
+
+                //  Use the first connStr line to run the application from Visual Studio    
+
+                connStr = $@"Data Source={databasePath}; Version=3;";
+
+                **/  
+            #endregion
+
+
+
+
+            connStr = $@"Data Source={baseDirectory}HMS_SqlLite_Database1.db; Version=3;"; //Realese vertion Connetion string
         }
 
         private SQLiteConnection EnsureConnection()

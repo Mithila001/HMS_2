@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using Newtonsoft.Json;
+using System.Transactions;
 
 namespace HMS_Software_V2.AdmissionOfficer
 {
@@ -51,37 +52,50 @@ namespace HMS_Software_V2.AdmissionOfficer
                 }
                 #endregion
 
-                #region Search/Assign Patient Details FROM DB
-                string query1 = "SELECT P_NameWithIinitials, P_Age, P_Gender" +
-                            " FROM Patient WHERE Patient_ID = @Patient_ID";
-
-                SQLiteCommand cmd = new SQLiteCommand(query1, connection);
 
                 try
                 {
+
                     connection.Open();
 
-                    cmd.Parameters.AddWithValue("@Patient_ID", SharedData.admissioOfficer.PatientID);
 
-                    SQLiteDataReader reader = cmd.ExecuteReader();
+                    #region Search/Assign Patient Details FROM DB
+                    string query1 = "SELECT P_NameWithIinitials, P_Age, P_Gender" +
+                                " FROM Patient WHERE Patient_ID = @Patient_ID";
 
-                    if (reader.Read())
+                    using (SQLiteCommand cmd = new SQLiteCommand(query1, connection))
                     {
+                        cmd.Parameters.AddWithValue("@Patient_ID", SharedData.admissioOfficer.PatientID);
 
-                        string patientName = reader["P_NameWithIinitials"].ToString() ?? "";
-                        string patientAge = reader["P_Age"].ToString() ?? "";
-                        string patientGender = reader["P_Gender"].ToString() ?? "";
 
-                        PatientName_lbl.Content = patientName;
-                        PatientAge_lbl.Content = patientAge;
-                        PatientGender_lbl.Content = patientGender;
+                        SQLiteDataReader reader = cmd.ExecuteReader();
 
+                        if (reader.Read())
+                        {
+
+                            string patientName = reader["P_NameWithIinitials"].ToString() ?? "";
+                            string patientAge = reader["P_Age"].ToString() ?? "";
+                            string patientGender = reader["P_Gender"].ToString() ?? "";
+
+                            PatientName_lbl.Content = patientName;
+                            PatientAge_lbl.Content = patientAge;
+                            PatientGender_lbl.Content = patientGender;
+
+                           
+
+                            
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("No Patient Found", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                        //reader.Close();
                     }
-                    else
-                    {
-                        MessageBox.Show("No Patient Found", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
+
                 }
+
+  
                 catch (SQLiteException ex)
                 {
                     Debug.WriteLine("\nError1: \n" + ex.Message);
@@ -224,6 +238,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                             " (Patient_ID, AP_Condition, AP_VisiteTotalRounds, AP_AdmittedDate, AP_AdmittedTime, AP_Ward)" +
                             " VALUES(@Patient_ID, @AP_Condition, @AP_VisiteTotalRounds, @AP_AdmittedDate, @AP_AdmittedTime, @AP_Ward)";
 
+                    Debug.WriteLine("\n\n\n\n\n1");
                     using (SQLiteCommand command = new SQLiteCommand(query1, connection))
                     {
 
@@ -246,6 +261,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                     " VALUES(@Patient_ID, @PME_Doctor_ID, @PME_Nurse_ID, @PME_Date, @PME_Time, @PME_Location, @PME_Is_LabRequest,"+
                     " @PME_Is_PrescriptionRequest, @PME_Is_PatientAppointment, @PME_PatientExaminationNote, @PME_PatietnMedicalCondition, @PME_Is_InPatient)";
 
+                    Debug.WriteLine("2");
                     using (SQLiteCommand command2 = new SQLiteCommand(query2, connection))
                     {
                         command2.Parameters.AddWithValue("@Patient_ID", SharedData.admissioOfficer.PatientID);
@@ -268,6 +284,7 @@ namespace HMS_Software_V2.AdmissionOfficer
                     #region UPDATE Patient Table
                     string query3 = "UPDATE Patient SET P_CurrentStatus = 'In-Patient', P_IsEmergency = @P_IsEmergency, P_EmergancyType = @P_EmergancyType, P_EmergancyAssignedTime = @P_EmergancyAssignedTime WHERE Patient_ID = @Patient_ID";
 
+                    Debug.WriteLine("3");
                     using (SQLiteCommand command3 = new SQLiteCommand(query3, connection))
                     {
                         command3.Parameters.AddWithValue("@Patient_ID", SharedData.admissioOfficer.PatientID);

@@ -68,7 +68,7 @@
 
   <ItemGroup>
     <None Update="HMS_SqlLite_Database1.db">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

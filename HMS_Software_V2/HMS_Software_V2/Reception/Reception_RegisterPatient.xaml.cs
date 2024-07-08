@@ -100,9 +100,9 @@ namespace HMS_Software_V2.Reception
                 {
                     string query = "INSERT INTO Patient (P_FullName, P_NameWithIinitials, P_Age, P_Gender, P_NIC, P_ContactNo," +
                                     " P_Address, P_DateOfBirth, P_G_Name, P_G_ContactNo, P_G_NIC, P_RegisteredTime, P_RegisteredDate, P_CurrentStatus)" +
-                                    " OUTPUT inserted.P_RegistrationID " +
                                     " VALUES (@P_FullName, @P_NameWithIinitials, @P_Age, @P_Gender, @P_NIC, @P_ContactNo," +
-                                    " @P_Address, @P_DateOfBirth, @P_G_Name, @P_G_ContactNo, @P_G_NIC, @P_RegisteredTime, @P_RegisteredDate, @P_CurrentStatus)";
+                                    " @P_Address, @P_DateOfBirth, @P_G_Name, @P_G_ContactNo, @P_G_NIC, @P_RegisteredTime, @P_RegisteredDate, @P_CurrentStatus); " +
+                                    "SELECT last_insert_rowid()";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
                     {
@@ -122,32 +122,55 @@ namespace HMS_Software_V2.Reception
                         cmd.Parameters.AddWithValue("@P_CurrentStatus", "New Registered");
 
                         connection.Open();
-                        string registrationId = (string)cmd.ExecuteScalar();
-                        PatientRID = registrationId;
 
-                        if (!string.IsNullOrEmpty(registrationId))
+                        object result = cmd.ExecuteScalar();
+                        // First, ensure the result is not null and is of type Int64
+                        if (result != null && result is Int64)
                         {
-                            isGenerated = true; // To prvent another Generate [For extra safty]
-                            Generate_btn.Background = Brushes.Gray;
-                            Generate_btn.IsEnabled = false;
+                            // Convert the Int64 value to string if necessary
+                            string registrationId = ((Int64)result).ToString();
+                            PatientRID = registrationId;
 
-                            var bc = new BrushConverter();
+                            if (!string.IsNullOrEmpty(registrationId))
+                            {
+                                isGenerated = true; // To prvent another Generate [For extra safty]
+                                Generate_btn.Background = Brushes.Gray;
+                                Generate_btn.IsEnabled = false;
 
-                            patientRID_lbl.Content = registrationId;
+                                var bc = new BrushConverter();
 
-                            save_btn.IsEnabled = true;
-                            save_btn.ClearValue(Button.BackgroundProperty);
+                                
+
+                                string selectQuery = "SELECT P_RegistrationID FROM Patient WHERE Patient_ID = @Patient_ID";
+                                using (SQLiteCommand selectCmd = new SQLiteCommand(selectQuery, connection))
+                                {
+                                    selectCmd.Parameters.AddWithValue("@Patient_ID", registrationId);
+                                    var secondColumnData = selectCmd.ExecuteScalar(); // Execute the SELECT query
+
+                                    if (secondColumnData != null)
+                                    {
+                                        // Assuming you want to display this data somewhere
+                                        patientRID_lbl.Content = secondColumnData.ToString();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Error retrieving data from the second column.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    }
+                                }
+
+                                save_btn.IsEnabled = true;
+                                save_btn.ClearValue(Button.BackgroundProperty);
 
 
-                            print_btn.IsEnabled = true ;
-                            print_btn.ClearValue(Button.BackgroundProperty);
-
-
+                                print_btn.IsEnabled = true;
+                                print_btn.ClearValue(Button.BackgroundProperty);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error saving patient information.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                         }
-                        else
-                        {
-                            MessageBox.Show("Error saving patient information.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
+
                     }
                 }
             }
@@ -178,7 +201,7 @@ namespace HMS_Software_V2.Reception
 
         private void print_btn_Click(object sender, RoutedEventArgs e)
         {
-
+            Clipboard.SetText(patientRID_lbl.Content.ToString());
         }
     }
 }
